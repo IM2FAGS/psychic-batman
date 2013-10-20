@@ -19,6 +19,9 @@
                     <h:inputText id="nom" value="#{produitsController.selected.nom}" title="#{bundle.CreateProduitsTitle_nom}" required="true" requiredMessage="#{bundle.CreateProduitsRequiredMessage_nom}"/>
                     <h:outputLabel value="#{bundle.CreateProduitsLabel_prix}" for="prix" />
                     <h:inputText id="prix" value="#{produitsController.selected.prix}" title="#{bundle.CreateProduitsTitle_prix}" required="true" requiredMessage="#{bundle.CreateProduitsRequiredMessage_prix}"/>
+                    <h:outputLabel value="#{bundle.CreateProduitsLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{produitsController.selected.description}" title="#{bundle.CreateProduitsTitle_description}" required="true" requiredMessage="#{bundle.CreateProduitsRequiredMessage_description}"/>
+                    
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{produitsController.create}" value="#{bundle.CreateProduitsSaveLink}" />
