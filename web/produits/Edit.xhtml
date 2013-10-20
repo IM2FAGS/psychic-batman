@@ -15,8 +15,10 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditProduitsLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{produitsController.selected.id}" title="#{bundle.EditProduitsTitle_id}" />
+                    <h:outputLabel value="#{bundle.EditProduitsLabel_nom}" for="nom" />
+                    <h:inputText id="nom" value="#{produitsController.selected.nom}" title="#{bundle.EditProduitsTitle_nom}" required="true" requiredMessage="#{bundle.EditProduitsRequiredMessage_nom}"/>
+                    <h:outputLabel value="#{bundle.EditProduitsLabel_prix}" for="prix" />
+                    <h:inputText id="prix" value="#{produitsController.selected.prix}" title="#{bundle.EditProduitsTitle_prix}" required="true" requiredMessage="#{bundle.EditProduitsRequiredMessage_prix}"/>
                 </h:panelGrid>
                 <h:commandLink action="#{produitsController.update}" value="#{bundle.EditProduitsSaveLink}"/>
                 <br />

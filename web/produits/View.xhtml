@@ -17,6 +17,10 @@
                 <h:panelGrid columns="2">
                     <h:outputText value="#{bundle.ViewProduitsLabel_id}"/>
                     <h:outputText value="#{produitsController.selected.id}" title="#{bundle.ViewProduitsTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewProduitsLabel_nom}"/>
+                    <h:outputText value="#{produitsController.selected.nom}" title="#{bundle.ViewProduitsTitle_nom}"/>
+                    <h:outputText value="#{bundle.ViewProduitsLabel_prix}"/>
+                    <h:outputText value="#{produitsController.selected.prix}" title="#{bundle.ViewProduitsTitle_prix}"/>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{produitsController.destroyAndView}" value="#{bundle.ViewProduitsDestroyLink}"/>
