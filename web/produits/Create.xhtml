@@ -21,7 +21,13 @@
                     <h:inputText id="prix" value="#{produitsController.selected.prix}" title="#{bundle.CreateProduitsTitle_prix}" required="true" requiredMessage="#{bundle.CreateProduitsRequiredMessage_prix}"/>
                     <h:outputLabel value="#{bundle.CreateProduitsLabel_description}" for="description" />
                     <h:inputText id="description" value="#{produitsController.selected.description}" title="#{bundle.CreateProduitsTitle_description}" required="true" requiredMessage="#{bundle.CreateProduitsRequiredMessage_description}"/>
-                    
+                    <h:selectOneMenu id="subscriptions" value="#{produitsController.selected.duree}">
+                        <f:selectItem id="item1" itemLabel="1 jour" itemValue="1" />
+                        <f:selectItem id="item2" itemLabel="2 jour" itemValue="2" />
+                        <f:selectItem id="item3" itemLabel="3 jour" itemValue="3" />
+                        <f:selectItem id="item4" itemLabel="4 jour" itemValue="4" />
+                        <f:selectItem id="item5" itemLabel="5 jour" itemValue="5" />
+                    </h:selectOneMenu>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{produitsController.create}" value="#{bundle.CreateProduitsSaveLink}" />

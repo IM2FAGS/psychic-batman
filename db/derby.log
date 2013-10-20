@@ -1,7 +1,7 @@
-Sun Oct 20 16:13:00 CEST 2013 : Apache Derby Serveur réseau - 10.9.1.0 - (1344872) démarré et prêt à accepter les connexions sur le port 1527
+Sun Oct 20 22:37:11 CEST 2013 : Apache Derby Serveur réseau - 10.9.1.0 - (1344872) démarré et prêt à accepter les connexions sur le port 1527
 ----------------------------------------------------------------
-Sun Oct 20 16:13:19 CEST 2013:
-Amorçage de Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872) : instance a816c00e-0141-d636-3bdb-00003a4e8029 
+Sun Oct 20 22:37:35 CEST 2013:
+Amorçage de Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872) : instance a816c00e-0141-d795-f806-00003a4e8029 
 dans le répertoire de base de données /home/toinou/NetBeansProjects/psychic-batman/db/abey  avec le chargeur de classe sun.misc.Launcher$AppClassLoader@6fd7bd04
 
 java.vendor=Oracle Corporation

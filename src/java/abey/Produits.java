@@ -44,11 +44,12 @@ public class Produits implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "DATEDEBUT")
     protected Date dateDebut;
     @Basic(optional = false)
     @NotNull
-    @Temporal(TemporalType.TIMESTAMP)
-    protected Date dateFin;
+    @Column(name = "DUREE")
+    protected int duree;
 
     /*
      public Produits() {
@@ -103,12 +104,12 @@ public class Produits implements Serializable {
         this.dateDebut = dateDebut;
     }
 
-    public Date getDateFin() {
-        return dateFin;
+    public int getDuree() {
+        return duree;
     }
 
-    public void setDateFin(Date dateFin) {
-        this.dateFin = dateFin;
+    public void setDuree(int duree) {
+        this.duree = duree;
     }
 
     @Override

@@ -21,6 +21,10 @@
                     <h:outputText value="#{produitsController.selected.nom}" title="#{bundle.ViewProduitsTitle_nom}"/>
                     <h:outputText value="#{bundle.ViewProduitsLabel_prix}"/>
                     <h:outputText value="#{produitsController.selected.prix}" title="#{bundle.ViewProduitsTitle_prix}"/>
+                    <h:outputText value="Date de debut"/>
+                    <h:outputText value="#{produitsController.selected.dateDebut}" title="DateDebut"/>
+                    <h:outputText value="Duree"/>
+                    <h:outputText value="#{produitsController.selected.duree}" title="Duree"/>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{produitsController.destroyAndView}" value="#{bundle.ViewProduitsDestroyLink}"/>
