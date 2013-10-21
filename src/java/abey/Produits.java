@@ -136,4 +136,11 @@ public class Produits implements Serializable {
     public String toString() {
         return "abey.Produits[ id=" + id + " ]";
     }
+    
+    // methodes bonus
+    public Date getDateFin() {
+        long dureeMilliseconds = duree * 24 * 3600 * 1000;
+        Date dateFin = new Date(dateDebut.getTime() + dureeMilliseconds);
+        return dateFin;
+    }
 }
