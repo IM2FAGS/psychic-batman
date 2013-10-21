@@ -139,8 +139,8 @@ public class Produits implements Serializable {
     
     // methodes bonus
     public Date getDateFin() {
-        long dureeMilliseconds = duree * 24 * 3600 * 1000;
-        Date dateFin = new Date(dateDebut.getTime() + dureeMilliseconds);
+        long dureeMillisecondes = duree * 24 * 3600 * 1000;
+        Date dateFin = new Date(dateDebut.getTime() + dureeMillisecondes);
         return dateFin;
     }
 }
