@@ -22,9 +22,21 @@
                     <h:dataTable value="#{boutiquesController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListBoutiquesTitle_id}"/>
+                                <h:outputText value="id"/>
                             </f:facet>
                             <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="nom"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nom}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="description"/>
+                            </f:facet>
+                            <h:outputText value="#{item.description}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">

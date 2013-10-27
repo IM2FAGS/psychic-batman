@@ -3,31 +3,61 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.CreateUtilisateursTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
+            <!--            <h:panelGroup id="messagePanel" layout="block">
+                            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                        </h:panelGroup>-->
+
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateUtilisateursLabel_nom}" for="mail" />
-                    <h:inputText id="mail" value="#{utilisateursController.selected.mail}" title="#{bundle.CreateUtilisateursTitle_nom}" required="true" requiredMessage="#{bundle.CreateUtilisateursRequiredMessage_nom}"/>
-                   
-                    <h:outputLabel value="#{bundle.CreateUtilisateursLabel_nom}" for="nom" />
-                    <h:inputText id="nom" value="#{utilisateursController.selected.nom}" title="#{bundle.CreateUtilisateursTitle_nom}" required="true" requiredMessage="#{bundle.CreateUtilisateursRequiredMessage_nom}"/>
-                    
-                    <h:outputLabel value="#{bundle.CreateUtilisateursLabel_prix}" for="pass" />
-                    <h:inputText id="pass" value="#{utilisateursController.selected.pass}" title="#{bundle.CreateUtilisateursTitle_prix}" required="true" requiredMessage="#{bundle.CreateUtilisateursRequiredMessage_prix}"/>
-                    
-                    <h:outputLabel value="#{bundle.CreateUtilisateursLabel_description}" for="dateNaissance" />
-                    <h:inputText id="dateNaissance" value="#{utilisateursController.selected.dateNaissance}" title="#{bundle.CreateUtilisateursTitle_description}" required="true" requiredMessage="#{bundle.CreateUtilisateursRequiredMessage_description}"/>
-                    
-                </h:panelGrid>
+                <p:messages id="msgs"/>
+                <p:panelGrid columns="2">
+                    <p:column>
+                        <h:outputLabel value="Mail :" for="mail" />
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="mail" value="#{utilisateursController.selected.mail}" title="#{bundle.CreateUtilisateursTitle_nom}" required="true"
+                                     validatorMessage="L'adresse mail n'est pas valide" requiredMessage="Mail obligatoire" onblur="">
+                            <f:validateRegex pattern="([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)" />
+                            <f:ajax event="blur" render="msgs" />
+                        </p:inputText>
+                    </p:column>
+
+                    <h:outputLabel value="Pseudo :" for="nom" />
+                    <p:inputText id="nom" value="#{utilisateursController.selected.nom}" title="#{bundle.CreateUtilisateursTitle_nom}" required="true" requiredMessage="Nom d'utilisateur obligatoire"/>
+
+                    <h:outputLabel value="Mot de passe :" for="pw1" />
+                    <p:password id="pw1" value="#{utilisateursController.selected.pass}" match="pw2" validatorMessage="Les mots de passe ne sont pas identiques"
+                                requiredMessage="Mot de passe obligatoire" title="#{bundle.CreateUtilisateursTitle_prix}" required="true" feedback="true"/>
+
+                    <h:outputLabel value="Mot de passe (confirmation) :" for="pw2" />
+                    <p:password id="pw2" value="#{utilisateursController.selected.pass}" title="#{bundle.CreateUtilisateursTitle_prix}" required="true"
+                                requiredMessage="Confirmation du mot de passe obligatoire"/>
+
+                    <p:column>
+                        <h:outputLabel value="Date de Naissance :" for="dateNaissance" />
+                    </p:column>
+                    <p:column>
+                        <p:selectOneMenu value="#{utilisateursController.date.day}">  
+                            <f:selectItem itemLabel="Jour" itemValue="" /> 
+                            <f:selectItems value="#{utilisateursController.date.days}" />  
+                        </p:selectOneMenu>
+                        <p:selectOneMenu value="#{utilisateursController.date.month}">  
+                            <f:selectItem itemLabel="Mois" itemValue="" /> 
+                            <f:selectItems value="#{utilisateursController.date.months}" />  
+                        </p:selectOneMenu>
+                        <p:selectOneMenu value="#{utilisateursController.date.year}">  
+                            <f:selectItem itemLabel="Année" itemValue="" /> 
+                            <f:selectItems value="#{utilisateursController.date.years}" />  
+                        </p:selectOneMenu>
+                    </p:column>
+                </p:panelGrid>
                 <br />
                 <h:commandLink action="#{utilisateursController.create}" value="#{bundle.CreateUtilisateursSaveLink}" />
                 <br />

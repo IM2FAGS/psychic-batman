@@ -113,9 +113,7 @@ public class Utilisateurs implements Serializable {
 
     public void setDateNaissance(Date dateNaissance) {
         this.dateNaissance = dateNaissance;
-    }
-    
-    
+    }    
     
     @Override
     public int hashCode() {

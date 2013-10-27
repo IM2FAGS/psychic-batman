@@ -4,6 +4,8 @@ import abey.util.JsfUtil;
 import abey.util.PaginationHelper;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -21,6 +23,7 @@ import javax.faces.model.SelectItem;
 public class UtilisateursController implements Serializable {
 
     private Utilisateurs current;
+    private DatePick date;
     private DataModel items = null;
     @EJB
     private abey.UtilisateursFacade ejbFacade;
@@ -36,6 +39,13 @@ public class UtilisateursController implements Serializable {
             selectedItemIndex = -1;
         }
         return current;
+    }
+
+    public DatePick getDate() {
+        if (date == null) {
+            date = new DatePick();
+        }
+        return date;
     }
 
     private UtilisateursFacade getFacade() {
@@ -78,9 +88,22 @@ public class UtilisateursController implements Serializable {
 
     public String create() {
         try {
-            getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UtilisateursCreated"));
-            return prepareCreate();
+            System.out.println("Coucou les amis");
+            Calendar cal = Calendar.getInstance();
+            cal.set(date.getYear(), date.getMonth()-1, date.getDay());
+            Date d = cal.getTime();
+            if (cal.get(Calendar.DAY_OF_MONTH) != date.getDay()) {
+                System.out.println("date invalide");
+                JsfUtil.addErrorMessage("Date invalide");
+                return null;
+            } else {
+                System.out.println("" + d);
+                current.setDateNaissance(d);
+                current.setSalt("salt");
+                getFacade().create(current);
+                JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UtilisateursCreated"));
+                return prepareCreate();
+            }
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;

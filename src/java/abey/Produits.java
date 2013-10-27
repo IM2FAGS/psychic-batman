@@ -31,7 +31,7 @@ public class Produits implements Serializable {
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "NOM")
-    private String nom;
+    protected String nom;
     @Basic(optional = false)
     @NotNull
     @Column(name = "PRIX")

@@ -5,6 +5,7 @@ import abey.util.PaginationHelper;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -16,6 +17,13 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import javax.persistence.metamodel.EntityType;
+import javax.persistence.metamodel.Metamodel;
 
 @Named("produitsController")
 @SessionScoped
@@ -23,12 +31,43 @@ public class ProduitsController implements Serializable {
 
     private Produits current;
     private DataModel items = null;
+    private String query;
+    private List<Produits> produits;
     @EJB
     private abey.ProduitsFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
     public ProduitsController() {
+    }
+
+    public String getQuery() {
+        return query;
+    }
+
+    public void setQuery(String query) {
+        this.query = query;
+    }
+
+    public List<Produits> getProduits() {
+        return produits;
+    }
+
+    public void setProduits(List<Produits> produits) {
+        this.produits = produits;
+    }
+
+    public void search() {
+        EntityManager em = ejbFacade.getEntityManager();
+        CriteriaQuery<Produits> cq;
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        cq = cb.createQuery(Produits.class);
+        Root<Produits> prod = cq.from(Produits.class);
+        Metamodel m = em.getMetamodel();
+        cq.where(cb.like(prod.get(Produits_.nom), "*do"));
+        TypedQuery<Produits> q = em.createQuery(cq);
+        List<Produits> produits = q.getResultList();
+        
     }
 
     public Produits getSelected() {
