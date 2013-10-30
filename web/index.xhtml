@@ -12,8 +12,8 @@
         </ui:define>
         <ui:define name="body">
             <h:form>
-                <h:commandButton action="#{fillDb.get_util()}" value="Book Hotel"/>
-                <p:spinner /> 
+                <h:commandButton action="#{fillDb.get_util()}" value="Fill Utilisateurs"/>
+                <h:commandButton action="#{fillProduits.get_util()}" value="Fill Produits"/>
                 <p:selectOneMenu value="#{datePick.day}">  
                     <f:selectItem itemLabel="Jour" itemValue="" /> 
                     <f:selectItems value="#{datePick.days}" />  
@@ -29,11 +29,11 @@
             </h:form>
             <h:link outcome="/recherche.xhtml" value="Recherche"/>
             <br />
-            <h:link outcome="/faces/produits/List" value="Show All Produits Items"/>
+            <h:link outcome="/produits/List" value="Show All Produits Items"/>
             <br />
-            <h:link outcome="/faces/boutiques/List" value="Show All Boutiques Items"/>
+            <h:link outcome="/boutiques/List" value="Show All Boutiques Items"/>
             <br />
-            <h:link outcome="/faces/utilisateurs/List" value="Show All Utilisateurs Items"/>
+            <h:link outcome="/utilisateurs/List" value="Show All Utilisateurs Items"/>
         </ui:define>
     </ui:composition>
 

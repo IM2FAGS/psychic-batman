@@ -15,25 +15,25 @@ import javax.inject.Named;
  *
  * @author toinou
  */
-@Named("fillDb")
+@Named("fillProduits")
 @SessionScoped
-public class fill_db implements Serializable {
+public class fill_produits implements Serializable {
 
     @EJB
-    private abey.UtilisateursFacade utilEjbFacade;
+    private abey.ProduitsFacade prodEjbFacade;
 
     public void get_util() {
         for (int i = 0; i < 40; i++) {
-            abey.Utilisateurs user = new abey.Utilisateurs();
-            user.setMail("ab"+i+"@cd.ef");
-            user.setNom(i+"abcde");
-            user.setPass("pass");
-            user.setSalt("salt");
+            abey.Produits produit = new abey.Produits();
+            produit.setNom("a"+i);
+            produit.setDescription("b"+i);
             Calendar cal = Calendar.getInstance();
             cal.set(2010, 0, (i+1) % 28);
             Date d = cal.getTime();
-            user.setDateNaissance(d);
-            utilEjbFacade.create(user);
+            produit.setDateDebut(d);
+            produit.setDuree(2);
+            produit.setPrix(i);
+            prodEjbFacade.create(produit);
         }
     }
 }

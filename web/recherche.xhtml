@@ -12,15 +12,61 @@
         </ui:define>
         <ui:define name="body">
             <h:form>
-                <h:inputText value="#{produitsController.query}" required="true" />
-                <h:commandButton value="Search" action="#{produitsController.search}" />
+                <h:inputText value="#{ProduitsRecherche.query}" required="true" />
+                <h:commandButton value="Search" action="#{ProduitsRecherche.search}" />
                 <h:messages />
             </h:form>
-            <h:dataTable value="#{produitsController.produits}" var="prod" rendered="#{not empty produitsController.produits}">
+
+            <h:form id="form">
+
+                <p:dataGrid var="prod" value="#{ProduitsRecherche.produits}" columns="3"
+                            rows="12" paginator="true"
+                            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                            rowsPerPageTemplate="9,12,15">
+
+                    <p:panel header="#{prod.nom}" style="text-align:center">
+                        <h:panelGrid columns="1" style="width:100%">
+                            <!--<p:graphicImage value="/images/cars/#{car.manufacturer}.jpg"/>--> 
+
+                            <h:outputText value="#{prod.prix}" />
+
+                            <p:commandLink update=":form:prodDetail" oncomplete="PF('prodDialog').show()" title="View Detail">
+                                <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" /> 
+                                <f:setPropertyActionListener value="#{prod}" 
+                                                             target="#{ProduitsRecherche.selectedProduit}" />
+                            </p:commandLink>
+                        </h:panelGrid>
+                    </p:panel>
+
+                </p:dataGrid>
+
+                <p:dialog header="Details Produit" widgetVar="prodDialog" modal="true">
+                    <p:outputPanel id="prodDetail" style="text-align:center;">
+
+                        <!--<p:graphicImage value="/images/cars/#{tableBean.selectedCar.manufacturer}.jpg"/>-->
+
+                        <h:panelGrid  columns="2" cellpadding="5">
+                            <h:outputLabel for="nom" value="Model No: " />
+                            <h:outputText id="modelNo" value="#{ProduitsRecherche.selectedProduit.nom}" />
+
+                            <h:outputLabel for="prout" value="Year: " />
+                            <h:outputText id="year" value="#{ProduitsRecherche.selectedProduit.description}" />
+
+                            <h:outputLabel for="prix" value="Color: " />
+                            <h:outputText id="color" value="#{ProduitsRecherche.selectedProduit.prix}"/>
+                        </h:panelGrid>
+                    </p:outputPanel>
+                </p:dialog>
+
+            </h:form>
+
+
+
+            <h:dataTable value="#{ProduitsRecherche.produits}" var="prod" rendered="#{not empty ProduitsRecherche.produits}">
                 <h:column>#{prod.nom}</h:column>
                 <h:column>#{prod.description}</h:column>
             </h:dataTable>
-            <h:outputText value="No matches found!" rendered="#{not empty bean.query and empty bean.users}" />
+            <h:outputText value="No matches found!" rendered="#{not empty bean.query and empty ProduitsRecherche.users}" />
         </ui:define>
     </ui:composition>
 

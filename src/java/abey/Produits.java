@@ -52,18 +52,21 @@ public class Produits implements Serializable {
     protected int duree;
 
     /*
-     public Produits() {
-     }
+    public Produits() {
+    }
+    public Produits(Long id) {
+    this.id = id;
+    }*/
+    public Produits(){}
+    public Produits(String nom, long prix, String description, Date dateDebut, int duree) {
+        this.nom = nom;
+        this.prix = prix;
+        this.description = description;
+        this.dateDebut = dateDebut;
+        this.duree = duree;
+    }
 
-     public Produits(Long id) {
-     this.id = id;
-     }
-
-     public Produits(Long id, String nom, long prix) {
-     this.id = id;
-     this.nom = nom;
-     this.prix = prix;
-     }*/
+    
     public Long getId() {
         return id;
     }
