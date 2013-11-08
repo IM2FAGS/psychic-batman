@@ -24,10 +24,11 @@
                         <li>
                             <h:form class="navbar-form">
                                 <div class="form-group">
-                                    <h:inputText class="form-control " value="#{ProduitsRecherche.query}" required="true"/>
+                                    <p:inputText id="search-field" value="#{ProduitsRecherche.query}" required="true"/>
+                                    <p:watermark for="search-field" value="Recherche"/>
                                 </div>
                                 <div class="form-group">
-                                    <h:commandLink value="Search" class="btn btn-success" action="#{ProduitsRecherche.search}" />
+                                    <h:commandLink value="Search" class="btn btn-primary" action="#{ProduitsRecherche.search}" />
                                 </div>
                             </h:form>
                         </li>
@@ -35,7 +36,25 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#about"><span class="glyphicon glyphicon-shopping-cart"/></a></li>
                         <li><a href="#about"><span class="glyphicon glyphicon-cog"/></a></li>
-                        <li><a href="#about">Login</a></li>
+
+                        <li id="login-form">
+                            <h:form class="navbar-form">
+                                <div class="form-group">
+                                    <p:inputText id="nom" value="" />
+                                </div>
+                                <div class="form-group">
+                                    <p:password id="pass" value="" />
+                                </div>
+                                <div class="form-group">
+                                    <h:commandLink value="Login" class="btn btn-primary" action="#{ProduitsRecherche.search}" />
+                                </div>
+                                <div class="form-group">
+                                    <h:link outcome="/utilisateurs/Create" class="btn btn-primary">Creer un compte</h:link>
+                                </div>
+                            </h:form>
+                        </li>
+
+                        <li id="show-login-li"><a href="#about" id="show-login">Login</a></li>
                     </ul>
                 </div>
             </div>
@@ -57,7 +76,7 @@
                 </div>
             </div>
         </div>
-        
+
         <footer>
             <div class="container">
                 <div class="row">
@@ -79,8 +98,8 @@
             </div>
         </footer>
 
-        <!--<h:outputScript name="jquery-1.10.2.min.js"/>-->
         <h:outputScript name="bootstrap-3.0.0/dist/js/bootstrap.min.js"/>
+        <h:outputScript name="js/abey.js"/>
     </h:body>
 
 </html>

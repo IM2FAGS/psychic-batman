@@ -88,22 +88,26 @@ public class UtilisateursController implements Serializable {
 
     public String create() {
         try {
-            System.out.println("Coucou les amis");
-            Calendar cal = Calendar.getInstance();
-            cal.set(date.getYear(), date.getMonth()-1, date.getDay());
-            Date d = cal.getTime();
-            if (cal.get(Calendar.DAY_OF_MONTH) != date.getDay()) {
-                System.out.println("date invalide");
-                JsfUtil.addErrorMessage("Date invalide");
-                return null;
-            } else {
-                System.out.println("" + d);
-                current.setDateNaissance(d);
-                current.setSalt("salt");
-                getFacade().create(current);
-                JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UtilisateursCreated"));
-                return prepareCreate();
-            }
+            current.setSalt("salt");
+            getFacade().create(current);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UtilisateursCreated"));
+            return prepareCreate();
+//            System.out.println("Coucou les amis");
+//            Calendar cal = Calendar.getInstance();
+//            cal.set(date.getYear(), date.getMonth()-1, date.getDay());
+//            Date d = cal.getTime();
+//            if (cal.get(Calendar.DAY_OF_MONTH) != date.getDay()) {
+//                System.out.println("date invalide");
+//                JsfUtil.addErrorMessage("Date invalide");
+//                return null;
+//            } else {
+//                System.out.println("" + d);
+//                current.setDateNaissance(d);
+//                current.setSalt("salt");
+//                getFacade().create(current);
+//                JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UtilisateursCreated"));
+//                return prepareCreate();
+//            }
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;

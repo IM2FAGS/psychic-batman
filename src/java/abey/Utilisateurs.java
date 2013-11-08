@@ -30,12 +30,12 @@ public class Utilisateurs implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "MAIL")
+    @Column(name = "MAIL", unique = true)
     private String mail;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "NOM")
+    @Column(name = "NOM", unique = true)
     private String nom;
     @Basic(optional = false)
     @NotNull

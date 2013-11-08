@@ -11,55 +11,63 @@
             <h:outputText value="#{bundle.CreateUtilisateursTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <!--            <h:panelGroup id="messagePanel" layout="block">
-                            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                        </h:panelGroup>-->
-
-            <h:form>
+            <h:form class="form-horizontal">
                 <p:messages id="msgs"/>
-                <p:panelGrid columns="2">
-                    <p:column>
-                        <h:outputLabel value="Mail :" for="mail" />
-                    </p:column>
-                    <p:column>
+                <div class="form-group">
+                    <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-5">
                         <p:inputText id="mail" value="#{utilisateursController.selected.mail}" title="#{bundle.CreateUtilisateursTitle_nom}" required="true"
-                                     validatorMessage="L'adresse mail n'est pas valide" requiredMessage="Mail obligatoire" onblur="">
+                                     validatorMessage="L'adresse mail n'est pas valide" requiredMessage="Mail obligatoire" onblur=""
+                                     styleClass="form-control">
                             <f:validateRegex pattern="([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)" />
                             <f:ajax event="blur" render="msgs" />
                         </p:inputText>
-                    </p:column>
+                        <p:watermark for="mail" value="Email"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="nom" class="col-sm-2 control-label">Pseudo</label>
+                    <div class="col-sm-5">
+                        <p:inputText id="nom" value="#{utilisateursController.selected.nom}" title="#{bundle.CreateUtilisateursTitle_nom}"
+                                     required="true" requiredMessage="Nom d'utilisateur obligatoire" styleClass="form-control"/>
+                        <p:watermark for="nom" value="Pseudo"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="pw1" class="col-sm-2 control-label">Mot de passe</label>
+                    <div class="col-sm-5">
+                        <p:password id="pw1" value="#{utilisateursController.selected.pass}" match="pw2" validatorMessage="Les mots de passe ne sont pas identiques"
+                                    requiredMessage="Mot de passe obligatoire" title="#{bundle.CreateUtilisateursTitle_prix}" required="true" feedback="true"
+                                    styleClass="form-control"/>
+                        <p:watermark for="pw1" value="Mot de passe"/>
+                    </div>
+                </div>
 
-                    <h:outputLabel value="Pseudo :" for="nom" />
-                    <p:inputText id="nom" value="#{utilisateursController.selected.nom}" title="#{bundle.CreateUtilisateursTitle_nom}" required="true" requiredMessage="Nom d'utilisateur obligatoire"/>
+                <div class="form-group">
 
-                    <h:outputLabel value="Mot de passe :" for="pw1" />
-                    <p:password id="pw1" value="#{utilisateursController.selected.pass}" match="pw2" validatorMessage="Les mots de passe ne sont pas identiques"
-                                requiredMessage="Mot de passe obligatoire" title="#{bundle.CreateUtilisateursTitle_prix}" required="true" feedback="true"/>
 
-                    <h:outputLabel value="Mot de passe (confirmation) :" for="pw2" />
-                    <p:password id="pw2" value="#{utilisateursController.selected.pass}" title="#{bundle.CreateUtilisateursTitle_prix}" required="true"
-                                requiredMessage="Confirmation du mot de passe obligatoire"/>
+                    <label for="pw2" class="col-sm-2 control-label">Confirmation</label>
+                    <div class="col-sm-5">
+                        <p:password id="pw2" value="#{utilisateursController.selected.pass}" title="#{bundle.CreateUtilisateursTitle_prix}" required="true"
+                                    requiredMessage="Confirmation du mot de passe obligatoire"
+                                    styleClass="form-control"/>
+                        <p:watermark for="pw2" value="Confirmation du mot de passe"/>
+                    </div>
+                </div>
 
-                    <p:column>
-                        <h:outputLabel value="Date de Naissance :" for="dateNaissance" />
-                    </p:column>
-                    <p:column>
-                        <p:selectOneMenu value="#{utilisateursController.date.day}">  
-                            <f:selectItem itemLabel="Jour" itemValue="" /> 
-                            <f:selectItems value="#{utilisateursController.date.days}" />  
-                        </p:selectOneMenu>
-                        <p:selectOneMenu value="#{utilisateursController.date.month}">  
-                            <f:selectItem itemLabel="Mois" itemValue="" /> 
-                            <f:selectItems value="#{utilisateursController.date.months}" />  
-                        </p:selectOneMenu>
-                        <p:selectOneMenu value="#{utilisateursController.date.year}">  
-                            <f:selectItem itemLabel="Année" itemValue="" /> 
-                            <f:selectItems value="#{utilisateursController.date.years}" />  
-                        </p:selectOneMenu>
-                    </p:column>
-                </p:panelGrid>
+                <div class="form-group">
+
+
+                    <label for="dateNaissance" class="col-sm-2 control-label">Date de Naissance</label>
+                    <div class="col-sm-5">
+                        <p:calendar id="dateNaissance" value="#{utilisateursController.selected.dateNaissance}" navigator="true" required="true" yearRange="c-100:c-0"
+                                    pattern="dd/MM/yyyy" showOn="button" readonlyInput="true" />
+                    </div>
+                </div>
+
+
                 <br />
-                <h:commandLink action="#{utilisateursController.create}" value="#{bundle.CreateUtilisateursSaveLink}" />
+                <h:commandLink class="btn btn-primary" action="#{utilisateursController.create}" value="#{bundle.CreateUtilisateursSaveLink}" />
                 <br />
                 <br />
                 <h:commandLink action="#{utilisateursController.prepareList}" value="#{bundle.CreateUtilisateursShowAllLink}" immediate="true"/>
