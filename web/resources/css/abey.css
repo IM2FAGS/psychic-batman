@@ -5,6 +5,10 @@ body {
     min-height: 400px;
 }
 
+.navbar {
+	border-radius: 0;
+}
+
 #main-menu {
     position: static;
     display: block;
@@ -18,6 +22,8 @@ footer {
 
 #login-form {
     display: none;
+	width: 0;
+	white-space: nowrap;
 }
 
 #login-form input {

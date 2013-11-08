@@ -7,7 +7,7 @@ var abey = {
     },
     
     showLogin: function() {
-        $('#login-form').show();
+        $('#login-form').show().animate({width: 415});
         $('#show-login-li').hide();
     }
     
