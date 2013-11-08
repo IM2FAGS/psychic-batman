@@ -55,7 +55,7 @@ public class ProduitsRecherche implements Serializable {
         this.produits = produits;
     }
 
-    public void search() {
+    public String search() {
         try {
             Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/abey");
             String updateString =
@@ -73,8 +73,10 @@ public class ProduitsRecherche implements Serializable {
                 produits.add(new Produits(rs.getString("nom"), rs.getLong("prix"),
                         rs.getString("description"), rs.getDate("dateDebut"), rs.getInt("duree")));
             }
+            return "recherche";
         } catch (SQLException ex) {
             Logger.getLogger(ProduitsController.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
 
 
