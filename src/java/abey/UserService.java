@@ -28,7 +28,7 @@ public class UserService extends AbstractService {
         System.out.println("123");
         List<Utilisateurs> users = query.getResultList();
         System.out.println("users = " + users.size());
-        if (!users.isEmpty()) {
+        if (users != null && !users.isEmpty()) {
             return users.get(0);
         }
         return null;

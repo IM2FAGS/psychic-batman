@@ -7,6 +7,7 @@ package abey.login;
 import abey.UserService;
 import abey.Utilisateurs;
 import abey.UtilisateursController;
+import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -19,7 +20,7 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 @ViewScoped
-public class LoginController extends abey.AbstractController {
+public class LoginController extends abey.AbstractController implements Serializable{
 
     @ManagedProperty(value = "#{identifiants}")
     private Identifiants identifiants;
@@ -39,7 +40,6 @@ public class LoginController extends abey.AbstractController {
             String password = identifiants.getPass();
             System.out.println("user = " + username + "  password = " + password);
             Utilisateurs user = userService.getUtilisateurs(username, password);
-            System.out.println(user);
             if (user == null) {
                 outcome = "/login/errorLogin";
             } else {
@@ -48,7 +48,7 @@ public class LoginController extends abey.AbstractController {
         } catch (Exception e) {
             outcome = "/login/errorLogin";
             System.out.println("Unable to login:");
-            System.out.println(e);
+//            System.out.println(e);
         }
         return outcome;
     }

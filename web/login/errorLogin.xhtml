@@ -11,7 +11,26 @@
             Accueil
         </ui:define>
         <ui:define name="body">
-            Raté
+            <div class="ui-messages-fatal ui-corner-all">
+                Echec de l'authentification
+            </div>
+            <div id="login-retry">
+                <h:form class="form-horizontal">
+                    <div class="form-group">
+                        <p:inputText id="nom-retry" value="#{identifiants.nom}" />
+                        <p:watermark for="nom-retry" value="Pseudo"/>
+                    </div>
+                    <div class="form-group">
+                        <p:password id="pass-retry" value="#{identifiants.pass}" />
+                        <p:watermark for="pass-retry" value="Mot de passe"/>
+                    </div>
+                    <div class="form-group">
+                        <h:commandLink value="Login" class="btn btn-primary" action="#{loginController.login}" />
+                        &nbsp;
+                        <h:link outcome="/utilisateurs/Create" class="btn btn-primary">Creer un compte</h:link>
+                    </div>
+                </h:form>
+            </div>
         </ui:define>
     </ui:composition>
 

@@ -41,9 +41,11 @@
                             <h:form class="navbar-form">
                                 <div class="form-group">
                                     <p:inputText id="nom" value="#{identifiants.nom}" />
+                                    <p:watermark for="nom" value="Pseudo"/>
                                 </div>
                                 <div class="form-group">
                                     <p:password id="pass" value="#{identifiants.pass}" />
+                                    <p:watermark for="pass" value="Mot de passe"/>
                                 </div>
                                 <div class="form-group">
                                     <h:commandLink value="Login" class="btn btn-primary" action="#{loginController.login}" />
@@ -55,7 +57,11 @@
 
                         </li>
                         <h:panelGroup  rendered="#{loginController.loggedInUserName == null}">
-                            <li id="show-login-li"><a href="#about" id="show-login">Login</a></li>
+                            <li id="show-login-li">
+                                <div class="form-group navbar-form">
+                                    <a href="#about" id="show-login" class="btn btn-primary">Login</a>
+                                </div>
+                            </li>
                         </h:panelGroup>
                         <h:panelGroup  rendered="#{loginController.loggedInUserName != null}">
                             <li>
