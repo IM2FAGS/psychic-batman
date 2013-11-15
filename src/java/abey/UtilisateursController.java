@@ -4,12 +4,11 @@ import abey.util.JsfUtil;
 import abey.util.PaginationHelper;
 
 import java.io.Serializable;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -18,12 +17,12 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
+@ManagedBean
 @Named("utilisateursController")
-@SessionScoped
+@ViewScoped
 public class UtilisateursController implements Serializable {
 
     private Utilisateurs current;
-    private DatePick date;
     private DataModel items = null;
     @EJB
     private abey.UtilisateursFacade ejbFacade;
@@ -39,13 +38,6 @@ public class UtilisateursController implements Serializable {
             selectedItemIndex = -1;
         }
         return current;
-    }
-
-    public DatePick getDate() {
-        if (date == null) {
-            date = new DatePick();
-        }
-        return date;
     }
 
     private UtilisateursFacade getFacade() {
@@ -215,6 +207,8 @@ public class UtilisateursController implements Serializable {
     public Utilisateurs getUtilisateurs(java.lang.Long id) {
         return ejbFacade.find(id);
     }
+    
+
 
     @FacesConverter(forClass = Utilisateurs.class)
     public static class UtilisateursControllerConverter implements Converter {

@@ -40,21 +40,37 @@
                         <li id="login-form">
                             <h:form class="navbar-form">
                                 <div class="form-group">
-                                    <p:inputText id="nom" value="" />
+                                    <p:inputText id="nom" value="#{identifiants.nom}" />
                                 </div>
                                 <div class="form-group">
-                                    <p:password id="pass" value="" />
+                                    <p:password id="pass" value="#{identifiants.pass}" />
                                 </div>
                                 <div class="form-group">
-                                    <h:commandLink value="Login" class="btn btn-primary" action="#{ProduitsRecherche.search}" />
+                                    <h:commandLink value="Login" class="btn btn-primary" action="#{loginController.login}" />
                                 </div>
                                 <div class="form-group">
                                     <h:link outcome="/utilisateurs/Create" class="btn btn-primary">Creer un compte</h:link>
                                 </div>
                             </h:form>
-                        </li>
 
-                        <li id="show-login-li"><a href="#about" id="show-login">Login</a></li>
+                        </li>
+                        <h:panelGroup  rendered="#{loginController.loggedInUserName == null}">
+                            <li id="show-login-li"><a href="#about" id="show-login">Login</a></li>
+                        </h:panelGroup>
+                        <h:panelGroup  rendered="#{loginController.loggedInUserName != null}">
+                            <li>
+                                <h:form class="navbar-form">
+                                    <div class="form-group">
+                                        <h:outputText value="#{loginController.loggedInUserName}" />
+                                    </div>
+                                    <div class="form-group">
+
+                                        <h:commandLink value="Disconnect" class="btn btn-primary" action="#{loginController.logout}" />
+                                    </div>
+                                </h:form>                                  
+                            </li>
+                        </h:panelGroup>
+
                     </ul>
                 </div>
             </div>

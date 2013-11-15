@@ -13,19 +13,7 @@
         <ui:define name="body">
             <h:form>
                 <h:commandButton action="#{fillDb.get_util()}" value="Fill Utilisateurs"/>
-                <h:commandButton action="#{fillProduits.get_util()}" value="Fill Produits"/>
-                <p:selectOneMenu value="#{datePick.day}">  
-                    <f:selectItem itemLabel="Jour" itemValue="" /> 
-                    <f:selectItems value="#{datePick.days}" />  
-                </p:selectOneMenu>
-                <p:selectOneMenu value="#{datePick.month}">  
-                    <f:selectItem itemLabel="Mois" itemValue="" /> 
-                    <f:selectItems value="#{datePick.months}" />  
-                </p:selectOneMenu>
-                <p:selectOneMenu value="#{datePick.year}">  
-                    <f:selectItem itemLabel="Année" itemValue="" /> 
-                    <f:selectItems value="#{datePick.years}" />  
-                </p:selectOneMenu>
+                <h:commandButton action="#{fillProduits.get_util()}" value="Fill Collins"/>
             </h:form>
             <h:link outcome="/recherche.xhtml" value="Recherche"/>
             <br />

@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,6 +22,10 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "UTILISATEURS")
+@NamedQueries({
+    @NamedQuery(name = "Utilisateurs.findUserPass",
+               query = "select u from Utilisateurs u where u.nom=?1 and u.pass=?2")
+})
 public class Utilisateurs implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -137,7 +143,7 @@ public class Utilisateurs implements Serializable {
 
     @Override
     public String toString() {
-        return "abey.Utilisateurs[ id=" + id + " ]";
+        return "abey.Utilisateurs[ id=" + id + ", nom=" + nom + ", pass=" + pass +" ]";
     }
 
 }

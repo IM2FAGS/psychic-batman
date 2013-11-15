@@ -6,8 +6,8 @@
         <Node id="produits/View.xhtml" x="150" y="600" zoom="true"/>
         <Node id="boutiques/Edit.xhtml" x="900" y="150" zoom="true"/>
         <Node id="index.xhtml" x="400" y="150" zoom="true"/>
-        <Node id="template.xhtml" x="150" y="150" zoom="true"/>
         <Node id="boutiques/List.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="template.xhtml" x="150" y="150" zoom="true"/>
         <Node id="produits/Edit.xhtml" x="400" y="450" zoom="true"/>
         <Node id="produits/Create.xhtml" x="650" y="150" zoom="true"/>
         <Node id="boutiques/Create.xhtml" x="650" y="300" zoom="true"/>

@@ -8,32 +8,34 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Named;
 
 /**
  *
  * @author toinou
  */
-@Named("fillDb")
+@ManagedBean
+@Named("fillProduits")
 @SessionScoped
-public class fill_db implements Serializable {
+public class FillProduits implements Serializable {
 
     @EJB
-    private abey.UtilisateursFacade utilEjbFacade;
+    private abey.ProduitsFacade prodEjbFacade;
 
     public void get_util() {
         for (int i = 0; i < 40; i++) {
-            abey.Utilisateurs user = new abey.Utilisateurs();
-            user.setMail("ab"+i+"@cd.ef");
-            user.setNom(i+"abcde");
-            user.setPass("pass");
-            user.setSalt("salt");
+            abey.Produits produit = new abey.Produits();
+            produit.setNom("a"+i);
+            produit.setDescription("b"+i);
             Calendar cal = Calendar.getInstance();
             cal.set(2010, 0, (i+1) % 28);
             Date d = cal.getTime();
-            user.setDateNaissance(d);
-            utilEjbFacade.create(user);
+            produit.setDateDebut(d);
+            produit.setDuree(2);
+            produit.setPrix(i);
+            prodEjbFacade.create(produit);
         }
     }
 }
