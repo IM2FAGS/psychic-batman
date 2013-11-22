@@ -13,13 +13,6 @@
         <ui:define name="body">
             <h:outputText value="No matches found!" rendered="#{ empty produitsRecherche.produits}" />
             
-            
-            <h:form>
-                <h:inputText value="#{produitsRecherche.query}" required="true" />
-                <h:commandButton value="Search" action="#{produitsRecherche.search}" />
-                <h:messages />
-            </h:form>
-
             <h:form id="form">
 
                 <p:dataGrid var="prod" value="#{produitsRecherche.produits}" columns="3"
@@ -65,10 +58,6 @@
 
 
 
-            <h:dataTable value="#{produitsRecherche.produits}" var="prod" rendered="#{not empty produitsRecherche.produits}">
-                <h:column>#{prod.nom}</h:column>
-                <h:column>#{prod.description}</h:column>
-            </h:dataTable>
             <h:outputText value="No matches found!" rendered="#{not empty produitsRecherche.query and empty produitsRecherche.produits}" />
         </ui:define>
     </ui:composition>

@@ -8,12 +8,12 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.CreateUtilisateursTitle}"></h:outputText>
+            <h:outputText value="Creer un compte utilisateur"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <p:messages id="msgs" autoUpdate="true"/>
+
             <h:form class="form-horizontal">
-                
+                <p:messages id="msgs" autoUpdate="true"/>
                 <div class="form-group">
                     <label for="inputEmail" class="col-sm-2 control-label">Email</label>
                     <div class="col-sm-5">
@@ -62,19 +62,15 @@
                     <label for="dateNaissance" class="col-sm-2 control-label">Date de Naissance</label>
                     <div class="col-sm-5">
                         <p:calendar id="dateNaissance" value="#{utilisateursController.selected.dateNaissance}" navigator="true" required="true" yearRange="c-100:c-0"
-                                    pattern="dd/MM/yyyy" showOn="button" readonlyInput="true" />
+                                    pattern="dd/MM/yyyy" showOn="button" readonlyInput="true"
+                                    requiredMessage="Date de naissance obligatoire"/>
                     </div>
                 </div>
 
 
                 <br />
                 <h:commandLink class="btn btn-primary" action="#{utilisateursController.create}" value="#{bundle.CreateUtilisateursSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{utilisateursController.prepareList}" value="#{bundle.CreateUtilisateursShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateUtilisateursIndexLink}"/>
+             
             </h:form>
         </ui:define>
     </ui:composition>

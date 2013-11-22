@@ -63,6 +63,7 @@ public class ProduitsRecherche implements Serializable {
     public String search() {
         
         produits = productService.getProduits("%" + query + "%");
+        query = null;
         System.out.println("voila les produits "+produits.size());
         /*
          Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/abey");

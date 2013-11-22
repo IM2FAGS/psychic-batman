@@ -3,41 +3,61 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.CreateProduitsTitle}"></h:outputText>
+            <h:outputText value="Vendre un objet"></h:outputText>
         </ui:define>
         <ui:define name="body">
+            <h:form class="form-horizontal">
+                <p:messages id="msgs" autoUpdate="true"/>
+                <div class="form-group">
+                    <label for="nom" class="col-sm-2 control-label">Nom de l'objet</label>
+                    <div class="col-sm-5">
+                        <p:inputText id="nom" value="#{produitsController.selected.nom}" title="#{bundle.CreateProduitsTitle_nom}"
+                                     required="true" requiredMessage="Nom de l'objet obligatoire" styleClass="form-control"/>
+                        <p:watermark for="nom" value="Nom de l\'objet"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="prix" class="col-sm-2 control-label">Prix</label>
+                    <div class="col-sm-5">
+                        <p:inputText id="prix" value="#{produitsController.selected.prix}" title="#{bundle.CreateProduitsTitle_nom}"
+                                     required="true" requiredMessage="Prix obligatoire" styleClass="form-control"/>
+                        <p:watermark for="prix" value="Prix"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="description" class="col-sm-2 control-label">Description</label>
+                    <div class="col-sm-5">
+                        <p:inputTextarea id="description" value="#{produitsController.selected.description}" title="#{bundle.CreateProduitsTitle_nom}"
+                                         required="true" requiredMessage="Description obligatoire" styleClass="form-control"/>
+                        <p:watermark for="description" value="Description"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="duree" class="col-sm-2 control-label">Durée de l'enchère</label>
+                    <div class="col-sm-5">
+                        <p:selectOneMenu id="duree" value="#{produitsController.selected.duree}"
+                                         required="true" requiredMessage="Description obligatoire">
+                            <f:selectItem id="item1" itemLabel="1 jour" itemValue="1" />
+                            <f:selectItem id="item2" itemLabel="2 jour" itemValue="2" />
+                            <f:selectItem id="item3" itemLabel="3 jour" itemValue="3" />
+                            <f:selectItem id="item4" itemLabel="4 jour" itemValue="4" />
+                            <f:selectItem id="item5" itemLabel="5 jour" itemValue="5" />
+                        </p:selectOneMenu>
+                    </div>
+                </div>
+                <h:commandLink class="btn btn-primary" action="#{produitsController.create}" value="Mettre en vente" />
+            </h:form>
+
+
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateProduitsLabel_nom}" for="nom" />
-                    <h:inputText id="nom" value="#{produitsController.selected.nom}" title="#{bundle.CreateProduitsTitle_nom}" required="true" requiredMessage="#{bundle.CreateProduitsRequiredMessage_nom}"/>
-                    <h:outputLabel value="#{bundle.CreateProduitsLabel_prix}" for="prix" />
-                    <h:inputText id="prix" value="#{produitsController.selected.prix}" title="#{bundle.CreateProduitsTitle_prix}" required="true" requiredMessage="#{bundle.CreateProduitsRequiredMessage_prix}"/>
-                    <h:outputLabel value="#{bundle.CreateProduitsLabel_description}" for="description" />
-                    <h:inputText id="description" value="#{produitsController.selected.description}" title="#{bundle.CreateProduitsTitle_description}" required="true" requiredMessage="#{bundle.CreateProduitsRequiredMessage_description}"/>
-                    <h:selectOneMenu id="subscriptions" value="#{produitsController.selected.duree}">
-                        <f:selectItem id="item1" itemLabel="1 jour" itemValue="1" />
-                        <f:selectItem id="item2" itemLabel="2 jour" itemValue="2" />
-                        <f:selectItem id="item3" itemLabel="3 jour" itemValue="3" />
-                        <f:selectItem id="item4" itemLabel="4 jour" itemValue="4" />
-                        <f:selectItem id="item5" itemLabel="5 jour" itemValue="5" />
-                    </h:selectOneMenu>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{produitsController.create}" value="#{bundle.CreateProduitsSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{produitsController.prepareList}" value="#{bundle.CreateProduitsShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateProduitsIndexLink}"/>
-            </h:form>
+            
         </ui:define>
     </ui:composition>
 

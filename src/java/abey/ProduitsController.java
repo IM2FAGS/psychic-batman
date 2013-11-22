@@ -82,9 +82,11 @@ public class ProduitsController implements Serializable {
     public String create() {
         try {
             current.setDateDebut(new Date(java.lang.System.currentTimeMillis()));
+//            current.setDateDebut(null);
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ProduitsCreated"));
-            return prepareCreate();
+            prepareCreate();
+            return "/index";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;

@@ -81,7 +81,9 @@ public class UtilisateursController implements Serializable {
     public String create() {
         try {
             current.setSalt("salt");
+            System.out.println("eiofzjqmifmezoiqjf");
             getFacade().create(current);
+            System.out.println("reussite");
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UtilisateursCreated"));
             return prepareCreate();
 //            System.out.println("Coucou les amis");
@@ -101,7 +103,8 @@ public class UtilisateursController implements Serializable {
 //                return prepareCreate();
 //            }
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            System.out.println("LABITE");
+            JsfUtil.addErrorMessage("Le nom d'utilisateur exite deja");//ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
         }
     }
@@ -118,6 +121,7 @@ public class UtilisateursController implements Serializable {
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UtilisateursUpdated"));
             return "View";
         } catch (Exception e) {
+            System.out.println("prout");
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
         }
