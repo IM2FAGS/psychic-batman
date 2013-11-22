@@ -20,7 +20,7 @@ import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class ProduitsController implements Serializable {
 
     private Produits current;
@@ -34,13 +34,14 @@ public class ProduitsController implements Serializable {
     }
 
     public Produits getSelected() {
+        System.out.println("current = " + current);
         if (current == null) {
             current = new Produits();
             selectedItemIndex = -1;
         }
         return current;
     }
-
+    
     private ProduitsFacade getFacade() {
         return ejbFacade;
     }
@@ -69,6 +70,7 @@ public class ProduitsController implements Serializable {
 
     public String prepareView() {
         current = (Produits) getItems().getRowData();
+        System.out.println("current = " + current);
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }

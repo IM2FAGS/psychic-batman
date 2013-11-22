@@ -14,6 +14,7 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
+                <h:outputText value="#{produitsController.selected}" />
                 <h:panelGrid columns="2">
                     <h:outputText value="#{bundle.ViewProduitsLabel_id}"/>
                     <h:outputText value="#{produitsController.selected.id}" title="#{bundle.ViewProduitsTitle_id}"/>
