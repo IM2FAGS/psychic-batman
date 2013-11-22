@@ -17,21 +17,21 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputText value="ID :"/>
-                    <h:outputText value="#{boutiquesController.selected.id}" title="ID"/>
+                    <h:outputText value="#{boutiqueController.selected.id}" title="ID"/>
                     <h:outputText value="Nom :"/>
-                    <h:outputText value="#{boutiquesController.selected.nom}" title="Nom"/>
+                    <h:outputText value="#{boutiqueController.selected.nom}" title="Nom"/>
                     <h:outputText value="Description :"/>
-                    <h:outputText value="#{boutiquesController.selected.description}" title="Description"/>
+                    <h:outputText value="#{boutiqueController.selected.description}" title="Description"/>
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{boutiquesController.destroyAndView}" value="#{bundle.ViewBoutiquesDestroyLink}"/>
+                <h:commandLink action="#{boutiqueController.destroyAndView}" value="#{bundle.ViewBoutiquesDestroyLink}"/>
                 <br />
                 <br />
                 <h:link outcome="Edit" value="#{bundle.ViewBoutiquesEditLink}"/>
                 <br />
-                <h:commandLink action="#{boutiquesController.prepareCreate}" value="#{bundle.ViewBoutiquesCreateLink}" />
+                <h:commandLink action="#{boutiqueController.prepareCreate}" value="#{bundle.ViewBoutiquesCreateLink}" />
                 <br />
-                <h:commandLink action="#{boutiquesController.prepareList}" value="#{bundle.ViewBoutiquesShowAllLink}"/>
+                <h:commandLink action="#{boutiqueController.prepareList}" value="#{bundle.ViewBoutiquesShowAllLink}"/>
                 <br />
                 <br />
                 <h:link outcome="/index" value="#{bundle.ViewBoutiquesIndexLink}"/>

@@ -22,11 +22,11 @@ import javax.inject.Named;
 public class FillProduits implements Serializable {
 
     @EJB
-    private abey.ProduitsFacade prodEjbFacade;
+    private abey.ProduitFacade prodEjbFacade;
 
     public void get_util() {
         for (int i = 0; i < 40; i++) {
-            abey.Produits produit = new abey.Produits();
+            abey.Produit produit = new abey.Produit();
             produit.setNom("a"+i);
             produit.setDescription("b"+i);
             Calendar cal = Calendar.getInstance();

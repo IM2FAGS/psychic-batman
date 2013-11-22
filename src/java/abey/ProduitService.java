@@ -15,17 +15,16 @@ import javax.persistence.TypedQuery;
  *
  * @author toinou
  */
-//@ManagedBean
-@Named("productService")
+@Named("produitService")
 @Stateless
-public class ProductService extends AbstractService{
+public class ProduitService extends AbstractService{
     
-    public List<Produits> getProduits(String patern){
-        TypedQuery<Produits> query = em.createNamedQuery("Produits.findProduct",
-                                                        Produits.class);
+    public List<Produit> getProduits(String patern){
+        TypedQuery<Produit> query = em.createNamedQuery("Produit.findProduct",
+                                                        Produit.class);
         query.setParameter(1, patern);
         System.out.println("123");
-        List<Produits> produits = query.getResultList();
+        List<Produit> produits = query.getResultList();
         System.out.println("produits = " + produits.size());
         if (produits != null && !produits.isEmpty()) {
             System.out.println("on a des produits");

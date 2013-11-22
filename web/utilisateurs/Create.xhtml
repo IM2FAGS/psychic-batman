@@ -17,7 +17,7 @@
                 <div class="form-group">
                     <label for="inputEmail" class="col-sm-2 control-label">Email</label>
                     <div class="col-sm-5">
-                        <p:inputText id="mail" value="#{utilisateursController.selected.mail}" title="#{bundle.CreateUtilisateursTitle_nom}" required="true"
+                        <p:inputText id="mail" value="#{utilisateurController.selected.mail}" title="#{bundle.CreateUtilisateursTitle_nom}" required="true"
                                      validatorMessage="L'adresse mail n'est pas valide" requiredMessage="Mail obligatoire" onblur=""
                                      styleClass="form-control">
                             <f:validateRegex pattern="([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)" />
@@ -29,7 +29,7 @@
                 <div class="form-group">
                     <label for="nom" class="col-sm-2 control-label">Pseudo</label>
                     <div class="col-sm-5">
-                        <p:inputText id="nom" value="#{utilisateursController.selected.nom}" title="#{bundle.CreateUtilisateursTitle_nom}"
+                        <p:inputText id="nom" value="#{utilisateurController.selected.nom}" title="#{bundle.CreateUtilisateursTitle_nom}"
                                      required="true" requiredMessage="Nom d'utilisateur obligatoire" styleClass="form-control"/>
                         <p:watermark for="nom" value="Pseudo"/>
                     </div>
@@ -37,7 +37,7 @@
                 <div class="form-group">
                     <label for="pw1" class="col-sm-2 control-label">Mot de passe</label>
                     <div class="col-sm-5">
-                        <p:password id="pw1" value="#{utilisateursController.selected.pass}" match="pw2" validatorMessage="Les mots de passe ne sont pas identiques"
+                        <p:password id="pw1" value="#{utilisateurController.selected.pass}" match="pw2" validatorMessage="Les mots de passe ne sont pas identiques"
                                     requiredMessage="Mot de passe obligatoire" title="#{bundle.CreateUtilisateursTitle_prix}" required="true" feedback="true"
                                     styleClass="form-control"/>
                         <p:watermark for="pw1" value="Mot de passe"/>
@@ -49,7 +49,7 @@
 
                     <label for="pw2" class="col-sm-2 control-label">Confirmation</label>
                     <div class="col-sm-5">
-                        <p:password id="pw2" value="#{utilisateursController.selected.pass}" title="#{bundle.CreateUtilisateursTitle_prix}" required="true"
+                        <p:password id="pw2" value="#{utilisateurController.selected.pass}" title="#{bundle.CreateUtilisateursTitle_prix}" required="true"
                                     requiredMessage="Confirmation du mot de passe obligatoire"
                                     styleClass="form-control"/>
                         <p:watermark for="pw2" value="Confirmation du mot de passe"/>
@@ -61,7 +61,7 @@
 
                     <label for="dateNaissance" class="col-sm-2 control-label">Date de Naissance</label>
                     <div class="col-sm-5">
-                        <p:calendar id="dateNaissance" value="#{utilisateursController.selected.dateNaissance}" navigator="true" required="true" yearRange="c-100:c-0"
+                        <p:calendar id="dateNaissance" value="#{utilisateurController.selected.dateNaissance}" navigator="true" required="true" yearRange="c-100:c-0"
                                     pattern="dd/MM/yyyy" showOn="button" readonlyInput="true"
                                     requiredMessage="Date de naissance obligatoire"/>
                     </div>
@@ -69,7 +69,7 @@
 
 
                 <br />
-                <h:commandLink class="btn btn-primary" action="#{utilisateursController.create}" value="#{bundle.CreateUtilisateursSaveLink}" />
+                <h:commandLink class="btn btn-primary" action="#{utilisateurController.create}" value="#{bundle.CreateUtilisateursSaveLink}" />
              
             </h:form>
         </ui:define>

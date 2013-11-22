@@ -8,9 +8,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
-import javax.inject.Named;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -21,27 +19,27 @@ import javax.faces.model.SelectItem;
 
 @ManagedBean
 @ViewScoped
-public class ProduitsController implements Serializable {
+public class ProduitController implements Serializable {
 
-    private Produits current;
+    private Produit current;
     private DataModel items = null;
     @EJB
-    private abey.ProduitsFacade ejbFacade;
+    private abey.ProduitFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public ProduitsController() {
+    public ProduitController() {
     }
 
-    public Produits getSelected() {
+    public Produit getSelected() {
         if (current == null) {
-            current = new Produits();
+            current = new Produit();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private ProduitsFacade getFacade() {
+    private ProduitFacade getFacade() {
         return ejbFacade;
     }
 
@@ -68,13 +66,13 @@ public class ProduitsController implements Serializable {
     }
 
     public String prepareView() {
-        current = (Produits) getItems().getRowData();
+        current = (Produit) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new Produits();
+        current = new Produit();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -94,7 +92,7 @@ public class ProduitsController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (Produits) getItems().getRowData();
+        current = (Produit) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -111,7 +109,7 @@ public class ProduitsController implements Serializable {
     }
 
     public String destroy() {
-        current = (Produits) getItems().getRowData();
+        current = (Produit) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -191,11 +189,11 @@ public class ProduitsController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public Produits getProduits(java.lang.Long id) {
+    public Produit getProduits(java.lang.Long id) {
         return ejbFacade.find(id);
     }
 
-    @FacesConverter(forClass = Produits.class)
+    @FacesConverter(forClass = Produit.class)
     public static class ProduitsControllerConverter implements Converter {
 
         @Override
@@ -203,7 +201,7 @@ public class ProduitsController implements Serializable {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            ProduitsController controller = (ProduitsController) facesContext.getApplication().getELResolver().
+            ProduitController controller = (ProduitController) facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "produitsController");
             return controller.getProduits(getKey(value));
         }
@@ -225,11 +223,11 @@ public class ProduitsController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Produits) {
-                Produits o = (Produits) object;
+            if (object instanceof Produit) {
+                Produit o = (Produit) object;
                 return getStringKey(o.getId());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Produits.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Produit.class.getName());
             }
         }
     }

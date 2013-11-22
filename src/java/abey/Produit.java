@@ -23,10 +23,10 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "PRODUITS")
 @NamedQueries({
-    @NamedQuery(name = "Produits.findProduct",
-               query = "select p from Produits p where p.nom like ?1")
+    @NamedQuery(name = "Produit.findProduct",
+               query = "select p from Produit p where p.nom like ?1")
 })
-public class Produits implements Serializable {
+public class Produit implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -63,8 +63,8 @@ public class Produits implements Serializable {
     public Produits(Long id) {
     this.id = id;
     }*/
-    public Produits(){}
-    public Produits(String nom, long prix, String description, Date dateDebut, int duree) {
+    public Produit(){}
+    public Produit(String nom, long prix, String description, Date dateDebut, int duree) {
         this.nom = nom;
         this.prix = prix;
         this.description = description;
@@ -131,10 +131,10 @@ public class Produits implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Produits)) {
+        if (!(object instanceof Produit)) {
             return false;
         }
-        Produits other = (Produits) object;
+        Produit other = (Produit) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

@@ -17,7 +17,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "BOUTIQUES")
-public class Boutiques implements Serializable {
+public class Boutique implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id
@@ -69,10 +69,10 @@ public class Boutiques implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Boutiques)) {
+        if (!(object instanceof Boutique)) {
             return false;
         }
-        Boutiques other = (Boutiques) object;
+        Boutique other = (Boutique) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -81,7 +81,7 @@ public class Boutiques implements Serializable {
 
     @Override
     public String toString() {
-        return "abey.Boutiques[ id=" + id + " ]";
+        return "abey.Boutique[ id=" + id + " ]";
     }
     
 }

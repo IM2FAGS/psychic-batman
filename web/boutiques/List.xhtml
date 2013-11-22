@@ -14,12 +14,12 @@
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListBoutiquesEmpty}" rendered="#{boutiquesController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{boutiquesController.items.rowCount > 0}">
-                    <h:outputText value="#{boutiquesController.pagination.pageFirstItem + 1}..#{boutiquesController.pagination.pageLastItem + 1}/#{boutiquesController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{boutiquesController.previous}" value="#{bundle.Previous} #{boutiquesController.pagination.pageSize}" rendered="#{boutiquesController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{boutiquesController.next}" value="#{bundle.Next} #{boutiquesController.pagination.pageSize}" rendered="#{boutiquesController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{boutiquesController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                <h:outputText escape="false" value="#{bundle.ListBoutiquesEmpty}" rendered="#{boutiqueController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{boutiqueController.items.rowCount > 0}">
+                    <h:outputText value="#{boutiqueController.pagination.pageFirstItem + 1}..#{boutiqueController.pagination.pageLastItem + 1}/#{boutiqueController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{boutiqueController.previous}" value="#{bundle.Previous} #{boutiqueController.pagination.pageSize}" rendered="#{boutiqueController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{boutiqueController.next}" value="#{bundle.Next} #{boutiqueController.pagination.pageSize}" rendered="#{boutiqueController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{boutiqueController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="id"/>
@@ -42,16 +42,16 @@
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{boutiquesController.prepareView}" value="#{bundle.ListBoutiquesViewLink}"/>
+                            <h:commandLink action="#{boutiqueController.prepareView}" value="#{bundle.ListBoutiquesViewLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{boutiquesController.prepareEdit}" value="#{bundle.ListBoutiquesEditLink}"/>
+                            <h:commandLink action="#{boutiqueController.prepareEdit}" value="#{bundle.ListBoutiquesEditLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{boutiquesController.destroy}" value="#{bundle.ListBoutiquesDestroyLink}"/>
+                            <h:commandLink action="#{boutiqueController.destroy}" value="#{bundle.ListBoutiquesDestroyLink}"/>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
                 <br />
-                <h:commandLink action="#{boutiquesController.prepareCreate}" value="#{bundle.ListBoutiquesCreateLink}"/>
+                <h:commandLink action="#{boutiqueController.prepareCreate}" value="#{bundle.ListBoutiquesCreateLink}"/>
                 <br />
                 <br />
                 <h:link outcome="/index" value="#{bundle.ListBoutiquesIndexLink}"/>

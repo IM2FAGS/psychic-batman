@@ -18,29 +18,29 @@ import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
 @ManagedBean
-@Named("utilisateursController")
+@Named("utilisateurController")
 @ViewScoped
-public class UtilisateursController implements Serializable {
+public class UtilisateurController implements Serializable {
 
-    private Utilisateurs current;
+    private Utilisateur current;
     private DataModel items = null;
     @EJB
-    private abey.UtilisateursFacade ejbFacade;
+    private abey.UtilisateurFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public UtilisateursController() {
+    public UtilisateurController() {
     }
 
-    public Utilisateurs getSelected() {
+    public Utilisateur getSelected() {
         if (current == null) {
-            current = new Utilisateurs();
+            current = new Utilisateur();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private UtilisateursFacade getFacade() {
+    private UtilisateurFacade getFacade() {
         return ejbFacade;
     }
 
@@ -67,13 +67,13 @@ public class UtilisateursController implements Serializable {
     }
 
     public String prepareView() {
-        current = (Utilisateurs) getItems().getRowData();
+        current = (Utilisateur) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new Utilisateurs();
+        current = new Utilisateur();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -110,7 +110,7 @@ public class UtilisateursController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (Utilisateurs) getItems().getRowData();
+        current = (Utilisateur) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -128,7 +128,7 @@ public class UtilisateursController implements Serializable {
     }
 
     public String destroy() {
-        current = (Utilisateurs) getItems().getRowData();
+        current = (Utilisateur) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -208,13 +208,13 @@ public class UtilisateursController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public Utilisateurs getUtilisateurs(java.lang.Long id) {
+    public Utilisateur getUtilisateurs(java.lang.Long id) {
         return ejbFacade.find(id);
     }
     
 
 
-    @FacesConverter(forClass = Utilisateurs.class)
+    @FacesConverter(forClass = Utilisateur.class)
     public static class UtilisateursControllerConverter implements Converter {
 
         @Override
@@ -222,7 +222,7 @@ public class UtilisateursController implements Serializable {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            UtilisateursController controller = (UtilisateursController) facesContext.getApplication().getELResolver().
+            UtilisateurController controller = (UtilisateurController) facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "utilisateursController");
             return controller.getUtilisateurs(getKey(value));
         }
@@ -244,11 +244,11 @@ public class UtilisateursController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Utilisateurs) {
-                Utilisateurs o = (Utilisateurs) object;
+            if (object instanceof Utilisateur) {
+                Utilisateur o = (Utilisateur) object;
                 return getStringKey(o.getId());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Utilisateurs.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Utilisateur.class.getName());
             }
         }
     }

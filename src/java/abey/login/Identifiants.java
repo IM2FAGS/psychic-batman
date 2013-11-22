@@ -12,7 +12,6 @@ import javax.enterprise.inject.Model;
  */
 @Model
 public class Identifiants {
-    
     private String nom;
     private String pass;
 
@@ -31,5 +30,4 @@ public class Identifiants {
     public void setPass(String pass) {
         this.pass = pass;
     }
-
 }

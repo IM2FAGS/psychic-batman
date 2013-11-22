@@ -14,12 +14,12 @@
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListUtilisateursEmpty}" rendered="#{utilisateursController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{utilisateursController.items.rowCount > 0}">
-                    <h:outputText value="#{utilisateursController.pagination.pageFirstItem + 1}..#{utilisateursController.pagination.pageLastItem + 1}/#{utilisateursController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{utilisateursController.previous}" value="#{bundle.Previous} #{utilisateursController.pagination.pageSize}" rendered="#{utilisateursController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{utilisateursController.next}" value="#{bundle.Next} #{utilisateursController.pagination.pageSize}" rendered="#{utilisateursController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{utilisateursController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                <h:outputText escape="false" value="#{bundle.ListUtilisateursEmpty}" rendered="#{utilisateurController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{utilisateurController.items.rowCount > 0}">
+                    <h:outputText value="#{utilisateurController.pagination.pageFirstItem + 1}..#{utilisateurController.pagination.pageLastItem + 1}/#{utilisateurController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{utilisateurController.previous}" value="#{bundle.Previous} #{utilisateurController.pagination.pageSize}" rendered="#{utilisateurController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{utilisateurController.next}" value="#{bundle.Next} #{utilisateurController.pagination.pageSize}" rendered="#{utilisateurController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{utilisateurController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListUtilisateursTitle_id}"/>
@@ -42,16 +42,16 @@
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{utilisateursController.prepareView}" value="#{bundle.ListUtilisateursViewLink}"/>
+                            <h:commandLink action="#{utilisateurController.prepareView}" value="#{bundle.ListUtilisateursViewLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{utilisateursController.prepareEdit}" value="#{bundle.ListUtilisateursEditLink}"/>
+                            <h:commandLink action="#{utilisateurController.prepareEdit}" value="#{bundle.ListUtilisateursEditLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{utilisateursController.destroy}" value="#{bundle.ListUtilisateursDestroyLink}"/>
+                            <h:commandLink action="#{utilisateurController.destroy}" value="#{bundle.ListUtilisateursDestroyLink}"/>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
                 <br />
-                <h:commandLink action="#{utilisateursController.prepareCreate}" value="#{bundle.ListUtilisateursCreateLink}"/>
+                <h:commandLink action="#{utilisateurController.prepareCreate}" value="#{bundle.ListUtilisateursCreateLink}"/>
                 <br />
                 <br />
                 <h:link outcome="/index" value="#{bundle.ListUtilisateursIndexLink}"/>

@@ -4,9 +4,9 @@
  */
 package abey.login;
 
-import abey.UserService;
-import abey.Utilisateurs;
-import abey.UtilisateursController;
+import abey.UtilisateurService;
+import abey.Utilisateur;
+import abey.UtilisateurController;
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -26,10 +26,10 @@ public class LoginController extends abey.AbstractController implements Serializ
     private Identifiants identifiants;
 //    @ManagedProperty(value = "#{activeUsers}")
 //    private ActiveUsers activeUsers;
-    @ManagedProperty(value = "#{userService}")
-    private UserService userService;
+    @ManagedProperty(value = "#{utilisateurService}")
+    private UtilisateurService userService;
 
-    public void setUserService(UserService userService) {
+    public void setUserService(UtilisateurService userService) {
         this.userService = userService;
     }
 
@@ -39,7 +39,7 @@ public class LoginController extends abey.AbstractController implements Serializ
             String username = identifiants.getNom();
             String password = identifiants.getPass();
             System.out.println("user = " + username + "  password = " + password);
-            Utilisateurs user = userService.getUtilisateurs(username, password);
+            Utilisateur user = userService.getUtilisateurs(username, password);
             if (user == null) {
                 outcome = "/login/errorLogin";
             } else {

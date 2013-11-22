@@ -16,16 +16,16 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.EditUtilisateursLabel_nom}" for="nom" />
-                    <h:inputText id="nom" value="#{utilisateursController.selected.nom}" title="#{bundle.EditUtilisateursTitle_nom}" required="true" requiredMessage="#{bundle.EditUtilisateursRequiredMessage_nom}"/>
+                    <h:inputText id="nom" value="#{utilisateurController.selected.nom}" title="#{bundle.EditUtilisateursTitle_nom}" required="true" requiredMessage="#{bundle.EditUtilisateursRequiredMessage_nom}"/>
                     <h:outputLabel value="#{bundle.EditUtilisateursLabel_prix}" for="pass" />
-                    <h:inputText id="pass" value="#{utilisateursController.selected.pass}" title="#{bundle.EditUtilisateursTitle_prix}" required="true" requiredMessage="#{bundle.EditUtilisateursRequiredMessage_prix}"/>
+                    <h:inputText id="pass" value="#{utilisateurController.selected.pass}" title="#{bundle.EditUtilisateursTitle_prix}" required="true" requiredMessage="#{bundle.EditUtilisateursRequiredMessage_prix}"/>
                 </h:panelGrid>
-                <h:commandLink action="#{utilisateursController.update}" value="#{bundle.EditUtilisateursSaveLink}"/>
+                <h:commandLink action="#{utilisateurController.update}" value="#{bundle.EditUtilisateursSaveLink}"/>
                 <br />
                 <br />
                 <h:link outcome="View" value="#{bundle.EditUtilisateursViewLink}"/>
                 <br />
-                <h:commandLink action="#{utilisateursController.prepareList}" value="#{bundle.EditUtilisateursShowAllLink}" immediate="true"/>
+                <h:commandLink action="#{utilisateurController.prepareList}" value="#{bundle.EditUtilisateursShowAllLink}" immediate="true"/>
                 <br />
                 <br />
                 <h:link outcome="/index" value="#{bundle.EditUtilisateursIndexLink}" />

@@ -20,27 +20,27 @@ import javax.faces.model.SelectItem;
 @ManagedBean
 @Named("boutiquesController")
 @SessionScoped
-public class BoutiquesController implements Serializable {
+public class BoutiqueController implements Serializable {
 
-    private Boutiques current;
+    private Boutique current;
     private DataModel items = null;
     @EJB
-    private abey.BoutiquesFacade ejbFacade;
+    private abey.BoutiqueFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public BoutiquesController() {
+    public BoutiqueController() {
     }
 
-    public Boutiques getSelected() {
+    public Boutique getSelected() {
         if (current == null) {
-            current = new Boutiques();
+            current = new Boutique();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private BoutiquesFacade getFacade() {
+    private BoutiqueFacade getFacade() {
         return ejbFacade;
     }
 
@@ -67,13 +67,13 @@ public class BoutiquesController implements Serializable {
     }
 
     public String prepareView() {
-        current = (Boutiques) getItems().getRowData();
+        current = (Boutique) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new Boutiques();
+        current = new Boutique();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -90,7 +90,7 @@ public class BoutiquesController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (Boutiques) getItems().getRowData();
+        current = (Boutique) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -107,7 +107,7 @@ public class BoutiquesController implements Serializable {
     }
 
     public String destroy() {
-        current = (Boutiques) getItems().getRowData();
+        current = (Boutique) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -187,11 +187,11 @@ public class BoutiquesController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public Boutiques getBoutiques(java.lang.Long id) {
+    public Boutique getBoutiques(java.lang.Long id) {
         return ejbFacade.find(id);
     }
 
-    @FacesConverter(forClass = Boutiques.class)
+    @FacesConverter(forClass = Boutique.class)
     public static class BoutiquesControllerConverter implements Converter {
 
         @Override
@@ -199,7 +199,7 @@ public class BoutiquesController implements Serializable {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            BoutiquesController controller = (BoutiquesController) facesContext.getApplication().getELResolver().
+            BoutiqueController controller = (BoutiqueController) facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "boutiqusController");
             return controller.getBoutiques(getKey(value));
         }
@@ -221,11 +221,11 @@ public class BoutiquesController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Boutiques) {
-                Boutiques o = (Boutiques) object;
+            if (object instanceof Boutique) {
+                Boutique o = (Boutique) object;
                 return getStringKey(o.getId());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Boutiques.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Boutique.class.getName());
             }
         }
     }

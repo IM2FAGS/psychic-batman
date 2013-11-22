@@ -16,25 +16,25 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputText value="#{bundle.ViewProduitsLabel_id}"/>
-                    <h:outputText value="#{produitsController.selected.id}" title="#{bundle.ViewProduitsTitle_id}"/>
+                    <h:outputText value="#{produitController.selected.id}" title="#{bundle.ViewProduitsTitle_id}"/>
                     <h:outputText value="#{bundle.ViewProduitsLabel_nom}"/>
-                    <h:outputText value="#{produitsController.selected.nom}" title="#{bundle.ViewProduitsTitle_nom}"/>
+                    <h:outputText value="#{produitController.selected.nom}" title="#{bundle.ViewProduitsTitle_nom}"/>
                     <h:outputText value="#{bundle.ViewProduitsLabel_prix}"/>
-                    <h:outputText value="#{produitsController.selected.prix}" title="#{bundle.ViewProduitsTitle_prix}"/>
+                    <h:outputText value="#{produitController.selected.prix}" title="#{bundle.ViewProduitsTitle_prix}"/>
                     <h:outputText value="Date de debut"/>
-                    <h:outputText value="#{produitsController.selected.dateDebut}" title="DateDebut"/>
+                    <h:outputText value="#{produitController.selected.dateDebut}" title="DateDebut"/>
                     <h:outputText value="Duree"/>
-                    <h:outputText value="#{produitsController.selected.duree}" title="Duree"/>
+                    <h:outputText value="#{produitController.selected.duree}" title="Duree"/>
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{produitsController.destroyAndView}" value="#{bundle.ViewProduitsDestroyLink}"/>
+                <h:commandLink action="#{produitController.destroyAndView}" value="#{bundle.ViewProduitsDestroyLink}"/>
                 <br />
                 <br />
                 <h:link outcome="Edit" value="#{bundle.ViewProduitsEditLink}"/>
                 <br />
-                <h:commandLink action="#{produitsController.prepareCreate}" value="#{bundle.ViewProduitsCreateLink}" />
+                <h:commandLink action="#{produitController.prepareCreate}" value="#{bundle.ViewProduitsCreateLink}" />
                 <br />
-                <h:commandLink action="#{produitsController.prepareList}" value="#{bundle.ViewProduitsShowAllLink}"/>
+                <h:commandLink action="#{produitController.prepareList}" value="#{bundle.ViewProduitsShowAllLink}"/>
                 <br />
                 <br />
                 <h:link outcome="/index" value="#{bundle.ViewProduitsIndexLink}"/>
