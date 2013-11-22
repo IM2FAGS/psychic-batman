@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,6 +22,10 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "PRODUITS")
+@NamedQueries({
+    @NamedQuery(name = "Produits.findProduct",
+               query = "select p from Produits p where p.nom like ?1")
+})
 public class Produits implements Serializable {
 
     private static final long serialVersionUID = 1L;

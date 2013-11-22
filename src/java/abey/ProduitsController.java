@@ -20,7 +20,6 @@ import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
 @ManagedBean
-@Named("produitsController")
 @ViewScoped
 public class ProduitsController implements Serializable {
 
