@@ -1,0 +1,29 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui">
+    <li class="connected-as">
+        Connecté en tant que
+        <span class="username">
+            <h:outputText value="#{loginController.loggedInUserName}" />
+        </span>
+    </li>
+    <li>
+        <a href="#about">
+            <span class="glyphicon glyphicon-shopping-cart"/>
+        </a>
+    </li>
+    <li>
+        <a href="#about">
+            <span class="glyphicon glyphicon-cog"/>
+        </a>
+    </li>
+    <li>
+        <h:form class="navbar-form">
+            <div class="form-group">
+                <h:commandLink value="Disconnect" class="btn btn-primary" action="#{loginController.logout}" />
+            </div>
+        </h:form>                                  
+    </li>
+</ui:composition>

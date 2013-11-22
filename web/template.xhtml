@@ -30,51 +30,16 @@
                                 <div class="form-group">
                                     <h:commandLink value="Search" class="btn btn-primary" action="#{produitsRecherche.search}" />
                                 </div>
+                                <p:defaultCommand target="search-btn" />
                             </h:form>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#about"><span class="glyphicon glyphicon-shopping-cart"/></a></li>
-                        <li><a href="#about"><span class="glyphicon glyphicon-cog"/></a></li>
-
-                        <li id="login-form">
-                            <h:form class="navbar-form">
-                                <div class="form-group">
-                                    <p:inputText id="nom" value="#{identifiants.nom}" />
-                                    <p:watermark for="nom" value="Pseudo"/>
-                                </div>
-                                <div class="form-group">
-                                    <p:password id="pass" value="#{identifiants.pass}" />
-                                    <p:watermark for="pass" value="Mot de passe"/>
-                                </div>
-                                <div class="form-group">
-                                    <h:commandLink value="Login" class="btn btn-primary" action="#{loginController.login}" />
-                                </div>
-                                <div class="form-group">
-                                    <h:link outcome="/utilisateurs/Create" class="btn btn-primary">Creer un compte</h:link>
-                                </div>
-                            </h:form>
-
-                        </li>
                         <h:panelGroup  rendered="#{loginController.loggedInUserName == null}">
-                            <li id="show-login-li">
-                                <div class="form-group navbar-form">
-                                    <a href="#about" id="show-login" class="btn btn-primary">Login</a>
-                                </div>
-                            </li>
+                            <ui:include src="/login.xhtml" />
                         </h:panelGroup>
                         <h:panelGroup  rendered="#{loginController.loggedInUserName != null}">
-                            <li>
-                                <h:form class="navbar-form">
-                                    <div class="form-group">
-                                        <h:outputText value="#{loginController.loggedInUserName}" />
-                                    </div>
-                                    <div class="form-group">
-
-                                        <h:commandLink value="Disconnect" class="btn btn-primary" action="#{loginController.logout}" />
-                                    </div>
-                                </h:form>                                  
-                            </li>
+                            <ui:include src="/logged.xhtml" />
                         </h:panelGroup>
 
                     </ul>
