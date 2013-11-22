@@ -25,10 +25,11 @@
                         <p:watermark for="pass-retry" value="Mot de passe"/>
                     </div>
                     <div class="form-group">
-                        <h:commandLink value="Login" class="btn btn-primary" action="#{loginController.login}" />
+                        <h:commandLink id="login-retry-btn" value="Login" class="btn btn-primary" action="#{loginController.login}" />
                         &nbsp;
                         <h:link outcome="/utilisateurs/Create" class="btn btn-primary">Creer un compte</h:link>
                     </div>
+                    <p:defaultCommand target="login-retry-btn" />
                 </h:form>
             </div>
         </ui:define>

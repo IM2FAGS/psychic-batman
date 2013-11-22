@@ -12,9 +12,9 @@
         </ui:define>
         <ui:define name="body">
             <h:form>
-                <h:inputText value="#{ProduitsRecherche.query}" required="true" />
-                <h:commandButton value="Search" action="#{ProduitsRecherche.search}" />
-                <h:messages />
+                <p:inputText value="#{ProduitsRecherche.query}" required="true" />
+                <p:commandButton id="search-btn" value="Search" action="#{ProduitsRecherche.search}" />
+                <p:defaultCommand target="search-btn" />
             </h:form>
 
             <h:form id="form">
