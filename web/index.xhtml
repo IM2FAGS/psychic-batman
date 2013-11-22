@@ -8,12 +8,12 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            Index
+            Bienvenue sur aBey
         </ui:define>
         <ui:define name="body">
             <h:form>
                 <h:commandButton action="#{fillDb.get_util()}" value="Fill Utilisateurs"/>
-                <h:commandButton action="#{fillProduits.get_util()}" value="Fill Collins"/>
+                <h:commandButton action="#{fillProduits.get_util()}" value="Fill Produits"/>
             </h:form>
             <h:link outcome="/recherche.xhtml" value="Recherche"/>
             <br />
