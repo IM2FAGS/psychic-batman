@@ -3,6 +3,7 @@ package abey.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,36 +11,46 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
  * @author Anthony
  */
 @Entity
-public class VenteImmediate implements Serializable {
+public class Utilisateur2 implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@Basic(optional = false)
 	@NotNull
-	private Produit2 produit;
+	@Size(min = 1, max = 255)
+	@Column(unique = true)
+	private String mail;
 
 	@Basic(optional = false)
 	@NotNull
-	private float prix; //TODO BigDecimal recommandé
+	@Size(min = 1, max = 255)
+	private String nom;
+
+	@Basic(optional = false)
+	@NotNull
+	@Size(min = 1, max = 255)
+	private String pass;
+
+	@Basic(optional = false)
+	@NotNull
+	@Size(min = 1, max = 255)
+	private String salt;
 
 	@Basic(optional = false)
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date dateVente;
-
-	@Basic(optional = false)
-	@NotNull
-	private int stock;
+	private Date dateNaissance;
 
 	public Long getId() {
 		return id;
@@ -49,36 +60,44 @@ public class VenteImmediate implements Serializable {
 		this.id = id;
 	}
 
-	public Produit2 getProduit() {
-		return produit;
+	public String getMail() {
+		return mail;
 	}
 
-	public void setProduit(Produit2 produit) {
-		this.produit = produit;
+	public void setMail(String mail) {
+		this.mail = mail;
 	}
 
-	public float getPrix() {
-		return prix;
+	public String getNom() {
+		return nom;
 	}
 
-	public void setPrix(float prix) {
-		this.prix = prix;
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
-	public Date getDateVente() {
-		return dateVente;
+	public String getPass() {
+		return pass;
 	}
 
-	public void setDateVente(Date dateVente) {
-		this.dateVente = dateVente;
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 
-	public int getStock() {
-		return stock;
+	public String getSalt() {
+		return salt;
 	}
 
-	public void setStock(int stock) {
-		this.stock = stock;
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+
+	public Date getDateNaissance() {
+		return dateNaissance;
+	}
+
+	public void setDateNaissance(Date dateNaissance) {
+		this.dateNaissance = dateNaissance;
 	}
 
 	@Override
@@ -91,10 +110,10 @@ public class VenteImmediate implements Serializable {
 	@Override
 	public boolean equals(Object object) {
 		// TODO: Warning - this method won't work in the case the id fields are not set
-		if (!(object instanceof VenteImmediate)) {
+		if (!(object instanceof Utilisateur2)) {
 			return false;
 		}
-		VenteImmediate other = (VenteImmediate) object;
+		Utilisateur2 other = (Utilisateur2) object;
 		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
 			return false;
 		}
@@ -103,7 +122,7 @@ public class VenteImmediate implements Serializable {
 
 	@Override
 	public String toString() {
-		return "abey.entities.VenteImmediate[ id=" + id + " ]";
+		return "abey.entities.Utilisateur[ id=" + id + " ]";
 	}
 
 }

@@ -16,30 +16,26 @@ import javax.validation.constraints.NotNull;
  * @author Anthony
  */
 @Entity
-public class VenteImmediate implements Serializable {
+public class EnchereGagnee implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@Basic(optional = false)
 	@NotNull
-	private Produit2 produit;
-
-	@Basic(optional = false)
-	@NotNull
-	private float prix; //TODO BigDecimal recommandé
+	private Enchere enchere;
 
 	@Basic(optional = false)
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date dateVente;
+	private Date dateSurenchere;
 
 	@Basic(optional = false)
 	@NotNull
-	private int stock;
+	private short modePaiement;
 
 	public Long getId() {
 		return id;
@@ -49,36 +45,28 @@ public class VenteImmediate implements Serializable {
 		this.id = id;
 	}
 
-	public Produit2 getProduit() {
-		return produit;
+	public Enchere getEnchere() {
+		return enchere;
 	}
 
-	public void setProduit(Produit2 produit) {
-		this.produit = produit;
+	public void setEnchere(Enchere enchere) {
+		this.enchere = enchere;
 	}
 
-	public float getPrix() {
-		return prix;
+	public Date getDateSurenchere() {
+		return dateSurenchere;
 	}
 
-	public void setPrix(float prix) {
-		this.prix = prix;
+	public void setDateSurenchere(Date dateSurenchere) {
+		this.dateSurenchere = dateSurenchere;
 	}
 
-	public Date getDateVente() {
-		return dateVente;
+	public short getModePaiement() {
+		return modePaiement;
 	}
 
-	public void setDateVente(Date dateVente) {
-		this.dateVente = dateVente;
-	}
-
-	public int getStock() {
-		return stock;
-	}
-
-	public void setStock(int stock) {
-		this.stock = stock;
+	public void setModePaiement(short modePaiement) {
+		this.modePaiement = modePaiement;
 	}
 
 	@Override
@@ -91,10 +79,10 @@ public class VenteImmediate implements Serializable {
 	@Override
 	public boolean equals(Object object) {
 		// TODO: Warning - this method won't work in the case the id fields are not set
-		if (!(object instanceof VenteImmediate)) {
+		if (!(object instanceof EnchereGagnee)) {
 			return false;
 		}
-		VenteImmediate other = (VenteImmediate) object;
+		EnchereGagnee other = (EnchereGagnee) object;
 		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
 			return false;
 		}
@@ -103,7 +91,7 @@ public class VenteImmediate implements Serializable {
 
 	@Override
 	public String toString() {
-		return "abey.entities.VenteImmediate[ id=" + id + " ]";
+		return "abey.entities.EnchereGagnee[ id=" + id + " ]";
 	}
 
 }

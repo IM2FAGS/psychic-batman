@@ -16,30 +16,30 @@ import javax.validation.constraints.NotNull;
  * @author Anthony
  */
 @Entity
-public class VenteImmediate implements Serializable {
+public class Achat implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@Basic(optional = false)
 	@NotNull
-	private Produit2 produit;
-
-	@Basic(optional = false)
-	@NotNull
-	private float prix; //TODO BigDecimal recommandé
+	private VenteImmediate venteImmediate;
 
 	@Basic(optional = false)
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date dateVente;
+	private Date dateAchat;
 
 	@Basic(optional = false)
 	@NotNull
-	private int stock;
+	private short modePaiement;
+
+	@Basic(optional = false)
+	@NotNull
+	private int quantite;
 
 	public Long getId() {
 		return id;
@@ -49,36 +49,36 @@ public class VenteImmediate implements Serializable {
 		this.id = id;
 	}
 
-	public Produit2 getProduit() {
-		return produit;
+	public VenteImmediate getVenteImmediate() {
+		return venteImmediate;
 	}
 
-	public void setProduit(Produit2 produit) {
-		this.produit = produit;
+	public void setVenteImmediate(VenteImmediate venteImmediate) {
+		this.venteImmediate = venteImmediate;
 	}
 
-	public float getPrix() {
-		return prix;
+	public Date getDateAchat() {
+		return dateAchat;
 	}
 
-	public void setPrix(float prix) {
-		this.prix = prix;
+	public void setDateAchat(Date dateAchat) {
+		this.dateAchat = dateAchat;
 	}
 
-	public Date getDateVente() {
-		return dateVente;
+	public short getModePaiement() {
+		return modePaiement;
 	}
 
-	public void setDateVente(Date dateVente) {
-		this.dateVente = dateVente;
+	public void setModePaiement(short modePaiement) {
+		this.modePaiement = modePaiement;
 	}
 
-	public int getStock() {
-		return stock;
+	public int getQuantite() {
+		return quantite;
 	}
 
-	public void setStock(int stock) {
-		this.stock = stock;
+	public void setQuantite(int quantite) {
+		this.quantite = quantite;
 	}
 
 	@Override
@@ -91,10 +91,10 @@ public class VenteImmediate implements Serializable {
 	@Override
 	public boolean equals(Object object) {
 		// TODO: Warning - this method won't work in the case the id fields are not set
-		if (!(object instanceof VenteImmediate)) {
+		if (!(object instanceof Achat)) {
 			return false;
 		}
-		VenteImmediate other = (VenteImmediate) object;
+		Achat other = (Achat) object;
 		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
 			return false;
 		}
@@ -103,7 +103,7 @@ public class VenteImmediate implements Serializable {
 
 	@Override
 	public String toString() {
-		return "abey.entities.VenteImmediate[ id=" + id + " ]";
+		return "abey.entities.Achat[ id=" + id + " ]";
 	}
 
 }

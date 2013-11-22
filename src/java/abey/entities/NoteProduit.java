@@ -16,10 +16,9 @@ import javax.validation.constraints.NotNull;
  * @author Anthony
  */
 @Entity
-public class VenteImmediate implements Serializable {
+public class NoteProduit implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -30,16 +29,16 @@ public class VenteImmediate implements Serializable {
 
 	@Basic(optional = false)
 	@NotNull
-	private float prix; //TODO BigDecimal recommandé
-
-	@Basic(optional = false)
-	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date dateVente;
+	private Date dateNote;
 
 	@Basic(optional = false)
 	@NotNull
-	private int stock;
+	private short note;
+
+	@Basic(optional = false)
+	@NotNull
+	private String commentaire;
 
 	public Long getId() {
 		return id;
@@ -57,28 +56,28 @@ public class VenteImmediate implements Serializable {
 		this.produit = produit;
 	}
 
-	public float getPrix() {
-		return prix;
+	public Date getDateNote() {
+		return dateNote;
 	}
 
-	public void setPrix(float prix) {
-		this.prix = prix;
+	public void setDateNote(Date dateNote) {
+		this.dateNote = dateNote;
 	}
 
-	public Date getDateVente() {
-		return dateVente;
+	public short getNote() {
+		return note;
 	}
 
-	public void setDateVente(Date dateVente) {
-		this.dateVente = dateVente;
+	public void setNote(short note) {
+		this.note = note;
 	}
 
-	public int getStock() {
-		return stock;
+	public String getCommentaire() {
+		return commentaire;
 	}
 
-	public void setStock(int stock) {
-		this.stock = stock;
+	public void setCommentaire(String commentaire) {
+		this.commentaire = commentaire;
 	}
 
 	@Override
@@ -91,10 +90,10 @@ public class VenteImmediate implements Serializable {
 	@Override
 	public boolean equals(Object object) {
 		// TODO: Warning - this method won't work in the case the id fields are not set
-		if (!(object instanceof VenteImmediate)) {
+		if (!(object instanceof NoteProduit)) {
 			return false;
 		}
-		VenteImmediate other = (VenteImmediate) object;
+		NoteProduit other = (NoteProduit) object;
 		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
 			return false;
 		}
@@ -103,7 +102,7 @@ public class VenteImmediate implements Serializable {
 
 	@Override
 	public String toString() {
-		return "abey.entities.VenteImmediate[ id=" + id + " ]";
+		return "abey.entities.NoteProduit[ id=" + id + " ]";
 	}
 
 }

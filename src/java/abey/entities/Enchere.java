@@ -26,7 +26,7 @@ public class Enchere implements Serializable {
 
 	@Basic(optional = false)
 	@NotNull
-	private Produit produit;
+	private Produit2 produit;
 	
 	@Basic(optional = false)
 	@NotNull
@@ -49,11 +49,11 @@ public class Enchere implements Serializable {
 		this.id = id;
 	}
 
-	public Produit getProduit() {
+	public Produit2 getProduit() {
 		return produit;
 	}
 
-	public void setProduit(Produit produit) {
+	public void setProduit(Produit2 produit) {
 		this.produit = produit;
 	}
 
