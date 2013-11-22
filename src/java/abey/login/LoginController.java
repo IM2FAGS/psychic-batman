@@ -43,6 +43,7 @@ public class LoginController extends abey.AbstractController implements Serializ
             if (user == null) {
                 outcome = "/login/errorLogin";
             } else {
+                outcome = "/index";
                 userSession.setUser(user);
             }
         } catch (Exception e) {
