@@ -4,7 +4,7 @@
  */
 package abey.login;
 
-import abey.Utilisateur;
+import abey.entities.Utilisateur;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.annotation.PreDestroy;
@@ -18,9 +18,9 @@ import javax.inject.Named;
  * @author toinou
  */
 @ManagedBean
-@Named("userSession")
+@Named("utilisateurSession")
 @SessionScoped
-public class UserSession implements Serializable {
+public class UtilisateurSession implements Serializable {
     
 //    @Inject
 //    private ActiveUsers activeUsers;

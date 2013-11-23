@@ -4,7 +4,8 @@
  */
 package abey;
 
-import abey.login.UserSession;
+import abey.entities.Utilisateur;
+import abey.login.UtilisateurSession;
 import javax.faces.bean.ManagedProperty;
 
 /**
@@ -13,28 +14,19 @@ import javax.faces.bean.ManagedProperty;
  */
 public class AbstractController {
 
-    @ManagedProperty(value = "#{userSession}")
-    protected UserSession userSession;
+    @ManagedProperty(value = "#{utilisateurSession}")
+    protected UtilisateurSession utilisateurSession;
 
-    protected Utilisateur getLoggedInUser() {
+    public Utilisateur getUtilisateurConnecte() {
         Utilisateur user = null;
-        if (userSession != null) {
-            user = userSession.getUser();
+        if (utilisateurSession != null) {
+            user = utilisateurSession.getUser();
         }
         return user;
     }
 
-    public String getLoggedInUserName() {
-        String nom = null;
-        if (userSession != null) {
-            if (userSession.getUser() != null) {
-                nom = userSession.getUser().getNom();
-            }
-        }
-        return nom;
+    public void setUtilisateurSession(UtilisateurSession utilisateurSession) {
+        this.utilisateurSession = utilisateurSession;
     }
 
-    public void setUserSession(UserSession userSession) {
-        this.userSession = userSession;
-    }
 }

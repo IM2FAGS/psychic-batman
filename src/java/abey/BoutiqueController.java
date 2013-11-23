@@ -1,5 +1,7 @@
 package abey;
 
+import abey.entities.Boutique;
+import abey.facades.BoutiqueFacade;
 import abey.util.JsfUtil;
 import abey.util.PaginationHelper;
 
@@ -25,7 +27,7 @@ public class BoutiqueController implements Serializable {
     private Boutique current;
     private DataModel items = null;
     @EJB
-    private abey.BoutiqueFacade ejbFacade;
+    private abey.facades.BoutiqueFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

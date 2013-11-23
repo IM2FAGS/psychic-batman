@@ -1,44 +1,46 @@
 package abey.entities;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.swing.ImageIcon;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
  * @author Anthony
  */
 @Entity
-public class NoteProduit implements Serializable {
+@NamedQueries({
+    @NamedQuery(name = "Produit.recherche",
+               query = "select p from Produit p where p.nom like ?1")
+})
+public class Produit implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@Basic(optional = false)
 	@NotNull
-	private Produit produit;
+	@Size(min = 1, max = 255)
+	private String nom;
 
 	@Basic(optional = false)
 	@NotNull
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dateNote;
+	private String description;
 
-	@Basic(optional = false)
-	@NotNull
-	private short note;
-
-	@Basic(optional = false)
-	@NotNull
-	private String commentaire;
+//	@Basic(optional = false)
+//	@NotNull
+//	private ImageIcon iconimImage;
 
 	public Long getId() {
 		return id;
@@ -48,37 +50,29 @@ public class NoteProduit implements Serializable {
 		this.id = id;
 	}
 
-	public Produit getProduit() {
-		return produit;
+	public String getNom() {
+		return nom;
 	}
 
-	public void setProduit(Produit produit) {
-		this.produit = produit;
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
-	public Date getDateNote() {
-		return dateNote;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDateNote(Date dateNote) {
-		this.dateNote = dateNote;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public short getNote() {
-		return note;
-	}
-
-	public void setNote(short note) {
-		this.note = note;
-	}
-
-	public String getCommentaire() {
-		return commentaire;
-	}
-
-	public void setCommentaire(String commentaire) {
-		this.commentaire = commentaire;
-	}
+//	public ImageIcon getIconimImage() {
+//		return iconimImage;
+//	}
+//
+//	public void setIconimImage(ImageIcon iconimImage) {
+//		this.iconimImage = iconimImage;
+//	}
 
 	@Override
 	public int hashCode() {
@@ -90,10 +84,10 @@ public class NoteProduit implements Serializable {
 	@Override
 	public boolean equals(Object object) {
 		// TODO: Warning - this method won't work in the case the id fields are not set
-		if (!(object instanceof NoteProduit)) {
+		if (!(object instanceof Produit)) {
 			return false;
 		}
-		NoteProduit other = (NoteProduit) object;
+		Produit other = (Produit) object;
 		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
 			return false;
 		}
@@ -102,7 +96,7 @@ public class NoteProduit implements Serializable {
 
 	@Override
 	public String toString() {
-		return "abey.entities.NoteProduit[ id=" + id + " ]";
+		return "abey.entities.Produit[ id=" + id + " ]";
 	}
 
 }

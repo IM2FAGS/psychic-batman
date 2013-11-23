@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package abey;
+package abey.services;
 
+import abey.entities.Produit;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -17,12 +18,12 @@ import javax.persistence.TypedQuery;
  */
 @Named("produitService")
 @Stateless
-public class ProduitService extends AbstractService{
+public class ProduitService extends AbstractService<Produit> {
     
-    public List<Produit> getProduits(String patern){
-        TypedQuery<Produit> query = em.createNamedQuery("Produit.findProduct",
+    public List<Produit> rechercheProduits(String recherche){
+        TypedQuery<Produit> query = em.createNamedQuery("Produit.recherche",
                                                         Produit.class);
-        query.setParameter(1, patern);
+        query.setParameter(1, "%" + recherche.replace("%", "\\%") + "%");
         System.out.println("123");
         List<Produit> produits = query.getResultList();
         System.out.println("produits = " + produits.size());

@@ -26,7 +26,7 @@ public class NoteVendeur implements Serializable {
 
 	@Basic(optional = false)
 	@NotNull
-	private Utilisateur2 vendeur;
+	private Utilisateur vendeur;
 
 	@Basic(optional = false)
 	@NotNull
@@ -49,11 +49,11 @@ public class NoteVendeur implements Serializable {
 		this.id = id;
 	}
 
-	public Utilisateur2 getVendeur() {
+	public Utilisateur getVendeur() {
 		return vendeur;
 	}
 
-	public void setVendeur(Utilisateur2 vendeur) {
+	public void setVendeur(Utilisateur vendeur) {
 		this.vendeur = vendeur;
 	}
 

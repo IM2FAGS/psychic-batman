@@ -2,8 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package abey;
+package abey.facades;
 
+import abey.entities.Produit;
+import abey.facades.AbstractFacade;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -13,7 +15,8 @@ import javax.persistence.PersistenceContext;
  * @author toinou
  */
 @Stateless
-public class BoutiqueFacade extends AbstractFacade<Boutique> {
+@Deprecated
+public class ProduitFacade extends AbstractFacade<Produit> {
     @PersistenceContext(unitName = "abeyPU")
     private EntityManager em;
 
@@ -22,8 +25,8 @@ public class BoutiqueFacade extends AbstractFacade<Boutique> {
         return em;
     }
 
-    public BoutiqueFacade() {
-        super(Boutique.class);
+    public ProduitFacade() {
+        super(Produit.class);
     }
     
 }

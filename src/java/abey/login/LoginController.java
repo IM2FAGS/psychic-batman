@@ -4,15 +4,12 @@
  */
 package abey.login;
 
-import abey.UtilisateurService;
-import abey.Utilisateur;
-import abey.UtilisateurController;
+import abey.services.UtilisateurService;
+import abey.entities.Utilisateur;
 import java.io.Serializable;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 
 /**
  *
@@ -39,12 +36,12 @@ public class LoginController extends abey.AbstractController implements Serializ
             String username = identifiants.getNom();
             String password = identifiants.getPass();
             System.out.println("user = " + username + "  password = " + password);
-            Utilisateur user = userService.getUtilisateurs(username, password);
+            Utilisateur user = userService.getUtilisateur(username, password);
             if (user == null) {
                 outcome = "/login/errorLogin";
             } else {
                 outcome = "/index";
-                userSession.setUser(user);
+                utilisateurSession.setUser(user);
             }
         } catch (Exception e) {
             outcome = "/login/errorLogin";
@@ -59,7 +56,7 @@ public class LoginController extends abey.AbstractController implements Serializ
     }
 
     public String logout() {
-        userSession.setUser(null);
+        utilisateurSession.setUser(null);
 //        activeUsers.remove(getLoggedInUser());
 //        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return null;

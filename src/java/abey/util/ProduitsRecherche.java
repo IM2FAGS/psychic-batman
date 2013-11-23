@@ -4,8 +4,8 @@
  */
 package abey.util;
 
-import abey.ProduitService;
-import abey.Produit;
+import abey.services.ProduitService;
+import abey.entities.Produit;
 import java.io.Serializable;
 import java.util.List;
 
@@ -59,30 +59,8 @@ public class ProduitsRecherche implements Serializable {
     }
 
     public String search() {
-        
-        produits = produitService.getProduits("%" + query + "%");
+        produits = produitService.rechercheProduits(query);
         query = null;
-        /*
-         Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/abey");
-         String updateString =
-         "SELECT * FROM ABEY.PRODUITS "
-         + "where NOM LIKE ?";
-         PreparedStatement rechercheProduit = con.prepareStatement(updateString);
-         rechercheProduit.setString(1, "%" + query + "%");
-         ResultSet rs = rechercheProduit.executeQuery();
-         System.out.println(rs);
-         produits = new ArrayList<>();
-         while (rs.next()) {
-         System.out.println(rs.getString("nom"));
-         System.out.println(rs.getString("nom") + rs.getLong("prix")
-         + rs.getString("description") + rs.getDate("dateDebut") + rs.getInt("duree"));
-         produits.add(new Produits(rs.getString("nom"), rs.getLong("prix"),
-         rs.getString("description"), rs.getDate("dateDebut"), rs.getInt("duree")));
-         }
-         */
         return "/recherche";
-
-
-
     }
 }

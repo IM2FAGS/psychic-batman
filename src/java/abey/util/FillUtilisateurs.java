@@ -4,28 +4,29 @@
  */
 package abey.util;
 
+import abey.entities.Utilisateur;
+import abey.services.UtilisateurService;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.inject.Named;
 
 /**
  *
  * @author toinou
  */
 @ManagedBean
-@Named("fillDb")
 @SessionScoped
-public class FillDb implements Serializable {
+public class FillUtilisateurs implements Serializable {
 
     @EJB
-    private abey.UtilisateurFacade utilEjbFacade;
+    private UtilisateurService utilisateurService;
+    //private abey.facades.UtilisateurFacade utilEjbFacade;
 
     public void get_util() {
-        abey.Utilisateur user = new abey.Utilisateur();
+        Utilisateur user = new Utilisateur();
         user.setMail("ab" + "@cd.ef");
         user.setNom("a");
         user.setPass("a");
@@ -34,9 +35,9 @@ public class FillDb implements Serializable {
         cal.set(2010, 0, (1) % 28);
         Date d = cal.getTime();
         user.setDateNaissance(d);
-        utilEjbFacade.create(user);
+        utilisateurService.create(user);
         for (int i = 0; i < 40; i++) {
-            user = new abey.Utilisateur();
+            user = new Utilisateur();
             user.setMail("ab" + i + "@cd.ef");
             user.setNom(i + "abcde");
             user.setPass("pass");
@@ -45,7 +46,7 @@ public class FillDb implements Serializable {
             cal.set(2010, 0, (i + 1) % 28);
             d = cal.getTime();
             user.setDateNaissance(d);
-            utilEjbFacade.create(user);
+            utilisateurService.create(user);
         }
     }
 }

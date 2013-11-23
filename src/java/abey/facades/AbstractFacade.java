@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package abey;
+package abey.facades;
 
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
  *
  * @author toinou
  */
+@Deprecated
 public abstract class AbstractFacade<T> {
     private Class<T> entityClass;
 

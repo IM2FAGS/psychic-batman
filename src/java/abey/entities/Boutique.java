@@ -1,44 +1,39 @@
 package abey.entities;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
  * @author Anthony
  */
 @Entity
-public class NoteProduit implements Serializable {
+public class Boutique implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@Basic(optional = false)
 	@NotNull
-	private Produit produit;
+	@Size(min = 1, max = 255)
+	private String nom;
 
-	@Basic(optional = false)
-	@NotNull
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dateNote;
-
-	@Basic(optional = false)
-	@NotNull
-	private short note;
-
-	@Basic(optional = false)
-	@NotNull
-	private String commentaire;
+	@Basic(optional = true)
+	private String description;
+	
+	@OneToMany
+	private Collection<VenteImmediate> ventesImmediates;
 
 	public Long getId() {
 		return id;
@@ -48,36 +43,28 @@ public class NoteProduit implements Serializable {
 		this.id = id;
 	}
 
-	public Produit getProduit() {
-		return produit;
+	public String getNom() {
+		return nom;
 	}
 
-	public void setProduit(Produit produit) {
-		this.produit = produit;
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
-	public Date getDateNote() {
-		return dateNote;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDateNote(Date dateNote) {
-		this.dateNote = dateNote;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public short getNote() {
-		return note;
+	public Collection<VenteImmediate> getVentesImmediates() {
+		return ventesImmediates;
 	}
 
-	public void setNote(short note) {
-		this.note = note;
-	}
-
-	public String getCommentaire() {
-		return commentaire;
-	}
-
-	public void setCommentaire(String commentaire) {
-		this.commentaire = commentaire;
+	public void setVentesImmediates(Collection<VenteImmediate> ventesImmediates) {
+		this.ventesImmediates = ventesImmediates;
 	}
 
 	@Override
@@ -90,10 +77,10 @@ public class NoteProduit implements Serializable {
 	@Override
 	public boolean equals(Object object) {
 		// TODO: Warning - this method won't work in the case the id fields are not set
-		if (!(object instanceof NoteProduit)) {
+		if (!(object instanceof Boutique)) {
 			return false;
 		}
-		NoteProduit other = (NoteProduit) object;
+		Boutique other = (Boutique) object;
 		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
 			return false;
 		}
@@ -102,7 +89,7 @@ public class NoteProduit implements Serializable {
 
 	@Override
 	public String toString() {
-		return "abey.entities.NoteProduit[ id=" + id + " ]";
+		return "abey.entities.Boutique[ id=" + id + " ]";
 	}
 
 }

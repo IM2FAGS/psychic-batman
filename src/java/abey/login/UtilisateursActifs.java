@@ -4,7 +4,7 @@
  */
 package abey.login;
 
-import abey.Utilisateur;
+import abey.entities.Utilisateur;
 import java.util.ArrayList;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -15,6 +15,6 @@ import javax.faces.bean.ManagedBean;
  */
 @ManagedBean
 @ApplicationScoped
-public class ActiveUsers extends ArrayList<Utilisateur> {
+public class UtilisateursActifs extends ArrayList<Utilisateur> {
     
 }

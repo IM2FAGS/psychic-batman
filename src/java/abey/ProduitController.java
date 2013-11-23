@@ -1,10 +1,11 @@
 package abey;
 
+import abey.entities.Produit;
+import abey.facades.ProduitFacade;
 import abey.util.JsfUtil;
 import abey.util.PaginationHelper;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -24,7 +25,7 @@ public class ProduitController implements Serializable {
     private Produit current;
     private DataModel items = null;
     @EJB
-    private abey.ProduitFacade ejbFacade;
+    private abey.facades.ProduitFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
@@ -79,7 +80,7 @@ public class ProduitController implements Serializable {
 
     public String create() {
         try {
-            current.setDateDebut(new Date(java.lang.System.currentTimeMillis()));
+            //current.setDateDebut(new Date(java.lang.System.currentTimeMillis()));
 //            current.setDateDebut(null);
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ProduitsCreated"));

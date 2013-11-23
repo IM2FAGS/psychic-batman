@@ -1,5 +1,7 @@
 package abey;
 
+import abey.entities.Utilisateur;
+import abey.facades.UtilisateurFacade;
 import abey.util.JsfUtil;
 import abey.util.PaginationHelper;
 
@@ -25,7 +27,7 @@ public class UtilisateurController implements Serializable {
     private Utilisateur current;
     private DataModel items = null;
     @EJB
-    private abey.UtilisateurFacade ejbFacade;
+    private abey.facades.UtilisateurFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

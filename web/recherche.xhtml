@@ -24,8 +24,6 @@
                         <h:panelGrid columns="1" style="width:100%">
                             <!--<p:graphicImage value="/images/cars/#{car.manufacturer}.jpg"/>--> 
 
-                            <h:outputText value="#{prod.prix}" />
-
                             <p:commandLink update=":form:prodDetail" oncomplete="PF('prodDialog').show()" title="View Detail">
                                 <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" /> 
                                 <f:setPropertyActionListener value="#{prod}" 
