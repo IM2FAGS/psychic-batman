@@ -14,12 +14,12 @@
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListProduitsEmpty}" rendered="#{produitsController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{produitsController.items.rowCount > 0}">
-                    <h:outputText value="#{produitsController.pagination.pageFirstItem + 1}..#{produitsController.pagination.pageLastItem + 1}/#{produitsController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{produitsController.previous}" value="#{bundle.Previous} #{produitsController.pagination.pageSize}" rendered="#{produitsController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{produitsController.next}" value="#{bundle.Next} #{produitsController.pagination.pageSize}" rendered="#{produitsController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{produitsController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                <h:outputText escape="false" value="#{bundle.ListProduitsEmpty}" rendered="#{produitController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{produitController.items.rowCount > 0}">
+                    <h:outputText value="#{produitController.pagination.pageFirstItem + 1}..#{produitController.pagination.pageLastItem + 1}/#{produitController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{produitController.previous}" value="#{bundle.Previous} #{produitController.pagination.pageSize}" rendered="#{produitController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{produitController.next}" value="#{bundle.Next} #{produitController.pagination.pageSize}" rendered="#{produitController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{produitController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProduitsTitle_id}"/>
@@ -42,16 +42,16 @@
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{produitsController.prepareView}" value="#{bundle.ListProduitsViewLink}"/>
+                            <h:commandLink action="#{produitController.prepareView}" value="#{bundle.ListProduitsViewLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{produitsController.prepareEdit}" value="#{bundle.ListProduitsEditLink}"/>
+                            <h:commandLink action="#{produitController.prepareEdit}" value="#{bundle.ListProduitsEditLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{produitsController.destroy}" value="#{bundle.ListProduitsDestroyLink}"/>
+                            <h:commandLink action="#{produitController.destroy}" value="#{bundle.ListProduitsDestroyLink}"/>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
                 <br />
-                <h:commandLink action="#{produitsController.prepareCreate}" value="#{bundle.ListProduitsCreateLink}"/>
+                <h:commandLink action="#{produitController.prepareCreate}" value="#{bundle.ListProduitsCreateLink}"/>
                 <br />
                 <br />
                 <h:link outcome="/index" value="#{bundle.ListProduitsIndexLink}"/>

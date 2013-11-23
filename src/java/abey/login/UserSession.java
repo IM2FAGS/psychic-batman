@@ -4,7 +4,7 @@
  */
 package abey.login;
 
-import abey.Utilisateurs;
+import abey.Utilisateur;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.annotation.PreDestroy;
@@ -25,13 +25,13 @@ public class UserSession implements Serializable {
 //    @Inject
 //    private ActiveUsers activeUsers;
     
-    private Utilisateurs user;
+    private Utilisateur user;
 
-    public Utilisateurs getUser() {
+    public Utilisateur getUser() {
         return user;
     }
 
-    public void setUser(Utilisateurs user) {
+    public void setUser(Utilisateur user) {
         this.user = user;
     }
     

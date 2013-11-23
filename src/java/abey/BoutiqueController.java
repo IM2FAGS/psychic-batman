@@ -4,12 +4,10 @@ import abey.util.JsfUtil;
 import abey.util.PaginationHelper;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -20,29 +18,29 @@ import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
 @ManagedBean
+@Named("boutiquesController")
 @SessionScoped
-public class ProduitsController implements Serializable {
+public class BoutiqueController implements Serializable {
 
-    private Produits current;
+    private Boutique current;
     private DataModel items = null;
     @EJB
-    private abey.ProduitsFacade ejbFacade;
+    private abey.BoutiqueFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public ProduitsController() {
+    public BoutiqueController() {
     }
 
-    public Produits getSelected() {
-        System.out.println("current = " + current);
+    public Boutique getSelected() {
         if (current == null) {
-            current = new Produits();
+            current = new Boutique();
             selectedItemIndex = -1;
         }
         return current;
     }
-    
-    private ProduitsFacade getFacade() {
+
+    private BoutiqueFacade getFacade() {
         return ejbFacade;
     }
 
@@ -69,26 +67,22 @@ public class ProduitsController implements Serializable {
     }
 
     public String prepareView() {
-        current = (Produits) getItems().getRowData();
-        System.out.println("current = " + current);
+        current = (Boutique) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new Produits();
+        current = new Boutique();
         selectedItemIndex = -1;
         return "Create";
     }
 
     public String create() {
         try {
-            current.setDateDebut(new Date(java.lang.System.currentTimeMillis()));
-//            current.setDateDebut(null);
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ProduitsCreated"));
-            prepareCreate();
-            return "/index";
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("BoutiquesCreated"));
+            return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
@@ -96,7 +90,7 @@ public class ProduitsController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (Produits) getItems().getRowData();
+        current = (Boutique) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -104,7 +98,7 @@ public class ProduitsController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ProduitsUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("BoutiquesUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -113,7 +107,7 @@ public class ProduitsController implements Serializable {
     }
 
     public String destroy() {
-        current = (Produits) getItems().getRowData();
+        current = (Boutique) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -137,7 +131,7 @@ public class ProduitsController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ProduitsDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("BoutiquesDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -193,21 +187,21 @@ public class ProduitsController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public Produits getProduits(java.lang.Long id) {
+    public Boutique getBoutiques(java.lang.Long id) {
         return ejbFacade.find(id);
     }
 
-    @FacesConverter(forClass = Produits.class)
-    public static class ProduitsControllerConverter implements Converter {
+    @FacesConverter(forClass = Boutique.class)
+    public static class BoutiquesControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            ProduitsController controller = (ProduitsController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "produitsController");
-            return controller.getProduits(getKey(value));
+            BoutiqueController controller = (BoutiqueController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "boutiqusController");
+            return controller.getBoutiques(getKey(value));
         }
 
         java.lang.Long getKey(String value) {
@@ -227,11 +221,11 @@ public class ProduitsController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Produits) {
-                Produits o = (Produits) object;
+            if (object instanceof Boutique) {
+                Boutique o = (Boutique) object;
                 return getStringKey(o.getId());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Produits.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Boutique.class.getName());
             }
         }
     }

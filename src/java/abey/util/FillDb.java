@@ -22,10 +22,10 @@ import javax.inject.Named;
 public class FillDb implements Serializable {
 
     @EJB
-    private abey.UtilisateursFacade utilEjbFacade;
+    private abey.UtilisateurFacade utilEjbFacade;
 
     public void get_util() {
-        abey.Utilisateurs user = new abey.Utilisateurs();
+        abey.Utilisateur user = new abey.Utilisateur();
         user.setMail("ab" + "@cd.ef");
         user.setNom("a");
         user.setPass("a");
@@ -36,7 +36,7 @@ public class FillDb implements Serializable {
         user.setDateNaissance(d);
         utilEjbFacade.create(user);
         for (int i = 0; i < 40; i++) {
-            user = new abey.Utilisateurs();
+            user = new abey.Utilisateur();
             user.setMail("ab" + i + "@cd.ef");
             user.setNom(i + "abcde");
             user.setPass("pass");

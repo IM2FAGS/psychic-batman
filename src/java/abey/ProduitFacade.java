@@ -13,7 +13,7 @@ import javax.persistence.PersistenceContext;
  * @author toinou
  */
 @Stateless
-public class BoutiquesFacade extends AbstractFacade<Boutiques> {
+public class ProduitFacade extends AbstractFacade<Produit> {
     @PersistenceContext(unitName = "abeyPU")
     private EntityManager em;
 
@@ -22,8 +22,8 @@ public class BoutiquesFacade extends AbstractFacade<Boutiques> {
         return em;
     }
 
-    public BoutiquesFacade() {
-        super(Boutiques.class);
+    public ProduitFacade() {
+        super(Produit.class);
     }
     
 }

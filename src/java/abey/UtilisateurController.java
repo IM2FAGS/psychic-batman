@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -18,29 +18,29 @@ import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
 @ManagedBean
-@Named("boutiquesController")
-@SessionScoped
-public class BoutiquesController implements Serializable {
+@Named("utilisateurController")
+@ViewScoped
+public class UtilisateurController implements Serializable {
 
-    private Boutiques current;
+    private Utilisateur current;
     private DataModel items = null;
     @EJB
-    private abey.BoutiquesFacade ejbFacade;
+    private abey.UtilisateurFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public BoutiquesController() {
+    public UtilisateurController() {
     }
 
-    public Boutiques getSelected() {
+    public Utilisateur getSelected() {
         if (current == null) {
-            current = new Boutiques();
+            current = new Utilisateur();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private BoutiquesFacade getFacade() {
+    private UtilisateurFacade getFacade() {
         return ejbFacade;
     }
 
@@ -67,30 +67,50 @@ public class BoutiquesController implements Serializable {
     }
 
     public String prepareView() {
-        current = (Boutiques) getItems().getRowData();
+        current = (Utilisateur) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new Boutiques();
+        current = new Utilisateur();
         selectedItemIndex = -1;
         return "Create";
     }
 
     public String create() {
         try {
+            current.setSalt("salt");
+            System.out.println("eiofzjqmifmezoiqjf");
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("BoutiquesCreated"));
+            System.out.println("reussite");
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UtilisateursCreated"));
             return prepareCreate();
+//            System.out.println("Coucou les amis");
+//            Calendar cal = Calendar.getInstance();
+//            cal.set(date.getYear(), date.getMonth()-1, date.getDay());
+//            Date d = cal.getTime();
+//            if (cal.get(Calendar.DAY_OF_MONTH) != date.getDay()) {
+//                System.out.println("date invalide");
+//                JsfUtil.addErrorMessage("Date invalide");
+//                return null;
+//            } else {
+//                System.out.println("" + d);
+//                current.setDateNaissance(d);
+//                current.setSalt("salt");
+//                getFacade().create(current);
+//                JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UtilisateursCreated"));
+//                return prepareCreate();
+//            }
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            System.out.println("LABITE");
+            JsfUtil.addErrorMessage("Le nom d'utilisateur exite deja");//ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
         }
     }
 
     public String prepareEdit() {
-        current = (Boutiques) getItems().getRowData();
+        current = (Utilisateur) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -98,16 +118,17 @@ public class BoutiquesController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("BoutiquesUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UtilisateursUpdated"));
             return "View";
         } catch (Exception e) {
+            System.out.println("prout");
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
         }
     }
 
     public String destroy() {
-        current = (Boutiques) getItems().getRowData();
+        current = (Utilisateur) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -131,7 +152,7 @@ public class BoutiquesController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("BoutiquesDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UtilisateursDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -187,21 +208,23 @@ public class BoutiquesController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public Boutiques getBoutiques(java.lang.Long id) {
+    public Utilisateur getUtilisateurs(java.lang.Long id) {
         return ejbFacade.find(id);
     }
+    
 
-    @FacesConverter(forClass = Boutiques.class)
-    public static class BoutiquesControllerConverter implements Converter {
+
+    @FacesConverter(forClass = Utilisateur.class)
+    public static class UtilisateursControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            BoutiquesController controller = (BoutiquesController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "boutiqusController");
-            return controller.getBoutiques(getKey(value));
+            UtilisateurController controller = (UtilisateurController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "utilisateursController");
+            return controller.getUtilisateurs(getKey(value));
         }
 
         java.lang.Long getKey(String value) {
@@ -221,11 +244,11 @@ public class BoutiquesController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Boutiques) {
-                Boutiques o = (Boutiques) object;
+            if (object instanceof Utilisateur) {
+                Utilisateur o = (Utilisateur) object;
                 return getStringKey(o.getId());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Boutiques.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Utilisateur.class.getName());
             }
         }
     }

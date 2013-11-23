@@ -16,8 +16,8 @@ public class AbstractController {
     @ManagedProperty(value = "#{userSession}")
     protected UserSession userSession;
 
-    protected Utilisateurs getLoggedInUser() {
-        Utilisateurs user = null;
+    protected Utilisateur getLoggedInUser() {
+        Utilisateur user = null;
         if (userSession != null) {
             user = userSession.getUser();
         }

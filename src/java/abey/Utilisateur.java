@@ -23,10 +23,10 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "UTILISATEURS")
 @NamedQueries({
-    @NamedQuery(name = "Utilisateurs.findUserPass",
-               query = "select u from Utilisateurs u where u.nom=?1 and u.pass=?2")
+    @NamedQuery(name = "Utilisateur.findUserPass",
+               query = "select u from Utilisateur u where u.nom=?1 and u.pass=?2")
 })
-public class Utilisateurs implements Serializable {
+public class Utilisateur implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -131,10 +131,10 @@ public class Utilisateurs implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Utilisateurs)) {
+        if (!(object instanceof Utilisateur)) {
             return false;
         }
-        Utilisateurs other = (Utilisateurs) object;
+        Utilisateur other = (Utilisateur) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -143,7 +143,7 @@ public class Utilisateurs implements Serializable {
 
     @Override
     public String toString() {
-        return "abey.Utilisateurs[ id=" + id + ", nom=" + nom + ", pass=" + pass +" ]";
+        return "abey.Utilisateur[ id=" + id + ", nom=" + nom + ", pass=" + pass +" ]";
     }
 
 }

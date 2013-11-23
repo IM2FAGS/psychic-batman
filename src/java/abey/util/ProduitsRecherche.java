@@ -4,8 +4,8 @@
  */
 package abey.util;
 
-import abey.ProductService;
-import abey.Produits;
+import abey.ProduitService;
+import abey.Produit;
 import java.io.Serializable;
 import java.util.List;
 
@@ -23,21 +23,21 @@ import javax.faces.bean.ViewScoped;
 public class ProduitsRecherche implements Serializable {
 
     private String query;
-    private List<Produits> produits;
-    private Produits selectedProduit;
-    @ManagedProperty(value = "#{productService}")
-    private ProductService productService;
+    private List<Produit> produits;
+    private Produit selectedProduit;
+    @ManagedProperty(value = "#{produitService}")
+    private ProduitService produitService;
 
-    public void setProductService(ProductService productService) {
-        this.productService = productService;
+    public void setProduitService(ProduitService produitService) {
+        this.produitService = produitService;
     }
 
-    public Produits getSelectedProduit() {
+    public Produit getSelectedProduit() {
         System.out.println("get" + selectedProduit);
         return selectedProduit;
     }
 
-    public void setSelectedProduit(Produits selectedProduit) {
+    public void setSelectedProduit(Produit selectedProduit) {
         System.out.println("selected "+ produits.size());
         this.selectedProduit = selectedProduit;
     }
@@ -50,21 +50,18 @@ public class ProduitsRecherche implements Serializable {
         this.query = query;
     }
 
-    public List<Produits> getProduits() {
-        System.out.println("getproduits query="+query);
+    public List<Produit> getProduits() {
         return produits;
     }
 
-    public void setProduits(List<Produits> produits) {
-        System.out.println("ta race");
+    public void setProduits(List<Produit> produits) {
         this.produits = produits;
     }
 
     public String search() {
         
-        produits = productService.getProduits("%" + query + "%");
+        produits = produitService.getProduits("%" + query + "%");
         query = null;
-        System.out.println("voila les produits "+produits.size());
         /*
          Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/abey");
          String updateString =

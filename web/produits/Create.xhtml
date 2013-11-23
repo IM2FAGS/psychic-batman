@@ -16,7 +16,7 @@
                 <div class="form-group">
                     <label for="nom" class="col-sm-2 control-label">Nom de l'objet</label>
                     <div class="col-sm-5">
-                        <p:inputText id="nom" value="#{produitsController.selected.nom}" title="#{bundle.CreateProduitsTitle_nom}"
+                        <p:inputText id="nom" value="#{produitController.selected.nom}" title="#{bundle.CreateProduitsTitle_nom}"
                                      required="true" requiredMessage="Nom de l'objet obligatoire" styleClass="form-control"/>
                         <p:watermark for="nom" value="Nom de l\'objet"/>
                     </div>
@@ -24,7 +24,7 @@
                 <div class="form-group">
                     <label for="prix" class="col-sm-2 control-label">Prix</label>
                     <div class="col-sm-5">
-                        <p:inputText id="prix" value="#{produitsController.selected.prix}" title="#{bundle.CreateProduitsTitle_nom}"
+                        <p:inputText id="prix" value="#{produitController.selected.prix}" title="#{bundle.CreateProduitsTitle_nom}"
                                      required="true" requiredMessage="Prix obligatoire" styleClass="form-control"/>
                         <p:watermark for="prix" value="Prix"/>
                     </div>
@@ -32,7 +32,7 @@
                 <div class="form-group">
                     <label for="description" class="col-sm-2 control-label">Description</label>
                     <div class="col-sm-5">
-                        <p:inputTextarea id="description" value="#{produitsController.selected.description}" title="#{bundle.CreateProduitsTitle_nom}"
+                        <p:inputTextarea id="description" value="#{produitController.selected.description}" title="#{bundle.CreateProduitsTitle_nom}"
                                          required="true" requiredMessage="Description obligatoire" styleClass="form-control"/>
                         <p:watermark for="description" value="Description"/>
                     </div>
@@ -40,7 +40,7 @@
                 <div class="form-group">
                     <label for="duree" class="col-sm-2 control-label">Durée de l'enchère</label>
                     <div class="col-sm-5">
-                        <p:selectOneMenu id="duree" value="#{produitsController.selected.duree}"
+                        <p:selectOneMenu id="duree" value="#{produitController.selected.duree}"
                                          required="true" requiredMessage="Description obligatoire">
                             <f:selectItem id="item1" itemLabel="1 jour" itemValue="1" />
                             <f:selectItem id="item2" itemLabel="2 jour" itemValue="2" />
@@ -50,7 +50,7 @@
                         </p:selectOneMenu>
                     </div>
                 </div>
-                <h:commandLink class="btn btn-primary" action="#{produitsController.create}" value="Mettre en vente" />
+                <h:commandLink class="btn btn-primary" action="#{produitController.create}" value="Mettre en vente" />
             </h:form>
 
 

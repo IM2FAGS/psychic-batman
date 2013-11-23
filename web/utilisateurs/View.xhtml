@@ -16,25 +16,25 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputText value="#{bundle.ViewUtilisateursLabel_id}"/>
-                    <h:outputText value="#{utilisateursController.selected.id}" title="#{bundle.ViewUtilisateursTitle_id}"/>
+                    <h:outputText value="#{utilisateurController.selected.id}" title="#{bundle.ViewUtilisateursTitle_id}"/>
                     <h:outputText value="#{bundle.ViewUtilisateursLabel_nom}"/>
-                    <h:outputText value="#{utilisateursController.selected.nom}" title="#{bundle.ViewUtilisateursTitle_nom}"/>
+                    <h:outputText value="#{utilisateurController.selected.nom}" title="#{bundle.ViewUtilisateursTitle_nom}"/>
                     <h:outputText value="#{bundle.ViewUtilisateursLabel_prix}"/>
-                    <h:outputText value="#{utilisateursController.selected.pass}" title="#{bundle.ViewUtilisateursTitle_prix}"/>
+                    <h:outputText value="#{utilisateurController.selected.pass}" title="#{bundle.ViewUtilisateursTitle_prix}"/>
                     <h:outputText value="Mail"/>
-                    <h:outputText value="#{utilisateursController.selected.mail}" title="DateDebut"/>
+                    <h:outputText value="#{utilisateurController.selected.mail}" title="DateDebut"/>
                     <h:outputText value="Date de fin"/>
-                    <h:outputText value="#{utilisateursController.selected.dateNaissance}" title="DateNaissance"/>
+                    <h:outputText value="#{utilisateurController.selected.dateNaissance}" title="DateNaissance"/>
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{utilisateursController.destroyAndView}" value="#{bundle.ViewUtilisateursDestroyLink}"/>
+                <h:commandLink action="#{utilisateurController.destroyAndView}" value="#{bundle.ViewUtilisateursDestroyLink}"/>
                 <br />
                 <br />
                 <h:link outcome="Edit" value="#{bundle.ViewUtilisateursEditLink}"/>
                 <br />
-                <h:commandLink action="#{utilisateursController.prepareCreate}" value="#{bundle.ViewUtilisateursCreateLink}" />
+                <h:commandLink action="#{utilisateurController.prepareCreate}" value="#{bundle.ViewUtilisateursCreateLink}" />
                 <br />
-                <h:commandLink action="#{utilisateursController.prepareList}" value="#{bundle.ViewUtilisateursShowAllLink}"/>
+                <h:commandLink action="#{utilisateurController.prepareList}" value="#{bundle.ViewUtilisateursShowAllLink}"/>
                 <br />
                 <br />
                 <h:link outcome="/index" value="#{bundle.ViewUtilisateursIndexLink}"/>

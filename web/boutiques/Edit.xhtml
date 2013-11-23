@@ -16,16 +16,16 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="nom" for="nom" />
-                    <h:inputText id="nom" value="#{boutiquesController.selected.nom}" title="#{bundle.CreateBoutiquesTitle_id}" />
+                    <h:inputText id="nom" value="#{boutiqueController.selected.nom}" title="#{bundle.CreateBoutiquesTitle_id}" />
                     <h:outputLabel value="description" for="description" />
-                    <h:inputText id="description" value="#{boutiquesController.selected.description}" title="#{bundle.CreateBoutiquesTitle_id}" />
+                    <h:inputText id="description" value="#{boutiqueController.selected.description}" title="#{bundle.CreateBoutiquesTitle_id}" />
                 </h:panelGrid>
-                <h:commandLink action="#{boutiquesController.update}" value="#{bundle.EditBoutiquesSaveLink}"/>
+                <h:commandLink action="#{boutiqueController.update}" value="#{bundle.EditBoutiquesSaveLink}"/>
                 <br />
                 <br />
                 <h:link outcome="View" value="#{bundle.EditBoutiquesViewLink}"/>
                 <br />
-                <h:commandLink action="#{boutiquesController.prepareList}" value="#{bundle.EditBoutiquesShowAllLink}" immediate="true"/>
+                <h:commandLink action="#{boutiqueController.prepareList}" value="#{bundle.EditBoutiquesShowAllLink}" immediate="true"/>
                 <br />
                 <br />
                 <h:link outcome="/index" value="#{bundle.EditBoutiquesIndexLink}" />
