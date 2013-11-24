@@ -19,12 +19,6 @@
                     <h:outputText value="#{produitController.selected.id}" title="#{bundle.ViewProduitsTitle_id}"/>
                     <h:outputText value="#{bundle.ViewProduitsLabel_nom}"/>
                     <h:outputText value="#{produitController.selected.nom}" title="#{bundle.ViewProduitsTitle_nom}"/>
-                    <h:outputText value="#{bundle.ViewProduitsLabel_prix}"/>
-                    <h:outputText value="#{produitController.selected.prix}" title="#{bundle.ViewProduitsTitle_prix}"/>
-                    <h:outputText value="Date de debut"/>
-                    <h:outputText value="#{produitController.selected.dateDebut}" title="DateDebut"/>
-                    <h:outputText value="Duree"/>
-                    <h:outputText value="#{produitController.selected.duree}" title="Duree"/>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{produitController.destroyAndView}" value="#{bundle.ViewProduitsDestroyLink}"/>
