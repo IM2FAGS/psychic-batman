@@ -21,23 +21,14 @@ import javax.inject.Named;
 @Named("utilisateurSession")
 @SessionScoped
 public class UtilisateurSession implements Serializable {
-    
-//    @Inject
-//    private ActiveUsers activeUsers;
-    
-    private Utilisateur user;
 
-    public Utilisateur getUser() {
-        return user;
+    private Utilisateur utilisateur;
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
     }
 
-    public void setUser(Utilisateur user) {
-        this.user = user;
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
     }
-    
-//    @PreDestroy
-//    public void release(){
-//        activeUsers.remove(user);
-//    }
-    
 }

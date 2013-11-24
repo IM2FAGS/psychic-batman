@@ -18,11 +18,11 @@ public class AbstractController {
     protected UtilisateurSession utilisateurSession;
 
     public Utilisateur getUtilisateurConnecte() {
-        Utilisateur user = null;
+        Utilisateur utilisateur = null;
         if (utilisateurSession != null) {
-            user = utilisateurSession.getUser();
+            utilisateur = utilisateurSession.getUtilisateur();
         }
-        return user;
+        return utilisateur;
     }
 
     public void setUtilisateurSession(UtilisateurSession utilisateurSession) {

@@ -21,33 +21,29 @@ public class LoginController extends abey.AbstractController implements Serializ
 
     @ManagedProperty(value = "#{identifiants}")
     private Identifiants identifiants;
-//    @ManagedProperty(value = "#{activeUsers}")
-//    private ActiveUsers activeUsers;
-    @ManagedProperty(value = "#{utilisateurService}")
-    private UtilisateurService userService;
 
-    public void setUserService(UtilisateurService userService) {
-        this.userService = userService;
+    @ManagedProperty(value = "#{utilisateurService}")
+    private UtilisateurService utilisateurService;
+
+    public void setUtilisateurService(UtilisateurService utilisateurService) {
+        this.utilisateurService = utilisateurService;
     }
 
     public String login() {
         String outcome = null;
         try {
-            String username = identifiants.getNom();
-            String password = identifiants.getPass();
-            System.out.println("user = " + username + "  password = " + password);
-            Utilisateur user = userService.getUtilisateur(username, password);
-            System.out.println("user = " + user);
-            if (user == null) {
+            String nom = identifiants.getNom();
+            String pass = identifiants.getPass();
+            Utilisateur utilisateur = utilisateurService.getUtilisateur(nom, pass);
+            if (utilisateur == null) {
                 outcome = "/login/errorLogin";
             } else {
                 outcome = "/index";
-                utilisateurSession.setUser(user);
+                utilisateurSession.setUtilisateur(utilisateur);
             }
         } catch (Exception e) {
             outcome = "/login/errorLogin";
             System.out.println("Unable to login:");
-//            System.out.println(e);
         }
         return outcome;
     }
@@ -57,12 +53,7 @@ public class LoginController extends abey.AbstractController implements Serializ
     }
 
     public String logout() {
-        utilisateurSession.setUser(null);
-//        activeUsers.remove(getLoggedInUser());
-//        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        utilisateurSession.setUtilisateur(null);
         return null;
     }
-//    public void setActiveUsers(ActiveUsers activeUsers) {
-//        this.activeUsers = activeUsers;
-//    }
 }

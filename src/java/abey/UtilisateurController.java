@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Named;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -22,7 +22,7 @@ import javax.faces.model.SelectItem;
 
 @ManagedBean
 @Named("utilisateurController")
-@ViewScoped
+@SessionScoped
 public class UtilisateurController implements Serializable {
 
     private Utilisateur current;

@@ -26,27 +26,27 @@ public class FillUtilisateurs implements Serializable {
     //private abey.facades.UtilisateurFacade utilEjbFacade;
 
     public void get_util() {
-        Utilisateur user = new Utilisateur();
-        user.setMail("ab" + "@cd.ef");
-        user.setNom("a");
-        user.setPass("a");
-        user.setSalt("salt");
+        Utilisateur utilisateur = new Utilisateur();
+        utilisateur.setMail("ab" + "@cd.ef");
+        utilisateur.setNom("a");
+        utilisateur.setPass("a");
+        utilisateur.setSalt("salt");
         Calendar cal = Calendar.getInstance();
         cal.set(2010, 0, (1) % 28);
         Date d = cal.getTime();
-        user.setDateNaissance(d);
-        utilisateurService.create(user);
+        utilisateur.setDateNaissance(d);
+        utilisateurService.create(utilisateur);
         for (int i = 0; i < 40; i++) {
-            user = new Utilisateur();
-            user.setMail("ab" + i + "@cd.ef");
-            user.setNom(i + "abcde");
-            user.setPass("pass");
-            user.setSalt("salt");
+            utilisateur = new Utilisateur();
+            utilisateur.setMail("ab" + i + "@cd.ef");
+            utilisateur.setNom(i + "abcde");
+            utilisateur.setPass("pass");
+            utilisateur.setSalt("salt");
             cal = Calendar.getInstance();
             cal.set(2010, 0, (i + 1) % 28);
             d = cal.getTime();
-            user.setDateNaissance(d);
-            utilisateurService.create(user);
+            utilisateur.setDateNaissance(d);
+            utilisateurService.create(utilisateur);
         }
     }
 }

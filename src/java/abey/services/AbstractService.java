@@ -20,4 +20,12 @@ public abstract class AbstractService<T> {
         em.persist(instance);
     }
     
+    public void remove(T instance) {
+        em.remove(em.merge(instance));
+    }
+    
+    public void edit(T instance) {
+        em.merge(instance);
+    }
+    
 }
