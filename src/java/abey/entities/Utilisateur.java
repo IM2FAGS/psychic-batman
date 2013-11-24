@@ -21,8 +21,8 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "Utilisateur.rechercheNomPass",
-               query = "select u from Utilisateur u where u.nom=?1 and u.pass=?2")
+    @NamedQuery(name = "Utilisateur.getByNom",
+               query = "select u from Utilisateur u where u.nom=?1")
 })
 public class Utilisateur implements Serializable {
 

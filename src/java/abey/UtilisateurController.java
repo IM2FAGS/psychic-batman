@@ -4,6 +4,7 @@ import abey.entities.Utilisateur;
 import abey.facades.UtilisateurFacade;
 import abey.util.JsfUtil;
 import abey.util.PaginationHelper;
+import abey.util.Salt;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -82,31 +83,15 @@ public class UtilisateurController implements Serializable {
 
     public String create() {
         try {
-            current.setSalt("salt");
-            System.out.println("eiofzjqmifmezoiqjf");
+            String salt = Salt.newSalt();
+            current.setSalt(salt);
+            String passCrypte = Salt.hashPassword(current.getPass(), salt);
+            current.setPass(passCrypte);
             getFacade().create(current);
-            System.out.println("reussite");
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UtilisateursCreated"));
             return prepareCreate();
-//            System.out.println("Coucou les amis");
-//            Calendar cal = Calendar.getInstance();
-//            cal.set(date.getYear(), date.getMonth()-1, date.getDay());
-//            Date d = cal.getTime();
-//            if (cal.get(Calendar.DAY_OF_MONTH) != date.getDay()) {
-//                System.out.println("date invalide");
-//                JsfUtil.addErrorMessage("Date invalide");
-//                return null;
-//            } else {
-//                System.out.println("" + d);
-//                current.setDateNaissance(d);
-//                current.setSalt("salt");
-//                getFacade().create(current);
-//                JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UtilisateursCreated"));
-//                return prepareCreate();
-//            }
         } catch (Exception e) {
-            System.out.println("LABITE");
-            JsfUtil.addErrorMessage("Le nom d'utilisateur exite deja");//ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            JsfUtil.addErrorMessage("Le nom d'utilisateur existe deja");//ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
         }
     }

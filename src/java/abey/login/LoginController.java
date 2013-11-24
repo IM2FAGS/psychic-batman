@@ -37,6 +37,7 @@ public class LoginController extends abey.AbstractController implements Serializ
             String password = identifiants.getPass();
             System.out.println("user = " + username + "  password = " + password);
             Utilisateur user = userService.getUtilisateur(username, password);
+            System.out.println("user = " + user);
             if (user == null) {
                 outcome = "/login/errorLogin";
             } else {
