@@ -163,7 +163,9 @@ public class ProduitController implements Serializable {
 
     public DataModel getItems() {
         if (items == null) {
+            System.out.println("123");
             items = getPagination().createPageDataModel();
+            System.out.println("456");
         }
         return items;
     }

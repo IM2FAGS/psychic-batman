@@ -13,11 +13,10 @@
         <ui:define name="body">
             <p:messages id="msgs" autoUpdate="true"/>
             <h:form>
-                <h:commandButton action="#{fillUtilisateurs.get_util()}" value="Fill Utilisateurs"/>
-                <h:commandButton action="#{fillProduits.get_util()}" value="Fill Produits"/>
+                <h:commandButton class="btn" action="#{fillUtilisateurs.get_util()}" value="Fill Utilisateurs"/>
+                <h:outputText value=" " />
+                <h:commandButton class="btn" action="#{fillProduits.get_util()}" value="Fill Produits"/>
             </h:form>
-            <h:link outcome="/recherche.xhtml" value="Recherche"/>
-            <br />
             <h:link outcome="/produits/List" value="Show All Produits Items"/>
             <br />
             <h:link outcome="/boutiques/List" value="Show All Boutiques Items"/>

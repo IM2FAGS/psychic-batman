@@ -59,8 +59,9 @@ public class RechercheController implements Serializable {
     }
 
     public String search() {
+        System.out.println("SEARCH");
         produits = produitService.rechercheProduits(query);
-        query = null;
+        System.out.println("produits.size() = " + produits.size());
         return "/recherche";
     }
 }

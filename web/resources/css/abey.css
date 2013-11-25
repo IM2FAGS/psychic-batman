@@ -8,7 +8,11 @@ body {
 }
 
 .navbar {
-	border-radius: 0;
+    border-radius: 0;
+}
+
+.navbar-header a {
+    padding: 10px;
 }
 
 #main-menu {
@@ -24,11 +28,11 @@ footer {
 
 #login-form {
     display: none;
-	width: 0;
-	white-space: nowrap;
+    width: 0;
+    white-space: nowrap;
 }
 
-#login-form input {
+#login-form input[type=text], #login-form input[type=password] {
     width: 110px;
 }
 

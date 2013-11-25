@@ -19,10 +19,10 @@
                 <p:watermark for="pass" value="Mot de passe"/>
             </div>
             <div class="form-group">
-                <h:commandLink id="login-btn" value="Login" class="btn btn-primary" action="#{loginController.login}" />
+                <h:commandButton id="login-btn" value="Login" class="btn btn-primary" action="#{loginController.login}" />
             </div>
             <div class="form-group">
-                <h:link outcome="/utilisateurs/Create" class="btn btn-primary">Creer un compte</h:link>
+                <h:button outcome="/utilisateurs/Create" class="btn btn-primary" value="Creer un compte" />
             </div>
             <p:defaultCommand target="login-btn" />
         </h:form>

@@ -11,11 +11,11 @@
             Accueil
         </ui:define>
         <ui:define name="body">
-            <h:outputText value="No matches found!" rendered="#{ empty produitsRecherche.produits}" />
+            <h:outputText value="No matches found!" rendered="#{empty rechercheController.produits}" />
             
             <h:form id="form">
 
-                <p:dataGrid var="prod" value="#{produitsRecherche.produits}" columns="3"
+                <p:dataGrid var="prod" value="#{rechercheController.produits}" columns="3"
                             rows="12" paginator="true"
                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                             rowsPerPageTemplate="9,12,15">
@@ -27,7 +27,7 @@
                             <p:commandLink update=":form:prodDetail" oncomplete="PF('prodDialog').show()" title="View Detail">
                                 <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" /> 
                                 <f:setPropertyActionListener value="#{prod}" 
-                                                             target="#{produitsRecherche.selectedProduit}" />
+                                                             target="#{rechercheController.selectedProduit}" />
                             </p:commandLink>
                         </h:panelGrid>
                     </p:panel>
@@ -41,22 +41,15 @@
 
                         <h:panelGrid  columns="2" cellpadding="5">
                             <h:outputLabel for="nom" value="Model No: " />
-                            <h:outputText id="nom" value="#{produitsRecherche.selectedProduit.nom}" />
+                            <h:outputText id="nom" value="#{rechercheController.selectedProduit.nom}" />
 
                             <h:outputLabel for="description" value="description " />
-                            <h:outputText id="description" value="#{produitsRecherche.selectedProduit.description}" />
-
-                            <h:outputLabel for="prix" value="prix " />
-                            <h:outputText id="prix" value="#{produitsRecherche.selectedProduit.prix}"/>
+                            <h:outputText id="description" value="#{rechercheController.selectedProduit.description}" />
                         </h:panelGrid>
                     </p:outputPanel>
                 </p:dialog>
 
             </h:form>
-
-
-
-            <h:outputText value="No matches found!" rendered="#{not empty produitsRecherche.query and empty produitsRecherche.produits}" />
         </ui:define>
     </ui:composition>
 
