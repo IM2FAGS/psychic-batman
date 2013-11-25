@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package abey.util;
+package abey;
 
 import abey.services.ProduitService;
 import abey.entities.Produit;
@@ -20,7 +20,7 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean
 @SessionScoped
-public class ProduitsRecherche implements Serializable {
+public class RechercheController implements Serializable {
 
     private String query;
     private List<Produit> produits;

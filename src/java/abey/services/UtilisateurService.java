@@ -24,7 +24,6 @@ public class UtilisateurService extends AbstractService<Utilisateur> {
         if (utilisateurs != null && utilisateurs.size() == 1) {
             Utilisateur utilisateur = utilisateurs.get(0);
             String salt = utilisateur.getSalt();
-            String passCrypte = Salt.hashPassword(pass, salt);
             if (Salt.checkPassword(pass, salt, utilisateur.getPass())) {
                 return utilisateur;
             } else {
