@@ -38,9 +38,7 @@ public class Produit implements Serializable {
 	@NotNull
 	private String description;
 
-//	@Basic(optional = false)
-//	@NotNull
-//	private ImageIcon iconimImage;
+	private ImageIcon iconImage;
 
 	public Long getId() {
 		return id;
@@ -66,13 +64,13 @@ public class Produit implements Serializable {
 		this.description = description;
 	}
 
-//	public ImageIcon getIconimImage() {
-//		return iconimImage;
-//	}
-//
-//	public void setIconimImage(ImageIcon iconimImage) {
-//		this.iconimImage = iconimImage;
-//	}
+	public ImageIcon getIconImage() {
+		return iconImage;
+	}
+
+	public void setIconImage(ImageIcon iconImage) {
+		this.iconImage = iconImage;
+	}
 
 	@Override
 	public int hashCode() {

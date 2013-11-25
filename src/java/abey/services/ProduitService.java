@@ -8,7 +8,6 @@ import abey.entities.Produit;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
-import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 import javax.persistence.TypedQuery;
 
@@ -24,11 +23,8 @@ public class ProduitService extends AbstractService<Produit> {
         TypedQuery<Produit> query = em.createNamedQuery("Produit.recherche",
                                                         Produit.class);
         query.setParameter(1, "%" + recherche.replace("%", "\\%") + "%");
-        System.out.println("123");
         List<Produit> produits = query.getResultList();
-        System.out.println("produits = " + produits.size());
         if (produits != null && !produits.isEmpty()) {
-            System.out.println("on a des produits");
             return produits;
         }
         return new ArrayList<>();
