@@ -24,11 +24,11 @@
                         <li>
                             <h:form class="navbar-form">
                                 <div class="form-group">
-                                    <p:inputText id="search-field" value="#{produitsRecherche.query}" required="true"/>
+                                    <p:inputText id="search-field" value="#{rechercheController.query}" required="true"/>
                                     <p:watermark for="search-field" value="Recherche"/>
                                 </div>
                                 <div class="form-group">
-                                    <h:commandLink value="Search" class="btn btn-primary" action="#{produitsRecherche.search}" />
+                                    <h:commandLink value="Search" class="btn btn-primary" action="#{rechercheController.search}" />
                                 </div>
                             </h:form>
                         </li>

@@ -11,7 +11,7 @@
             <h:outputText value="Vendre un objet"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:form class="form-horizontal">
+            <h:form class="form-horizontal" enctype="multipart/form-data">
                 <p:messages id="msgs" autoUpdate="true"/>
                 <div class="form-group">
                     <label for="nom" class="col-sm-2 control-label">Nom de l'objet</label>
@@ -27,6 +27,15 @@
                         <p:inputTextarea id="description" value="#{produitController.selected.description}" title="#{bundle.CreateProduitsTitle_nom}"
                                          required="true" requiredMessage="Description obligatoire" styleClass="form-control"/>
                         <p:watermark for="description" value="Description"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="image" class="col-sm-2 control-label">Image</label>
+                    <div class="col-sm-5">
+						<!--<h:inputFile id="file" value="#-{customerEntity.uploadedFile}"/>-->
+						<p:fileUpload fileUploadListener="#{produitController.uploadImage}" mode="advanced" dragDropSupport="true" 
+									  update="messages" sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+						<p:growl id="messages" showDetail="true"/>
                     </div>
                 </div>
                 <h:commandLink class="btn btn-primary" action="#{produitController.create}" value="Mettre en vente" />

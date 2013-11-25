@@ -8,6 +8,7 @@ import abey.util.PaginationHelper;
 import java.io.Serializable;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
@@ -17,6 +18,8 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.swing.ImageIcon;
+import org.primefaces.event.FileUploadEvent;
 
 @ManagedBean
 @SessionScoped
@@ -85,6 +88,8 @@ public class ProduitController implements Serializable {
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ProduitsCreated"));
             prepareCreate();
+			recreateModel();
+			recreatePagination();
             return "/index";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -232,4 +237,10 @@ public class ProduitController implements Serializable {
             }
         }
     }
+
+	public void uploadImage(FileUploadEvent event) {  
+        FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
+		current.setIconImage(new ImageIcon(event.getFile().getContents()));
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }  
 }

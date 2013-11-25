@@ -19,6 +19,8 @@
                     <h:outputText value="#{produitController.selected.id}" title="#{bundle.ViewProduitsTitle_id}"/>
                     <h:outputText value="#{bundle.ViewProduitsLabel_nom}"/>
                     <h:outputText value="#{produitController.selected.nom}" title="#{bundle.ViewProduitsTitle_nom}"/>
+                    <h:outputText value="#{bundle.ViewProduitsLabel_image}"/>
+					<h:graphicImage value="#{produitController.selected.iconImage}" title="#{bundle.ViewProduitsTitle_image}" alt="#{bundle.ViewProduitsTitle_image}"/>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{produitController.destroyAndView}" value="#{bundle.ViewProduitsDestroyLink}"/>
