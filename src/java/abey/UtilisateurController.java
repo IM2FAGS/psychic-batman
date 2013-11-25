@@ -2,6 +2,7 @@ package abey;
 
 import abey.entities.Utilisateur;
 import abey.facades.UtilisateurFacade;
+import abey.login.UtilisateurSession;
 import abey.util.JsfUtil;
 import abey.util.PaginationHelper;
 import abey.util.Salt;
@@ -10,8 +11,8 @@ import java.io.Serializable;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.inject.Named;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -20,8 +21,8 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
+@Deprecated
 @ManagedBean
-@Named("utilisateurController")
 @SessionScoped
 public class UtilisateurController implements Serializable {
 
@@ -31,6 +32,10 @@ public class UtilisateurController implements Serializable {
     private abey.facades.UtilisateurFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    
+    @ManagedProperty(value = "#{utilisateurSession}")
+    private UtilisateurSession utilisateurSession;
+    
 
     public UtilisateurController() {
     }
@@ -88,8 +93,10 @@ public class UtilisateurController implements Serializable {
             String passCrypte = Salt.hashPassword(current.getPass(), salt);
             current.setPass(passCrypte);
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UtilisateursCreated"));
-            return prepareCreate();
+            utilisateurSession.setUtilisateur(current);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UtilisateurCree"));
+            prepareCreate();
+            return "/index";
         } catch (Exception e) {
             JsfUtil.addErrorMessage("Le nom d'utilisateur existe deja");//ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
@@ -198,8 +205,10 @@ public class UtilisateurController implements Serializable {
     public Utilisateur getUtilisateurs(java.lang.Long id) {
         return ejbFacade.find(id);
     }
-    
 
+    public void setUtilisateurSession(UtilisateurSession utilisateurSession) {
+        this.utilisateurSession = utilisateurSession;
+    }
 
     @FacesConverter(forClass = Utilisateur.class)
     public static class UtilisateursControllerConverter implements Converter {
