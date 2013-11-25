@@ -21,6 +21,7 @@ import javax.faces.model.SelectItem;
 import javax.swing.ImageIcon;
 import org.primefaces.event.FileUploadEvent;
 
+@Deprecated
 @ManagedBean
 @SessionScoped
 public class ProduitController implements Serializable {

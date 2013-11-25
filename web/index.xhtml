@@ -11,6 +11,7 @@
             Bienvenue sur aBey
         </ui:define>
         <ui:define name="body">
+            <p:messages id="msgs" autoUpdate="true"/>
             <h:form>
                 <h:commandButton action="#{fillUtilisateurs.get_util()}" value="Fill Utilisateurs"/>
                 <h:commandButton action="#{fillProduits.get_util()}" value="Fill Produits"/>
