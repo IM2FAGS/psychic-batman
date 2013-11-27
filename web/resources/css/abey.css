@@ -1,5 +1,3 @@
-/*@import "variables";*/
-
 html {
 }
 
@@ -34,6 +32,9 @@ footer {
 
 #login-form input[type=text], #login-form input[type=password] {
     width: 110px;
+}
+#login-form input[type=submit] {
+    margin-right: 20px;
 }
 
 .connected-as {

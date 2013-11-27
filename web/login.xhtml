@@ -22,7 +22,7 @@
                 <h:commandButton id="login-btn" value="Login" class="btn btn-primary" action="#{loginController.login}" />
             </div>
             <div class="form-group">
-                <h:button outcome="/utilisateurs/Create" class="btn btn-primary" value="Creer un compte" />
+                <h:link outcome="/utilisateurs/Create" value="Creer un compte" />
             </div>
             <p:defaultCommand target="login-btn" />
         </h:form>
