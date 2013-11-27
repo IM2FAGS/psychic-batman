@@ -1,13 +1,13 @@
 <ui:composition
     xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
     xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:p="http://primefaces.org/ui">
     <li class="connected-as">
-        Connecté en tant que
-        <span class="username">
-            <h:outputText value="#{loginController.utilisateurConnecte.nom}" />
-        </span>
+        <h:outputFormat value="#{bundle.LoggedAsNickname}" escape="false">
+            <f:param value="#{loginController.utilisateurConnecte.nom}" />
+        </h:outputFormat>
     </li>
     <li>
         <a href="#about">
@@ -22,7 +22,7 @@
     <li>
         <h:form class="navbar-form">
             <div class="form-group">
-                <h:commandButton value="Disconnect" class="btn btn-primary" action="#{loginController.logout}" />
+                <h:commandButton value="#{bundle.Logout}" class="btn btn-primary" action="#{loginController.logout}" />
             </div>
         </h:form>                                  
     </li>

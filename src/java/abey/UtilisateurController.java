@@ -94,7 +94,7 @@ public class UtilisateurController implements Serializable {
             current.setPass(passCrypte);
             getFacade().create(current);
             utilisateurSession.setUtilisateur(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UtilisateurCree"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserCreated"));
             prepareCreate();
             return "/index";
         } catch (Exception e) {
