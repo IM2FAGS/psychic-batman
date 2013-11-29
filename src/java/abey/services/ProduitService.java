@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package abey.services;
 
 import abey.entities.Produit;
@@ -18,6 +14,10 @@ import javax.persistence.TypedQuery;
 @Named("produitService")
 @Stateless
 public class ProduitService extends AbstractService<Produit> {
+
+	public ProduitService() {
+		super(Produit.class);
+	}
     
     public List<Produit> rechercheProduits(String recherche){
         TypedQuery<Produit> query = em.createNamedQuery("Produit.recherche",

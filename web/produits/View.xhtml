@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -19,8 +20,14 @@
                     <h:outputText value="#{produitController.selected.id}" title="#{bundle.ViewProduitsTitle_id}"/>
                     <h:outputText value="#{bundle.ViewProduitsLabel_nom}"/>
                     <h:outputText value="#{produitController.selected.nom}" title="#{bundle.ViewProduitsTitle_nom}"/>
+                    <h:outputText value="#{bundle.ViewProduitsLabel_description}"/>
+                    <h:outputText value="#{produitController.selected.description}" title="#{bundle.ViewProduitsTitle_description}"/>
                     <h:outputText value="#{bundle.ViewProduitsLabel_image}"/>
-					<h:graphicImage value="#{produitController.selected.iconImage}" title="#{bundle.ViewProduitsTitle_image}" alt="#{bundle.ViewProduitsTitle_image}"/>
+					<p:graphicImage value="#{imageController.image}" title="#{bundle.ViewProduitsTitle_image}" alt="#{bundle.ViewProduitsTitle_image}">
+						<f:param name="imageId" value="#{produitController.selected.image.id}" />
+						<f:param name="thumb" value="#{false}" />
+					</p:graphicImage>
+
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{produitController.destroyAndView}" value="#{bundle.ViewProduitsDestroyLink}"/>
