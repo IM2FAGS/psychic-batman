@@ -6,6 +6,7 @@
 package abey;
 
 import abey.entities.Boutique;
+import abey.entities.Utilisateur;
 import abey.services.BoutiqueService;
 import abey.util.JsfUtil;
 import java.io.Serializable;
@@ -20,7 +21,7 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class CreerBoutiqueController implements Serializable {
+public class CreerBoutiqueController extends AbstractController implements Serializable {
 
     private Boutique current;
     @ManagedProperty(value = "#{boutiqueService}")
@@ -36,6 +37,15 @@ public class CreerBoutiqueController implements Serializable {
 
     public String create() {
         try {
+            Utilisateur curUser = getUtilisateurConnecte();
+            if(curUser != null){
+                curUser.setBoutique(current);
+                current.setProprietaire(curUser);
+            }else {
+                JsfUtil.addErrorMessage("Connexion obligatoire");
+                return null;
+            }
+            
             boutiqueService.create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("BoutiquesCreated"));
             current=null;
