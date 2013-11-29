@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -41,6 +40,11 @@ public class Produit implements Serializable {
 
 	@ManyToOne
 	private Image image;
+	
+	@Basic(optional = false)
+	@NotNull
+	@ManyToOne
+	private Categorie categorie;
 
 	public Long getId() {
 		return id;
@@ -72,6 +76,14 @@ public class Produit implements Serializable {
 
 	public void setImage(Image image) {
 		this.image = image;
+	}
+
+	public Categorie getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
 	}
 
 	@Override
