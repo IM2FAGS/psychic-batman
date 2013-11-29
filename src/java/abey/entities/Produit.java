@@ -6,9 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.swing.ImageIcon;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -38,7 +38,13 @@ public class Produit implements Serializable {
 	@NotNull
 	private String description;
 
-	private ImageIcon iconImage;
+	@ManyToOne
+	private Image image;
+	
+	@Basic(optional = false)
+	@NotNull
+	@ManyToOne
+	private Categorie categorie;
 
 	public Long getId() {
 		return id;
@@ -64,12 +70,20 @@ public class Produit implements Serializable {
 		this.description = description;
 	}
 
-	public ImageIcon getIconImage() {
-		return iconImage;
+	public Image getImage() {
+		return image;
 	}
 
-	public void setIconImage(ImageIcon iconImage) {
-		this.iconImage = iconImage;
+	public void setImage(Image image) {
+		this.image = image;
+	}
+
+	public Categorie getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
 	}
 
 	@Override
