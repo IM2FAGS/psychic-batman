@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -18,92 +19,93 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class VenteImmediate implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+    private static final long serialVersionUID = 1L;
 
-	@Basic(optional = false)
-	@NotNull
-	private Produit produit;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-	@Basic(optional = false)
-	@NotNull
-	private float prix; //TODO BigDecimal recommandé
+    @Basic(optional = false)
+    @NotNull
+    @ManyToOne
+    private Produit produit;
 
-	@Basic(optional = false)
-	@NotNull
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dateVente;
+    @Basic(optional = false)
+    @NotNull
+    private float prix; //TODO BigDecimal recommandé
 
-	@Basic(optional = false)
-	@NotNull
-	private int stock;
+    @Basic(optional = false)
+    @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateVente;
 
-	public Long getId() {
-		return id;
-	}
+    @Basic(optional = false)
+    @NotNull
+    private int stock;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public Produit getProduit() {
-		return produit;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setProduit(Produit produit) {
-		this.produit = produit;
-	}
+    public Produit getProduit() {
+        return produit;
+    }
 
-	public float getPrix() {
-		return prix;
-	}
+    public void setProduit(Produit produit) {
+        this.produit = produit;
+    }
 
-	public void setPrix(float prix) {
-		this.prix = prix;
-	}
+    public float getPrix() {
+        return prix;
+    }
 
-	public Date getDateVente() {
-		return dateVente;
-	}
+    public void setPrix(float prix) {
+        this.prix = prix;
+    }
 
-	public void setDateVente(Date dateVente) {
-		this.dateVente = dateVente;
-	}
+    public Date getDateVente() {
+        return dateVente;
+    }
 
-	public int getStock() {
-		return stock;
-	}
+    public void setDateVente(Date dateVente) {
+        this.dateVente = dateVente;
+    }
 
-	public void setStock(int stock) {
-		this.stock = stock;
-	}
+    public int getStock() {
+        return stock;
+    }
 
-	@Override
-	public int hashCode() {
-		int hash = 0;
-		hash += (id != null ? id.hashCode() : 0);
-		return hash;
-	}
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
 
-	@Override
-	public boolean equals(Object object) {
-		// TODO: Warning - this method won't work in the case the id fields are not set
-		if (!(object instanceof VenteImmediate)) {
-			return false;
-		}
-		VenteImmediate other = (VenteImmediate) object;
-		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-			return false;
-		}
-		return true;
-	}
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
 
-	@Override
-	public String toString() {
-		return "abey.entities.VenteImmediate[ id=" + id + " ]";
-	}
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof VenteImmediate)) {
+            return false;
+        }
+        VenteImmediate other = (VenteImmediate) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "abey.entities.VenteImmediate[ id=" + id + " ]";
+    }
 
 }
