@@ -14,6 +14,10 @@ import javax.persistence.TypedQuery;
 @Named("produitService")
 @Stateless
 public class ProduitService extends AbstractService<Produit> {
+
+	public ProduitService() {
+		super(Produit.class);
+	}
     
     public List<Produit> rechercheProduits(String recherche){
         TypedQuery<Produit> query = em.createNamedQuery("Produit.recherche",

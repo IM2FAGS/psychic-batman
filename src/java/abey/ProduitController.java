@@ -18,7 +18,6 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
-import javax.swing.ImageIcon;
 import org.primefaces.event.FileUploadEvent;
 
 @Deprecated
@@ -32,7 +31,7 @@ public class ProduitController implements Serializable {
     private abey.facades.ProduitFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
-
+	
     public ProduitController() {
     }
 
@@ -241,7 +240,7 @@ public class ProduitController implements Serializable {
 
 	public void uploadImage(FileUploadEvent event) {  
         FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
-		current.setIconImage(new ImageIcon(event.getFile().getContents()));
+//		current.setImage(event.getFile().getContents());
         FacesContext.getCurrentInstance().addMessage(null, msg);
-    }  
+    }
 }

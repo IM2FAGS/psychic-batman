@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -31,6 +32,9 @@ public class Boutique implements Serializable {
 
     @Basic(optional = true)
     private String description;
+
+    @OneToOne
+    private Utilisateur proprietaire;
 
     @OneToMany
     private Collection<VenteImmediate> ventesImmediates;
@@ -90,6 +94,14 @@ public class Boutique implements Serializable {
     @Override
     public String toString() {
         return "abey.entities.Boutique[ id=" + id + " ]";
+    }
+
+    public Utilisateur getProprietaire() {
+        return proprietaire;
+    }
+
+    public void setProprietaire(Utilisateur proprietaire) {
+        this.proprietaire = proprietaire;
     }
 
 }

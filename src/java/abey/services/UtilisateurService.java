@@ -16,6 +16,10 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class UtilisateurService extends AbstractService<Utilisateur> {
 
+	public UtilisateurService() {
+		super(Utilisateur.class);
+	}
+
     public Utilisateur getUtilisateur(String nom, String pass) throws NoSuchAlgorithmException {
         TypedQuery<Utilisateur> query = em.createNamedQuery("Utilisateur.getByNom",
                                                         Utilisateur.class);

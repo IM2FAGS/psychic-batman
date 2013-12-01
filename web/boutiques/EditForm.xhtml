@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:form class="form-horizontal">
+        <div class="form-group">
+            <h:outputLabel value="#{bundle.Name}" class="col-sm-2 control-label" for="#{bundle.ShopIdName}" />
+            <div class="col-sm-5">
+                <h:inputText id="#{bundle.ShopIdName}" value="#{creerBoutiqueController.selected.nom}" title="#{bundle.ShopName}" styleClass="form-control"/>
+                <p:watermark for="#{bundle.ShopIdName}" value="Nom de la boutique"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <h:outputLabel value="#{bundle.Description}" class="col-sm-2 control-label" for="#{bundle.ShopIdDescription}" />
+            <div class="col-sm-5">
+                <h:inputTextarea id="#{bundle.ShopIdDescription}" value="#{creerBoutiqueController.selected.description}" title="#{bundle.ShopDescription}" styleClass="form-control"/>
+                <p:watermark for="#{bundle.ShopIdDescription}" value="Description de la boutique"/>
+            </div>
+        </div>
+        <br />
+        <h:commandLink action="#{creerBoutiqueController.create}" value="#{bundle.CreateBoutiquesSaveLink}" />
+        <br />
+        <h:link outcome="/index" value="#{bundle.CreateBoutiquesIndexLink}"/>
+    </h:form>
+</html>
