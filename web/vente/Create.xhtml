@@ -15,7 +15,7 @@
             <h:form class="form-horizontal">
                 <p:messages id="msgs" autoUpdate="true"/>
                 
-                <h:panelGroup rendered="#{creerVenteController.venteImmediate.produit == null}">
+                <h:panelGroup rendered="#{creerVenteController.produit == null}">
                     
                     <div class="form-group">
                         <label for="recherche" class="col-sm-2 control-label">
@@ -42,9 +42,10 @@
 
                         <p:column style="width:10%;">
                             <h:commandButton value="#{bundle.Sell}"
-                                             actionListener="#{creerVenteController.creer()}"
+                                             actionListener="#{creerVenteController.creer}"
                                              styleClass="btn btn-success">
-                                <f:setPropertyActionListener value="#{produit}" target="#{creerVenteController.venteImmediate.produit}" />
+                                <f:setPropertyActionListener value="#{produit}"
+                                                             target="#{creerVenteController.produit}" />
                             </h:commandButton>
                         </p:column>
 
@@ -64,22 +65,22 @@
                             <h:outputText value=" " />
                         </label>
                         <div class="col-sm-5">
-                            <h:link value="#{bundle.CreateProduct}"
-                                         outcome="/produits/Create"
-                                         styleClass="btn btn-success" />
+                            <h:link value="#{bundle.CreateMyProduct}"
+                                    outcome="/produits/Create"
+                                    styleClass="btn btn-success" />
                         </div>
                     </div>
                     
                 </h:panelGroup>
                     
-                <h:panelGroup rendered="#{creerVenteController.venteImmediate.produit != null}">
+                <h:panelGroup rendered="#{creerVenteController.produit != null}">
                     
                     <div class="form-group">
                         <label for="recherche" class="col-sm-2 control-label">
                             <h:outputText value="#{bundle.Product}" />
                         </label>
                         <div class="col-sm-5">
-                            <h:outputText value="#{creerVenteController.venteImmediate.produit.nom}" />
+                            <h:outputText value="#{creerVenteController.produit.nom}" />
                         </div>
                     </div>
                     
@@ -131,13 +132,13 @@
                 <br />
                 
                 <h:commandButton id="continue-btn"
-                                 actionListener="#{creerVenteController.creer()}"
+                                 actionListener="#{creerVenteController.creer}"
                                  value="#{bundle.Continue}"
                                  styleClass="btn btn-primary" />
                 
                 <h:outputText value=" " />
                 
-                <h:commandButton actionListener="#{creerVenteController.annuler()}"
+                <h:commandButton actionListener="#{creerVenteController.annuler}"
                                  value="#{bundle.Cancel}"
                                  styleClass="btn" />
                 

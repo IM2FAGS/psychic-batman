@@ -1,6 +1,5 @@
 package abey;
 
-import abey.entities.Boutique;
 import abey.entities.Produit;
 import abey.entities.VenteImmediate;
 import abey.services.ProduitService;
@@ -33,6 +32,7 @@ public class CreerVenteController implements Serializable {
     private String recherche;
 
     private List<Produit> produits;
+    private Produit produit;
 
     public String getRecherche() {
         return recherche;
@@ -62,19 +62,30 @@ public class CreerVenteController implements Serializable {
         this.venteImmediate = venteImmediate;
     }
 
+    public Produit getProduit() {
+        return produit;
+    }
+
+    public void setProduit(Produit produit) {
+        this.produit = produit;
+    }
+    
     private void annulerCreer() {
         venteImmediate = null;
         recherche = null;
         produits = null;
+        produit = null;
     }
 
     public String creer() {
+        venteImmediate = getVenteImmediate();
         if (venteImmediate.getProduit() == null) {
             produits = produitService.rechercheProduits(recherche);
             return "Create";
         } else if (venteImmediate.getStock() > 0 && venteImmediate.getPrix() > 0) {
             try {
                 venteImmediate.setDateVente(new Date());
+                venteImmediate.setProduit(produit);
                 venteImmediateService.create(venteImmediate);
                 JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("SaleCreated"));
                 annulerCreer();
