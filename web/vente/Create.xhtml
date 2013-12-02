@@ -15,7 +15,7 @@
             <h:form class="form-horizontal">
                 <p:messages id="msgs" autoUpdate="true"/>
                 
-                <h:panelGroup rendered="#{creerVenteController.produits != null and creerVenteController.venteImmediate.produit == null}">
+                <h:panelGroup rendered="#{creerVenteController.venteImmediate.produit == null}">
                     
                     <div class="form-group">
                         <label for="recherche" class="col-sm-2 control-label">
@@ -28,7 +28,8 @@
                         </div>
                     </div>
                     
-                    <p:dataTable value="#{creerVenteController.produits}"
+                    <p:dataTable rendered="#{creerVenteController.produits != null}"
+                                 value="#{creerVenteController.produits}"
                                  var="produit"
                                  paginator="true"
                                  rows="10">

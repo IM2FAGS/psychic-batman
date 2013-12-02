@@ -41,7 +41,7 @@ public class Produit implements Serializable {
 	@ManyToOne
 	private Image image;
 	
-	@NotNull
+	//@NotNull
 	@ManyToOne
 	private Categorie categorie;
 

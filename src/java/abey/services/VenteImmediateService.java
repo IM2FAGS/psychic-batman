@@ -11,7 +11,9 @@ import javax.inject.Named;
 @Named("venteImmediateService")
 @Stateless
 public class VenteImmediateService extends AbstractService<VenteImmediate> {
-    
-    
+
+    public VenteImmediateService() {
+        super(VenteImmediate.class);
+    }
     
 }
