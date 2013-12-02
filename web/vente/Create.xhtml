@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.SellProduct}" />
+        </ui:define>
+        <ui:define name="body">
+
+            <h:form class="form-horizontal">
+                <p:messages id="msgs" autoUpdate="true"/>
+                
+                <h:panelGroup rendered="#{creerVenteController.venteImmediate.produit == null}">
+                    
+                    <div class="form-group">
+                        <label for="recherche" class="col-sm-2 control-label">
+                            <h:outputText value="#{bundle.Product}" />
+                        </label>
+                        <div class="col-sm-5">
+                            <p:inputText id="recherche" value="#{creerVenteController.recherche}" title="#{bundle.Search}"
+                                         styleClass="form-control"/>
+                            <p:watermark for="stock" value="#{bundle.Search}"/>
+                        </div>
+                    </div>
+                    
+                    <p:dataTable rendered="#{creerVenteController.produits != null}"
+                                 value="#{creerVenteController.produits}"
+                                 var="produit"
+                                 paginator="true"
+                                 rows="10">
+
+                        <p:column style="width:90%;">
+                            <h:outputText value="#{produit.nom}" />  
+                        </p:column>
+
+                        <p:column style="width:10%;">
+                            <p:commandButton value="#{bundle.Sell}" actionListener="#{creerVenteController.create}" ajax="false">
+                                <f:setPropertyActionListener value="#{produit}" target="#{creerVenteController.venteImmediate.produit}" />
+                            </p:commandButton>
+                        </p:column>
+
+                    </p:dataTable>
+                    
+                </h:panelGroup>
+                    
+                <h:panelGroup rendered="#{creerVenteController.venteImmediate.produit != null}">
+                    
+                    <div class="form-group">
+                        <label for="recherche" class="col-sm-2 control-label">
+                            <h:outputText value="#{bundle.Product}" />
+                        </label>
+                        <div class="col-sm-5">
+                            <h:outputText value="#{creerVenteController.venteImmediate.produit.nom}" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="stock" class="col-sm-2 control-label">
+                            <h:outputText value="#{bundle.Stock}" />
+                        </label>
+                        <div class="col-sm-5">
+                            <p:spinner id="stock"
+                                       value="#{creerVenteController.venteImmediate.stock}"
+                                       title="#{bundle.Stock}" required="true"
+                                       min="1"
+                                       validatorMessage="#{bundle.StockInvalid}"
+                                       requiredMessage="#{bundle.StockRequired}"
+                                       styleClass="form-control"
+                                       >
+                                <f:ajax event="blur" render="msgs" />
+                            </p:spinner>
+                            <p:watermark for="stock" value="#{bundle.Stock}"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prix" class="col-sm-2 control-label">
+                            <h:outputText value="#{bundle.PricePerUnit}" />
+                        </label>
+                        <div class="col-sm-5">
+
+                            <div class="input-group">
+                                <p:spinner id="prix"
+                                           value="#{creerVenteController.venteImmediate.prix}"
+                                           title="#{bundle.PricePerUnit}"
+                                           required="true"
+                                           min="0.01"
+                                           stepFactor="0.01"
+                                           validatorMessage="#{bundle.PricePerUnitInvalid}"
+                                           requiredMessage="#{bundle.PricePerUnitRequired}"
+                                           styleClass="form-control ui-abey-addon">
+                                    <f:ajax event="blur" render="msgs" />
+                                </p:spinner>
+                                <p:watermark for="prix" value="#{bundle.PricePerUnit}"/>
+                                <span class="input-group-addon">€</span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </h:panelGroup>
+
+                <br />
+                <h:commandLink id="continue-btn"
+                               class="btn btn-primary"
+                               action="#{creerVenteController.create}"
+                               value="#{bundle.Continue}" />
+                <p:defaultCommand target="continue-btn" />
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+
+</html>

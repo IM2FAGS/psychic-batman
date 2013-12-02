@@ -1,7 +1,7 @@
 package abey.entities;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,7 +30,7 @@ public class Categorie implements Serializable {
 	private String nom;
 
 	@OneToMany(mappedBy = "categorie")
-	private List<Produit> produits;
+	private Collection<Produit> produits;
 
 	public Long getId() {
 		return id;
@@ -48,11 +48,11 @@ public class Categorie implements Serializable {
 		this.nom = nom;
 	}
 
-	public List<Produit> getProduits() {
+	public Collection<Produit> getProduits() {
 		return produits;
 	}
 
-	public void setProduits(List<Produit> produits) {
+	public void setProduits(Collection<Produit> produits) {
 		this.produits = produits;
 	}
 

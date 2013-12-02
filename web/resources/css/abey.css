@@ -5,6 +5,41 @@ body {
     min-height: 400px;
 }
 
+/* bootstrap / primefaces */
+
+.ui-spinner {
+    padding: 0;
+}
+.ui-spinner input {
+    width: 100%;
+    height: 32px;
+    border: none;
+    box-shadow: none;
+    padding-bottom: 0;
+    padding-top: 0;
+}
+.ui-spinner .ui-spinner-button {
+    border-color: #cccccc;
+}
+.ui-spinner .ui-spinner-button.ui-spinner-up {
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+}
+.ui-spinner .ui-spinner-button.ui-spinner-down {
+    border-right: none;
+    border-bottom: none;
+}
+.ui-spinner.ui-abey-addon .ui-spinner-button {
+    right: 34px;
+    border-radius: 0;
+}
+.ui-spinner.ui-abey-addon .ui-spinner-up {
+    top: 1px;
+}
+
+/* bootstrap / primefaces */
+
 .navbar {
     border-radius: 0;
 }

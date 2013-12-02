@@ -8,68 +8,97 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="Creer un compte utilisateur"></h:outputText>
+            <h:outputText value="#{bundle.CreateAccount}" />
         </ui:define>
         <ui:define name="body">
 
             <h:form class="form-horizontal">
                 <p:messages id="msgs" autoUpdate="true"/>
+                
                 <div class="form-group">
-                    <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+                    <label for="inputEmail" class="col-sm-2 control-label">
+                        <h:outputText value="#{bundle.Email}" />
+                    </label>
                     <div class="col-sm-5">
-                        <p:inputText id="mail" value="#{utilisateurController.selected.mail}" title="#{bundle.CreateUtilisateursTitle_nom}" required="true"
-                                     validatorMessage="L'adresse mail n'est pas valide" requiredMessage="Mail obligatoire" onblur=""
+                        <p:inputText id="mail"
+                                     value="#{utilisateurController.selected.mail}"
+                                     required="true"
+                                     validatorMessage="#{bundle.EmailInvalid}" requiredMessage="#{bundle.EmailRequired}" onblur=""
                                      styleClass="form-control">
                             <f:validateRegex pattern="([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)" />
                             <f:ajax event="blur" render="msgs" />
                         </p:inputText>
-                        <p:watermark for="mail" value="Email"/>
+                        <p:watermark for="mail" value="#{bundle.Email}"/>
                     </div>
                 </div>
+                
                 <div class="form-group">
-                    <label for="nom" class="col-sm-2 control-label">Pseudo</label>
+                    <label for="nom" class="col-sm-2 control-label">
+                        <h:outputText value="#{bundle.Nickname}" />
+                    </label>
                     <div class="col-sm-5">
-                        <p:inputText id="nom" value="#{utilisateurController.selected.nom}" title="#{bundle.CreateUtilisateursTitle_nom}"
-                                     required="true" requiredMessage="Nom d'utilisateur obligatoire" styleClass="form-control"/>
-                        <p:watermark for="nom" value="Pseudo"/>
+                        <p:inputText id="nom"
+                                     value="#{utilisateurController.selected.nom}"
+                                     required="true"
+                                     requiredMessage="#{bundle.NicknameRequired}"
+                                     styleClass="form-control" />
+                        <p:watermark for="nom" value="#{bundle.Nickname}"/>
                     </div>
                 </div>
+                
                 <div class="form-group">
-                    <label for="pw1" class="col-sm-2 control-label">Mot de passe</label>
+                    <label for="pw1" class="col-sm-2 control-label">
+                        <h:outputText value="#{bundle.Password}" />
+                    </label>
                     <div class="col-sm-5">
-                        <p:password id="pw1" value="#{utilisateurController.selected.pass}" match="pw2" validatorMessage="Les mots de passe ne sont pas identiques"
-                                    requiredMessage="Mot de passe obligatoire" title="#{bundle.CreateUtilisateursTitle_prix}" required="true" feedback="true"
+                        <p:password id="pw1"
+                                    value="#{utilisateurController.selected.pass}"
+                                    match="pw2"
+                                    validatorMessage="#{bundle.PasswordsAreDifferent}"
+                                    requiredMessage="#{bundle.PasswordRequired}"
+                                    required="true"
+                                    feedback="true"
                                     styleClass="form-control"/>
-                        <p:watermark for="pw1" value="Mot de passe"/>
+                        <p:watermark for="pw1" value="#{bundle.Password}"/>
                     </div>
                 </div>
 
                 <div class="form-group">
-
-
-                    <label for="pw2" class="col-sm-2 control-label">Confirmation</label>
+                    <label for="pw2" class="col-sm-2 control-label">
+                        <h:outputText value="#{bundle.Confirm}" />
+                    </label>
                     <div class="col-sm-5">
-                        <p:password id="pw2" value="#{utilisateurController.selected.pass}" title="#{bundle.CreateUtilisateursTitle_prix}" required="true"
-                                    requiredMessage="Confirmation du mot de passe obligatoire"
+                        <p:password id="pw2"
+                                    value="#{utilisateurController.selected.pass}"
+                                    required="true"
+                                    validatorMessage="#{bundle.ConfirmPasswordInvalid}"
+                                    requiredMessage="#{bundle.ConfirmPasswordRequired}"
                                     styleClass="form-control"/>
-                        <p:watermark for="pw2" value="Confirmation du mot de passe"/>
+                        <p:watermark for="pw2" value="#{bundle.ConfirmPassword}"/>
                     </div>
                 </div>
 
                 <div class="form-group">
-
-
-                    <label for="dateNaissance" class="col-sm-2 control-label">Date de Naissance</label>
+                    <label for="dateNaissance" class="col-sm-2 control-label">
+                        <h:outputText value="#{bundle.BirthDate}" />
+                    </label>
                     <div class="col-sm-5">
-                        <p:calendar id="dateNaissance" value="#{utilisateurController.selected.dateNaissance}" navigator="true" required="true" yearRange="c-100:c-0"
-                                    pattern="dd/MM/yyyy" showOn="button" readonlyInput="true"
-                                    requiredMessage="Date de naissance obligatoire"/>
+                        <p:calendar id="dateNaissance"
+                                    value="#{utilisateurController.selected.dateNaissance}"
+                                    navigator="true"
+                                    required="true"
+                                    yearRange="c-100:c-0"
+                                    pattern="dd/MM/yyyy"
+                                    showOn="button"
+                                    readonlyInput="true"
+                                    requiredMessage="#{bundle.BirthDateRequired}"
+                                    styleClass="form-control" />
                     </div>
                 </div>
 
 
                 <br />
-                <h:commandLink class="btn btn-primary" action="#{utilisateurController.create}" value="#{bundle.CreateUtilisateursSaveLink}" />
+                <h:commandLink class="btn btn-primary" action="#{utilisateurController.create}" value="#{bundle.CreateAccount}" />
              
             </h:form>
         </ui:define>

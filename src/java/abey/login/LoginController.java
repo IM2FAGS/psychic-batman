@@ -1,9 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package abey.login;
 
+import abey.AbstractController;
 import abey.services.UtilisateurService;
 import abey.entities.Utilisateur;
 import java.io.Serializable;
@@ -17,7 +14,7 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean
 @ViewScoped
-public class LoginController extends abey.AbstractController implements Serializable{
+public class LoginController extends AbstractController implements Serializable{
 
     @ManagedProperty(value = "#{identifiants}")
     private Identifiants identifiants;
