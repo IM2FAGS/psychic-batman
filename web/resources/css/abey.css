@@ -7,6 +7,7 @@ body {
 
 /* bootstrap / primefaces */
 
+/* spinner */
 .ui-spinner {
     padding: 0;
 }
@@ -30,15 +31,13 @@ body {
     border-right: none;
     border-bottom: none;
 }
-.ui-spinner.ui-abey-addon .ui-spinner-button {
-    right: 34px;
-    border-radius: 0;
-}
-.ui-spinner.ui-abey-addon .ui-spinner-up {
-    top: 1px;
+
+/* data table */
+.ui-datatable {
+    margin-bottom: 10px;
 }
 
-/* bootstrap / primefaces */
+/* fin bootstrap / primefaces */
 
 .navbar {
     border-radius: 0;

@@ -21,17 +21,17 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class CreerVenteController implements Serializable {
-    
+
     @ManagedProperty(value = "#{venteImmediateService}")
     private VenteImmediateService venteImmediateService;
-    
+
     @ManagedProperty(value = "#{produitService}")
     private ProduitService produitService;
-    
+
     private VenteImmediate venteImmediate;
-    
+
     private String recherche;
-    
+
     private List<Produit> produits;
 
     public String getRecherche() {
@@ -49,7 +49,7 @@ public class CreerVenteController implements Serializable {
     public void setProduits(List<Produit> produits) {
         this.produits = produits;
     }
-    
+
     public VenteImmediate getVenteImmediate() {
         if (venteImmediate == null) {
             venteImmediate = new VenteImmediate();
@@ -61,8 +61,14 @@ public class CreerVenteController implements Serializable {
     public void setVenteImmediate(VenteImmediate venteImmediate) {
         this.venteImmediate = venteImmediate;
     }
-    
-    public String create() {
+
+    private void annulerCreer() {
+        venteImmediate = null;
+        recherche = null;
+        produits = null;
+    }
+
+    public String creer() {
         if (venteImmediate.getProduit() == null) {
             produits = produitService.rechercheProduits(recherche);
             return "Create";
@@ -71,9 +77,7 @@ public class CreerVenteController implements Serializable {
                 venteImmediate.setDateVente(new Date());
                 venteImmediateService.create(venteImmediate);
                 JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("SaleCreated"));
-                venteImmediate = null;
-                recherche = null;
-                produits = null;
+                annulerCreer();
                 return "Create";
             } catch (Exception e) {
                 JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -83,6 +87,16 @@ public class CreerVenteController implements Serializable {
             return "Create";
         }
     }
+    
+    public String creerProduit() {
+        annulerCreer();
+        return "/produits/Create";
+    }
+    
+    public String annuler() {
+        annulerCreer();
+        return "Create";
+    }
 
     public void setVenteImmediateService(VenteImmediateService venteImmediateService) {
         this.venteImmediateService = venteImmediateService;
@@ -91,6 +105,5 @@ public class CreerVenteController implements Serializable {
     public void setProduitService(ProduitService produitService) {
         this.produitService = produitService;
     }
-    
-}
 
+}
