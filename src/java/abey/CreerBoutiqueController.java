@@ -42,16 +42,16 @@ public class CreerBoutiqueController extends AbstractController implements Seria
                 curUser.setBoutique(current);
                 current.setProprietaire(curUser);
             }else {
-                JsfUtil.addErrorMessage("Connexion obligatoire");
+                JsfUtil.addErrorMessage("ConnexionRequise");
                 return null;
             }
             
             boutiqueService.create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("BoutiquesCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("BoutiqueCree"));
             current=null;
             return "Create";
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("EchecTransaction"));
             return null;
         }
     }
