@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <title><ui:insert name="title">#{bundle.WelcomeOnAbey}</ui:insert></title>
         <h:outputStylesheet name="bootstrap-3.0.0/dist/css/bootstrap.min.css"/>
         <h:outputStylesheet name="/css/abey.css"/>
     </h:head>
@@ -25,10 +25,10 @@
                             <h:form class="navbar-form">
                                 <div class="form-group">
                                     <p:inputText id="search-field" value="#{rechercheController.query}" required="true"/>
-                                    <p:watermark for="search-field" value="Recherche"/>
+                                    <p:watermark for="search-field" value="#{bundle.Search}"/>
                                 </div>
                                 <div class="form-group">
-                                    <h:commandButton id="search-btn" value="Search" styleClass="btn btn-primary" action="#{rechercheController.search}" />
+                                    <h:commandButton id="search-btn" value="#{bundle.Search}" styleClass="btn btn-primary" action="#{rechercheController.search}" />
                                 </div>
                                 <p:defaultCommand target="search-btn" />
                             </h:form>

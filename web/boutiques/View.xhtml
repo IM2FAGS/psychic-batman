@@ -24,17 +24,17 @@
                     <h:outputText value="#{boutiqueController.selected.description}" title="Description"/>
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{boutiqueController.destroyAndView}" value="#{bundle.ViewBoutiquesDestroyLink}"/>
+                <h:commandLink action="#{boutiqueController.destroyAndView}" value="#{bundle.DestroyLink}"/>
                 <br />
                 <br />
-                <h:link outcome="Edit" value="#{bundle.ViewBoutiquesEditLink}"/>
+                <h:link outcome="Edit" value="#{bundle.EditLink}"/>
                 <br />
-                <h:commandLink action="#{boutiqueController.prepareCreate}" value="#{bundle.ViewBoutiquesCreateLink}" />
+                <h:commandLink action="#{boutiqueController.prepareCreate}" value="#{bundle.CreateLink}" />
                 <br />
-                <h:commandLink action="#{boutiqueController.prepareList}" value="#{bundle.ViewBoutiquesShowAllLink}"/>
+                <h:commandLink action="#{boutiqueController.prepareList}" value="#{bundle.ShowAllLink}"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.ViewBoutiquesIndexLink}"/>
+                <h:link outcome="/index" value="#{bundle.IndexLink}"/>
 
             </h:form>
         </ui:define>

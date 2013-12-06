@@ -7,14 +7,14 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ListBoutiquesTitle}"></h:outputText>
+            <h:outputText value="#{bundle.WelcomeOnAbey}"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:form styleClass="jsfcrud_list_form">
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListBoutiquesEmpty}" rendered="#{boutiqueController.items.rowCount == 0}"/>
+                <h:outputText escape="false" value="#{bundle.ShopNotCreated}" rendered="#{boutiqueController.items.rowCount == 0}"/>
                 <h:panelGroup rendered="#{boutiqueController.items.rowCount > 0}">
                     <h:outputText value="#{boutiqueController.pagination.pageFirstItem + 1}..#{boutiqueController.pagination.pageLastItem + 1}/#{boutiqueController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{boutiqueController.previous}" value="#{bundle.Previous} #{boutiqueController.pagination.pageSize}" rendered="#{boutiqueController.pagination.hasPreviousPage}"/>&nbsp;
@@ -42,19 +42,19 @@
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{boutiqueController.prepareView}" value="#{bundle.ListBoutiquesViewLink}"/>
+                            <h:commandLink action="#{boutiqueController.prepareView}" value="#{bundle.ViewLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{boutiqueController.prepareEdit}" value="#{bundle.ListBoutiquesEditLink}"/>
+                            <h:commandLink action="#{boutiqueController.prepareEdit}" value="#{bundle.EditLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{boutiqueController.destroy}" value="#{bundle.ListBoutiquesDestroyLink}"/>
+                            <h:commandLink action="#{boutiqueController.destroy}" value="#{bundle.DestroyLink}"/>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
                 <br />
-                <h:commandLink action="#{boutiqueController.prepareCreate}" value="#{bundle.ListBoutiquesCreateLink}"/>
+                <h:commandLink action="#{boutiqueController.prepareCreate}" value="#{bundle.CreateLink}"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.ListBoutiquesIndexLink}"/>
+                <h:link outcome="/index" value="#{bundle.IndexLink}"/>
             </h:form>
         </ui:define>
     </ui:composition>
