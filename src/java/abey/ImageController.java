@@ -18,7 +18,7 @@ import org.primefaces.model.StreamedContent;
  */
 @ManagedBean
 @RequestScoped
-public class ImageController extends AbstractController implements Serializable {
+public class ImageController extends AbstractController {
 
     @ManagedProperty("#{param.imageId}")
     private long imageId;

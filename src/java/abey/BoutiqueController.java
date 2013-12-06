@@ -5,12 +5,10 @@ import abey.facades.BoutiqueFacade;
 import abey.util.JsfUtil;
 import abey.util.PaginationHelper;
 
-import java.io.Serializable;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.inject.Named;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -22,7 +20,7 @@ import javax.faces.model.SelectItem;
 @Deprecated
 @ManagedBean
 @SessionScoped
-public class BoutiqueController implements Serializable {
+public class BoutiqueController extends AbstractController {
 
     private Boutique current;
     private DataModel items = null;

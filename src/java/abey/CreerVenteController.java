@@ -19,7 +19,7 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class CreerVenteController implements Serializable {
+public class CreerVenteController extends AbstractController {
 
     @ManagedProperty(value = "#{venteImmediateService}")
     private VenteImmediateService venteImmediateService;

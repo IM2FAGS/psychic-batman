@@ -2,16 +2,13 @@ package abey;
 
 import abey.entities.Utilisateur;
 import abey.facades.UtilisateurFacade;
-import abey.login.UtilisateurSession;
 import abey.util.JsfUtil;
 import abey.util.PaginationHelper;
 import abey.util.Salt;
 
-import java.io.Serializable;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -24,7 +21,7 @@ import javax.faces.model.SelectItem;
 @Deprecated
 @ManagedBean
 @SessionScoped
-public class UtilisateurController implements Serializable {
+public class UtilisateurController extends AbstractController {
 
     private Utilisateur current;
     private DataModel items = null;
@@ -32,10 +29,6 @@ public class UtilisateurController implements Serializable {
     private abey.facades.UtilisateurFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
-    
-    @ManagedProperty(value = "#{utilisateurSession}")
-    private UtilisateurSession utilisateurSession;
-    
 
     public UtilisateurController() {
     }
@@ -204,10 +197,6 @@ public class UtilisateurController implements Serializable {
 
     public Utilisateur getUtilisateurs(java.lang.Long id) {
         return ejbFacade.find(id);
-    }
-
-    public void setUtilisateurSession(UtilisateurSession utilisateurSession) {
-        this.utilisateurSession = utilisateurSession;
     }
 
     @FacesConverter(forClass = Utilisateur.class)

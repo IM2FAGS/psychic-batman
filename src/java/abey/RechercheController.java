@@ -2,13 +2,11 @@ package abey;
 
 import abey.services.ProduitService;
 import abey.entities.Produit;
-import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 
 /**
  *
@@ -16,7 +14,7 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean
 @SessionScoped
-public class RechercheController implements Serializable {
+public class RechercheController extends AbstractController {
 
     private String query;
     private List<Produit> produits;

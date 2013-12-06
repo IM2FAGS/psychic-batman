@@ -3,7 +3,6 @@ package abey;
 import abey.entities.Image;
 import abey.entities.Utilisateur;
 import abey.login.UtilisateurSession;
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,14 +11,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.context.FacesContext;
-import javax.faces.event.PhaseId;
 import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
 
-public abstract class AbstractController {
+public abstract class AbstractController implements Serializable {
 
     @ManagedProperty(value = "#{utilisateurSession}")
     protected UtilisateurSession utilisateurSession;

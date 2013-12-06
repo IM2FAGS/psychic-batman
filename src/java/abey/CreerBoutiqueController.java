@@ -1,15 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package abey;
 
 import abey.entities.Boutique;
 import abey.entities.Utilisateur;
 import abey.services.BoutiqueService;
 import abey.util.JsfUtil;
-import java.io.Serializable;
 import java.util.ResourceBundle;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -21,7 +15,7 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class CreerBoutiqueController extends AbstractController implements Serializable {
+public class CreerBoutiqueController extends AbstractController {
 
     private Boutique current;
     @ManagedProperty(value = "#{boutiqueService}")
