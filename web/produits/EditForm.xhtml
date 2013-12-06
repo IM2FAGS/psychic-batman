@@ -39,13 +39,11 @@
                 <h:outputText value="#{bundle.Image}" />
             </label>
             <div class="col-sm-5">
-                <p:fileUpload id="image"
-                              fileUploadListener="#{produitController.uploadImage}"
+                <p:fileUpload fileUploadListener="#{produitController.uploadProductImage}"
                               mode="advanced"
-                              dragDropSupport="true" 
+                              dragDropSupport="true"
                               update="image-messages"
-                              sizeLimit="100000"
-                              fileLimit="3"
+                              sizeLimit="#{produitController.sizeLimit}"
                               allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
                 <p:growl id="image-messages" showDetail="true"/>
             </div>

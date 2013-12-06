@@ -1,5 +1,6 @@
 package abey;
 
+import abey.entities.Image;
 import abey.entities.Produit;
 import abey.facades.ProduitFacade;
 import abey.util.JsfUtil;
@@ -23,7 +24,7 @@ import org.primefaces.event.FileUploadEvent;
 @Deprecated
 @ManagedBean
 @SessionScoped
-public class ProduitController implements Serializable {
+public class ProduitController extends AbstractController implements Serializable {
 
     private Produit current;
     private Produit previous;
@@ -247,9 +248,16 @@ public class ProduitController implements Serializable {
         }
     }
 
-    public void uploadImage(FileUploadEvent event) {
-        FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
-//		current.setImage(event.getFile().getContents());
+    public void uploadProductImage(FileUploadEvent event) {
+        Image image = uploadImage(event);
+        FacesMessage msg;
+        
+        if(image != null) {
+            current.setImage(image);
+            msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
+        } else {
+            msg = new FacesMessage("Fail", event.getFile().getFileName() + " not uploaded.");
+        }
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 }
