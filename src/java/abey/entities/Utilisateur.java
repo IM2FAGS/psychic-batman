@@ -61,6 +61,10 @@ public class Utilisateur implements Serializable {
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateNaissance;
+    
+    @Basic(optional = false)
+    @NotNull
+    private boolean admin = false;
 
     public Long getId() {
         return id;
@@ -110,6 +114,14 @@ public class Utilisateur implements Serializable {
         this.dateNaissance = dateNaissance;
     }
 
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
