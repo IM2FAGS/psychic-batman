@@ -7,6 +7,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -18,7 +19,7 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
 
-public class AbstractController {
+public abstract class AbstractController {
 
     @ManagedProperty(value = "#{utilisateurSession}")
     protected UtilisateurSession utilisateurSession;
@@ -27,7 +28,6 @@ public class AbstractController {
     protected abey.services.ImageService imageService;
 
     private static final int sizeLimit = 100000;
-
 
     public Utilisateur getUtilisateurConnecte() {
         Utilisateur utilisateur = null;
@@ -39,42 +39,6 @@ public class AbstractController {
 
     public void setUtilisateurSession(UtilisateurSession utilisateurSession) {
         this.utilisateurSession = utilisateurSession;
-    }
-
-    //TODO faire en sorte que cette méthode soit dans un @ViewScoped
-    public StreamedContent getImage() throws IOException {
-        FacesContext context = FacesContext.getCurrentInstance();
-
-        System.out.println("AbstractController.getImage()");
-        if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
-            // So, we're rendering the view. Return a stub StreamedContent so that it will generate right URL.
-            return new DefaultStreamedContent();
-        } else {
-            // So, browser is requesting the image. Return a real StreamedContent with the image bytes.
-
-            String idParam = context.getExternalContext().getRequestParameterMap().get("imageId");
-            String thumbParam = context.getExternalContext().getRequestParameterMap().get("thumb");
-
-            Image image = null;
-            System.out.println("idParam = "+idParam);
-            System.out.println("thumbParam = "+thumbParam);
-            try {
-                image = imageService.find(Long.valueOf(idParam));
-            } catch (NumberFormatException e) {
-                Logger.getLogger(AbstractController.class.getName()).log(Level.SEVERE, null, e);
-            }
-
-            if (image == null) {
-                return null;
-            }
-
-            if (Boolean.parseBoolean(thumbParam)) {
-                return new DefaultStreamedContent(new ByteArrayInputStream(image.getThumbnail()), image.getMimetypeThumbnail());
-            } else {
-                return new DefaultStreamedContent(new ByteArrayInputStream(image.getOriginal()), image.getMimetypeOriginal());
-            }
-        }
-
     }
 
     protected Image uploadImage(FileUploadEvent event) {
