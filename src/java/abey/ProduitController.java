@@ -26,12 +26,14 @@ import org.primefaces.event.FileUploadEvent;
 public class ProduitController implements Serializable {
 
     private Produit current;
+    private Produit previous;
+    
     private DataModel items = null;
     @EJB
     private abey.facades.ProduitFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
-	
+
     public ProduitController() {
     }
 
@@ -43,6 +45,14 @@ public class ProduitController implements Serializable {
         return current;
     }
 
+    public Produit getPrevious() {
+        return previous;
+    }
+
+    public void setPrevious(Produit previous) {
+        this.previous = previous;
+    }
+    
     private ProduitFacade getFacade() {
         return ejbFacade;
     }
@@ -83,14 +93,13 @@ public class ProduitController implements Serializable {
 
     public String create() {
         try {
-            //current.setDateDebut(new Date(java.lang.System.currentTimeMillis()));
-//            current.setDateDebut(null);
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ProduitsCreated"));
+            previous = current;
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ProductCreated"));
+            recreateModel();
+            recreatePagination();
             prepareCreate();
-			recreateModel();
-			recreatePagination();
-            return "/index";
+            return "Created";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
@@ -238,7 +247,7 @@ public class ProduitController implements Serializable {
         }
     }
 
-	public void uploadImage(FileUploadEvent event) {  
+    public void uploadImage(FileUploadEvent event) {
         FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
 //		current.setImage(event.getFile().getContents());
         FacesContext.getCurrentInstance().addMessage(null, msg);

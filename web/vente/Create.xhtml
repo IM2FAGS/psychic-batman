@@ -15,16 +15,18 @@
             <h:form class="form-horizontal">
                 <p:messages id="msgs" autoUpdate="true"/>
                 
-                <h:panelGroup rendered="#{creerVenteController.venteImmediate.produit == null}">
+                <h:panelGroup rendered="#{creerVenteController.produit == null}">
                     
                     <div class="form-group">
                         <label for="recherche" class="col-sm-2 control-label">
                             <h:outputText value="#{bundle.Product}" />
                         </label>
                         <div class="col-sm-5">
-                            <p:inputText id="recherche" value="#{creerVenteController.recherche}" title="#{bundle.Search}"
+                            <p:inputText id="recherche"
+                                         value="#{creerVenteController.recherche}"
+                                         title="#{bundle.Search}"
                                          styleClass="form-control"/>
-                            <p:watermark for="stock" value="#{bundle.Search}"/>
+                            <p:watermark for="recherche" value="#{bundle.Search}"/>
                         </div>
                     </div>
                     
@@ -32,30 +34,53 @@
                                  value="#{creerVenteController.produits}"
                                  var="produit"
                                  paginator="true"
-                                 rows="10">
+                                 rows="5">
 
                         <p:column style="width:90%;">
                             <h:outputText value="#{produit.nom}" />  
                         </p:column>
 
                         <p:column style="width:10%;">
-                            <p:commandButton value="#{bundle.Sell}" actionListener="#{creerVenteController.create}" ajax="false">
-                                <f:setPropertyActionListener value="#{produit}" target="#{creerVenteController.venteImmediate.produit}" />
-                            </p:commandButton>
+                            <h:commandButton value="#{bundle.Sell}"
+                                             actionListener="#{creerVenteController.creer}"
+                                             styleClass="btn btn-success">
+                                <f:setPropertyActionListener value="#{produit}"
+                                                             target="#{creerVenteController.produit}" />
+                            </h:commandButton>
                         </p:column>
 
                     </p:dataTable>
                     
+                    <div class="form-group">
+                        <label for="recherche" class="col-sm-2 control-label">
+                            <h:outputText value=" " />
+                        </label>
+                        <div class="col-sm-5">
+                            <h:outputText value="#{bundle.SearchOrAddProduct}" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="recherche" class="col-sm-2 control-label">
+                            <h:outputText value=" " />
+                        </label>
+                        <div class="col-sm-5">
+                            <h:link value="#{bundle.CreateMyProduct}"
+                                    outcome="/produits/Create"
+                                    styleClass="btn btn-success" />
+                        </div>
+                    </div>
+                    
                 </h:panelGroup>
                     
-                <h:panelGroup rendered="#{creerVenteController.venteImmediate.produit != null}">
+                <h:panelGroup rendered="#{creerVenteController.produit != null}">
                     
                     <div class="form-group">
                         <label for="recherche" class="col-sm-2 control-label">
                             <h:outputText value="#{bundle.Product}" />
                         </label>
                         <div class="col-sm-5">
-                            <h:outputText value="#{creerVenteController.venteImmediate.produit.nom}" />
+                            <h:outputText value="#{creerVenteController.produit.nom}" />
                         </div>
                     </div>
                     
@@ -85,17 +110,16 @@
                         <div class="col-sm-5">
 
                             <div class="input-group">
-                                <p:spinner id="prix"
+                                <p:inputText id="prix"
                                            value="#{creerVenteController.venteImmediate.prix}"
                                            title="#{bundle.PricePerUnit}"
                                            required="true"
-                                           min="0.01"
-                                           stepFactor="0.01"
                                            validatorMessage="#{bundle.PricePerUnitInvalid}"
                                            requiredMessage="#{bundle.PricePerUnitRequired}"
-                                           styleClass="form-control ui-abey-addon">
+                                           styleClass="form-control ui-abey-addon"
+                                           style="text-align: right;">
                                     <f:ajax event="blur" render="msgs" />
-                                </p:spinner>
+                                </p:inputText>
                                 <p:watermark for="prix" value="#{bundle.PricePerUnit}"/>
                                 <span class="input-group-addon">€</span>
                             </div>
@@ -106,10 +130,18 @@
                 </h:panelGroup>
 
                 <br />
-                <h:commandLink id="continue-btn"
-                               class="btn btn-primary"
-                               action="#{creerVenteController.create}"
-                               value="#{bundle.Continue}" />
+                
+                <h:commandButton id="continue-btn"
+                                 actionListener="#{creerVenteController.creer}"
+                                 value="#{bundle.Continue}"
+                                 styleClass="btn btn-primary" />
+                
+                <h:outputText value=" " />
+                
+                <h:commandButton actionListener="#{creerVenteController.annuler}"
+                                 value="#{bundle.Cancel}"
+                                 styleClass="btn" />
+                
                 <p:defaultCommand target="continue-btn" />
             </h:form>
 

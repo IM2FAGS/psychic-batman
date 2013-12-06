@@ -28,7 +28,10 @@
                                     <p:watermark for="search-field" value="#{bundle.Search}"/>
                                 </div>
                                 <div class="form-group">
-                                    <h:commandButton id="search-btn" value="#{bundle.Search}" styleClass="btn btn-primary" action="#{rechercheController.search}" />
+                                    <h:commandButton id="search-btn"
+                                                     value="#{bundle.Search}"
+                                                     styleClass="btn btn-primary"
+                                                     action="#{rechercheController.search}" />
                                 </div>
                                 <p:defaultCommand target="search-btn" />
                             </h:form>
