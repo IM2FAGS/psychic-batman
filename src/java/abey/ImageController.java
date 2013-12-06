@@ -3,7 +3,6 @@ package abey;
 import abey.entities.Image;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;

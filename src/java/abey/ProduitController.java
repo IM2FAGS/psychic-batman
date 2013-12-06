@@ -6,7 +6,6 @@ import abey.facades.ProduitFacade;
 import abey.util.JsfUtil;
 import abey.util.PaginationHelper;
 
-import java.io.Serializable;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
