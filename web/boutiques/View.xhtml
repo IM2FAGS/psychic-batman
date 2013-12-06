@@ -8,7 +8,7 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ViewBoutiquesTitle}"></h:outputText>
+            <h:outputText value="#{boutiqueController.selected.nom}"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
@@ -16,11 +16,11 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputText value="ID :"/>
+                    <h:outputText value="ID"/>
                     <h:outputText value="#{boutiqueController.selected.id}" title="ID"/>
-                    <h:outputText value="Nom :"/>
+                    <h:outputText value="Nom"/>
                     <h:outputText value="#{boutiqueController.selected.nom}" title="Nom"/>
-                    <h:outputText value="Description :"/>
+                    <h:outputText value="Description"/>
                     <h:outputText value="#{boutiqueController.selected.description}" title="Description"/>
                 </h:panelGrid>
                 <br />

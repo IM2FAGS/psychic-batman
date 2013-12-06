@@ -11,57 +11,7 @@
             <h:outputText value="#{bundle.CreateProductTitle}" />
         </ui:define>
         <ui:define name="body">
-            <h:form class="form-horizontal" enctype="multipart/form-data">
-                <p:messages id="msgs" autoUpdate="true"/>
-                <div class="form-group">
-                    <label for="nom" class="col-sm-2 control-label">
-                        <h:outputText value="#{bundle.ProductName}" />
-                    </label>
-                    <div class="col-sm-5">
-                        <p:inputText id="nom"
-                                     value="#{produitController.selected.nom}"
-                                     required="true"
-                                     requiredMessage="#{bundle.ProductNameRequired}"
-                                     styleClass="form-control" />
-                        <p:watermark for="nom" value="#{bundle.ProductName}"/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="description" class="col-sm-2 control-label">
-                        <h:outputText value="#{bundle.Description}" />
-                    </label>
-                    <div class="col-sm-5">
-                        <p:inputTextarea id="description"
-                                         value="#{produitController.selected.description}"
-                                         title="#{bundle.CreateProduitsTitle_nom}"
-                                         required="true"
-                                         requiredMessage="#{bundle.DescriptionRequired}"
-                                         styleClass="form-control"/>
-                        <p:watermark for="description" value="#{bundle.Description}"/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="image" class="col-sm-2 control-label">
-                        <h:outputText value="#{bundle.Image}" />
-                    </label>
-                    <div class="col-sm-5">
-                        <p:fileUpload id="image"
-                                      fileUploadListener="#{produitController.uploadImage}"
-                                      mode="advanced"
-                                      dragDropSupport="true" 
-                                      update="image-messages"
-                                      sizeLimit="100000"
-                                      fileLimit="3"
-                                      allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-                        <p:growl id="image-messages" showDetail="true"/>
-                    </div>
-                </div>
-                <h:commandLink
-                    class="btn btn-primary"
-                    action="#{produitController.create}"
-                    value="#{bundle.CreateProduct}" />
-            </h:form>
-
+            <ui:include src="EditForm.xhtml" />
         </ui:define>
     </ui:composition>
 

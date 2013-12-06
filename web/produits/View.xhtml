@@ -8,7 +8,7 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ViewProduitsTitle}"></h:outputText>
+            <h:outputText value="#{produitController.selected.nom}"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
@@ -16,31 +16,31 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewProduitsLabel_id}"/>
-                    <h:outputText value="#{produitController.selected.id}" title="#{bundle.ViewProduitsTitle_id}"/>
-                    <h:outputText value="#{bundle.ViewProduitsLabel_nom}"/>
-                    <h:outputText value="#{produitController.selected.nom}" title="#{bundle.ViewProduitsTitle_nom}"/>
-                    <h:outputText value="#{bundle.ViewProduitsLabel_description}"/>
-                    <h:outputText value="#{produitController.selected.description}" title="#{bundle.ViewProduitsTitle_description}"/>
-                    <h:outputText value="#{bundle.ViewProduitsLabel_image}"/>
-					<p:graphicImage value="#{imageController.image}" title="#{bundle.ViewProduitsTitle_image}" alt="#{bundle.ViewProduitsTitle_image}">
+                    <h:outputText value="ID"/>
+                    <h:outputText value="#{produitController.selected.id}" title="ID"/>
+                    <h:outputText value="Nom"/>
+                    <h:outputText value="#{produitController.selected.nom}" title="Nom"/>
+                    <h:outputText value="Description"/>
+                    <h:outputText value="#{produitController.selected.description}" title="Description"/>
+                    <h:outputText value="Image"/>
+					<p:graphicImage value="#{imageController.image}" title="image du produit" alt="Image du produit">
 						<f:param name="imageId" value="#{produitController.selected.image.id}" />
 						<f:param name="thumb" value="#{false}" />
 					</p:graphicImage>
 
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{produitController.destroyAndView}" value="#{bundle.ViewProduitsDestroyLink}"/>
+                <h:commandLink action="#{produitController.destroyAndView}" value="#{bundle.DestroyLink}"/>
                 <br />
                 <br />
-                <h:link outcome="Edit" value="#{bundle.ViewProduitsEditLink}"/>
+                <h:link outcome="Edit" value="#{bundle.EditLink}"/>
                 <br />
-                <h:commandLink action="#{produitController.prepareCreate}" value="#{bundle.ViewProduitsCreateLink}" />
+                <h:commandLink action="#{produitController.prepareCreate}" value="#{bundle.CreateLink}" />
                 <br />
-                <h:commandLink action="#{produitController.prepareList}" value="#{bundle.ViewProduitsShowAllLink}"/>
+                <h:commandLink action="#{produitController.prepareList}" value="#{bundle.ShowAllLink}"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.ViewProduitsIndexLink}"/>
+                <h:link outcome="/index" value="#{bundle.IndexLink}"/>
 
             </h:form>
         </ui:define>
