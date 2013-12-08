@@ -57,6 +57,14 @@ body {
     border-bottom-left-radius: 0;
 }
 
+/* progress bar */
+.ui-fileupload-progress .ui-progressbar {
+    height: 6px !important;
+    width: 55px !important;
+    margin-left: -10px !important;
+    margin-right: -10px !important;
+}
+
 /* fin bootstrap / primefaces */
 
 .navbar {
