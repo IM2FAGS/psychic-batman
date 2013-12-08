@@ -80,12 +80,14 @@
                             value="#{utilisateurController.selected.dateNaissance}"
                             navigator="true"
                             required="true"
-                            yearRange="c-100:c-0"
+                            mindate="1/1/1900"
+                            maxdate="1/1/2013"
+                            yearRange="c-200:c+200"
                             pattern="dd/MM/yyyy"
                             showOn="button"
                             readonlyInput="true"
                             requiredMessage="#{bundle.BirthDateRequired}"
-                            styleClass="form-control" />
+                            styleClass="form-control date-picker" />
             </div>
         </div>
 

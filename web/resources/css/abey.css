@@ -37,6 +37,24 @@ body {
     margin-bottom: 10px;
 }
 
+/* date picker */
+.date-picker {
+    padding: 0;
+}
+.date-picker input {
+    border: none;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    width: 100%;
+    height: 100%;
+    margin-right: -36px;
+}
+.date-picker input:focus {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6);
+}
+.date-picker .ui-datepicker-trigger {
+    margin-right: -2px;
+}
+
 /* fin bootstrap / primefaces */
 
 .navbar {
