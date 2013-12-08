@@ -53,6 +53,8 @@ body {
 }
 .date-picker .ui-datepicker-trigger {
     margin-right: -2px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 /* fin bootstrap / primefaces */
