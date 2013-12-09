@@ -11,19 +11,7 @@
             <h:outputText value="#{bundle.WelcomeOnAbey}" />
         </ui:define>
         <ui:define name="body">
-            <p:messages id="msgs" autoUpdate="true"/>
-            <h:form>
-                <h:commandButton class="btn" action="#{fillUtilisateurs.get_util()}" value="Fill Utilisateurs"/>
-                <h:outputText value=" " />
-                <h:commandButton class="btn" action="#{fillProduits.get_util()}" value="Fill Produits"/>
-            </h:form>
-            <h:link outcome="/produits/List" value="Show All Produits Items"/>
-            <br />
-            <h:link outcome="/boutiques/List" value="Show All Boutiques Items"/>
-            <br />
-            <h:link outcome="/utilisateurs/List" value="Show All Utilisateurs Items"/>
-            <br />
-            <h:link outcome="/categories/List" value="Show All Categories Items"/>
+
         </ui:define>
     </ui:composition>
 

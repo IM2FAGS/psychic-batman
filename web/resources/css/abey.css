@@ -99,6 +99,13 @@ footer {
     margin-right: 20px;
 }
 
+#login-form a {
+    color: white;
+}
+#login-form a:hover {
+    color: #bbb;
+}
+
 .connected-as {
     color: white;
     margin-right: 15px;
