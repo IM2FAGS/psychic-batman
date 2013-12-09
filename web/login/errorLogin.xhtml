@@ -8,7 +8,7 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            Accueil
+            <h:outputText value="#{bundle.Login}" />
         </ui:define>
         <ui:define name="body">
             <div class="ui-messages-fatal ui-corner-all">
@@ -16,19 +16,43 @@
             </div>
             <div id="login-retry">
                 <h:form class="form-horizontal">
+
                     <div class="form-group">
-                        <p:inputText id="nom-retry" value="#{identifiants.nom}" />
-                        <p:watermark for="nom-retry" value="Pseudo"/>
+                        <label for="nom" class="col-sm-2 control-label">
+                            <h:outputText value="#{bundle.Nickname}" />
+                        </label>
+                        <div class="col-sm-5">
+                            <p:inputText id="nom-retry"
+                                         value="#{identifiants.nom}"
+                                         styleClass="form-control" />
+                            <p:watermark for="nom-retry" value="#{bundle.Nickname}"/>
+                        </div>
                     </div>
+
                     <div class="form-group">
-                        <p:password id="pass-retry" value="#{identifiants.pass}" />
-                        <p:watermark for="pass-retry" value="Mot de passe"/>
+                        <label for="pass-retry" class="col-sm-2 control-label">
+                            <h:outputText value="#{bundle.Password}" />
+                        </label>
+                        <div class="col-sm-5">
+                            <p:password id="pass-retry"
+                                        value="#{identifiants.pass}"
+                                        styleClass="form-control"/>
+                            <p:watermark for="pass-retry" value="#{bundle.Password}"/>
+                        </div>
                     </div>
+
                     <div class="form-group">
-                        <h:commandLink id="login-retry-btn" value="Login" class="btn btn-primary" action="#{loginController.login}" />
+                        <h:commandButton id="login-retry-btn"
+                                         value="#{bundle.Login}"
+                                         styleClass="btn btn-primary"
+                                         action="#{loginController.login}" />
                         &nbsp;
-                        <h:link outcome="/utilisateurs/Create" class="btn btn-primary">Creer un compte</h:link>
+                        &nbsp;
+                        <h:link outcome="/utilisateurs/Create">
+                            <h:outputText value="#{bundle.CreateAccount}" />
+                        </h:link>
                     </div>
+
                     <p:defaultCommand target="login-retry-btn" />
                 </h:form>
             </div>

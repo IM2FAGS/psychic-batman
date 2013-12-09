@@ -4,14 +4,12 @@ import abey.entities.Utilisateur;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.inject.Named;
 
 /**
  *
  * @author toinou
  */
 @ManagedBean
-@Named("utilisateurSession")
 @SessionScoped
 public class UtilisateurSession implements Serializable {
 

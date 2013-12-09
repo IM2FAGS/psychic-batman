@@ -4,6 +4,7 @@ import abey.AbstractController;
 import abey.services.UtilisateurService;
 import abey.entities.Utilisateur;
 import java.io.Serializable;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -19,7 +20,7 @@ public class LoginController extends AbstractController implements Serializable{
     @ManagedProperty(value = "#{identifiants}")
     private Identifiants identifiants;
 
-    @ManagedProperty(value = "#{utilisateurService}")
+    @EJB
     private UtilisateurService utilisateurService;
 
     public void setUtilisateurService(UtilisateurService utilisateurService) {
@@ -40,7 +41,6 @@ public class LoginController extends AbstractController implements Serializable{
             }
         } catch (Exception e) {
             outcome = "/login/errorLogin";
-            System.out.println("Unable to login:");
         }
         return outcome;
     }

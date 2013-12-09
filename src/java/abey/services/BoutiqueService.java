@@ -8,14 +8,12 @@ import abey.entities.Boutique;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
-import javax.inject.Named;
 import javax.persistence.TypedQuery;
 
 /**
  *
  * @author disavinr
  */
-@Named("boutiqueService")
 @Stateless
 public class BoutiqueService extends AbstractService<Boutique> {
 

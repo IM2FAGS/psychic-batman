@@ -16,7 +16,8 @@
                 <p:inputText id="mail"
                              value="#{utilisateurController.selected.mail}"
                              required="true"
-                             validatorMessage="#{bundle.EmailInvalid}" requiredMessage="#{bundle.EmailRequired}" onblur=""
+                             validatorMessage="#{bundle.EmailInvalid}"
+                             requiredMessage="#{bundle.EmailRequired}"
                              styleClass="form-control">
                     <f:validateRegex pattern="([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)" />
                     <f:ajax event="blur" render="msgs" />

@@ -3,7 +3,7 @@ package abey;
 import abey.services.ProduitService;
 import abey.entities.Produit;
 import java.util.List;
-
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -19,7 +19,8 @@ public class RechercheController extends AbstractController {
     private String query;
     private List<Produit> produits;
     private Produit selectedProduit;
-    @ManagedProperty(value = "#{produitService}")
+    
+    @EJB
     private ProduitService produitService;
 
     public void setProduitService(ProduitService produitService) {

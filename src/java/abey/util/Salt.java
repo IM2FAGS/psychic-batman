@@ -32,7 +32,6 @@ public class Salt {
         MessageDigest messageDigest = MessageDigest.getInstance("SHA");
         messageDigest.update((password + salt).getBytes());
         String hash = toHex(messageDigest.digest());
-        System.out.println("hash(" + password + ", " + salt + " = " + hash);
         return hash;
     }
     

@@ -5,6 +5,7 @@ import abey.entities.Utilisateur;
 import abey.services.BoutiqueService;
 import abey.util.JsfUtil;
 import java.util.ResourceBundle;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -17,10 +18,10 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class CreerBoutiqueController extends AbstractController {
 
-    private Boutique current;
-    @ManagedProperty(value = "#{boutiqueService}")
+    @EJB
     private BoutiqueService boutiqueService;
-
+    
+    private Boutique current;
 
     public Boutique getSelected() {
         if (current == null) {

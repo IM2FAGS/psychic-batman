@@ -84,19 +84,20 @@
                             <li><a href="#">____________</a></li>
                         </ul>
                     </div>
+                    <div class="col-lg-2 col-lg-offset-4">
+                        <div class="well well-sm">
+                            <span style="font-weight: bold; color: red;">TODO : VIRER CES LIENS DE TEST</span>
+                            <ul>
+                                <li><h:link outcome="/produits/List" value="Produits"/></li>
+                                <li><h:link outcome="/boutiques/List" value="Boutiques"/></li>
+                                <li><h:link outcome="/utilisateurs/List" value="Utilisateurs"/></li>
+                                <li><h:link outcome="/categories/List" value="Categories"/></li>
+                                <li><h:link outcome="/vente/Create" value="Vente"/></li>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="col-lg-2">
-                        <h:form>
-                            <h:commandButton class="btn" action="#{fillUtilisateurs.get_util()}" value="Fill Utilisateurs"/>
-                            <h:outputText value=" " />
-                            <h:commandButton class="btn" action="#{fillProduits.get_util()}" value="Fill Produits"/>
-                        </h:form>
-                        <h:link outcome="/produits/List" value="Show All Produits Items"/>
-                        <br />
-                        <h:link outcome="/boutiques/List" value="Show All Boutiques Items"/>
-                        <br />
-                        <h:link outcome="/utilisateurs/List" value="Show All Utilisateurs Items"/>
-                        <br />
-                        <h:link outcome="/categories/List" value="Show All Categories Items"/>
+                        <div id="copyright">&copy; aBey 2013</div>
                     </div>
                 </div>
             </div>

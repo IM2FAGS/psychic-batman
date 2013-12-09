@@ -5,14 +5,12 @@ import abey.util.Salt;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import javax.ejb.Stateless;
-import javax.inject.Named;
 import javax.persistence.TypedQuery;
 
 /**
  *
  * @author toinou
  */
-@Named("utilisateurService")
 @Stateless
 public class UtilisateurService extends AbstractService<Utilisateur> {
 

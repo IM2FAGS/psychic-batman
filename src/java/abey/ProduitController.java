@@ -5,6 +5,7 @@ import abey.entities.Produit;
 import abey.facades.ProduitFacade;
 import abey.util.JsfUtil;
 import abey.util.PaginationHelper;
+import java.io.Serializable;
 
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
@@ -23,7 +24,7 @@ import org.primefaces.event.FileUploadEvent;
 @Deprecated
 @ManagedBean
 @SessionScoped
-public class ProduitController extends AbstractController {
+public class ProduitController extends AbstractController implements Serializable {
 
     private Produit current;
     private Produit previous;

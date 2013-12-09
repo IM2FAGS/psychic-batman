@@ -5,12 +5,11 @@ import abey.entities.VenteImmediate;
 import abey.services.ProduitService;
 import abey.services.VenteImmediateService;
 import abey.util.JsfUtil;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 /**
@@ -21,10 +20,10 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class CreerVenteController extends AbstractController {
 
-    @ManagedProperty(value = "#{venteImmediateService}")
+    @EJB
     private VenteImmediateService venteImmediateService;
 
-    @ManagedProperty(value = "#{produitService}")
+    @EJB
     private ProduitService produitService;
 
     private VenteImmediate venteImmediate;
