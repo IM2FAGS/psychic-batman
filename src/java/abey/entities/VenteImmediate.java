@@ -1,6 +1,7 @@
 package abey.entities;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
@@ -32,7 +33,7 @@ public class VenteImmediate implements Serializable {
 
     @Basic(optional = false)
     @NotNull
-    private float prix; //TODO BigDecimal recommandé
+    private BigDecimal prix; //TODO BigDecimal recommandé
 
     @Basic(optional = false)
     @NotNull
@@ -59,11 +60,11 @@ public class VenteImmediate implements Serializable {
         this.produit = produit;
     }
 
-    public float getPrix() {
+    public BigDecimal getPrix() {
         return prix;
     }
 
-    public void setPrix(float prix) {
+    public void setPrix(BigDecimal prix) {
         this.prix = prix;
     }
 

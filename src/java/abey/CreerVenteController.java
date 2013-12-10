@@ -5,6 +5,8 @@ import abey.entities.VenteImmediate;
 import abey.services.ProduitService;
 import abey.services.VenteImmediateService;
 import abey.util.JsfUtil;
+import abey.util.LangString;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -53,6 +55,7 @@ public class CreerVenteController extends AbstractController {
         if (venteImmediate == null) {
             venteImmediate = new VenteImmediate();
             venteImmediate.setStock(1);
+            venteImmediate.setPrix(BigDecimal.ONE);
         }
         return venteImmediate;
     }
@@ -66,9 +69,10 @@ public class CreerVenteController extends AbstractController {
     }
 
     public void setProduit(Produit produit) {
+        System.out.println("SETPRODUIT" + produit);
         this.produit = produit;
     }
-    
+
     private void annulerCreer() {
         venteImmediate = null;
         recherche = null;
@@ -78,17 +82,25 @@ public class CreerVenteController extends AbstractController {
 
     public String creer() {
         venteImmediate = getVenteImmediate();
+        System.out.println("venteImmediate=" + venteImmediate);
+        System.out.println("venteImmediate.stock=" + venteImmediate.getStock());
+        System.out.println("venteImmediate.prix=" + venteImmediate.getPrix());
+        System.out.println("recherche=" + recherche);
+        System.out.println("produits=" + produits);
+        System.out.println("produit=" + produit);
         if (produit == null) {
-            produits = produitService.rechercheProduits(recherche);
+            if (recherche != null) {
+                produits = produitService.rechercheProduits(recherche);
+            }
             return "Create";
-        } else if (venteImmediate.getStock() > 0 && venteImmediate.getPrix() > 0) {
+        } else if (venteImmediate.getStock() > 0 && venteImmediate.getPrix().compareTo(BigDecimal.ZERO) > 0) {
             try {
                 venteImmediate.setDateVente(new Date());
                 venteImmediate.setProduit(produit);
                 venteImmediateService.create(venteImmediate);
-                JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("SaleCreated"));
+                JsfUtil.addSuccessMessage(LangString.params(ResourceBundle.getBundle("/Bundle").getString("SaleCreated"), produit.getNom()));
                 annulerCreer();
-                return "Create";
+                return "Created";
             } catch (Exception e) {
                 JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
                 return "Create";
@@ -97,12 +109,12 @@ public class CreerVenteController extends AbstractController {
             return "Create";
         }
     }
-    
+
     public String creerProduit() {
         annulerCreer();
         return "/produits/Create";
     }
-    
+
     public String annuler() {
         annulerCreer();
         return "Create";

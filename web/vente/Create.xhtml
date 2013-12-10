@@ -13,7 +13,7 @@
         <ui:define name="body">
 
             <h:form class="form-horizontal">
-                <p:messages id="msgs" autoUpdate="true"/>
+                <p:messages id="msgs" autoUpdate="true" escape="false" />
                 
                 <h:panelGroup rendered="#{creerVenteController.produit == null}">
                     

@@ -4,12 +4,12 @@ import abey.entities.Image;
 import abey.entities.Produit;
 import abey.facades.ProduitFacade;
 import abey.util.JsfUtil;
+import abey.util.LangString;
 import abey.util.PaginationHelper;
 import java.io.Serializable;
 
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
@@ -96,7 +96,7 @@ public class ProduitController extends AbstractController implements Serializabl
         try {
             getFacade().create(current);
             previous = current;
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ProductCreated"));
+            JsfUtil.addSuccessMessage(LangString.params(ResourceBundle.getBundle("/Bundle").getString("ProductCreated"), current.getNom()));
             recreateModel();
             recreatePagination();
             prepareCreate();
@@ -250,14 +250,11 @@ public class ProduitController extends AbstractController implements Serializabl
 
     public void uploadProductImage(FileUploadEvent event) {
         Image image = uploadImage(event);
-        FacesMessage msg;
-        
         if(image != null) {
             current.setImage(image);
-            msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
+            JsfUtil.addSuccessMessage(event.getFile().getFileName() + " is uploaded.");
         } else {
-            msg = new FacesMessage("Fail", event.getFile().getFileName() + " not uploaded.");
+            JsfUtil.addErrorMessage(event.getFile().getFileName() + " not uploaded.");
         }
-        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 }
