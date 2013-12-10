@@ -78,7 +78,7 @@ public class CreerVenteController extends AbstractController {
 
     public String creer() {
         venteImmediate = getVenteImmediate();
-        if (venteImmediate.getProduit() == null) {
+        if (produit == null) {
             produits = produitService.rechercheProduits(recherche);
             return "Create";
         } else if (venteImmediate.getStock() > 0 && venteImmediate.getPrix() > 0) {

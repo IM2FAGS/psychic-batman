@@ -19,7 +19,7 @@ import javax.validation.constraints.Size;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "Produit.recherche",
-               query = "select p from Produit p where p.nom like ?1")
+               query = "select p from Produit p where lower(p.nom) like lower(?1)")
 })
 public class Produit implements Serializable {
 
