@@ -22,6 +22,8 @@
                     <h:outputText value="#{produitController.selected.nom}" title="Nom"/>
                     <h:outputText value="Description"/>
                     <h:outputText value="#{produitController.selected.description}" title="Description"/>
+                    <h:outputText value="Catégorie"/>
+                    <h:outputText value="#{produitController.selected.categorie.nom}" title="Catégorie"/>
                     <h:outputText value="Image"/>
 					<p:graphicImage value="#{imageController.image}" title="image du produit" alt="Image du produit">
 						<f:param name="imageId" value="#{produitController.selected.image.id}" />

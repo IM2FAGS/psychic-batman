@@ -1,17 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package abey.util;
 
+import abey.entities.Categorie;
 import abey.entities.Produit;
 import abey.entities.Utilisateur;
+import abey.services.CategorieService;
 import abey.services.ProduitService;
 import abey.services.UtilisateurService;
 import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -33,18 +32,26 @@ public class Test {
     @EJB
     private UtilisateurService utilisateurService;
 
+    @EJB
+    private CategorieService categorieService;
+
     @PostConstruct
     public void init() {
+        fillCategories();
         fillProduits();
         fillUtilisateurs();
     }
 
     private void fillProduits() {
         System.out.println("fillProduits ... ");
+        
+        Random rd = new Random();
+        List<Categorie> categories = categorieService.findAll();
         for (int i = 0; i < 40; i++) {
             Produit produit = new Produit();
             produit.setNom("Produit #" + i);
             produit.setDescription("Description du produit #" + i);
+            produit.setCategorie(categories.get(rd.nextInt(categories.size())));
             produitService.create(produit);
         }
         System.out.println("fillProduits OK.");
@@ -72,6 +79,32 @@ public class Test {
             utilisateurService.create(utilisateur);
         }
         System.out.println("fillUtilisateurs OK.");
+    }
+
+    private void fillCategories() {
+        System.out.println("fillCategories ... ");
+        String categories[] = {
+            "Produits culturels",
+            "Habillement - Textile",
+            "Voyage - Tourisme - Loisirs",
+            "Électroménager - Informatique - Téléphonie",
+            "Santé - Beauté",
+            "Places de spectacle",
+            "Jeux - Jouets",
+            "Alimentation - Gastronomie",
+            "Développement photo",
+            "Presse",
+            "Mobilier",
+            "Horticulture - Articles de jardin - Animalerie",
+            "Boissons - Vins - Spiritueux",
+            "Horlogerie - Bijouterie - Collection"
+        };
+        for (String nom : categories) {
+            Categorie cat = new Categorie();
+            cat.setNom(nom);
+            categorieService.create(cat);
+        }
+        System.out.println("fillCategories OK.");
     }
 
 }

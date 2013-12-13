@@ -4,6 +4,7 @@ import abey.entities.Categorie;
 import abey.services.CategorieService;
 import abey.util.JsfUtil;
 import abey.util.PaginationHelper;
+import java.util.List;
 
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
@@ -193,6 +194,10 @@ public class CategorieController extends AbstractController {
         return categorieService.find(id);
     }
 
+    public List<Categorie> getAll() {
+        return categorieService.findAll();
+    }
+    
     @FacesConverter(forClass = Categorie.class)
     public static class CategoriesControllerConverter implements Converter {
 
