@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -18,80 +19,92 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Surenchere implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-	@Basic(optional = false)
-	@NotNull
-	private Enchere enchere;
-	
-	@Basic(optional = false)
-	@NotNull
-	private float prix;
+    @NotNull
+    @ManyToOne
+    private Utilisateur encherisseur;
 
-	@Basic(optional = false)
-	@NotNull
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dateEnchere;
+    @NotNull
+    @ManyToOne
+    private Enchere enchere;
 
-	public Long getId() {
-		return id;
-	}
+    @Basic(optional = false)
+    @NotNull
+    private float montant;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @Basic(optional = false)
+    @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateEnchere;
 
-	public Enchere getEnchere() {
-		return enchere;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setEnchere(Enchere enchere) {
-		this.enchere = enchere;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public float getPrix() {
-		return prix;
-	}
+    public Utilisateur getEncherisseur() {
+        return encherisseur;
+    }
 
-	public void setPrix(float prix) {
-		this.prix = prix;
-	}
+    public void setEncherisseur(Utilisateur encherisseur) {
+        this.encherisseur = encherisseur;
+    }
 
-	public Date getDateEnchere() {
-		return dateEnchere;
-	}
+    public Enchere getEnchere() {
+        return enchere;
+    }
 
-	public void setDateEnchere(Date dateEnchere) {
-		this.dateEnchere = dateEnchere;
-	}
+    public void setEnchere(Enchere enchere) {
+        this.enchere = enchere;
+    }
 
-	@Override
-	public int hashCode() {
-		int hash = 0;
-		hash += (id != null ? id.hashCode() : 0);
-		return hash;
-	}
+    public float getMontant() {
+        return montant;
+    }
 
-	@Override
-	public boolean equals(Object object) {
-		// TODO: Warning - this method won't work in the case the id fields are not set
-		if (!(object instanceof Surenchere)) {
-			return false;
-		}
-		Surenchere other = (Surenchere) object;
-		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-			return false;
-		}
-		return true;
-	}
+    public void setMontant(float montant) {
+        this.montant = montant;
+    }
 
-	@Override
-	public String toString() {
-		return "abey.entities.Surenchere[ id=" + id + " ]";
-	}
+    public Date getDateEnchere() {
+        return dateEnchere;
+    }
+
+    public void setDateEnchere(Date dateEnchere) {
+        this.dateEnchere = dateEnchere;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Surenchere)) {
+            return false;
+        }
+        Surenchere other = (Surenchere) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "abey.entities.Surenchere[ id=" + id + " ]";
+    }
 
 }

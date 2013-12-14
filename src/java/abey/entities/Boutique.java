@@ -33,11 +33,15 @@ public class Boutique implements Serializable {
     @Basic(optional = true)
     private String description;
 
+    @NotNull
     @OneToOne
     private Utilisateur proprietaire;
 
-    @OneToMany
+    @OneToMany(mappedBy = "boutique")
     private Collection<VenteImmediate> ventesImmediates;
+
+    @OneToOne
+    private Image image;
 
     public Long getId() {
         return id;
@@ -69,6 +73,14 @@ public class Boutique implements Serializable {
 
     public void setVentesImmediates(Collection<VenteImmediate> ventesImmediates) {
         this.ventesImmediates = ventesImmediates;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 
     @Override

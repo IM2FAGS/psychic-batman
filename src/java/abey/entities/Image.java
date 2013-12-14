@@ -14,85 +14,85 @@ import javax.persistence.Lob;
 @Entity
 public class Image implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+    private static final long serialVersionUID = 1L;
 
-	@Lob
-	private byte[] original;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-	@Lob
-	private byte[] thumbnail;
+    @Lob
+    private byte[] original;
 
-	private String mimetypeOriginal;
-	
-	private String mimetypeThumbnail;
+    @Lob
+    private byte[] thumbnail;
 
-	public Long getId() {
-		return id;
-	}
+    private String mimetypeOriginal;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    private String mimetypeThumbnail;
 
-	public byte[] getOriginal() {
-		return original;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setOriginal(byte[] original) {
-		this.original = original;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public byte[] getThumbnail() {
-		return thumbnail;
-	}
+    public byte[] getOriginal() {
+        return original;
+    }
 
-	public void setThumbnail(byte[] thumbnail) {
-		this.thumbnail = thumbnail;
-	}
+    public void setOriginal(byte[] original) {
+        this.original = original;
+    }
 
-	public String getMimetypeOriginal() {
-		return mimetypeOriginal;
-	}
+    public byte[] getThumbnail() {
+        return thumbnail;
+    }
 
-	public void setMimetypeOriginal(String mimetypeOriginal) {
-		this.mimetypeOriginal = mimetypeOriginal;
-	}
+    public void setThumbnail(byte[] thumbnail) {
+        this.thumbnail = thumbnail;
+    }
 
-	public String getMimetypeThumbnail() {
-		return mimetypeThumbnail;
-	}
+    public String getMimetypeOriginal() {
+        return mimetypeOriginal;
+    }
 
-	public void setMimetypeThumbnail(String mimetypeThumbnail) {
-		this.mimetypeThumbnail = mimetypeThumbnail;
-	}
+    public void setMimetypeOriginal(String mimetypeOriginal) {
+        this.mimetypeOriginal = mimetypeOriginal;
+    }
 
-	@Override
-	public int hashCode() {
-		int hash = 0;
-		hash += (id != null ? id.hashCode() : 0);
-		return hash;
-	}
+    public String getMimetypeThumbnail() {
+        return mimetypeThumbnail;
+    }
 
-	@Override
-	public boolean equals(Object object) {
-		// TODO: Warning - this method won't work in the case the id fields are not set
-		if (!(object instanceof Image)) {
-			return false;
-		}
-		Image other = (Image) object;
-		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-			return false;
-		}
-		return true;
-	}
+    public void setMimetypeThumbnail(String mimetypeThumbnail) {
+        this.mimetypeThumbnail = mimetypeThumbnail;
+    }
 
-	@Override
-	public String toString() {
-		return "abey.entities.Image[ id=" + id + " ]";
-	}
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Image)) {
+            return false;
+        }
+        Image other = (Image) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "abey.entities.Image[ id=" + id + " ]";
+    }
 
 }

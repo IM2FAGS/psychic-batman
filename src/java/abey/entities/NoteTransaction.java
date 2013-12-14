@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -17,20 +16,13 @@ import javax.validation.constraints.NotNull;
  * @author Anthony
  */
 @Entity
-public class NoteProduit implements Serializable {
+public class NoteTransaction implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @NotNull
-    @ManyToOne
-    private Utilisateur acheteur;
-
-    @NotNull
-    @ManyToOne
-    private Produit produit;
 
     @Basic(optional = false)
     @NotNull
@@ -51,22 +43,6 @@ public class NoteProduit implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Utilisateur getAcheteur() {
-        return acheteur;
-    }
-
-    public void setAcheteur(Utilisateur acheteur) {
-        this.acheteur = acheteur;
-    }
-
-    public Produit getProduit() {
-        return produit;
-    }
-
-    public void setProduit(Produit produit) {
-        this.produit = produit;
     }
 
     public Date getDateNote() {
@@ -103,10 +79,10 @@ public class NoteProduit implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof NoteProduit)) {
+        if (!(object instanceof NoteTransaction)) {
             return false;
         }
-        NoteProduit other = (NoteProduit) object;
+        NoteTransaction other = (NoteTransaction) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -115,7 +91,7 @@ public class NoteProduit implements Serializable {
 
     @Override
     public String toString() {
-        return "abey.entities.NoteProduit[ id=" + id + " ]";
+        return "abey.entities.NoteVendeur[ id=" + id + " ]";
     }
 
 }

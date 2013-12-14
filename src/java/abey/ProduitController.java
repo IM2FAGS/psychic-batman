@@ -251,7 +251,7 @@ public class ProduitController extends AbstractController implements Serializabl
     public void uploadProductImage(FileUploadEvent event) {
         Image image = uploadImage(event);
         if(image != null) {
-            current.setImage(image);
+            current.addImage(image);
             JsfUtil.addSuccessMessage(event.getFile().getFileName() + " is uploaded.");
         } else {
             JsfUtil.addErrorMessage(event.getFile().getFileName() + " not uploaded.");

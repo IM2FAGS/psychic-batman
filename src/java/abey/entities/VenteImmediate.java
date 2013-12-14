@@ -3,12 +3,14 @@ package abey.entities;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -26,7 +28,13 @@ public class VenteImmediate implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Basic(optional = false)
+    @NotNull
+    @ManyToOne
+    private Boutique boutique;
+
+    @OneToMany(mappedBy = "venteImmediate")
+    private List<Achat> achats;
+
     @NotNull
     @ManyToOne
     private Produit produit;
@@ -50,6 +58,22 @@ public class VenteImmediate implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Boutique getBoutique() {
+        return boutique;
+    }
+
+    public void setBoutique(Boutique boutique) {
+        this.boutique = boutique;
+    }
+
+    public List<Achat> getAchats() {
+        return achats;
+    }
+
+    public void setAchats(List<Achat> achats) {
+        this.achats = achats;
     }
 
     public Produit getProduit() {

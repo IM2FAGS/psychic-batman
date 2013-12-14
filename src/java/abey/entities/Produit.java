@@ -1,6 +1,9 @@
 package abey.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -19,94 +23,143 @@ import javax.validation.constraints.Size;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "Produit.recherche",
-               query = "select p from Produit p where lower(p.nom) like lower(?1)")
+            query = "select p from Produit p where lower(p.nom) like lower(?1)")
 })
 public class Produit implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-	@Basic(optional = false)
-	@NotNull
-	@Size(min = 1, max = 255)
-	private String nom;
+    @OneToMany(mappedBy = "produit")
+    private List<NoteProduit> notes;
 
-	@Basic(optional = false)
-	@NotNull
-	private String description;
+    @OneToMany(mappedBy = "produit")
+    private List<VenteImmediate> ventesImmediates;
 
-	@ManyToOne
-	private Image image;
-	
-	@ManyToOne
-	private Categorie categorie;
+    @OneToMany(mappedBy = "produit")
+    private List<Enchere> encheres;
 
-	public Long getId() {
-		return id;
-	}
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    private String nom;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @Basic(optional = false)
+    @NotNull
+    private String description;
 
-	public String getNom() {
-		return nom;
-	}
+    @OneToMany
+    private List<Image> images;
 
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
+    @NotNull
+    @ManyToOne
+    private Categorie categorie;
 
-	public String getDescription() {
-		return description;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Image getImage() {
-		return image;
-	}
+    public List<NoteProduit> getNotes() {
+        return notes;
+    }
 
-	public void setImage(Image image) {
-		this.image = image;
-	}
+    public void setNotes(List<NoteProduit> notes) {
+        this.notes = notes;
+    }
 
-	public Categorie getCategorie() {
-		return categorie;
-	}
+    public List<VenteImmediate> getVentesImmediates() {
+        return ventesImmediates;
+    }
 
-	public void setCategorie(Categorie categorie) {
-		this.categorie = categorie;
-	}
+    public void setVentesImmediates(List<VenteImmediate> ventesImmediates) {
+        this.ventesImmediates = ventesImmediates;
+    }
 
-	@Override
-	public int hashCode() {
-		int hash = 0;
-		hash += (id != null ? id.hashCode() : 0);
-		return hash;
-	}
+    public List<Enchere> getEncheres() {
+        return encheres;
+    }
 
-	@Override
-	public boolean equals(Object object) {
-		// TODO: Warning - this method won't work in the case the id fields are not set
-		if (!(object instanceof Produit)) {
-			return false;
-		}
-		Produit other = (Produit) object;
-		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-			return false;
-		}
-		return true;
-	}
+    public void setEncheres(List<Enchere> encheres) {
+        this.encheres = encheres;
+    }
 
-	@Override
-	public String toString() {
-		return "abey.entities.Produit[ id=" + id + " ]";
-	}
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<Image> getImages() {
+        if (images == null) {
+            images = new ArrayList<>();
+        }
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
+    }
+
+    public Image getMainImage() {
+        if (getImages().size() > 0) {
+            return getImages().get(0);
+        } else {
+            return null;
+        }
+    }
+
+    public void addImage(Image image) {
+        getImages().add(image);
+    }
+
+    public Categorie getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Produit)) {
+            return false;
+        }
+        Produit other = (Produit) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "abey.entities.Produit[ id=" + id + " ]";
+    }
 
 }

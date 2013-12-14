@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -15,65 +16,76 @@ import javax.persistence.OneToMany;
 @Entity
 public class Panier implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+    private static final long serialVersionUID = 1L;
 
-	@OneToMany
-	private Collection<ProduitPanier> produits;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-	@OneToMany
-	private Collection<Enchere> encheres;
+    @OneToOne(mappedBy = "panier")
+    private Utilisateur utilisateur;
 
-	public Long getId() {
-		return id;
-	}
+    @OneToMany
+    private Collection<ProduitPanier> produits;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @OneToMany
+    private Collection<Enchere> encheres;
 
-	public Collection<ProduitPanier> getProduits() {
-		return produits;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setProduits(Collection<ProduitPanier> produits) {
-		this.produits = produits;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Collection<Enchere> getEncheres() {
-		return encheres;
-	}
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
 
-	public void setEncheres(Collection<Enchere> encheres) {
-		this.encheres = encheres;
-	}
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
 
-	@Override
-	public int hashCode() {
-		int hash = 0;
-		hash += (id != null ? id.hashCode() : 0);
-		return hash;
-	}
+    public Collection<ProduitPanier> getProduits() {
+        return produits;
+    }
 
-	@Override
-	public boolean equals(Object object) {
-		// TODO: Warning - this method won't work in the case the id fields are not set
-		if (!(object instanceof Panier)) {
-			return false;
-		}
-		Panier other = (Panier) object;
-		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-			return false;
-		}
-		return true;
-	}
+    public void setProduits(Collection<ProduitPanier> produits) {
+        this.produits = produits;
+    }
 
-	@Override
-	public String toString() {
-		return "abey.Cart[ id=" + id + " ]";
-	}
+    public Collection<Enchere> getEncheres() {
+        return encheres;
+    }
+
+    public void setEncheres(Collection<Enchere> encheres) {
+        this.encheres = encheres;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Panier)) {
+            return false;
+        }
+        Panier other = (Panier) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "abey.Cart[ id=" + id + " ]";
+    }
 
 }

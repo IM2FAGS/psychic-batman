@@ -1,6 +1,7 @@
 package abey.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,14 +29,32 @@ import javax.validation.constraints.Size;
 })
 public class Utilisateur implements Serializable {
 
-    @OneToOne(mappedBy = "proprietaire")
-    private Boutique boutique;
-
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @OneToOne(mappedBy = "proprietaire")
+    private Boutique boutique;
+
+    @OneToMany(mappedBy = "acheteur")
+    private Collection<EnchereGagnee> encheresGagnees;
+
+    @OneToMany(mappedBy = "encherisseur")
+    private Collection<Surenchere> surencheres;
+
+    @OneToMany(mappedBy = "vendeur")
+    private Collection<Enchere> encheresCrees;
+
+    @OneToOne
+    private Panier panier;
+
+    @OneToMany(mappedBy = "acheteur")
+    private Collection<Achat> achats;
+
+    @OneToMany(mappedBy = "acheteur")
+    private Collection<NoteProduit> notesProduits;
 
     @Basic(optional = false)
     @NotNull
@@ -61,10 +81,10 @@ public class Utilisateur implements Serializable {
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateNaissance;
-    
+
     @Basic(optional = false)
     @NotNull
-    private boolean admin = false;
+    private boolean administrateur = false;
 
     public Long getId() {
         return id;
@@ -72,6 +92,54 @@ public class Utilisateur implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Collection<EnchereGagnee> getEncheresGagnees() {
+        return encheresGagnees;
+    }
+
+    public void setEncheresGagnees(Collection<EnchereGagnee> encheresGagnees) {
+        this.encheresGagnees = encheresGagnees;
+    }
+
+    public Collection<Surenchere> getSurencheres() {
+        return surencheres;
+    }
+
+    public void setSurencheres(Collection<Surenchere> surencheres) {
+        this.surencheres = surencheres;
+    }
+
+    public Collection<Enchere> getEncheresCrees() {
+        return encheresCrees;
+    }
+
+    public void setEncheresCrees(Collection<Enchere> encheresCrees) {
+        this.encheresCrees = encheresCrees;
+    }
+
+    public Panier getPanier() {
+        return panier;
+    }
+
+    public void setPanier(Panier panier) {
+        this.panier = panier;
+    }
+
+    public Collection<Achat> getAchats() {
+        return achats;
+    }
+
+    public void setAchats(Collection<Achat> achats) {
+        this.achats = achats;
+    }
+
+    public Collection<NoteProduit> getNotesProduits() {
+        return notesProduits;
+    }
+
+    public void setNotesProduits(Collection<NoteProduit> notesProduits) {
+        this.notesProduits = notesProduits;
     }
 
     public String getMail() {
@@ -114,14 +182,14 @@ public class Utilisateur implements Serializable {
         this.dateNaissance = dateNaissance;
     }
 
-    public boolean isAdmin() {
-        return admin;
+    public boolean isAdministrateur() {
+        return administrateur;
     }
 
-    public void setAdmin(boolean admin) {
-        this.admin = admin;
+    public void setAdministrateur(boolean administrateur) {
+        this.administrateur = administrateur;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 0;

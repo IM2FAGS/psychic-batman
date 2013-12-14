@@ -42,10 +42,9 @@
                 <p:selectOneMenu value="#{produitController.selected.categorie}"
                                  required="true"
                                  requiredMessage="#{bundle.CategoryRequired}"
-                                 effect="fade"
-                                 converter="#{null}">  
+                                 effect="fade">  
                     <f:selectItem itemLabel="#{bundle.SelectCategory}" itemValue="" />  
-                    <f:selectItems value="#{categorieController.all}" var="categorie" itemLabel="#{player.name}" itemValue="#{categorie}"/>  
+                    <f:selectItems value="#{categorieController.all}" itemLabel="#{player.name}" itemValue="#{categorie}"/>  
                 </p:selectOneMenu>  
             </div>
         </div>
