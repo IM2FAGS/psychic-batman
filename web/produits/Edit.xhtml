@@ -15,6 +15,12 @@
             </h:panelGroup>
             <ui:include src="EditForm.xhtml" />
         </ui:define>
+        <ui:define name="action">
+            <h:commandLink
+                class="btn btn-primary"
+                action="#{produitController.update}"
+                value="#{bundle.UpdateProduct}" />
+        </ui:define>
     </ui:composition>
 
 </html>

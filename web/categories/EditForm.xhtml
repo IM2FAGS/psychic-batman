@@ -20,9 +20,11 @@
                 <p:watermark for="nom" value="#{bundle.CategoryName}"/>
             </div>
         </div>
-        <h:commandLink
-            class="btn btn-primary"
-            action="#{categorieController.create}"
-            value="#{bundle.CreateCategory}" />
+        <ui:insert name="action">
+            <h:commandLink
+                class="btn btn-primary"
+                action="#{categorieController.create}"
+                value="#{bundle.CreateCategory}" />
+        </ui:insert>
     </h:form>
 </html>

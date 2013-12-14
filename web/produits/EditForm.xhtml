@@ -64,9 +64,11 @@
                 <p:growl id="image-messages" showDetail="true"/>
             </div>
         </div>
+        <ui:insert name="action">
         <h:commandLink
             class="btn btn-primary"
             action="#{produitController.create}"
             value="#{bundle.CreateProduct}" />
+        </ui:insert>
     </h:form>
 </html>

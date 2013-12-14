@@ -115,7 +115,7 @@ footer {
     line-height: 50px;
 }
 
-.user-name, .product-name {
+.user-name, .product-name, .category-name {
     font-weight: bold;
     font-size: 1.1em;
 }

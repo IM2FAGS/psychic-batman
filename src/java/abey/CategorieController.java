@@ -3,6 +3,7 @@ package abey;
 import abey.entities.Categorie;
 import abey.services.CategorieService;
 import abey.util.JsfUtil;
+import abey.util.LangString;
 import abey.util.PaginationHelper;
 import java.util.List;
 
@@ -82,10 +83,10 @@ public class CategorieController extends AbstractController {
     public String create() {
         try {
             getService().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CategoriesCreated"));
+            JsfUtil.addSuccessMessage(LangString.params(ResourceBundle.getBundle("/Bundle").getString("CategoryCreated"), current.getNom()));
             recreateModel();
             recreatePagination();
-            return prepareCreate();
+            return "List";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
@@ -101,8 +102,8 @@ public class CategorieController extends AbstractController {
     public String update() {
         try {
             getService().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CategoriesUpdated"));
-            return "View";
+            JsfUtil.addSuccessMessage(LangString.params(ResourceBundle.getBundle("/Bundle").getString("CategoryUpdated"), current.getNom()));
+            return "List";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;

@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -12,7 +13,8 @@
         <ui:define name="body">
             <h:form styleClass="jsfcrud_list_form">
                 <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                    <!--<h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>-->
+                    <p:messages id="msgs" autoUpdate="true" escape="false"/>
                 </h:panelGroup>
                 <h:outputText escape="false" value="#{bundle.CategoryNotCreated}" rendered="#{categorieController.items.rowCount == 0}"/>
                 <h:panelGroup rendered="#{categorieController.items.rowCount > 0}">

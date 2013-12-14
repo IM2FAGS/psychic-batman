@@ -10,11 +10,15 @@
             <h:outputText value="#{bundle.EditCategory}"/>
         </ui:define>
         <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
             <ui:include src="EditForm.xhtml" />
         </ui:define>
+        <ui:define name="action">
+            <h:commandLink
+                class="btn btn-primary"
+                action="#{categorieController.update}"
+                value="#{bundle.UpdateCategory}" />
+        </ui:define>
+
     </ui:composition>
 
 </html>

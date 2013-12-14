@@ -78,7 +78,7 @@ public class Categorie implements Serializable {
 
 	@Override
 	public String toString() {
-		return "abey.entities.Categorie[ id=" + id + " ]";
+		return nom;
 	}
 
 }
