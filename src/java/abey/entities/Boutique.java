@@ -1,9 +1,8 @@
 package abey.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -42,7 +41,7 @@ public class Boutique implements Serializable {
     private Utilisateur proprietaire;
 
     @OneToMany(mappedBy = "boutique")
-    private Collection<VenteImmediate> ventesImmediates;
+    private List<VenteImmediate> ventesImmediates;
 
     @OneToOne
     private Image image;
@@ -71,11 +70,11 @@ public class Boutique implements Serializable {
         this.description = description;
     }
 
-    public Collection<VenteImmediate> getVentesImmediates() {
+    public List<VenteImmediate> getVentesImmediates() {
         return ventesImmediates;
     }
 
-    public void setVentesImmediates(Collection<VenteImmediate> ventesImmediates) {
+    public void setVentesImmediates(List<VenteImmediate> ventesImmediates) {
         this.ventesImmediates = ventesImmediates;
     }
 

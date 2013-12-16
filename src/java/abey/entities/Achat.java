@@ -1,7 +1,6 @@
 package abey.entities;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,8 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -27,7 +24,7 @@ public class Achat implements Serializable {
     private Long id;
 
     @ManyToOne
-    private Utilisateur acheteur;
+    private Commande commande;
 
     @NotNull
     @ManyToOne
@@ -38,16 +35,11 @@ public class Achat implements Serializable {
 
     @Basic(optional = false)
     @NotNull
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dateAchat;
-
-    @Basic(optional = false)
-    @NotNull
-    private short modePaiement;
-
-    @Basic(optional = false)
-    @NotNull
     private int quantite;
+
+    @Basic(optional = false)
+    @NotNull
+    private float montant;
 
     public Long getId() {
         return id;
@@ -57,12 +49,12 @@ public class Achat implements Serializable {
         this.id = id;
     }
 
-    public Utilisateur getAcheteur() {
-        return acheteur;
+    public Commande getCommande() {
+        return commande;
     }
 
-    public void setAcheteur(Utilisateur acheteur) {
-        this.acheteur = acheteur;
+    public void setCommande(Commande commande) {
+        this.commande = commande;
     }
 
     public VenteImmediate getVenteImmediate() {
@@ -81,28 +73,20 @@ public class Achat implements Serializable {
         this.noteTransaction = noteTransaction;
     }
 
-    public Date getDateAchat() {
-        return dateAchat;
-    }
-
-    public void setDateAchat(Date dateAchat) {
-        this.dateAchat = dateAchat;
-    }
-
-    public short getModePaiement() {
-        return modePaiement;
-    }
-
-    public void setModePaiement(short modePaiement) {
-        this.modePaiement = modePaiement;
-    }
-
     public int getQuantite() {
         return quantite;
     }
 
     public void setQuantite(int quantite) {
         this.quantite = quantite;
+    }
+
+    public float getMontant() {
+        return montant;
+    }
+
+    public void setMontant(float montant) {
+        this.montant = montant;
     }
 
     @Override
