@@ -10,40 +10,23 @@
     </ui:define>
     <ui:define name="body">
         <h:form styleClass="jsfcrud_list_form">
-            <h:panelGroup id="messagePanel" layout="block">
-                <!--<h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>-->
-                <p:messages id="msgs" autoUpdate="true" escape="false"/>
-            </h:panelGroup>
-            <h:outputText escape="false" value="#{bundle.CategoryNotCreated}" rendered="#{categorieController.items.rowCount == 0}"/>
-            <h:panelGroup rendered="#{categorieController.items.rowCount > 0}">
-                <h:outputText value="#{categorieController.pagination.pageFirstItem + 1}..#{categorieController.pagination.pageLastItem + 1}/#{categorieController.pagination.itemsCount}"/>&nbsp;
-                <h:commandLink action="#{categorieController.previous}" value="#{bundle.Previous} #{categorieController.pagination.pageSize}" rendered="#{categorieController.pagination.hasPreviousPage}"/>&nbsp;
-                <h:commandLink action="#{categorieController.next}" value="#{bundle.Next} #{categorieController.pagination.pageSize}" rendered="#{categorieController.pagination.hasNextPage}"/>&nbsp;
-                <h:dataTable value="#{categorieController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="id"/>
-                        </f:facet>
-                        <h:outputText value="#{item.id}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="nom"/>
-                        </f:facet>
-                        <h:outputText value="#{item.nom}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="&nbsp;"/>
-                        </f:facet>
-                        <h:commandLink action="#{categorieController.prepareView}" value="#{bundle.ViewLink}"/>
-                        <h:outputText value=" "/>
-                        <h:commandLink action="#{categorieController.prepareEdit}" value="#{bundle.EditLink}"/>
-                        <h:outputText value=" "/>
-                        <h:commandLink action="#{categorieController.destroy}" value="#{bundle.DestroyLink}"/>
-                    </h:column>
-                </h:dataTable>
-            </h:panelGroup>
+            <p:messages id="msgs" autoUpdate="true" escape="false"/>
+            <p:dataTable var="cat" value="#{categorieController.all}" emptyMessage="#{bundle.CategoryNotCreated}">  
+                <p:column headerText="id">  
+                    <h:outputText value="#{cat.id}" />  
+                </p:column>  
+
+                <p:column headerText="#{bundle.CategoryName}">  
+                    <h:outputText value="#{cat.nom}" />  
+                </p:column>  
+
+                <p:column headerText=" ">  
+                    <h:commandLink action="#{categorieController.edit(cat)}" value="#{bundle.EditLink}"/>
+                    <h:outputText value=" "/>
+                    <h:commandLink action="#{categorieController.destroy(cat)}" value="#{bundle.DestroyLink}"/>
+                </p:column>  
+
+            </p:dataTable>  
             <br />
             <h:commandLink action="#{categorieController.prepareCreate}" value="#{bundle.CreateLink}"/>
             <br />

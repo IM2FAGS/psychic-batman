@@ -23,6 +23,7 @@ public class Achat implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotNull
     @ManyToOne
     private Commande commande;
 
