@@ -2,6 +2,7 @@ package abey;
 
 import abey.entities.Boutique;
 import abey.entities.Utilisateur;
+import abey.login.UtilisateurSession;
 import abey.services.BoutiqueService;
 import abey.util.JsfUtil;
 import java.util.ResourceBundle;
@@ -18,9 +19,12 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class CreerBoutiqueController extends AbstractController {
 
+    @ManagedProperty(value = "#{utilisateurSession}")
+    protected UtilisateurSession utilisateurSession;
+
     @EJB
     private BoutiqueService boutiqueService;
-    
+
     private Boutique current;
 
     public Boutique getSelected() {
@@ -32,18 +36,18 @@ public class CreerBoutiqueController extends AbstractController {
 
     public String create() {
         try {
-            Utilisateur curUser = getUtilisateurConnecte();
-            if(curUser != null){
+            Utilisateur curUser = utilisateurSession.getUtilisateur();
+            if (curUser != null) {
                 curUser.setBoutique(current);
                 current.setProprietaire(curUser);
-            }else {
+            } else {
                 JsfUtil.addErrorMessage("ConnexionRequise");
                 return null;
             }
-            
+
             boutiqueService.create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("BoutiqueCree"));
-            current=null;
+            current = null;
             return "Create";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("EchecTransaction"));
@@ -54,7 +58,8 @@ public class CreerBoutiqueController extends AbstractController {
     public void setBoutiqueService(BoutiqueService boutiqueService) {
         this.boutiqueService = boutiqueService;
     }
-    
-    
 
+    public void setUtilisateurSession(UtilisateurSession utilisateurSession) {
+        this.utilisateurSession = utilisateurSession;
+    }
 }
