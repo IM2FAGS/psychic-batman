@@ -1,6 +1,7 @@
 package abey.entities;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -106,6 +107,14 @@ public class Commande implements Serializable {
     @Override
     public String toString() {
         return "abey.entities.Commande[ id=" + id + " ]";
+    }
+    
+    public BigDecimal getMontant(){
+        BigDecimal total = BigDecimal.ZERO;
+        for(Achat a : achats){
+            total.add(a.getPrixUnitaire().multiply(new BigDecimal(a.getQuantite())));
+        }
+        return total; 
     }
 
 }

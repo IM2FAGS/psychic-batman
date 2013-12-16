@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition template="/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="title">
+        <h:outputText value="#{boutiqueController.selected.nom}"></h:outputText>
+    </ui:define>
+    <ui:define name="body">
+        <h:panelGroup id="messagePanel" layout="block">
+            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+        </h:panelGroup>
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputText value="ID"/>
+                <h:outputText value="#{boutiqueController.selected.id}" title="ID"/>
+                <h:outputText value="Nom"/>
+                <h:outputText value="#{boutiqueController.selected.nom}" title="Nom"/>
+                <h:outputText value="Description"/>
+                <h:outputText value="#{boutiqueController.selected.description}" title="Description"/>
+            </h:panelGrid>
+            <br />
+            <h:commandLink action="#{boutiqueController.destroyAndView}" value="#{bundle.DestroyLink}"/>
+            <br />
+            <br />
+            <h:link outcome="Edit" value="#{bundle.EditLink}"/>
+            <br />
+            <h:commandLink action="#{boutiqueController.prepareCreate}" value="#{bundle.CreateLink}" />
+            <br />
+            <h:commandLink action="#{boutiqueController.prepareList}" value="#{bundle.ShowAllLink}"/>
+            <br />
+            <br />
+            <h:link outcome="/index" value="#{bundle.IndexLink}"/>
+
+        </h:form>
+    </ui:define>
+</ui:composition>

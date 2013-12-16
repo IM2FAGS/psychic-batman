@@ -1,6 +1,7 @@
 package abey.entities;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -40,7 +41,7 @@ public class Achat implements Serializable {
 
     @Basic(optional = false)
     @NotNull
-    private float montant;
+    private BigDecimal prixUnitaire;
 
     public Long getId() {
         return id;
@@ -82,12 +83,12 @@ public class Achat implements Serializable {
         this.quantite = quantite;
     }
 
-    public float getMontant() {
-        return montant;
+    public BigDecimal getPrixUnitaire() {
+        return prixUnitaire;
     }
 
-    public void setMontant(float montant) {
-        this.montant = montant;
+    public void setPrixUnitaire(BigDecimal prixUnitaire) {
+        this.prixUnitaire = prixUnitaire;
     }
 
     @Override

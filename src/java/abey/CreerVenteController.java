@@ -100,7 +100,7 @@ public class CreerVenteController extends AbstractController {
                 venteImmediate.setDateVente(new Date());
                 System.out.println("ok2");
                 venteImmediate.setProduit(produit);
-                System.out.println("ok3"+venteImmediate+" " + venteImmediate);
+                System.out.println("ok3"+venteImmediate.toString()+" " + venteImmediate);
 				
                 venteImmediateService.create(venteImmediate);
 				System.out.println("ok4");
