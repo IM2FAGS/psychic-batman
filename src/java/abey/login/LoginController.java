@@ -15,7 +15,10 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean
 @ViewScoped
-public class LoginController extends AbstractController implements Serializable{
+public class LoginController extends AbstractController implements Serializable {
+
+    @ManagedProperty(value = "#{utilisateurSession}")
+    private UtilisateurSession utilisateurSession;
 
     @ManagedProperty(value = "#{identifiants}")
     private Identifiants identifiants;
@@ -25,6 +28,10 @@ public class LoginController extends AbstractController implements Serializable{
 
     public void setUtilisateurService(UtilisateurService utilisateurService) {
         this.utilisateurService = utilisateurService;
+    }
+
+    public Utilisateur getUtilisateurConnecte() {
+        return utilisateurSession.getUtilisateur();
     }
 
     public String login() {
@@ -43,6 +50,10 @@ public class LoginController extends AbstractController implements Serializable{
             outcome = "/login/errorLogin";
         }
         return outcome;
+    }
+
+    public void setUtilisateurSession(UtilisateurSession utilisateurSession) {
+        this.utilisateurSession = utilisateurSession;
     }
 
     public void setIdentifiants(Identifiants identifiants) {

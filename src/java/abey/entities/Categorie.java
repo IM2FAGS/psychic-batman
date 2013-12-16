@@ -1,8 +1,9 @@
 package abey.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,11 +27,12 @@ public class Categorie implements Serializable {
 
     @Basic(optional = false)
     @NotNull
+    @Column(unique = true)
     @Size(min = 1, max = 255)
     private String nom;
 
     @OneToMany(mappedBy = "categorie")
-    private Collection<Produit> produits;
+    private List<Produit> produits;
 
     public Long getId() {
         return id;
@@ -48,11 +50,11 @@ public class Categorie implements Serializable {
         this.nom = nom;
     }
 
-    public Collection<Produit> getProduits() {
+    public List<Produit> getProduits() {
         return produits;
     }
 
-    public void setProduits(Collection<Produit> produits) {
+    public void setProduits(List<Produit> produits) {
         this.produits = produits;
     }
 

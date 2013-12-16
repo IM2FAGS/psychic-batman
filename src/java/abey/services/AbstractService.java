@@ -3,6 +3,7 @@ package abey.services;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
 
 /**
  *
@@ -38,6 +39,16 @@ public abstract class AbstractService<T> {
     public List<T> findAll() {
         javax.persistence.criteria.CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
+        return em.createQuery(cq).getResultList();
+    }
+
+    public List<T> findAllOrderedByColumn(String colName) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        javax.persistence.criteria.CriteriaQuery cq = cb.createQuery();
+        //TODO tentative de tri accent-insensitive
+//        cb.function("nlssort", String.class, cq.from(Categorie.class).get("nom"), /*dept_.suppler_name,*/ cb.literal("NLS_SORT=BINARY_AI"));
+        cq.select(cq.from(entityClass)).orderBy(cb.asc(cq.from(entityClass).get(colName)));
+
         return em.createQuery(cq).getResultList();
     }
 
