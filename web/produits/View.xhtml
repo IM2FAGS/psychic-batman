@@ -1,49 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="title">
+        <h:outputText value="#{produitController.selected.nom}"/>
+    </ui:define>
+    <ui:define name="body">
+        <p:messages id="msgs" autoUpdate="true" escape="false"/>
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputText value="ID"/>
+                <h:outputText value="#{produitController.selected.id}" title="ID"/>
+                <h:outputText value="Nom"/>
+                <h:outputText value="#{produitController.selected.nom}" title="Nom"/>
+                <h:outputText value="Description"/>
+                <h:outputText value="#{produitController.selected.description}" title="Description"/>
+                <h:outputText value="Catégorie"/>
+                <h:outputText value="#{produitController.selected.categorie.nom}" title="Catégorie"/>
+                <h:outputText value="Image"/>
+                <p:graphicImage value="#{imageController.image}" title="image du produit" alt="Image du produit">
+                    <f:param name="imageId" value="#{produitController.selected.mainImage.id}" />
+                    <f:param name="thumb" value="#{false}" />
+                </p:graphicImage>
 
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{produitController.selected.nom}"/>
-        </ui:define>
-        <ui:define name="body">
-            <p:messages id="msgs" autoUpdate="true" escape="false"/>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="ID"/>
-                    <h:outputText value="#{produitController.selected.id}" title="ID"/>
-                    <h:outputText value="Nom"/>
-                    <h:outputText value="#{produitController.selected.nom}" title="Nom"/>
-                    <h:outputText value="Description"/>
-                    <h:outputText value="#{produitController.selected.description}" title="Description"/>
-                    <h:outputText value="Catégorie"/>
-                    <h:outputText value="#{produitController.selected.categorie.nom}" title="Catégorie"/>
-                    <h:outputText value="Image"/>
-                    <p:graphicImage value="#{imageController.image}" title="image du produit" alt="Image du produit">
-                        <f:param name="imageId" value="#{produitController.selected.mainImage.id}" />
-                        <f:param name="thumb" value="#{false}" />
-                    </p:graphicImage>
+            </h:panelGrid>
+            <br />
+            <h:commandLink action="#{produitController.destroyAndView}" value="#{bundle.DestroyLink}"/>
+            <br />
+            <br />
+            <h:link outcome="Edit" value="#{bundle.EditLink}"/>
+            <br />
+            <h:commandLink action="#{produitController.prepareCreate}" value="#{bundle.CreateLink}" />
+            <br />
+            <h:commandLink action="#{produitController.prepareList}" value="#{bundle.ShowAllLink}"/>
+            <br />
+            <br />
+            <h:link outcome="/index" value="#{bundle.IndexLink}"/>
 
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{produitController.destroyAndView}" value="#{bundle.DestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.EditLink}"/>
-                <br />
-                <h:commandLink action="#{produitController.prepareCreate}" value="#{bundle.CreateLink}" />
-                <br />
-                <h:commandLink action="#{produitController.prepareList}" value="#{bundle.ShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.IndexLink}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
 
-            </h:form>
-        </ui:define>
-    </ui:composition>
-
-</html>
