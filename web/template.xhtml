@@ -25,8 +25,11 @@
                         <li>
                             <h:form class="navbar-form">
                                 <div class="form-group">
-                                    <p:inputText id="search-field" value="#{rechercheController.query}" required="true"/>
-                                    <p:watermark for="search-field" value="#{bundle.Search}"/>
+                                    <p:inputText id="search-field"
+                                                 value="#{rechercheController.query}"
+                                                 required="true"/>
+                                    <p:watermark for="search-field"
+                                                 value="#{bundle.Search}"/>
                                 </div>
                                 <div class="form-group">
                                     <h:commandButton id="search-btn"
@@ -45,7 +48,6 @@
                         <h:panelGroup  rendered="#{loginController.utilisateurConnecte != null}">
                             <ui:include src="/logged.xhtml" />
                         </h:panelGroup>
-
                     </ul>
                 </div>
             </div>
@@ -71,16 +73,26 @@
                 <div class="row">
                     <div class="col-lg-2">
                         <ul>
-                            <li><a href="#">Mentions légales</a></li>
-                            <li><a href="#">Nous contacter</a></li>
-                            <li><a href="#">Plan du site</a></li>
+                            <li>
+                                <h:link outcome="/statique/MentionsLegales"
+                                        value="#{bundle.LegalNotes}" />
+                            </li>
+                            <li>
+                                <h:link outcome="/statique/Contact"
+                                        value="#{bundle.ContactUs}" />
+                            </li>
                         </ul>
                     </div>
                     <div class="col-lg-2">
                         <ul>
-                            <li><a href="#">Foire aux questions</a></li>
-                            <li><a href="#">____________</a></li>
-                            <li><a href="#">____________</a></li>
+                            <li>
+                                <h:link outcome="/statique/Faq"
+                                        value="#{bundle.Faq}" />
+                            </li>
+                            <li>
+                                <h:link outcome="/statique/Plan"
+                                        value="#{bundle.Plan}" />
+                            </li>
                         </ul>
                     </div>
                     <div class="col-lg-2 col-lg-offset-4">
