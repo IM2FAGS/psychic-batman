@@ -5,6 +5,7 @@ import abey.entities.Commande;
 import abey.entities.Panier;
 import abey.entities.ProduitPanier;
 import abey.entities.Utilisateur;
+import abey.login.UtilisateurSession;
 import abey.services.CommandeService;
 import abey.util.JsfUtil;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 /**
@@ -21,6 +23,9 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class CreerCommandeController extends AbstractController {
+
+    @ManagedProperty(value = "#{utilisateurSession}")
+    protected UtilisateurSession utilisateurSession;
 
     @EJB
     private CommandeService commandeService;
@@ -36,7 +41,7 @@ public class CreerCommandeController extends AbstractController {
 
     public String create() {
         try {
-            Utilisateur curUser = getUtilisateurConnecte();
+            Utilisateur curUser = utilisateurSession.getUtilisateur();
             if (curUser != null) {
                 curUser.getCommandes().add(current);
                 current.setAcheteur(curUser);
@@ -64,6 +69,10 @@ public class CreerCommandeController extends AbstractController {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("EchecTransaction"));
             return null;
         }
+    }
+
+    public void setUtilisateurSession(UtilisateurSession utilisateurSession) {
+        this.utilisateurSession = utilisateurSession;
     }
 
     public void setCommandeService(CommandeService commandeService) {
