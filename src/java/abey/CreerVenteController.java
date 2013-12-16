@@ -100,7 +100,8 @@ public class CreerVenteController extends AbstractController {
                 venteImmediate.setDateVente(new Date());
                 System.out.println("ok2");
                 venteImmediate.setProduit(produit);
-                System.out.println("ok3");				
+                System.out.println("ok3"+venteImmediate+" " + venteImmediate);
+				
                 venteImmediateService.create(venteImmediate);
 				System.out.println("ok4");
 
@@ -108,7 +109,7 @@ public class CreerVenteController extends AbstractController {
 				annulerCreer();
                 return "Created";
             } catch (Exception e) {
-                JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+                JsfUtil.addErrorMessage(e.getMessage());
                 return "Create";
             }
         } else {
@@ -134,5 +135,13 @@ public class CreerVenteController extends AbstractController {
     public void setProduitService(ProduitService produitService) {
         this.produitService = produitService;
     }
+
+	public VenteImmediateService getVenteImmediateService() {
+		return venteImmediateService;
+	}
+
+	public ProduitService getProduitService() {
+		return produitService;
+	}
 
 }

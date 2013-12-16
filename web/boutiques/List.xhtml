@@ -1,61 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<ui:composition template="/template.xhtml"
-                xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <ui:define name="title">
-        <h:outputText value="#{bundle.WelcomeOnAbey}"></h:outputText>
-    </ui:define>
-    <ui:define name="body">
-        <h:form styleClass="jsfcrud_list_form">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:outputText escape="false" value="#{bundle.ShopNotCreated}" rendered="#{boutiqueController.items.rowCount == 0}"/>
-            <h:panelGroup rendered="#{boutiqueController.items.rowCount > 0}">
-                <h:outputText value="#{boutiqueController.pagination.pageFirstItem + 1}..#{boutiqueController.pagination.pageLastItem + 1}/#{boutiqueController.pagination.itemsCount}"/>&nbsp;
-                <h:commandLink action="#{boutiqueController.previous}" value="#{bundle.Previous} #{boutiqueController.pagination.pageSize}" rendered="#{boutiqueController.pagination.hasPreviousPage}"/>&nbsp;
-                <h:commandLink action="#{boutiqueController.next}" value="#{bundle.Next} #{boutiqueController.pagination.pageSize}" rendered="#{boutiqueController.pagination.hasNextPage}"/>&nbsp;
-                <h:dataTable value="#{boutiqueController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="id"/>
-                        </f:facet>
-                        <h:outputText value="#{item.id}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="nom"/>
-                        </f:facet>
-                        <h:outputText value="#{item.nom}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="description"/>
-                        </f:facet>
-                        <h:outputText value="#{item.description}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="&nbsp;"/>
-                        </f:facet>
-                        <h:commandLink action="#{boutiqueController.prepareView}" value="#{bundle.ViewLink}"/>
-                        <h:outputText value=" "/>
-                        <h:commandLink action="#{boutiqueController.prepareEdit}" value="#{bundle.EditLink}"/>
-                        <h:outputText value=" "/>
-                        <h:commandLink action="#{boutiqueController.destroy}" value="#{bundle.DestroyLink}"/>
-                    </h:column>
-                </h:dataTable>
-            </h:panelGroup>
-            <br />
-            <h:commandLink action="#{boutiqueController.prepareCreate}" value="#{bundle.CreateLink}"/>
-            <br />
-            <br />
-            <h:link outcome="/index" value="#{bundle.IndexLink}"/>
-        </h:form>
-    </ui:define>
-</ui:composition>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -70,7 +18,7 @@
 				<h:panelGroup rendered="#{creerBoutiqueController.previous == null}">
 					<h:outputText value="#{bundle.ShopNotCreated}" />
 	                <br />
-	                <h:commandLink action="#{boutiqueController.prepareCreate}" value="#{bundle.CreateLink}"/>
+					<h:commandLink action="Create" value="#{bundle.CreateLink}"/>
                 </h:panelGroup>
 				
 				<h:panelGroup rendered="#{creerBoutiqueController.previous != null}">
