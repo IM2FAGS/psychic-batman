@@ -62,9 +62,10 @@ public class CategorieController extends AbstractController {
     public String destroy(Categorie categorie) {
         try {
             categorieService.remove(categorie);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CategoriesDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CategoryDeleted"));
             return "List";
         } catch (Exception e) {
+            System.err.println(e);
             JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("CategoryDeletedError"));
             return null;
         }
