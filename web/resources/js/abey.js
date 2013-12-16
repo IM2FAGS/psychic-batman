@@ -4,6 +4,10 @@ var abey = {
         $('#show-login').click(function() {
             abey.showLogin();
         });
+        
+        $('.tooltip-link-bottom').tooltip({
+            placement: 'bottom'
+        });
     },
     
     showLogin: function() {

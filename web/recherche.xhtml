@@ -1,57 +1,54 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="title">
+        <h:outputText value="#{bundle.Search}" />
+    </ui:define>
+    <ui:define name="body">
+        <h:outputText value="No matches found!" rendered="#{empty rechercheController.produits}" />
 
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            Accueil
-        </ui:define>
-        <ui:define name="body">
-            <h:outputText value="No matches found!" rendered="#{empty rechercheController.produits}" />
-            
-            <h:form id="form">
+        <h:form id="form">
 
-                <p:dataGrid var="prod" value="#{rechercheController.produits}" columns="3"
-                            rows="12" paginator="true"
-                            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                            rowsPerPageTemplate="9,12,15">
+            <p:dataGrid var="prod" value="#{rechercheController.produits}" columns="3"
+                        rows="12" paginator="true"
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        rowsPerPageTemplate="9,12,15">
 
-                    <p:panel header="#{prod.nom}" style="text-align:center">
-                        <h:panelGrid columns="1" style="width:100%">
-                            <!--<p:graphicImage value="/images/cars/#{car.manufacturer}.jpg"/>--> 
+                <p:panel header="#{prod.nom}" style="text-align:center">
+                    <h:panelGrid columns="1" style="width:100%">
+                        <!--<p:graphicImage value="/images/cars/#{car.manufacturer}.jpg"/>--> 
 
-                            <p:commandLink update=":form:prodDetail" oncomplete="PF('prodDialog').show()" title="View Detail">
-                                <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" /> 
-                                <f:setPropertyActionListener value="#{prod}" 
-                                                             target="#{rechercheController.selectedProduit}" />
-                            </p:commandLink>
-                        </h:panelGrid>
-                    </p:panel>
+                        <p:commandLink update=":form:prodDetail" oncomplete="PF('prodDialog').show()" title="View Detail">
+                            <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" /> 
+                            <f:setPropertyActionListener value="#{prod}" 
+                                                         target="#{rechercheController.selectedProduit}" />
+                        </p:commandLink>
+                    </h:panelGrid>
+                </p:panel>
 
-                </p:dataGrid>
+            </p:dataGrid>
 
-                <p:dialog header="Details Produit" widgetVar="prodDialog" modal="true">
-                    <p:outputPanel id="prodDetail" style="text-align:center;">
+            <p:dialog header="Details Produit" widgetVar="prodDialog" modal="true">
+                <p:outputPanel id="prodDetail" style="text-align:center;">
 
                         <!--<p:graphicImage value="/images/cars/#{tableBean.selectedCar.manufacturer}.jpg"/>-->
 
-                        <h:panelGrid  columns="2" cellpadding="5">
-                            <h:outputLabel for="nom" value="Model No: " />
-                            <h:outputText id="nom" value="#{rechercheController.selectedProduit.nom}" />
+                    <h:panelGrid  columns="2" cellpadding="5">
+                        <h:outputLabel for="nom" value="Model No: " />
+                        <h:outputText id="nom" value="#{rechercheController.selectedProduit.nom}" />
 
-                            <h:outputLabel for="description" value="description " />
-                            <h:outputText id="description" value="#{rechercheController.selectedProduit.description}" />
-                        </h:panelGrid>
-                    </p:outputPanel>
-                </p:dialog>
+                        <h:outputLabel for="description" value="description " />
+                        <h:outputText id="description" value="#{rechercheController.selectedProduit.description}" />
+                    </h:panelGrid>
+                </p:outputPanel>
+            </p:dialog>
 
-            </h:form>
-        </ui:define>
-    </ui:composition>
+        </h:form>
+    </ui:define>
+</ui:composition>
 
-</html>
 

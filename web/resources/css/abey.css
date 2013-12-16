@@ -68,6 +68,11 @@ body {
     margin-right: -10px !important;
 }
 
+/* tooltip */
+.tooltip-inner {
+    white-space: nowrap;
+}
+
 /* fin bootstrap / primefaces */
 
 .navbar {
