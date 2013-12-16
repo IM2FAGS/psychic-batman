@@ -92,20 +92,27 @@ public class CreerVenteController extends AbstractController {
             if (recherche != null) {
                 produits = produitService.rechercheProduits(recherche);
             }
+			System.out.println("le produit est null!!!!");
             return "Create";
         } else if (venteImmediate.getStock() > 0 && venteImmediate.getPrix().compareTo(BigDecimal.ZERO) > 0) {
             try {
+                System.out.println("ok1");
                 venteImmediate.setDateVente(new Date());
+                System.out.println("ok2");
                 venteImmediate.setProduit(produit);
+                System.out.println("ok3");				
                 venteImmediateService.create(venteImmediate);
-                JsfUtil.addSuccessMessage(LangString.params(ResourceBundle.getBundle("/Bundle").getString("SaleCreated"), produit.getNom()));
-                annulerCreer();
+				System.out.println("ok4");
+
+                //JsfUtil.addSuccessMessage(LangString.params(ResourceBundle.getBundle("/Bundle").getString("SaleCreated"), produit.getNom()));
+				annulerCreer();
                 return "Created";
             } catch (Exception e) {
                 JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
                 return "Create";
             }
         } else {
+            System.out.println("Probleme avec le formulaire??");
             return "Create";
         }
     }

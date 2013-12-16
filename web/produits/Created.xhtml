@@ -13,11 +13,10 @@
         <ui:define name="body">
             <h:form class="form-horizontal">
                 <p:messages id="msgs" autoUpdate="true" escape="false" />
-                <h:commandButton value="#{bundle.SellThisProduct}"
-                                 actionListener="#{creerVenteController.creer}"
-                                 styleClass="btn btn-primary">
-                    <f:setPropertyActionListener value="#{produitController.previous}" target="#{creerVenteController.produit}" />
-                </h:commandButton>
+				<h:commandLink
+				class="btn btn-primary"
+				action="#{creerVenteController.creer()}"
+				value="#{bundle.SellThisProduct}" />
             </h:form>
         </ui:define>
     </ui:composition>

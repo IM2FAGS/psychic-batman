@@ -14,44 +14,16 @@
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ShopNotCreated}" rendered="#{boutiqueController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{boutiqueController.items.rowCount > 0}">
-                    <h:outputText value="#{boutiqueController.pagination.pageFirstItem + 1}..#{boutiqueController.pagination.pageLastItem + 1}/#{boutiqueController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{boutiqueController.previous}" value="#{bundle.Previous} #{boutiqueController.pagination.pageSize}" rendered="#{boutiqueController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{boutiqueController.next}" value="#{bundle.Next} #{boutiqueController.pagination.pageSize}" rendered="#{boutiqueController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{boutiqueController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="id"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="nom"/>
-                            </f:facet>
-                            <h:outputText value="#{item.nom}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="description"/>
-                            </f:facet>
-                            <h:outputText value="#{item.description}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{boutiqueController.prepareView}" value="#{bundle.ViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{boutiqueController.prepareEdit}" value="#{bundle.EditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{boutiqueController.destroy}" value="#{bundle.DestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
+				
+				<h:panelGroup rendered="#{creerBoutiqueController.previous == null}">
+					<h:outputText value="#{bundle.ShopNotCreated}" />
+	                <br />
+	                <h:commandLink action="#{boutiqueController.prepareCreate}" value="#{bundle.CreateLink}"/>
                 </h:panelGroup>
-                <br />
-                <h:commandLink action="#{boutiqueController.prepareCreate}" value="#{bundle.CreateLink}"/>
+				
+				<h:panelGroup rendered="#{creerBoutiqueController.previous != null}">
+					<h:commandLink action="View" value="#{creerBoutiqueController.previous.nom}"/>
+                </h:panelGroup>
                 <br />
                 <br />
                 <h:link outcome="/index" value="#{bundle.IndexLink}"/>
