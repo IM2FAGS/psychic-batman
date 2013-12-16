@@ -3,6 +3,7 @@ package abey.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,6 +27,7 @@ public class Categorie implements Serializable {
 
     @Basic(optional = false)
     @NotNull
+    @Column(unique = true)
     @Size(min = 1, max = 255)
     private String nom;
 

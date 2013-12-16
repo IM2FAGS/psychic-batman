@@ -3,10 +3,13 @@ package abey.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
@@ -30,7 +33,8 @@ public class Boutique implements Serializable {
     @Size(min = 1, max = 255)
     private String nom;
 
-    @Basic(optional = true)
+    @Basic(optional = true, fetch = FetchType.LAZY)
+    @Lob
     private String description;
 
     @NotNull
