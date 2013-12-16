@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title><ui:insert name="title">#{bundle.WelcomeOnAbey}</ui:insert></title>
@@ -24,8 +25,11 @@
                         <li>
                             <h:form class="navbar-form">
                                 <div class="form-group">
-                                    <p:inputText id="search-field" value="#{rechercheController.query}" required="true"/>
-                                    <p:watermark for="search-field" value="#{bundle.Search}"/>
+                                    <p:inputText id="search-field"
+                                                 value="#{rechercheController.query}"
+                                                 required="true"/>
+                                    <p:watermark for="search-field"
+                                                 value="#{bundle.Search}"/>
                                 </div>
                                 <div class="form-group">
                                     <h:commandButton id="search-btn"
@@ -44,7 +48,6 @@
                         <h:panelGroup  rendered="#{loginController.utilisateurConnecte != null}">
                             <ui:include src="/logged.xhtml" />
                         </h:panelGroup>
-
                     </ul>
                 </div>
             </div>
@@ -53,12 +56,10 @@
             <div class="row">
                 <div class="col-lg-2">
                     <ul class="dropdown-menu" id="main-menu" role="menu" aria-labelledby="dropdownMenu">
-                        <li class="dropdown-header" role="presentation">Boutiques</li>
-                        <li><a href="#">Electronique</a></li>
-                        <li><a href="#">Vêtements</a></li>
-                        <li><a href="#">Voiture</a></li>
-                        <li><a href="#">...</a></li>
-                        <li><a href="#">...</a></li>
+                        <li class="dropdown-header" role="presentation">Catégories</li>
+                        <c:forEach var="cat" items="${categorieController.allOrdered}">
+                            <li><a href="#">#{cat.nom}</a></li>
+                        </c:forEach>
                     </ul>
                 </div>
                 <div class="col-lg-10">
@@ -72,16 +73,26 @@
                 <div class="row">
                     <div class="col-lg-2">
                         <ul>
-                            <li><a href="#">Mentions légales</a></li>
-                            <li><a href="#">Nous contacter</a></li>
-                            <li><a href="#">Plan du site</a></li>
+                            <li>
+                                <h:link outcome="/statique/MentionsLegales"
+                                        value="#{bundle.LegalNotes}" />
+                            </li>
+                            <li>
+                                <h:link outcome="/statique/Contact"
+                                        value="#{bundle.ContactUs}" />
+                            </li>
                         </ul>
                     </div>
                     <div class="col-lg-2">
                         <ul>
-                            <li><a href="#">Foire aux questions</a></li>
-                            <li><a href="#">____________</a></li>
-                            <li><a href="#">____________</a></li>
+                            <li>
+                                <h:link outcome="/statique/Faq"
+                                        value="#{bundle.Faq}" />
+                            </li>
+                            <li>
+                                <h:link outcome="/statique/Plan"
+                                        value="#{bundle.Plan}" />
+                            </li>
                         </ul>
                     </div>
                     <div class="col-lg-2 col-lg-offset-4">

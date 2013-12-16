@@ -65,7 +65,7 @@ public class CreerBoutiqueController extends AbstractController {
             current=null;
             return "View";
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("EchecTransaction"));
+            JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("EchecTransaction"));
             return null;
         }
     }

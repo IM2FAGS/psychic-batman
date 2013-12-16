@@ -1,24 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:define name="title">
+        <h:outputText value="#{bundle.EditCategory}"/>
+    </ui:define>
+    <ui:define name="body">
+        <ui:include src="EditForm.xhtml" />
+    </ui:define>
+    <ui:define name="action">
+        <h:commandLink
+            class="btn btn-primary"
+            action="#{categorieController.update}"
+            value="#{bundle.UpdateCategory}" />
+    </ui:define>
 
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.EditCategory}"/>
-        </ui:define>
-        <ui:define name="body">
-            <ui:include src="EditForm.xhtml" />
-        </ui:define>
-        <ui:define name="action">
-            <h:commandLink
-                class="btn btn-primary"
-                action="#{categorieController.update}"
-                value="#{bundle.UpdateCategory}" />
-        </ui:define>
-
-    </ui:composition>
-
-</html>
+</ui:composition>

@@ -17,13 +17,13 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class BoutiqueService extends AbstractService<Boutique> {
 
-	public BoutiqueService() {
-		super(Boutique.class);
-	}
-	
-    public List<Boutique> rechercheBoutiques(String recherche){
+    public BoutiqueService() {
+        super(Boutique.class);
+    }
+
+    public List<Boutique> rechercheBoutiques(String recherche) {
         TypedQuery<Boutique> query = em.createNamedQuery("Boutique.recherche",
-                                                        Boutique.class);
+                Boutique.class);
         query.setParameter(1, "%" + recherche.replace("%", "\\%") + "%");
         List<Boutique> boutiques = query.getResultList();
         if (boutiques != null && !boutiques.isEmpty()) {
@@ -31,5 +31,5 @@ public class BoutiqueService extends AbstractService<Boutique> {
         }
         return new ArrayList<>();
     }
-    
+
 }

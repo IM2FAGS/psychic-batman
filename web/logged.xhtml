@@ -10,14 +10,18 @@
         </h:outputFormat>
     </li>
     <li>
-        <a href="#about">
+        <h:link outcome="/panier/View"
+                title="#{bundle.MyCart}"
+                styleClass="tooltip-link-bottom">
             <span class="glyphicon glyphicon-shopping-cart"/>
-        </a>
+        </h:link>
     </li>
     <li>
-        <a href="#about">
+        <h:link outcome="/utilisateurs/Profil"
+                title="#{bundle.MyProfile}"
+                styleClass="tooltip-link-bottom">
             <span class="glyphicon glyphicon-cog"/>
-        </a>
+        </h:link>
     </li>
     <li>
         <h:form class="navbar-form">

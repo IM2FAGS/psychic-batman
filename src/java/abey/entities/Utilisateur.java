@@ -1,8 +1,8 @@
 package abey.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,22 +39,22 @@ public class Utilisateur implements Serializable {
     private Boutique boutique;
 
     @OneToMany(mappedBy = "acheteur")
-    private Collection<EnchereGagnee> encheresGagnees;
+    private List<EnchereGagnee> encheresGagnees;
 
     @OneToMany(mappedBy = "encherisseur")
-    private Collection<Surenchere> surencheres;
+    private List<Surenchere> surencheres;
 
     @OneToMany(mappedBy = "vendeur")
-    private Collection<Enchere> encheresCrees;
+    private List<Enchere> encheresCrees;
 
     @OneToOne
     private Panier panier;
 
     @OneToMany(mappedBy = "acheteur")
-    private Collection<Achat> achats;
+    private List<Commande> commandes;
 
     @OneToMany(mappedBy = "acheteur")
-    private Collection<NoteProduit> notesProduits;
+    private List<NoteProduit> notesProduits;
 
     @Basic(optional = false)
     @NotNull
@@ -94,27 +94,27 @@ public class Utilisateur implements Serializable {
         this.id = id;
     }
 
-    public Collection<EnchereGagnee> getEncheresGagnees() {
+    public List<EnchereGagnee> getEncheresGagnees() {
         return encheresGagnees;
     }
 
-    public void setEncheresGagnees(Collection<EnchereGagnee> encheresGagnees) {
+    public void setEncheresGagnees(List<EnchereGagnee> encheresGagnees) {
         this.encheresGagnees = encheresGagnees;
     }
 
-    public Collection<Surenchere> getSurencheres() {
+    public List<Surenchere> getSurencheres() {
         return surencheres;
     }
 
-    public void setSurencheres(Collection<Surenchere> surencheres) {
+    public void setSurencheres(List<Surenchere> surencheres) {
         this.surencheres = surencheres;
     }
 
-    public Collection<Enchere> getEncheresCrees() {
+    public List<Enchere> getEncheresCrees() {
         return encheresCrees;
     }
 
-    public void setEncheresCrees(Collection<Enchere> encheresCrees) {
+    public void setEncheresCrees(List<Enchere> encheresCrees) {
         this.encheresCrees = encheresCrees;
     }
 
@@ -126,19 +126,20 @@ public class Utilisateur implements Serializable {
         this.panier = panier;
     }
 
-    public Collection<Achat> getAchats() {
-        return achats;
+    public List<Commande> getCommandes() {
+        return commandes;
     }
 
-    public void setAchats(Collection<Achat> achats) {
-        this.achats = achats;
+    public void setCommandes(List<Commande> commandes) {
+        this.commandes = commandes;
     }
 
-    public Collection<NoteProduit> getNotesProduits() {
+
+    public List<NoteProduit> getNotesProduits() {
         return notesProduits;
     }
 
-    public void setNotesProduits(Collection<NoteProduit> notesProduits) {
+    public void setNotesProduits(List<NoteProduit> notesProduits) {
         this.notesProduits = notesProduits;
     }
 

@@ -1,7 +1,7 @@
 package abey.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,10 +26,10 @@ public class Panier implements Serializable {
     private Utilisateur utilisateur;
 
     @OneToMany
-    private Collection<ProduitPanier> produits;
+    private List<ProduitPanier> produits;
 
     @OneToMany
-    private Collection<Enchere> encheres;
+    private List<Enchere> encheres;
 
     public Long getId() {
         return id;
@@ -47,19 +47,19 @@ public class Panier implements Serializable {
         this.utilisateur = utilisateur;
     }
 
-    public Collection<ProduitPanier> getProduits() {
+    public List<ProduitPanier> getProduits() {
         return produits;
     }
 
-    public void setProduits(Collection<ProduitPanier> produits) {
+    public void setProduits(List<ProduitPanier> produits) {
         this.produits = produits;
     }
 
-    public Collection<Enchere> getEncheres() {
+    public List<Enchere> getEncheres() {
         return encheres;
     }
 
-    public void setEncheres(Collection<Enchere> encheres) {
+    public void setEncheres(List<Enchere> encheres) {
         this.encheres = encheres;
     }
 
