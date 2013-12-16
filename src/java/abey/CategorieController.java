@@ -198,7 +198,11 @@ public class CategorieController extends AbstractController {
     public List<Categorie> getAll() {
         return categorieService.findAll();
     }
-    
+
+    public List<Categorie> getAllOrdered() {
+        return categorieService.findAllOrderedByName();
+    }
+
     @FacesConverter(forClass = Categorie.class)
     public static class CategoriesControllerConverter implements Converter {
 

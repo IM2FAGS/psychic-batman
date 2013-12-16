@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title><ui:insert name="title">#{bundle.WelcomeOnAbey}</ui:insert></title>
@@ -53,12 +54,10 @@
             <div class="row">
                 <div class="col-lg-2">
                     <ul class="dropdown-menu" id="main-menu" role="menu" aria-labelledby="dropdownMenu">
-                        <li class="dropdown-header" role="presentation">Boutiques</li>
-                        <li><a href="#">Electronique</a></li>
-                        <li><a href="#">Vêtements</a></li>
-                        <li><a href="#">Voiture</a></li>
-                        <li><a href="#">...</a></li>
-                        <li><a href="#">...</a></li>
+                        <li class="dropdown-header" role="presentation">Catégories</li>
+                        <c:forEach var="cat" items="${categorieController.allOrdered}">
+                            <li><a href="#">#{cat.nom}</a></li>
+                        </c:forEach>
                     </ul>
                 </div>
                 <div class="col-lg-10">
