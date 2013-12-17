@@ -11,8 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -22,10 +20,6 @@ import javax.validation.constraints.Size;
  * @author Anthony
  */
 @Entity
-@NamedQueries({
-    @NamedQuery(name = "Produit.recherche",
-            query = "select p from Produit p where lower(p.nom) like lower(?1)")
-})
 public class Produit implements Serializable {
 
     private static final long serialVersionUID = 1L;

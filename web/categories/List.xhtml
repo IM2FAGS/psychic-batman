@@ -11,14 +11,22 @@
     <ui:define name="body">
         <h:form>
             <p:messages id="msgs" autoUpdate="true" escape="false"/>
+<<<<<<< HEAD
             <p:dataTable var="cat" value="#{administrerCategorieController.all}"
                          emptyMessage="#{bundle.CategoryNotCreated}">
+=======
+            <p:dataTable var="cat" value="#{administrerCategorieController.all}" emptyMessage="#{bundle.CategoryNotCreated}">  
+                <p:column headerText="id">  
+                    <h:outputText value="#{cat.id}" />  
+                </p:column>  
+>>>>>>> 3ec9878321e5eeca37f934c35a59645243a1a01b
 
                 <p:column headerText="#{bundle.CategoryName}"
                           style="width: 80%;">  
                     <h:outputText value="#{cat.nom}" />  
                 </p:column>  
 
+<<<<<<< HEAD
                 <p:column style="width: 20%;">
                     <h:commandLink action="#{administrerCategorieController.edit(cat)}"
                                    value="#{bundle.EditLink}"
@@ -34,6 +42,20 @@
             <h:commandLink action="#{administrerCategorieController.prepareCreate}"
                            value="#{bundle.CreateLink}"
                            styleClass="btn btn-primary" />
+=======
+                <p:column headerText=" ">  
+                    <h:commandLink action="#{administrerCategorieController.edit(cat)}" value="#{bundle.EditLink}"/>
+                    <h:outputText value=" "/>
+                    <h:commandLink action="#{administrerCategorieController.destroy(cat)}" value="#{bundle.DestroyLink}"/>
+                </p:column>  
+
+            </p:dataTable>  
+            <br />
+            <h:commandLink action="#{administrerCategorieController.prepareCreate}" value="#{bundle.CreateLink}"/>
+            <br />
+            <br />
+            <h:link outcome="/index" value="#{bundle.IndexLink}"/>
+>>>>>>> 3ec9878321e5eeca37f934c35a59645243a1a01b
         </h:form>
     </ui:define>
 </ui:composition>

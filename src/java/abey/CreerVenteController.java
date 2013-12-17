@@ -69,7 +69,6 @@ public class CreerVenteController extends AbstractController {
     }
 
     public void setProduit(Produit produit) {
-        System.out.println("SETPRODUIT" + produit);
         this.produit = produit;
     }
 
@@ -107,6 +106,7 @@ public class CreerVenteController extends AbstractController {
                 return "Create";
             }
         } else {
+            System.out.println("Probleme avec le formulaire??");
             return "Create";
         }
     }
