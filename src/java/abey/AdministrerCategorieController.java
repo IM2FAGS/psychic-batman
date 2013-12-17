@@ -9,12 +9,11 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.NoneScoped;
 import javax.faces.bean.SessionScoped;
 
 @ManagedBean
 @SessionScoped
-public class CategorieController extends AbstractController {
+public class AdministrerCategorieController extends AbstractController {
 
     private Categorie current;
     @EJB
@@ -77,10 +76,6 @@ public class CategorieController extends AbstractController {
 
     public List<Categorie> getAll() {
         return categorieService.findAll();
-    }
-
-    public List<Categorie> getAllOrdered() {
-        return categorieService.findAllOrderedByColumn("nom");
     }
 
 }
