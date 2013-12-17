@@ -13,7 +13,7 @@
             </label>
             <div class="col-sm-5">
                 <p:inputText id="mail"
-                             value="#{utilisateurController.selected.mail}"
+                             value="#{creerUtilisateurController.utilisateur.mail}"
                              required="true"
                              validatorMessage="#{bundle.EmailInvalid}"
                              requiredMessage="#{bundle.EmailRequired}"
@@ -31,7 +31,7 @@
             </label>
             <div class="col-sm-5">
                 <p:inputText id="nom"
-                             value="#{utilisateurController.selected.nom}"
+                             value="#{creerUtilisateurController.utilisateur.nom}"
                              required="true"
                              requiredMessage="#{bundle.NicknameRequired}"
                              styleClass="form-control" />
@@ -45,7 +45,7 @@
             </label>
             <div class="col-sm-5">
                 <p:password id="pw1"
-                            value="#{utilisateurController.selected.pass}"
+                            value="#{creerUtilisateurController.utilisateur.pass}"
                             match="pw2"
                             validatorMessage="#{bundle.PasswordsAreDifferent}"
                             requiredMessage="#{bundle.PasswordRequired}"
@@ -62,7 +62,7 @@
             </label>
             <div class="col-sm-5">
                 <p:password id="pw2"
-                            value="#{utilisateurController.selected.pass}"
+                            value="#{creerUtilisateurController.utilisateur.pass}"
                             required="true"
                             validatorMessage="#{bundle.ConfirmPasswordInvalid}"
                             requiredMessage="#{bundle.ConfirmPasswordRequired}"
@@ -77,7 +77,7 @@
             </label>
             <div class="col-sm-5">
                 <p:calendar id="dateNaissance"
-                            value="#{utilisateurController.selected.dateNaissance}"
+                            value="#{creerUtilisateurController.utilisateur.dateNaissance}"
                             navigator="true"
                             required="true"
                             mindate="1/1/1900"
@@ -88,13 +88,14 @@
                             readonlyInput="true"
                             requiredMessage="#{bundle.BirthDateRequired}"
                             styleClass="form-control date-picker" />
+                <p:watermark for="dateNaissance" value="#{bundle.BirthDate}"/>
             </div>
         </div>
 
 
         <br />
         <h:commandLink class="btn btn-primary"
-                       action="#{utilisateurController.create}"
+                       action="#{creerUtilisateurController.creer}"
                        value="#{bundle.CreateAccount}" />
 
     </h:form>

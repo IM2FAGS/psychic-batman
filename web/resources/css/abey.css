@@ -81,6 +81,10 @@ body {
     color: #333;
 }
 
+#main-menu.dropdown-menu > li > a {
+    white-space: normal;
+}
+
 /* fin bootstrap / primefaces */
 
 .navbar {

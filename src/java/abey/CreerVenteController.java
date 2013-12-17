@@ -98,11 +98,18 @@ public class CreerVenteController extends AbstractController {
                 venteImmediate.setDateVente(new Date());
                 venteImmediate.setProduit(produit);
                 venteImmediateService.create(venteImmediate);
-                JsfUtil.addSuccessMessage(LangString.params(ResourceBundle.getBundle("/Bundle").getString("SaleCreated"), produit.getNom()));
+                JsfUtil.addSuccessMessage(
+                    LangString.params(
+                        ResourceBundle.getBundle("/Bundle").getString("SaleCreated"),
+                        produit.getNom()
+                    )
+                );
                 annulerCreer();
                 return "Created";
             } catch (Exception e) {
-                JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+                JsfUtil.addErrorMessage(
+                    ResourceBundle.getBundle("/Bundle").getString("SaleCreatedError")
+                );
                 return "Create";
             }
         } else {

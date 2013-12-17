@@ -14,9 +14,9 @@
             </h:panelGroup>
             <h:outputText escape="false" value="#{bundle.ProductNotCreated}" rendered="#{produitController.items.rowCount == 0}"/>
             <h:panelGroup rendered="#{produitController.items.rowCount > 0}">
-                <h:outputText value="#{produitController.pagination.pageFirstItem + 1}..#{produitController.pagination.pageLastItem + 1}/#{produitController.pagination.itemsCount}"/>&nbsp;
-                <h:commandLink action="#{produitController.previous}" value="#{bundle.Previous} #{produitController.pagination.pageSize}" rendered="#{produitController.pagination.hasPreviousPage}"/>&nbsp;
-                <h:commandLink action="#{produitController.next}" value="#{bundle.Next} #{produitController.pagination.pageSize}" rendered="#{produitController.pagination.hasNextPage}"/>&nbsp;
+                <h:outputText value="#{produitController.pagination.pageFirstItem + 1}..#{produitController.pagination.pageLastItem + 1}/#{produitController.pagination.itemsCount} "/>
+                <h:commandLink action="#{produitController.previous}" value="#{bundle.Previous} #{produitController.pagination.pageSize}" rendered="#{produitController.pagination.hasPreviousPage} "/>
+                <h:commandLink action="#{produitController.next}" value="#{bundle.Next} #{produitController.pagination.pageSize}" rendered="#{produitController.pagination.hasNextPage} "/>
                 <h:dataTable value="#{produitController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                     <h:column>
                         <f:facet name="header">
@@ -32,7 +32,7 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="&nbsp;"/>
+                            <h:outputText value=" "/>
                         </f:facet>
                         <h:commandLink action="#{produitController.prepareView}" value="#{bundle.ViewLink}"/>
                         <h:outputText value=" "/>

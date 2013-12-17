@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.NoneScoped;
 import javax.faces.bean.SessionScoped;
 
+@Deprecated
 @ManagedBean
 @SessionScoped
 public class CategorieController extends AbstractController {

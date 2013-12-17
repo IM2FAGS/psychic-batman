@@ -1,6 +1,8 @@
 package abey;
 
 import abey.entities.Image;
+import abey.entities.Utilisateur;
+import abey.login.UtilisateurSession;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,11 +10,15 @@ import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
+import javax.faces.bean.ManagedProperty;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
 public abstract class AbstractController implements Serializable {
 
+    @ManagedProperty(value = "#{utilisateurSession}")
+    private UtilisateurSession utilisateurSession;
+    
     @EJB
     protected abey.services.ImageService imageService;
 
@@ -51,5 +57,17 @@ public abstract class AbstractController implements Serializable {
 
     public int getSizeLimit() {
         return sizeLimit;
+    }
+    
+    public Utilisateur getUtilisateurConnecte() {
+        return utilisateurSession.getUtilisateur();
+    }
+    
+    public void setUtilisateurConnecte(Utilisateur utilisateur) {
+        utilisateurSession.setUtilisateur(utilisateur);
+    }
+    
+    public void setUtilisateurSession(UtilisateurSession utilisateurSession) {
+        this.utilisateurSession = utilisateurSession;
     }
 }

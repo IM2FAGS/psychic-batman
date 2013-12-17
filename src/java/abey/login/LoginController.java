@@ -17,22 +17,11 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class LoginController extends AbstractController implements Serializable {
 
-    @ManagedProperty(value = "#{utilisateurSession}")
-    private UtilisateurSession utilisateurSession;
-
     @ManagedProperty(value = "#{identifiants}")
     private Identifiants identifiants;
 
     @EJB
     private UtilisateurService utilisateurService;
-
-    public void setUtilisateurService(UtilisateurService utilisateurService) {
-        this.utilisateurService = utilisateurService;
-    }
-
-    public Utilisateur getUtilisateurConnecte() {
-        return utilisateurSession.getUtilisateur();
-    }
 
     public String login() {
         String outcome = null;
@@ -44,7 +33,7 @@ public class LoginController extends AbstractController implements Serializable 
                 outcome = "/login/errorLogin";
             } else {
                 outcome = "/index";
-                utilisateurSession.setUtilisateur(utilisateur);
+                setUtilisateurConnecte(utilisateur);
             }
         } catch (Exception e) {
             outcome = "/login/errorLogin";
@@ -52,16 +41,12 @@ public class LoginController extends AbstractController implements Serializable 
         return outcome;
     }
 
-    public void setUtilisateurSession(UtilisateurSession utilisateurSession) {
-        this.utilisateurSession = utilisateurSession;
-    }
-
     public void setIdentifiants(Identifiants identifiants) {
         this.identifiants = identifiants;
     }
 
     public String logout() {
-        utilisateurSession.setUtilisateur(null);
+        setUtilisateurConnecte(null);
         return null;
     }
 }
