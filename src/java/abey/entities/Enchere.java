@@ -5,9 +5,11 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -58,6 +60,11 @@ public class Enchere implements Serializable {
     @Basic(optional = false)
     @NotNull
     private int duree;
+
+    @Basic(optional = false, fetch = FetchType.LAZY)
+    @NotNull
+    @Lob
+    private String description;
 
     public Long getId() {
         return id;
@@ -129,6 +136,14 @@ public class Enchere implements Serializable {
 
     public void setDuree(int duree) {
         this.duree = duree;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
