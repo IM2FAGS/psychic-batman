@@ -37,9 +37,9 @@ public class Test {
 
     @PostConstruct
     public void init() {
-        fillCategories();
-        fillProduits();
-        fillUtilisateurs();
+//        fillCategories();
+//        fillProduits();
+//        fillUtilisateurs();
     }
 
     private void fillProduits() {

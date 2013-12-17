@@ -81,6 +81,9 @@ body {
     color: #333;
 }
 
+#main-menu {
+    width: 100%;
+}
 #main-menu.dropdown-menu > li > a {
     white-space: normal;
 }

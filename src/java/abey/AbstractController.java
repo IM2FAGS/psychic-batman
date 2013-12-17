@@ -66,8 +66,9 @@ public abstract class AbstractController implements Serializable {
     public void setUtilisateurConnecte(Utilisateur utilisateur) {
         utilisateurSession.setUtilisateur(utilisateur);
     }
-    
+
     public void setUtilisateurSession(UtilisateurSession utilisateurSession) {
         this.utilisateurSession = utilisateurSession;
     }
+    
 }

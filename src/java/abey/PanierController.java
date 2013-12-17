@@ -1,7 +1,6 @@
 package abey;
 
 import abey.entities.Panier;
-import abey.login.UtilisateurSession;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -19,9 +18,6 @@ public class PanierController extends AbstractController {
     
     @EJB
     private PanierService panierService;
-    
-    @EJB
-    private UtilisateurSession utilisateurSession;
     
     public void setPanierService(PanierService panierService) {
         this.panierService = panierService;

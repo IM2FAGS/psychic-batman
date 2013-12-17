@@ -42,7 +42,7 @@ public class CreerUtilisateurController extends AbstractController {
             utilisateurService.create(utilisateur);
             setUtilisateurConnecte(utilisateur);
             utilisateur = null;
-            JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("UserCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserCreated"));
             return "/index";
         } catch (Exception ex) {
             JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("UserCreatedError"));

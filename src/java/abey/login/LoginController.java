@@ -3,7 +3,6 @@ package abey.login;
 import abey.AbstractController;
 import abey.services.UtilisateurService;
 import abey.entities.Utilisateur;
-import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -15,7 +14,7 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean
 @ViewScoped
-public class LoginController extends AbstractController implements Serializable {
+public class LoginController extends AbstractController {
 
     @ManagedProperty(value = "#{identifiants}")
     private Identifiants identifiants;
