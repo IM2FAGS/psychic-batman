@@ -17,19 +17,19 @@
             <div class="form-group">
                 <h:outputLabel value="#{bundle.CBNum}" class="col-sm-2 control-label" for="#{bundle.CBIdNum}" />
                 <div class="col-sm-5">
-                    <h:inputText id="#{bundle.CBIdNum}" value="#{creerBoutiqueController.selected.nom}" title="#{bundle.CBNum}" styleClass="form-control"/>
+                    <h:inputText id="#{bundle.CBIdNum}" value="" title="#{bundle.CBNum}" styleClass="form-control"/>
                     <p:watermark for="#{bundle.CBIdNum}" value="#{bundle.CBNum}"/>
                 </div>
             </div>
             <div class="form-group">
                 <h:outputLabel value="#{bundle.CVV}" class="col-sm-2 control-label" for="#{bundle.CBIdCVV}" />
                 <div class="col-sm-5">
-                    <h:inputTextarea id="#{bundle.CBIdCVV}" value="#{creerBoutiqueController.selected.description}" title="#{bundle.CVV}" styleClass="form-control"/>
+                    <h:inputTextarea id="#{bundle.CBIdCVV}" value="" title="#{bundle.CVV}" styleClass="form-control"/>
                     <p:watermark for="#{bundle.CBIdCVV}" value="#{bundle.CVVwatermark}"/>
                 </div>
             </div>
             <br />
-            <h:commandLink action="#{creerBoutiqueController.create}" value="#{bundle.SaveLink}" />
+            <h:commandLink action="#{creerCommandeController.create}" value="#{bundle.PayLink}" />
             <br />
             <h:link outcome="/index" value="#{bundle.IndexLink}"/>
         </h:form>
