@@ -14,7 +14,7 @@ import javax.faces.bean.SessionScoped;
 @Deprecated
 @ManagedBean
 @SessionScoped
-public class CategorieController extends AbstractController {
+public class AdministrerCategorieController extends AbstractController {
 
     private Categorie current;
     @EJB
@@ -62,9 +62,10 @@ public class CategorieController extends AbstractController {
     public String destroy(Categorie categorie) {
         try {
             categorieService.remove(categorie);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CategoriesDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CategoryDeleted"));
             return "List";
         } catch (Exception e) {
+            System.err.println(e);
             JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("CategoryDeletedError"));
             return null;
         }
@@ -76,10 +77,6 @@ public class CategorieController extends AbstractController {
 
     public List<Categorie> getAll() {
         return categorieService.findAll();
-    }
-
-    public List<Categorie> getAllOrdered() {
-        return categorieService.findAllOrderedByColumn("nom");
     }
 
 }

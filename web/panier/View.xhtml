@@ -6,9 +6,32 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
     <ui:define name="title">
-        TODO
+        <h:outputText value="#{bundle.MyCart}"></h:outputText>
     </ui:define>
     <ui:define name="body">
-        TODO
+        <h:outputText escape="false" value="#{bundle.CartEmpty}" rendered="#{panierController.getNumProduits() == 0}"/>
+        <h:panelGroup rendered="#{panierController.getNumProduits() > 0}">
+            <h:dataTable value="#{panierController.panier.produits}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="quantite"/>
+                    </f:facet>
+                    <h:outputText value="#{item.quantite}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="nom"/>
+                    </f:facet>
+                    <h:outputText value="#{item.venteImmediate.produit.nom}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="prix"/>
+                    </f:facet>
+                    <h:outputText value="#{item.venteImmediate.prix}"/>
+                </h:column>
+            </h:dataTable>
+            <h:link outcome="/commande/Paiement" value="#{bundle.ValidCart}"/>
+        </h:panelGroup>
     </ui:define>
 </ui:composition>

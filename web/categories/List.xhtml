@@ -11,27 +11,27 @@
     <ui:define name="body">
         <h:form>
             <p:messages id="msgs" autoUpdate="true" escape="false"/>
-            <p:dataTable var="cat" value="#{categorieController.all}"
+            <p:dataTable var="cat" value="#{administrerCategorieController.all}"
                          emptyMessage="#{bundle.CategoryNotCreated}">
-                
+
                 <p:column headerText="#{bundle.CategoryName}"
                           style="width: 80%;">  
                     <h:outputText value="#{cat.nom}" />  
                 </p:column>  
 
                 <p:column style="width: 20%;">
-                    <h:commandLink action="#{categorieController.edit(cat)}"
+                    <h:commandLink action="#{administrerCategorieController.edit(cat)}"
                                    value="#{bundle.EditLink}"
                                    styleClass="btn btn-success" />
                     <h:outputText value=" "/>
-                    <h:commandLink action="#{categorieController.destroy(cat)}"
+                    <h:commandLink action="#{administrerCategorieController.destroy(cat)}"
                                    value="#{bundle.DestroyLink}"
                                    styleClass="btn btn-success" />
                 </p:column>
 
             </p:dataTable>
-            
-            <h:commandLink action="#{categorieController.prepareCreate}"
+
+            <h:commandLink action="#{administrerCategorieController.prepareCreate}"
                            value="#{bundle.CreateLink}"
                            styleClass="btn btn-primary" />
         </h:form>

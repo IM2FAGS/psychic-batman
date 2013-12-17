@@ -20,3 +20,19 @@
     </ui:define>
 </ui:composition>
 
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateProductTitle}" />
+        </ui:define>
+        <ui:define name="body">
+            <h:form class="form-horizontal">
+                <p:messages id="msgs" autoUpdate="true" escape="false" />
+				<h:commandLink
+				class="btn btn-primary"
+				action="#{creerVenteController.creer()}"
+				value="#{bundle.SellThisProduct}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

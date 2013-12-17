@@ -21,6 +21,24 @@ public class CreerBoutiqueController extends AbstractController {
     private BoutiqueService boutiqueService;
 
     private Boutique current;
+	
+	private Boutique previous;
+
+	public Boutique getCurrent() {
+		return current;
+	}
+
+	public void setCurrent(Boutique current) {
+		this.current = current;
+	}
+
+	public Boutique getPrevious() {
+		return previous;
+	}
+
+	public void setPrevious(Boutique previous) {
+		this.previous = previous;
+	}
 
     public Boutique getSelected() {
         if (current == null) {
@@ -41,10 +59,11 @@ public class CreerBoutiqueController extends AbstractController {
             }
             boutiqueService.create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("BoutiqueCree"));
-            current = null;
-            return "Create";
+			previous = current;
+            current=null;
+            return "View";
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("EchecTransaction"));
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("EchecTransaction"));
             return null;
         }
     }

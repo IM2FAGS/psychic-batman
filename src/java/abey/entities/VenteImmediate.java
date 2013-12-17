@@ -6,9 +6,11 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -41,7 +43,12 @@ public class VenteImmediate implements Serializable {
 
     @Basic(optional = false)
     @NotNull
-    private BigDecimal prix; //TODO BigDecimal recommandé
+    private BigDecimal prix;
+
+    @Basic(optional = false, fetch = FetchType.LAZY)
+    @NotNull
+    @Lob
+    private String description;
 
     @Basic(optional = false)
     @NotNull
@@ -94,6 +101,14 @@ public class VenteImmediate implements Serializable {
 
     public Date getDateVente() {
         return dateVente;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setDateVente(Date dateVente) {

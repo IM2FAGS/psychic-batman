@@ -82,12 +82,6 @@ public class CreerVenteController extends AbstractController {
 
     public String creer() {
         venteImmediate = getVenteImmediate();
-        System.out.println("venteImmediate=" + venteImmediate);
-        System.out.println("venteImmediate.stock=" + venteImmediate.getStock());
-        System.out.println("venteImmediate.prix=" + venteImmediate.getPrix());
-        System.out.println("recherche=" + recherche);
-        System.out.println("produits=" + produits);
-        System.out.println("produit=" + produit);
         if (produit == null) {
             if (recherche != null) {
                 produits = produitService.rechercheProduits(recherche);
@@ -98,17 +92,17 @@ public class CreerVenteController extends AbstractController {
                 venteImmediate.setDateVente(new Date());
                 venteImmediate.setProduit(produit);
                 venteImmediateService.create(venteImmediate);
-                JsfUtil.addSuccessMessage(
-                    LangString.params(
-                        ResourceBundle.getBundle("/Bundle").getString("SaleCreated"),
-                        produit.getNom()
-                    )
-                );
                 annulerCreer();
+                JsfUtil.addSuccessMessage(
+                        LangString.params(
+                                ResourceBundle.getBundle("/Bundle").getString("SaleCreated"),
+                                produit.getNom()
+                        )
+                );
                 return "Created";
             } catch (Exception e) {
                 JsfUtil.addErrorMessage(
-                    ResourceBundle.getBundle("/Bundle").getString("SaleCreatedError")
+                        ResourceBundle.getBundle("/Bundle").getString("SaleCreatedError")
                 );
                 return "Create";
             }
@@ -125,14 +119,6 @@ public class CreerVenteController extends AbstractController {
     public String annuler() {
         annulerCreer();
         return "Create";
-    }
-
-    public void setVenteImmediateService(VenteImmediateService venteImmediateService) {
-        this.venteImmediateService = venteImmediateService;
-    }
-
-    public void setProduitService(ProduitService produitService) {
-        this.produitService = produitService;
     }
 
 }
