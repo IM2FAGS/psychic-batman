@@ -75,7 +75,7 @@ public class RechercheController extends AbstractController {
 
     public String search() {
         System.out.println("SEARCH");
-        produits = produitService.rechercheProduits(query);
+        produits = produitService.findInsensitiveLike("nom", query);
         System.out.println("produits.size() = " + produits.size());
         return "/recherche";
     }
