@@ -43,10 +43,10 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <h:panelGroup  rendered="#-{loginController.utilisateurConnecte == null}">
+                        <h:panelGroup  rendered="#{loginController.utilisateurConnecte == null}">
                             <ui:include src="/login.xhtml" />
                         </h:panelGroup>
-                        <h:panelGroup  rendered="#-{loginController.utilisateurConnecte != null}">
+                        <h:panelGroup  rendered="#{loginController.utilisateurConnecte != null}">
                             <ui:include src="/logged.xhtml" />
                         </h:panelGroup>
                     </ul>

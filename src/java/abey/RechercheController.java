@@ -15,7 +15,7 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class RechercheController {
+public class RechercheController extends AbstractController {
 
     private String query;
     private Categorie categorieQuery;
