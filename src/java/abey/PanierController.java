@@ -45,4 +45,8 @@ public class PanierController extends AbstractController {
     public int getNumEncheres(){
         return panier.getEncheres().size();
     }
+    
+    public void updatePanier(){
+        panierService.edit(panier);
+    }
 }
