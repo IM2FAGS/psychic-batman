@@ -5,6 +5,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 /**
@@ -68,9 +69,7 @@ public abstract class AbstractService<T> {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery cq = cb.createQuery();
         Root<T> root = cq.from(entityClass);
-        cq.select(root).where(cb.like(
-                cb.lower(root.<String>get(colName)),
-                "%" + search.toLowerCase().replace("%", "\\%") + "%"));
+        cq.select(root).where(getLikeQueryPredicate(colName, search, root));
 
         return em.createQuery(cq).getResultList();
     }
@@ -83,4 +82,14 @@ public abstract class AbstractService<T> {
         return ((Long) q.getSingleResult()).intValue();
     }
 
+    protected Predicate getLikeQueryPredicate(String colName, String search, Root<T> root) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        return cb.like(
+                cb.lower(root.<String>get(colName)),
+                "%" + search.toLowerCase().replace("%", "\\%") + "%");
+    }
+
+    protected Predicate getEqualQueryPredicate(String colName, Object object, Root<T> root) {
+        return em.getCriteriaBuilder().equal(root.get(colName), object);
+    }
 }

@@ -12,7 +12,7 @@
         <h:outputText value="No matches found!" rendered="#{empty rechercheController.produits}" />
 
         <h:form id="form">
-
+            <h:outputText value="#{rechercheController.categorieQuery.nom}" />
             <p:dataGrid var="prod" value="#{rechercheController.produits}" columns="3"
                         rows="12" paginator="true"
                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -20,7 +20,7 @@
 
                 <p:panel header="#{prod.nom}" style="text-align:center">
                     <h:panelGrid columns="1" style="width:100%">
-                        <!--<p:graphicImage value="/images/cars/#{car.manufacturer}.jpg"/>--> 
+                        <!--<p:graphicImage value="/images/cars/#-{car.manufacturer}.jpg"/>--> 
 
                         <p:commandLink update=":form:prodDetail" oncomplete="PF('prodDialog').show()" title="View Detail">
                             <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" /> 

@@ -75,7 +75,7 @@ public class RechercheController {
 
     public String search() {
         System.out.println("SEARCH");
-        produits = produitService.rechercheProduits(query);
+        produits = produitService.rechercheProduits(query, categorieQuery);
         System.out.println("produits.size() = " + produits.size());
         return "/recherche";
     }

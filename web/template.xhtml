@@ -4,7 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title><ui:insert name="title">#{bundle.WelcomeOnAbey}</ui:insert></title>
@@ -27,7 +28,7 @@
                                 <div class="form-group">
                                     <p:inputText id="search-field"
                                                  value="#{rechercheController.query}"
-                                                 required="true"/>
+                                                 required="false"/>
                                     <p:watermark for="search-field"
                                                  value="#{bundle.Search}"/>
                                 </div>
@@ -42,10 +43,10 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <h:panelGroup  rendered="#{loginController.utilisateurConnecte == null}">
+                        <h:panelGroup  rendered="#-{loginController.utilisateurConnecte == null}">
                             <ui:include src="/login.xhtml" />
                         </h:panelGroup>
-                        <h:panelGroup  rendered="#{loginController.utilisateurConnecte != null}">
+                        <h:panelGroup  rendered="#-{loginController.utilisateurConnecte != null}">
                             <ui:include src="/logged.xhtml" />
                         </h:panelGroup>
                     </ul>
@@ -54,13 +55,25 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-lg-3">
-                    <ul class="dropdown-menu" id="main-menu" role="menu" aria-labelledby="dropdownMenu">
-                        <li class="dropdown-header" role="presentation">Catégories</li>
-                        <c:forEach var="cat" items="${rechercheController.allCategories}">
-                            <li><a href="#">#{cat.nom}</a></li>
-                        </c:forEach>
-                    </ul>
+                <div class="col-lg-2">
+                    <h:form>
+                        <ul class="dropdown-menu" id="main-menu" role="menu" aria-labelledby="dropdownMenu">
+                            <li class="dropdown-header" role="presentation">Catégories</li>
+                            <c:forEach var="cat" items="${rechercheController.allCategories}">
+                                <!--<li><a href="#">#-{cat.nom}</a></li>-->
+                                <li>
+                                    <h:commandLink action="#{rechercheController.search}" value="#{cat.nom}">
+                                        <f:setPropertyActionListener target="#{rechercheController.categorieQuery}" value="#{cat}"/>
+                                    </h:commandLink>
+                                </li>
+                            </c:forEach>
+                                <li>
+                                    <h:commandLink action="#{rechercheController.search}" value="TOUS LES PRODUITS">
+                                        <f:setPropertyActionListener target="#{rechercheController.categorieQuery}" value="#{null}"/>
+                                    </h:commandLink>
+                                </li>
+                        </ul>
+                    </h:form>
                 </div>
                 <div class="col-lg-9">
                     <ui:insert name="body">Default Body</ui:insert>
