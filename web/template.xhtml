@@ -55,10 +55,12 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-lg-2">
+                <div class="col-lg-3">
                     <h:form>
                         <ul class="dropdown-menu" id="main-menu" role="menu" aria-labelledby="dropdownMenu">
-                            <li class="dropdown-header" role="presentation">Catégories</li>
+                            <li class="dropdown-header" role="presentation">
+                                <h:outputText value="#{bundle.Categories}" />
+                            </li>
                             <c:forEach var="cat" items="${rechercheController.allCategories}">
                                 <!--<li><a href="#">#-{cat.nom}</a></li>-->
                                 <li>

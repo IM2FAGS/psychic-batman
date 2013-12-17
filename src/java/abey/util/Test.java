@@ -37,9 +37,13 @@ public class Test {
 
     @PostConstruct
     public void init() {
-//        fillCategories();
+        try {
+        fillCategories();
 //        fillProduits();
-//        fillUtilisateurs();
+        fillUtilisateurs();
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
     }
 
     private void fillProduits() {
@@ -69,7 +73,7 @@ public class Test {
             try {
                 passCrypte = Salt.hashPassword("pass", salt);
             } catch (NoSuchAlgorithmException ex) {
-                Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex);
             }
             utilisateur.setPass(passCrypte);
             Calendar cal = Calendar.getInstance();
