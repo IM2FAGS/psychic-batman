@@ -9,29 +9,31 @@
         <h:outputText value="#{bundle.WelcomeOnAbey}"></h:outputText>
     </ui:define>
     <ui:define name="body">
-        <h:form styleClass="jsfcrud_list_form">
+        <h:form>
             <p:messages id="msgs" autoUpdate="true" escape="false"/>
-            <p:dataTable var="cat" value="#{categorieController.all}" emptyMessage="#{bundle.CategoryNotCreated}">  
-                <p:column headerText="id">  
-                    <h:outputText value="#{cat.id}" />  
-                </p:column>  
-
-                <p:column headerText="#{bundle.CategoryName}">  
+            <p:dataTable var="cat" value="#{categorieController.all}"
+                         emptyMessage="#{bundle.CategoryNotCreated}">
+                
+                <p:column headerText="#{bundle.CategoryName}"
+                          style="width: 80%;">  
                     <h:outputText value="#{cat.nom}" />  
                 </p:column>  
 
-                <p:column headerText=" ">  
-                    <h:commandLink action="#{categorieController.edit(cat)}" value="#{bundle.EditLink}"/>
+                <p:column style="width: 20%;">
+                    <h:commandLink action="#{categorieController.edit(cat)}"
+                                   value="#{bundle.EditLink}"
+                                   styleClass="btn btn-success" />
                     <h:outputText value=" "/>
-                    <h:commandLink action="#{categorieController.destroy(cat)}" value="#{bundle.DestroyLink}"/>
-                </p:column>  
+                    <h:commandLink action="#{categorieController.destroy(cat)}"
+                                   value="#{bundle.DestroyLink}"
+                                   styleClass="btn btn-success" />
+                </p:column>
 
-            </p:dataTable>  
-            <br />
-            <h:commandLink action="#{categorieController.prepareCreate}" value="#{bundle.CreateLink}"/>
-            <br />
-            <br />
-            <h:link outcome="/index" value="#{bundle.IndexLink}"/>
+            </p:dataTable>
+            
+            <h:commandLink action="#{categorieController.prepareCreate}"
+                           value="#{bundle.CreateLink}"
+                           styleClass="btn btn-primary" />
         </h:form>
     </ui:define>
 </ui:composition>

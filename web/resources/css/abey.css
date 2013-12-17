@@ -73,6 +73,14 @@ body {
     white-space: nowrap;
 }
 
+/* btn */
+.ui-widget-content .btn {
+    color: white;
+}
+.ui-widget-content .btn.btn-default {
+    color: #333;
+}
+
 /* fin bootstrap / primefaces */
 
 .navbar {
