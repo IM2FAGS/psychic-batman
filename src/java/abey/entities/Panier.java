@@ -1,6 +1,7 @@
 package abey.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +12,7 @@ import javax.persistence.OneToOne;
 
 /**
  *
- * @author Anthony
+ * @author disavinr
  */
 @Entity
 public class Panier implements Serializable {
@@ -48,6 +49,9 @@ public class Panier implements Serializable {
     }
 
     public List<ProduitPanier> getProduits() {
+        if(produits == null){
+            produits = new ArrayList<ProduitPanier>();
+        }
         return produits;
     }
 
@@ -56,6 +60,9 @@ public class Panier implements Serializable {
     }
 
     public List<Enchere> getEncheres() {
+        if(encheres == null){
+            encheres = new ArrayList<Enchere>();
+        }
         return encheres;
     }
 

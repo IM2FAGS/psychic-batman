@@ -33,6 +33,7 @@ public class LoginController extends AbstractController {
             } else {
                 outcome = "/index";
                 setUtilisateurConnecte(utilisateur);
+                setPanierUtilisateur();
             }
         } catch (Exception e) {
             outcome = "/login/errorLogin";
@@ -45,6 +46,7 @@ public class LoginController extends AbstractController {
     }
 
     public String logout() {
+        updatePanier();
         setUtilisateurConnecte(null);
         return null;
     }
