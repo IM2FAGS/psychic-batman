@@ -9,6 +9,14 @@
         <h:outputText value="#{bundle.CreateAccount}" />
     </ui:define>
     <ui:define name="body">
-        <ui:include src="EditForm.xhtml" />
+        <h1>
+            <h:outputText value="#{bundle.CreateAccount}" />
+        </h1>
+        <h:form class="form-horizontal">
+            <ui:include src="EditForm.xhtml" />
+            <h:commandLink class="btn btn-primary"
+                           action="#{creerUtilisateurController.creer}"
+                           value="#{bundle.CreateAccount}" />
+        </h:form>
     </ui:define>
 </ui:composition>

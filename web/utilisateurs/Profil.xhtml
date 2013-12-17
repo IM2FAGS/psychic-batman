@@ -32,12 +32,14 @@
         </ul>
 
         <h2><h:outputText value="#{bundle.MyAccount}" /></h2>
-        <ul>
-            <li>
-                <h:link outcome="/utilisateurs/Edit"
-                        value="#{bundle.MyAccount}" />
-            </li>
-        </ul>
+        <h:form>
+            <ul>
+                <li>
+                    <h:commandLink action="#{creerUtilisateurController.initEditer}"
+                                   value="#{bundle.MyAccount}" />
+                </li>
+            </ul>
+        </h:form>
 
         <h2><h:outputText value="#{bundle.MyPurchases}" /></h2>
         <ul>

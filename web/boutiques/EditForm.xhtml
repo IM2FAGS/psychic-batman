@@ -5,6 +5,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:form class="form-horizontal">
+        <p:messages id="msgs" autoUpdate="true" />
         <div class="form-group">
             <h:outputLabel value="#{bundle.Name}" class="col-sm-2 control-label" for="#{bundle.ShopIdName}" />
             <div class="col-sm-5">
@@ -20,8 +21,8 @@
             </div>
         </div>
         <br />
-        <h:commandLink action="#{creerBoutiqueController.create}" value="#{bundle.SaveLink}" />
-        <br />
-        <h:link outcome="/index" value="#{bundle.IndexLink}"/>
+        <h:commandButton actionListener="#{creerBoutiqueController.create}"
+                         value="#{bundle.SaveLink}"
+                         styleClass="btn btn-primary" />
     </h:form>
 </ui:composition>

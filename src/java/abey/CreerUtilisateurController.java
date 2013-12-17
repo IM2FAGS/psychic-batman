@@ -50,4 +50,28 @@ public class CreerUtilisateurController extends AbstractController {
         }
     }
     
+    public String initEditer() {
+        utilisateur = getUtilisateurConnecte();
+        return "/utilisateurs/Edit";
+    }
+    
+    public String editer() {
+        try {
+            if (utilisateur.getPass() != null && !utilisateur.getPass().equals("")) {
+                String salt = Salt.newSalt();
+                utilisateur.setSalt(salt);
+                String passCrypte = Salt.hashPassword(utilisateur.getPass(), salt);
+                utilisateur.setPass(passCrypte);
+            }
+            utilisateurService.edit(utilisateur);
+            setUtilisateurConnecte(utilisateur);
+            utilisateur = null;
+            JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("UserUpdated"));
+            return "/utilisateurs/Profil";
+        } catch (Exception ex) {
+            JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("UserUpdatedError"));
+            return null;
+        }
+    }
+    
 }
