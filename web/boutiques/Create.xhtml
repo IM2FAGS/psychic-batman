@@ -8,6 +8,15 @@
         <h:outputText value="#{bundle.CreateShop}"></h:outputText>
     </ui:define>
     <ui:define name="body">
-        <ui:include src="EditForm.xhtml" />
+        <h:form class="form-horizontal">
+            <h1>
+                <h:outputText value="#{bundle.CreateShop}" />
+            </h1>
+            <ui:include src="EditForm.xhtml" />
+            <br />
+            <h:commandButton actionListener="#{creerBoutiqueController.create}"
+                             value="#{bundle.CreateShop}"
+                             styleClass="btn btn-primary" />
+        </h:form>
     </ui:define>
 </ui:composition>
