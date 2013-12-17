@@ -1,7 +1,9 @@
 package abey;
 
+import abey.entities.Categorie;
 import abey.services.ProduitService;
 import abey.entities.Produit;
+import abey.services.CategorieService;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -16,11 +18,14 @@ import javax.faces.bean.SessionScoped;
 public class RechercheController extends AbstractController {
 
     private String query;
+    private Categorie categorieQuery;
     private List<Produit> produits;
     private Produit selectedProduit;
-    
+
     @EJB
     private ProduitService produitService;
+    @EJB
+    private CategorieService categorieService;
 
     public void setProduitService(ProduitService produitService) {
         this.produitService = produitService;
@@ -32,7 +37,7 @@ public class RechercheController extends AbstractController {
     }
 
     public void setSelectedProduit(Produit selectedProduit) {
-        System.out.println("selected "+ produits.size());
+        System.out.println("selected " + produits.size());
         this.selectedProduit = selectedProduit;
     }
 
@@ -42,6 +47,22 @@ public class RechercheController extends AbstractController {
 
     public void setQuery(String query) {
         this.query = query;
+    }
+
+    public Categorie getCategorieQuery() {
+        return categorieQuery;
+    }
+
+    public void setCategorieQuery(Categorie categorieQuery) {
+        this.categorieQuery = categorieQuery;
+    }
+
+    public CategorieService getCategorieService() {
+        return categorieService;
+    }
+
+    public void setCategorieService(CategorieService categorieService) {
+        this.categorieService = categorieService;
     }
 
     public List<Produit> getProduits() {
@@ -58,4 +79,9 @@ public class RechercheController extends AbstractController {
         System.out.println("produits.size() = " + produits.size());
         return "/recherche";
     }
+
+    public List<Categorie> getAllCategories() {
+        return categorieService.findAllOrderedByColumn("nom");
+    }
+
 }

@@ -12,7 +12,7 @@
             </label>
             <div class="col-sm-5">
                 <p:inputText id="nom"
-                             value="#{categorieController.selected.nom}"
+                             value="#{administrerCategorieController.selected.nom}"
                              required="true"
                              requiredMessage="#{bundle.CategoryNameRequired}"
                              styleClass="form-control" />
@@ -22,7 +22,7 @@
         <ui:insert name="action">
             <h:commandLink
                 class="btn btn-primary"
-                action="#{categorieController.create}"
+                action="#{administrerCategorieController.create}"
                 value="#{bundle.CreateCategory}" />
         </ui:insert>
     </h:form>

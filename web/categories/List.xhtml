@@ -11,7 +11,7 @@
     <ui:define name="body">
         <h:form styleClass="jsfcrud_list_form">
             <p:messages id="msgs" autoUpdate="true" escape="false"/>
-            <p:dataTable var="cat" value="#{categorieController.all}" emptyMessage="#{bundle.CategoryNotCreated}">  
+            <p:dataTable var="cat" value="#{administrerCategorieController.all}" emptyMessage="#{bundle.CategoryNotCreated}">  
                 <p:column headerText="id">  
                     <h:outputText value="#{cat.id}" />  
                 </p:column>  
@@ -21,14 +21,14 @@
                 </p:column>  
 
                 <p:column headerText=" ">  
-                    <h:commandLink action="#{categorieController.edit(cat)}" value="#{bundle.EditLink}"/>
+                    <h:commandLink action="#{administrerCategorieController.edit(cat)}" value="#{bundle.EditLink}"/>
                     <h:outputText value=" "/>
-                    <h:commandLink action="#{categorieController.destroy(cat)}" value="#{bundle.DestroyLink}"/>
+                    <h:commandLink action="#{administrerCategorieController.destroy(cat)}" value="#{bundle.DestroyLink}"/>
                 </p:column>  
 
             </p:dataTable>  
             <br />
-            <h:commandLink action="#{categorieController.prepareCreate}" value="#{bundle.CreateLink}"/>
+            <h:commandLink action="#{administrerCategorieController.prepareCreate}" value="#{bundle.CreateLink}"/>
             <br />
             <br />
             <h:link outcome="/index" value="#{bundle.IndexLink}"/>
