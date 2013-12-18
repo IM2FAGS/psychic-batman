@@ -1,10 +1,6 @@
 package abey;
 
 import abey.entities.ProduitPanier;
-import abey.entities.VenteImmediate;
-import abey.services.PanierService;
-import abey.services.UtilisateurService;
-import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
