@@ -34,7 +34,7 @@ public abstract class AbstractController implements Serializable {
     @EJB
     private UtilisateurService utilisateurService;
     
-    private static final int sizeLimit = 100000;
+    private static final int sizeLimit = 5000000;
 
     protected Image uploadImage(FileUploadEvent event) {
         UploadedFile uploadedFile = event.getFile();

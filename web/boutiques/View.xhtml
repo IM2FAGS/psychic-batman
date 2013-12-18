@@ -8,27 +8,48 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{creerBoutiqueController.previous.nom}" />
+            <h:outputText value="#{afficherBoutiqueController.boutique.nom}" />
         </ui:define>
         <ui:define name="body">
             <h:form>
+                <p:messages autoUpdate="true" />
                 <h1>
-                    <h:outputText value="#{bundle.MyShop}" />
+                    <h:outputText value="#{afficherBoutiqueController.boutique.nom}" />
                 </h1>
-                <p:messages id="msgs" autoUpdate="true" />
-                <h2>
-                    <h:outputText value="#{creerBoutiqueController.previous.nom}" />
-                </h2>
+                <p>
+                    <h:outputFormat value="#{bundle.ShopManagedBy}" escape="false">
+                        <f:param value="#{afficherBoutiqueController.boutique.proprietaire.nom}" />
+                    </h:outputFormat>
+                </p>
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <h:outputText value="#{creerBoutiqueController.previous.description}" />
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <span class="thumbnail">
+                                    <p:graphicImage value="#{imageController.image}">
+                                        <f:param name="imageId" value="#{afficherBoutiqueController.boutique.image.id}" />
+                                        <f:param name="thumb" value="#{false}" />
+                                    </p:graphicImage>
+                                </span>
+                            </div>
+                            <div class="col-lg-8">
+                                <h:outputText value="#{afficherBoutiqueController.boutique.description}" />
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <h:panelGroup rendered="#{afficherBoutiqueController.boutique.proprietaire == afficherBoutiqueController.utilisateurConnecte}">
+                    <ul>
+                        <li>
+                            <h:link outcome="/vente/Create" value="#{bundle.SellProduct}"/>
+                        </li>
+                        <li>
+                            <h:commandLink action="#{creerBoutiqueController.initEditer}"
+                                           value="#{bundle.EditShop}" />
+                        </li>
+                    </ul>
+                </h:panelGroup>
             </h:form>
-            <ul>
-                <li><h:link outcome="/vente/Create" value="#{bundle.SellProduct}"/></li>
-                <li><h:link outcome="Edit" value="#{bundle.EditLink}" /></li>
-            </ul>
         </ui:define>
     </ui:composition>
 

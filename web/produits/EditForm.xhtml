@@ -5,7 +5,7 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
     <h:form class="form-horizontal" enctype="multipart/form-data">
-        <p:messages id="msgs" autoUpdate="true"/>
+        <p:messages autoUpdate="true" />
         <div class="form-group">
             <label for="nom" class="col-sm-2 control-label">
                 <h:outputText value="#{bundle.ProductName}" />
@@ -56,7 +56,7 @@
                 <h:outputText value="#{bundle.Image}" />
             </label>
             <div class="col-sm-5">
-                <p:fileUpload fileUploadListener="#{creerProduitController.uploadProductImage}"
+                <p:fileUpload fileUploadListener="#{creerProduitController.uploadImageProduit}"
                               mode="advanced"
                               dragDropSupport="true"
                               sizeLimit="#{creerProduitController.sizeLimit}"
@@ -67,7 +67,7 @@
         <ui:insert name="action">
             <h:commandLink
                 class="btn btn-primary"
-                action="#{creerProduitController.create}"
+                action="#{creerProduitController.creer}"
                 value="#{bundle.CreateProduct}" />
         </ui:insert>
     </h:form>

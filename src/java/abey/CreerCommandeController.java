@@ -61,7 +61,7 @@ public class CreerCommandeController extends AbstractController {
             current = null;
             return "Create";
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("EchecTransaction"));
+            JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("EchecTransaction"));
             return null;
         }
     }

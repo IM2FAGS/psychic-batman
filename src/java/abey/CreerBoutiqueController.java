@@ -1,13 +1,16 @@
 package abey;
 
 import abey.entities.Boutique;
+import abey.entities.Image;
 import abey.entities.Utilisateur;
 import abey.services.BoutiqueService;
 import abey.util.JsfUtil;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import org.primefaces.event.FileUploadEvent;
 
 /**
  *
@@ -17,59 +20,86 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class CreerBoutiqueController extends AbstractController {
 
+    @ManagedProperty(value = "#{afficherBoutiqueController}")
+    private AfficherBoutiqueController afficherBoutiqueController;
+
     @EJB
     private BoutiqueService boutiqueService;
 
-    private Boutique current;
+    private Boutique boutique;
 
-    private Boutique previous;
-
-    public Boutique getCurrent() {
-        return current;
-    }
-
-    public void setCurrent(Boutique current) {
-        this.current = current;
-    }
-
-    public Boutique getPrevious() {
-        return previous;
-    }
-
-    public void setPrevious(Boutique previous) {
-        this.previous = previous;
-    }
-
-    public Boutique getSelected() {
-        if (current == null) {
-            current = new Boutique();
+    public Boutique getBoutique() {
+        if (boutique == null) {
+            boutique = new Boutique();
         }
-        return current;
+        return boutique;
     }
 
-    public String create() {
+    public void setBoutique(Boutique boutique) {
+        this.boutique = boutique;
+    }
+
+    public void setAfficherBoutiqueController(AfficherBoutiqueController afficherBoutiqueController) {
+        this.afficherBoutiqueController = afficherBoutiqueController;
+    }
+
+    public void uploadImageBoutique(FileUploadEvent event) {
+        Image image = uploadImage(event);
+        if (image != null) {
+            boutique.setImage(image);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ImageUploaded"));
+        } else {
+            JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("ImageUploadedError"));
+        }
+    }
+
+    public String creer() {
         try {
             Utilisateur utilisateur = getUtilisateurConnecte();
-            if (utilisateur != null) {
-                utilisateur.setBoutique(current);
-                current.setProprietaire(utilisateur);
-            } else {
-                JsfUtil.addErrorMessage("ConnexionRequise");
+            if (utilisateur == null) {
+                JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("YouMustBeLoggedIn"));
+                return null;
+            } else if (utilisateur.getBoutique() != null) {
+                afficherBoutiqueController.setBoutique(utilisateur.getBoutique());
+                return "/boutiques/View";
+            } else if (boutique.getImage() == null) {
+                JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("ShopImageRequired"));
                 return null;
             }
-            boutiqueService.create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("BoutiqueCree"));
-            previous = current;
-            current = null;
-            return "View";
+            utilisateur.setBoutique(boutique);
+            boutique.setProprietaire(utilisateur);
+            boutiqueService.create(boutique);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ShopCreated"));
+            afficherBoutiqueController.setBoutique(boutique);
+            boutique = null;
+            return "/boutiques/View";
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("EchecTransaction"));
+            JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("ShopCreatedError"));
             return null;
         }
     }
-
-    public void setBoutiqueService(BoutiqueService boutiqueService) {
-        this.boutiqueService = boutiqueService;
+    
+    public String initEditer() {
+        boutique = getUtilisateurConnecte().getBoutique();
+        return "/boutiques/Edit";
+    }
+    
+    public String editer() {
+        try {
+            Utilisateur utilisateur = getUtilisateurConnecte();
+            if (utilisateur == null) {
+                JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("YouMustBeLoggedIn"));
+                return null;
+            }
+            boutiqueService.edit(boutique);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ShopUpdated"));
+            afficherBoutiqueController.setBoutique(boutique);
+            boutique = null;
+            return "/boutiques/View";
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("ShopUpdatedError"));
+            return null;
+        }
     }
 
 }

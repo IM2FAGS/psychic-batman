@@ -1,8 +1,12 @@
 package abey;
 
+import abey.entities.Image;
 import abey.entities.Produit;
+import abey.util.JsfUtil;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import org.primefaces.event.FileUploadEvent;
 
 /**
  *
@@ -27,6 +31,18 @@ public class CreerProduitController extends AbstractController {
     
     public String creer() {
         return null;
+    }
+    
+    public void uploadImageProduit(FileUploadEvent event) {
+        Image image = uploadImage(event);
+        if (image != null) {
+            List<Image> images = produit.getImages();
+            images.add(image);
+            produit.setImages(images);
+            JsfUtil.addSuccessMessage("OK");
+        } else {
+            JsfUtil.addSuccessMessage("Erreur");
+        }
     }
 
 }

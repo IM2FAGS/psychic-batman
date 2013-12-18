@@ -5,6 +5,11 @@ body {
     min-height: 400px;
 }
 
+.space {
+    display: inline-block;
+    width: 10px;
+}
+
 /* bootstrap / primefaces */
 
 /* spinner */
