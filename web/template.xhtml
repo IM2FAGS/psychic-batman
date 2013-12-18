@@ -11,6 +11,7 @@
         <title><ui:insert name="title">#{bundle.WelcomeOnAbey}</ui:insert></title>
         <h:outputStylesheet name="bootstrap-3.0.0/dist/css/bootstrap.min.css"/>
         <h:outputStylesheet name="/css/abey.css"/>
+        <f:view locale="#{langueSession.locale}"/>
     </h:head>
 
     <h:body>
@@ -43,6 +44,17 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
+                        <h:form class="navbar-form" id="language">
+                            <p:selectOneMenu  value="#{langueSession.language}">
+                                <p:ajax update="@all"/>
+                                <f:selectItems value="#{langueSession.languagesAvailable}" /> 
+                            </p:selectOneMenu >
+<!--                            <h:selectOneMenu  value="#{langueSession.language}" onchange="submit()">
+                                <f:selectItems value="#{langueSession.languagesAvailable}" /> 
+                            </h:selectOneMenu >-->
+                        </h:form>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
                         <h:panelGroup  rendered="#{loginController.utilisateurConnecte == null}">
                             <ui:include src="/login.xhtml" />
                         </h:panelGroup>
@@ -68,11 +80,11 @@
                                     </h:commandLink>
                                 </li>
                             </c:forEach>
-                                <li>
-                                    <h:commandLink action="#{rechercheController.search}" value="TOUS LES PRODUITS">
-                                        <f:setPropertyActionListener target="#{rechercheController.categorieQuery}" value="#{null}"/>
-                                    </h:commandLink>
-                                </li>
+                            <li>
+                                <h:commandLink action="#{rechercheController.search}" value="TOUS LES PRODUITS">
+                                    <f:setPropertyActionListener target="#{rechercheController.categorieQuery}" value="#{null}"/>
+                                </h:commandLink>
+                            </li>
                         </ul>
                     </h:form>
                 </div>

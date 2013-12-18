@@ -82,19 +82,21 @@ body {
 }
 
 /* select */
-.ui-selectonemenu {
+.form-horizontal .ui-selectonemenu {
     padding: 0;
     width: 100% !important;
 }
-.ui-selectonemenu .ui-selectonemenu-label {
+.form-horizontal .ui-selectonemenu .ui-selectonemenu-label {
     height: 100%;
-    width: 100%;
     box-shadow: none;
 }
-.ui-selectonemenu .ui-selectonemenu-trigger .ui-icon {
+ .ui-selectonemenu .ui-selectonemenu-trigger .ui-icon {
     position: relative;
     right: 4px;
     top: 4px;
+}
+.ui-selectonemenu .ui-selectonemenu-label {
+    width: 100% !important;
 }
 
 /* categories */
