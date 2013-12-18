@@ -1,6 +1,7 @@
 package abey;
 
 import abey.entities.Image;
+import abey.entities.Panier;
 import abey.entities.Utilisateur;
 import abey.login.PanierSession;
 import abey.login.UtilisateurSession;
@@ -24,9 +25,6 @@ public abstract class AbstractController implements Serializable {
 
     @ManagedProperty(value = "#{panierSession}")
     private PanierSession panierSession;
-    
-    @EJB
-    protected abey.services.ImageService imageService;
 
     @EJB
     private PanierService panierService;
@@ -34,6 +32,9 @@ public abstract class AbstractController implements Serializable {
     @EJB
     private UtilisateurService utilisateurService;
     
+    @EJB
+    protected abey.services.ImageService imageService;
+
     private static final int sizeLimit = 100000;
 
     protected Image uploadImage(FileUploadEvent event) {
@@ -75,6 +76,14 @@ public abstract class AbstractController implements Serializable {
         return utilisateurSession.getUtilisateur();
     }
 
+    public Panier getPanierSite() {
+        return panierSession.getPanier();
+    }
+
+    public void setPanierSite(Panier panier) {
+        panierSession.setPanier(panier);
+    }
+
     public void setUtilisateurConnecte(Utilisateur utilisateur) {
         utilisateurSession.setUtilisateur(utilisateur);
     }
@@ -86,37 +95,35 @@ public abstract class AbstractController implements Serializable {
     public void setPanierSession(PanierSession panierSession) {
         this.panierSession = panierSession;
     }
-    
+
+    public void updatePanier() {
+        panierService.edit(getUtilisateurConnecte().getPanier());
+    }
+
+    public void setPanierUtilisateur() {
+        if (getUtilisateurConnecte().getPanier() == null || (getPanierSite().getEncheres().size() + getPanierSite().getProduits().size() != 0)) {
+            if (getUtilisateurConnecte().getPanier() != null) {
+                panierService.remove(getUtilisateurConnecte().getPanier());
+            }
+            getPanierSite().setUtilisateur(getUtilisateurConnecte());
+            getUtilisateurConnecte().setPanier(getPanierSite());
+            if(getPanierSite().getId() == null){
+                System.out.println("CREATE");
+                panierService.create(getPanierSite());
+                utilisateurService.edit(getUtilisateurConnecte());
+            }else{
+                panierService.edit(getPanierSite());
+            }
+        } else if (getPanierSite().getEncheres().size() + getPanierSite().getProduits().size() == 0) {
+            setPanierSite(getUtilisateurConnecte().getPanier());
+        }
+    }
+
     public void setPanierService(PanierService panierService) {
         this.panierService = panierService;
     }
 
     public void setUtilisateurService(UtilisateurService utilisateurService) {
         this.utilisateurService = utilisateurService;
-    }
-    
-    public int getNumProduits() {
-        return panierSession.getPanier().getProduits().size();
-    }
-
-    public int getNumEncheres() {
-        return panierSession.getPanier().getEncheres().size();
-    }
-
-    public void updatePanier() {
-        panierService.edit(panierSession.getPanier());
-    }
-    
-    public void setPanierUtilisateur(){
-        if(utilisateurSession.getUtilisateur().getPanier() == null || (panierSession.getPanier().getEncheres().size()+panierSession.getPanier().getProduits().size() != 0)){
-            utilisateurSession.getUtilisateur().setPanier(panierSession.getPanier());
-            if(utilisateurSession.getUtilisateur().getPanier() != null){
-                panierService.remove(utilisateurSession.getUtilisateur().getPanier());
-            }
-            panierService.create(panierSession.getPanier());
-            utilisateurService.edit(utilisateurSession.getUtilisateur());
-        }else if(panierSession.getPanier().getEncheres().size()+panierSession.getPanier().getProduits().size() == 0){
-            panierSession.setPanier(utilisateurSession.getUtilisateur().getPanier());
-        }
     }
 }

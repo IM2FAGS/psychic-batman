@@ -3,6 +3,7 @@ package abey.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,13 +24,13 @@ public class Panier implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne(mappedBy = "panier")
+    @OneToOne(mappedBy = "panier", cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.REFRESH})
     private Utilisateur utilisateur;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<ProduitPanier> produits;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Enchere> encheres;
 
     public Long getId() {
