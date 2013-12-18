@@ -11,6 +11,7 @@
         <title><ui:insert name="title">#{bundle.WelcomeOnAbey}</ui:insert></title>
         <h:outputStylesheet name="bootstrap-3.0.0/dist/css/bootstrap.min.css"/>
         <h:outputStylesheet name="/css/abey.css"/>
+        <f:view locale="#{langueSession.locale}"/>
     </h:head>
 
     <h:body>
@@ -35,12 +36,20 @@
                                 <div class="form-group">
                                     <h:commandButton id="search-btn"
                                                      value="#{bundle.Search}"
-                                                     styleClass="btn btn-primary"
+                                                     styleClass="btn btn-primary-navbar"
                                                      action="#{rechercheController.search}" />
                                 </div>
                                 <p:defaultCommand target="search-btn" />
                             </h:form>
                         </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <h:form class="navbar-form" id="language">
+                            <p:selectOneMenu  value="#{langueSession.language}">
+                                <p:ajax update="@all"/>
+                                <f:selectItems value="#{langueSession.languagesAvailable}" /> 
+                            </p:selectOneMenu >
+                        </h:form>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <h:panelGroup  rendered="#{loginController.utilisateurConnecte == null}">
@@ -68,11 +77,11 @@
                                     </h:commandLink>
                                 </li>
                             </c:forEach>
-                                <li>
-                                    <h:commandLink action="#{rechercheController.search}" value="TOUS LES PRODUITS">
-                                        <f:setPropertyActionListener target="#{rechercheController.categorieQuery}" value="#{null}"/>
-                                    </h:commandLink>
-                                </li>
+                            <li>
+                                <h:commandLink action="#{rechercheController.search}" value="TOUS LES PRODUITS">
+                                    <f:setPropertyActionListener target="#{rechercheController.categorieQuery}" value="#{null}"/>
+                                </h:commandLink>
+                            </li>
                         </ul>
                     </h:form>
                 </div>
@@ -82,17 +91,20 @@
             </div>
         </div>
 
-        <footer>
-            <div class="container">
+        <footer class="container-footer">
+            <div >
                 <div class="row">
                     <div class="col-lg-2">
                         <ul>
-                            <li>
-                                <h:link outcome="/statique/MentionsLegales"
+							
+                            <li >
+                                <h:link class="container-footer"
+										outcome="/statique/MentionsLegales"
                                         value="#{bundle.LegalNotes}" />
                             </li>
-                            <li>
-                                <h:link outcome="/statique/Contact"
+                            <li >
+                                <h:link class="container-footer"
+										outcome="/statique/Contact"
                                         value="#{bundle.ContactUs}" />
                             </li>
                         </ul>
@@ -100,11 +112,13 @@
                     <div class="col-lg-2">
                         <ul>
                             <li>
-                                <h:link outcome="/statique/Faq"
+                                <h:link class="container-footer"
+										outcome="/statique/Faq"
                                         value="#{bundle.Faq}" />
                             </li>
                             <li>
-                                <h:link outcome="/statique/Plan"
+                                <h:link class="container-footer"
+										outcome="/statique/Plan"
                                         value="#{bundle.Plan}" />
                             </li>
                         </ul>

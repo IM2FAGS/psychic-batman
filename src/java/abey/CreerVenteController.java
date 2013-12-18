@@ -137,7 +137,7 @@ public class CreerVenteController extends AbstractController {
                 annulerCreer();
                 JsfUtil.addSuccessMessage(
                         LangString.params(
-                                ResourceBundle.getBundle("/Bundle").getString("SaleCreated"),
+                                ResourceBundle.getBundle("/Bundle", getLangueSession().getLocale()).getString("SaleCreated"),
                                 produitVente.getNom()
                         )
                 );
@@ -147,7 +147,7 @@ public class CreerVenteController extends AbstractController {
                 System.out.println("ex2=" + e.getCause());
                 System.out.println("ex3=" + ((ConstraintViolationException)e.getCause()).getConstraintViolations());
                 JsfUtil.addErrorMessage(
-                        ResourceBundle.getBundle("/Bundle").getString("SaleCreatedError")
+                        ResourceBundle.getBundle("/Bundle", getLangueSession().getLocale()).getString("SaleCreatedError")
                 );
                 return "Create";
             }

@@ -31,7 +31,7 @@ public class EnchereGagnee implements Serializable {
     private Utilisateur acheteur;
 
     @NotNull
-    @OneToOne
+    @OneToOne(mappedBy = "enchereGagnee")
     private Enchere enchere;
 
     @Basic(optional = false)

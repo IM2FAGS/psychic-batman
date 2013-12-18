@@ -57,11 +57,11 @@ public class CreerCommandeController extends AbstractController {
             }
 
             commandeService.create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CommandeCree"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle", getLangueSession().getLocale()).getString("CommandeCree"));
             current = null;
             return "Create";
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("EchecTransaction"));
+            JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle", getLangueSession().getLocale()).getString("EchecTransaction"));
             return null;
         }
     }

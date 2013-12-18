@@ -20,7 +20,7 @@
                 <p:watermark for="pass" value="#{bundle.Password}"/>
             </div>
             <div class="form-group">
-                <h:commandButton id="login-btn" value="#{bundle.Login}" class="btn btn-primary" action="#{loginController.login}" />
+                <h:commandButton id="login-btn" value="#{bundle.Login}" class="btn btn-primary-navbar" action="#{loginController.login}" />
             </div>
             <div class="form-group">
                 <h:link outcome="/utilisateurs/Create" value="#{bundle.CreateAccount}" />
@@ -30,7 +30,7 @@
     </li>
     <li id="show-login-li">
         <div class="form-group navbar-form">
-            <button id="show-login" class="btn btn-primary">
+            <button id="show-login" class="btn btn-primary-navbar">
                 <h:outputText value="#{bundle.Login}" />
             </button>
         </div>

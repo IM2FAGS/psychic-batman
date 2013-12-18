@@ -37,7 +37,7 @@ public class Enchere implements Serializable {
     @OneToMany(mappedBy = "enchere")
     private List<Surenchere> surencheres;
 
-    @OneToOne(mappedBy = "enchere")
+    @OneToOne
     private EnchereGagnee enchereGagnee;
 
     @NotNull
@@ -56,6 +56,10 @@ public class Enchere implements Serializable {
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateDebut;
+
+    @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateFin;
 
     @Basic(optional = false)
     @NotNull
@@ -130,6 +134,14 @@ public class Enchere implements Serializable {
         this.dateDebut = dateDebut;
     }
 
+    public Date getDateFin() {
+        return dateFin;
+    }
+
+    public void setDateFin(Date dateFin) {
+        this.dateFin = dateFin;
+    }
+
     public int getDuree() {
         return duree;
     }
@@ -168,7 +180,16 @@ public class Enchere implements Serializable {
 
     @Override
     public String toString() {
-        return "abey.Enchere[ id=" + id + " ]";
+        return "abey.Enchere[ id=" + id + " ]"+ description;
+    }
+
+    public Surenchere getDerniereSurenchere() {
+        Surenchere max = null;
+        for (Surenchere surenchere : surencheres) {
+            if(max == null || surenchere.getDateEnchere().after(max.getDateEnchere()))
+                max = surenchere;
+        }
+        return max;
     }
 
 }

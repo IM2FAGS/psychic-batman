@@ -51,9 +51,9 @@ public class CreerBoutiqueController extends AbstractController {
         Image image = uploadImage(event);
         if (image != null) {
             boutique.setImage(image);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ImageUploaded"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle", getLangueSession().getLocale()).getString("ImageUploaded"));
         } else {
-            JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("ImageUploadedError"));
+            JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle", getLangueSession().getLocale()).getString("ImageUploadedError"));
         }
     }
 
@@ -61,26 +61,26 @@ public class CreerBoutiqueController extends AbstractController {
         try {
             Utilisateur utilisateur = getUtilisateurConnecte();
             if (utilisateur == null) {
-                JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("YouMustBeLoggedIn"));
+                JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle", getLangueSession().getLocale()).getString("YouMustBeLoggedIn"));
                 return null;
             } else if (utilisateur.getBoutique() != null) {
                 afficherBoutiqueController.setBoutique(utilisateur.getBoutique());
                 return "/boutiques/View";
             } else if (boutique.getImage() == null) {
-                JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("ShopImageRequired"));
+                JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle", getLangueSession().getLocale()).getString("ShopImageRequired"));
                 return null;
             }
             utilisateur.setBoutique(boutique);
             boutique.setProprietaire(utilisateur);
             boutiqueService.create(boutique);
             utilisateurService.edit(utilisateur);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ShopCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle", getLangueSession().getLocale()).getString("ShopCreated"));
             afficherBoutiqueController.setBoutique(boutique);
             //boutique = null;
             System.out.println("TOUT EST OK POUR LA CREATION DE LA BOUTIQUE " + boutique);
             return "/boutiques/View";
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("ShopCreatedError"));
+            JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle", getLangueSession().getLocale()).getString("ShopCreatedError"));
             return null;
         }
     }
@@ -94,16 +94,16 @@ public class CreerBoutiqueController extends AbstractController {
         try {
             Utilisateur utilisateur = getUtilisateurConnecte();
             if (utilisateur == null) {
-                JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("YouMustBeLoggedIn"));
+                JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle", getLangueSession().getLocale()).getString("YouMustBeLoggedIn"));
                 return null;
             }
             boutiqueService.edit(boutique);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ShopUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle", getLangueSession().getLocale()).getString("ShopUpdated"));
             afficherBoutiqueController.setBoutique(boutique);
             boutique = null;
             return "/boutiques/View";
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("ShopUpdatedError"));
+            JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle", getLangueSession().getLocale()).getString("ShopUpdatedError"));
             return null;
         }
     }
