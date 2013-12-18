@@ -94,14 +94,14 @@ public class CreerVenteController extends AbstractController {
                 annulerCreer();
                 JsfUtil.addSuccessMessage(
                         LangString.params(
-                                ResourceBundle.getBundle("/Bundle").getString("SaleCreated"),
+                                ResourceBundle.getBundle("/Bundle", getLangueSession().getLocale()).getString("SaleCreated"),
                                 produit.getNom()
                         )
                 );
                 return "Created";
             } catch (Exception e) {
                 JsfUtil.addErrorMessage(
-                        ResourceBundle.getBundle("/Bundle").getString("SaleCreatedError")
+                        ResourceBundle.getBundle("/Bundle", getLangueSession().getLocale()).getString("SaleCreatedError")
                 );
                 return "Create";
             }

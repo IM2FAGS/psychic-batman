@@ -26,6 +26,9 @@ public abstract class AbstractController implements Serializable {
     @ManagedProperty(value = "#{panierSession}")
     private PanierSession panierSession;
 
+    @ManagedProperty(value = "#{langueSession}")
+    private LangueSession langueSession;
+
     @EJB
     private PanierService panierService;
     
@@ -94,6 +97,14 @@ public abstract class AbstractController implements Serializable {
 
     public void setPanierSession(PanierSession panierSession) {
         this.panierSession = panierSession;
+    }
+
+    public LangueSession getLangueSession() {
+        return langueSession;
+    }
+
+    public void setLangueSession(LangueSession langueSession) {
+        this.langueSession = langueSession;
     }
 
     public void updatePanier() {

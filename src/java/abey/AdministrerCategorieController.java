@@ -39,10 +39,10 @@ public class AdministrerCategorieController extends AbstractController {
     public String create() {
         try {
             categorieService.create(current);
-            JsfUtil.addSuccessMessage(LangString.params(ResourceBundle.getBundle("/Bundle").getString("CategoryCreated"), current.getNom()));
+            JsfUtil.addSuccessMessage(LangString.params(ResourceBundle.getBundle("/Bundle", getLangueSession().getLocale()).getString("CategoryCreated"), current.getNom()));
             return "List";
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("CategoryCreatedError"));
+            JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle", getLangueSession().getLocale()).getString("CategoryCreatedError"));
             return null;
         }
     }
@@ -50,10 +50,10 @@ public class AdministrerCategorieController extends AbstractController {
     public String update() {
         try {
             categorieService.edit(current);
-            JsfUtil.addSuccessMessage(LangString.params(ResourceBundle.getBundle("/Bundle").getString("CategoryUpdated"), current.getNom()));
+            JsfUtil.addSuccessMessage(LangString.params(ResourceBundle.getBundle("/Bundle", getLangueSession().getLocale()).getString("CategoryUpdated"), current.getNom()));
             return "List";
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("CategoryUpdatedError"));
+            JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle", getLangueSession().getLocale()).getString("CategoryUpdatedError"));
             return null;
         }
     }
@@ -61,11 +61,11 @@ public class AdministrerCategorieController extends AbstractController {
     public String destroy(Categorie categorie) {
         try {
             categorieService.remove(categorie);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CategoryDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle", getLangueSession().getLocale()).getString("CategoryDeleted"));
             return "List";
         } catch (Exception e) {
             System.err.println(e);
-            JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle").getString("CategoryDeletedError"));
+            JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle", getLangueSession().getLocale()).getString("CategoryDeletedError"));
             return null;
         }
     }

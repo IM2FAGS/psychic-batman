@@ -1,5 +1,6 @@
 package abey;
 
+import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -9,7 +10,7 @@ import javax.faces.context.FacesContext;
 
 @ManagedBean
 @SessionScoped
-public class LangueSession extends AbstractController {
+public class LangueSession implements Serializable {
 
     private Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
 
