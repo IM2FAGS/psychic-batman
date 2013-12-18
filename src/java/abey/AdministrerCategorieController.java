@@ -11,7 +11,6 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-@Deprecated
 @ManagedBean
 @SessionScoped
 public class AdministrerCategorieController extends AbstractController {

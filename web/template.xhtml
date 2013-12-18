@@ -62,7 +62,6 @@
                                 <h:outputText value="#{bundle.Categories}" />
                             </li>
                             <c:forEach var="cat" items="${rechercheController.allCategories}">
-                                <!--<li><a href="#">#-{cat.nom}</a></li>-->
                                 <li>
                                     <h:commandLink action="#{rechercheController.search}" value="#{cat.nom}">
                                         <f:setPropertyActionListener target="#{rechercheController.categorieQuery}" value="#{cat}"/>
