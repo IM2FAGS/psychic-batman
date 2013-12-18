@@ -8,29 +8,72 @@
         <h:outputText value="#{bundle.MyCart}"></h:outputText>
     </ui:define>
     <ui:define name="body">
-        <h:outputText escape="false" value="#{bundle.CartEmpty}" rendered="#{panierController.getNumProduits() == 0}"/>
-        <h:panelGroup rendered="#{panierController.getNumProduits() > 0}">
-            <h:dataTable value="#{panierSession.panier.produits}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="quantite"/>
-                    </f:facet>
-                    <h:outputText value="#{item.quantite}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="nom"/>
-                    </f:facet>
-                    <h:outputText value="#{item.venteImmediate.produit.nom}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="prix"/>
-                    </f:facet>
-                    <h:outputText value="#{item.venteImmediate.prix}"/>
-                </h:column>
-            </h:dataTable>
-            <h:link outcome="/commande/Paiement" value="#{bundle.ValidCart}"/>
-        </h:panelGroup>
+        <h1>
+            <h:outputText value="#{bundle.MyCart}" />
+        </h1>
+        <h2>
+            <h:outputText value="#{bundle.MyCartPurchases}" />
+            <span class="badge pull-right">
+                <h:outputText value="#{panierController.getNumProduits()}" />
+            </span>
+        </h2>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h:outputText rendered="#{panierController.getNumProduits() == 0}"
+                              value="#{bundle.CartEmpty}" />
+                <h:panelGroup rendered="#{panierController.getNumProduits() > 0}">
+                    <h:dataTable value="#{panierSession.panier.produits}"
+                                 var="item">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="quantite"/>
+                            </f:facet>
+                            <h:outputText value="#{item.quantite}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="nom"/>
+                            </f:facet>
+                            <h:outputText value="#{item.venteImmediate.produit.nom}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="prix"/>
+                            </f:facet>
+                            <h:outputText value="#{item.venteImmediate.prix}"/>
+                        </h:column>
+                    </h:dataTable>
+                    <h:link outcome="/commande/Paiement" value="#{bundle.ValidCart}"/>
+                </h:panelGroup>
+            </div>
+        </div>
+        <h2>
+            <h:outputText value="#{bundle.MyAuctionSales}" />
+            <span class="badge pull-right">
+                <h:outputText value="#{panierSession.panier.encheres.size()}" />
+            </span>
+        </h2>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h:outputText rendered="#{panierSession.panier.encheres.size() == 0}"
+                              value="#{bundle.AuctionSalesEmpty}" />
+                <h:dataTable  rendered="#{panierSession.panier.encheres.size() > 0}"
+                              value="#{panierSession.panier.encheres}"
+                              var="item">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="nom"/>
+                        </f:facet>
+                        <h:outputText value="#{item.produit.nom}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="prix initial"/>
+                        </f:facet>
+                        <h:outputText value="#{item.prixInitial}"/>
+                    </h:column>
+                </h:dataTable>
+            </div>
+        </div>
     </ui:define>
 </ui:composition>

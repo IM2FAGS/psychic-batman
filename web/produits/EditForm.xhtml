@@ -38,17 +38,19 @@
                 <h:outputText value="#{bundle.Category}" />
             </label>
             <div class="col-sm-5">
-                <p:selectOneMenu value="#{creerProduitController.produit.categorie}"
+                <p:selectOneMenu id="categorie"
+                                 value="#{creerProduitController.produitCategorieId}"
                                  required="true"
                                  requiredMessage="#{bundle.CategoryRequired}"
                                  effect="fade"
-                                 styleClass="form-control">  
+                                 styleClass="form-control">
                     <f:selectItem itemLabel="#{bundle.SelectCategory}"
-                                  itemValue="" />  
+                                  itemValue="" />
                     <f:selectItems value="#{rechercheController.allCategories}"
-                                   itemLabel="#{player.name}"
-                                   itemValue="#{categorie}" />
-                </p:selectOneMenu>  
+                                   var="categorie"
+                                   itemLabel="#{categorie.nom}"
+                                   itemValue="#{categorie.id}"/>
+                </p:selectOneMenu>
             </div>
         </div>
         <div class="form-group">

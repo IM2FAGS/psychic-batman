@@ -4,6 +4,7 @@ import abey.entities.Boutique;
 import abey.entities.Image;
 import abey.entities.Utilisateur;
 import abey.services.BoutiqueService;
+import abey.services.UtilisateurService;
 import abey.util.JsfUtil;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
@@ -25,6 +26,9 @@ public class CreerBoutiqueController extends AbstractController {
 
     @EJB
     private BoutiqueService boutiqueService;
+    
+    @EJB
+    private UtilisateurService utilisateurService;
 
     private Boutique boutique;
 
@@ -69,9 +73,11 @@ public class CreerBoutiqueController extends AbstractController {
             utilisateur.setBoutique(boutique);
             boutique.setProprietaire(utilisateur);
             boutiqueService.create(boutique);
+            utilisateurService.edit(utilisateur);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle", getLangueSession().getLocale()).getString("ShopCreated"));
             afficherBoutiqueController.setBoutique(boutique);
-            boutique = null;
+            //boutique = null;
+            System.out.println("TOUT EST OK POUR LA CREATION DE LA BOUTIQUE " + boutique);
             return "/boutiques/View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(ResourceBundle.getBundle("/Bundle", getLangueSession().getLocale()).getString("ShopCreatedError"));
