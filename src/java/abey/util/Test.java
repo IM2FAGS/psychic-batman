@@ -130,7 +130,6 @@ public class Test {
 //        d.setTime(d.getTime()+60*1000);
 //        e.setDateFin(d);
         e.setDateFin(new Date());
-        e.setDescription("vdfghn");
         e.setPalierMin(1);
         e.setPrixInitial(55);
         e.setProduit(produitService.findAll().get(0));
@@ -143,7 +142,6 @@ public class Test {
         e.setDuree(98);
         d.setTime(d.getTime()+16*1000);
         e.setDateFin(d);
-        e.setDescription("salope");
         e.setPalierMin(1);
         e.setPrixInitial(55);
         e.setProduit(produitService.findAll().get(0));
@@ -156,7 +154,6 @@ public class Test {
         e.setDuree(98);
         d.setTime(d.getTime()+16*1000);
         e.setDateFin(d);
-        e.setDescription("pute");
         e.setPalierMin(1);
         e.setPrixInitial(55);
         e.setProduit(produitService.findAll().get(0));

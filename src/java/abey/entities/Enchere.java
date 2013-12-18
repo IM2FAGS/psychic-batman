@@ -65,11 +65,6 @@ public class Enchere implements Serializable {
     @NotNull
     private int duree;
 
-    @Basic(optional = false, fetch = FetchType.LAZY)
-    @NotNull
-    @Lob
-    private String description;
-
     public Long getId() {
         return id;
     }
@@ -150,14 +145,6 @@ public class Enchere implements Serializable {
         this.duree = duree;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -180,7 +167,7 @@ public class Enchere implements Serializable {
 
     @Override
     public String toString() {
-        return "abey.Enchere[ id=" + id + " ]"+ description;
+        return "abey.Enchere[ id=" + id + " ]";
     }
 
     public Surenchere getDerniereSurenchere() {

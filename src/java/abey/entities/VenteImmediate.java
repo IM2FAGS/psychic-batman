@@ -46,11 +46,6 @@ public class VenteImmediate implements Serializable {
     @NotNull
     private BigDecimal prix;
 
-    @Basic(optional = false, fetch = FetchType.LAZY)
-    @NotNull
-    @Lob
-    private String description;
-
     @Basic(optional = false)
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
@@ -102,14 +97,6 @@ public class VenteImmediate implements Serializable {
 
     public Date getDateVente() {
         return dateVente;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public void setDateVente(Date dateVente) {
