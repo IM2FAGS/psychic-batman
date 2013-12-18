@@ -10,6 +10,10 @@
     </ui:define>
     <ui:define name="body">
 
+        <h1>
+            <h:outputText value="#{bundle.SaveSale}" />
+        </h1>
+        
         <h:form class="form-horizontal">
             <p:messages autoUpdate="true" escape="false" />
 
@@ -63,9 +67,9 @@
                         <h:outputText value=" " />
                     </label>
                     <div class="col-sm-5">
-                        <h:link value="#{bundle.CreateMyProduct}"
-                                outcome="/produits/Create"
-                                styleClass="btn btn-success" />
+                        <h:commandLink value="#{bundle.CreateMyProduct}"
+                                       action="#{creerVenteController.creerProduit}"
+                                       styleClass="btn btn-success" />
                     </div>
                 </div>
 
@@ -94,7 +98,7 @@
                                    validatorMessage="#{bundle.StockInvalid}"
                                    requiredMessage="#{bundle.StockRequired}"
                                    styleClass="form-control">
-                            <f:ajax event="blur" render="msgs" />
+                            <f:ajax event="blur" />
                         </p:spinner>
                         <p:watermark for="stock" value="#{bundle.Stock}"/>
                     </div>
@@ -115,7 +119,7 @@
                                          requiredMessage="#{bundle.PricePerUnitRequired}"
                                          styleClass="form-control ui-abey-addon"
                                          style="text-align: right;">
-                                <f:ajax event="blur" render="msgs" />
+                                <f:ajax event="blur" />
                             </p:inputText>
                             <p:watermark for="prix" value="#{bundle.PricePerUnit}"/>
                             <span class="input-group-addon">€</span>
