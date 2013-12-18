@@ -1,9 +1,13 @@
 package abey.util;
 
 import abey.entities.Categorie;
+import abey.entities.Enchere;
+import abey.entities.EnchereGagnee;
 import abey.entities.Produit;
 import abey.entities.Utilisateur;
 import abey.services.CategorieService;
+import abey.services.EnchereGagneeService;
+import abey.services.EnchereService;
 import abey.services.ProduitService;
 import abey.services.UtilisateurService;
 import java.security.NoSuchAlgorithmException;
@@ -33,12 +37,19 @@ public class Test {
     @EJB
     private CategorieService categorieService;
 
+    @EJB
+    private EnchereService enchereService;
+
+    @EJB
+    private EnchereGagneeService enchereGagneeService;
+
     @PostConstruct
     public void init() {
         try {
-        fillCategories();
-//        fillProduits();
-        fillUtilisateurs();
+            fillCategories();
+            fillProduits();
+            fillUtilisateurs();
+            fillEncheres();
         } catch (Exception ex) {
             System.out.println(ex);
         }
@@ -46,7 +57,7 @@ public class Test {
 
     private void fillProduits() {
         System.out.println("fillProduits ... ");
-        
+
         Random rd = new Random();
         List<Categorie> categories = categorieService.findAll();
         for (int i = 0; i < 40; i++) {
@@ -107,6 +118,60 @@ public class Test {
             categorieService.create(cat);
         }
         System.out.println("fillCategories OK.");
+    }
+
+    private void fillEncheres() {
+        System.out.println("fillEncheres ... ");
+        Enchere e = new Enchere();
+        Date d /*= new Date()*/;
+        e.setDateDebut(new Date());
+        e.setDuree(98);
+//        d.setTime(d.getTime()+60*1000);
+//        e.setDateFin(d);
+        e.setDateFin(new Date());
+        e.setDescription("vdfghn");
+        e.setPalierMin(1);
+        e.setPrixInitial(55);
+        e.setProduit(produitService.findAll().get(0));
+        e.setVendeur(utilisateurService.findAll().get(0));
+        enchereService.create(e);
+
+        e = new Enchere();
+        d = new Date();
+        e.setDateDebut(new Date());
+        e.setDuree(98);
+        d.setTime(d.getTime()+16*1000);
+        e.setDateFin(d);
+        e.setDescription("salope");
+        e.setPalierMin(1);
+        e.setPrixInitial(55);
+        e.setProduit(produitService.findAll().get(0));
+        e.setVendeur(utilisateurService.findAll().get(0));
+        enchereService.create(e);
+        
+        e = new Enchere();
+        d = new Date();
+        e.setDateDebut(new Date());
+        e.setDuree(98);
+        d.setTime(d.getTime()+16*1000);
+        e.setDateFin(d);
+        e.setDescription("pute");
+        e.setPalierMin(1);
+        e.setPrixInitial(55);
+        e.setProduit(produitService.findAll().get(0));
+        e.setVendeur(utilisateurService.findAll().get(0));
+        
+        EnchereGagnee eg = new EnchereGagnee();
+        eg.setAcheteur(e.getVendeur());
+        eg.setDateSurenchere(d);
+        eg.setEnchere(e);
+        eg.setModePaiement((short)1);
+        eg.setMontant(845);
+        enchereService.create(e);
+        enchereGagneeService.create(eg);
+        e.setEnchereGagnee(eg);
+        enchereService.edit(e);
+        System.out.println("fillEncheres OK.");
     }
 
 }
