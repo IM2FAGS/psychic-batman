@@ -4,19 +4,44 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
-    <p:messages id="msgs" autoUpdate="true" />
+    <p:messages autoUpdate="true" />
     <div class="form-group">
-        <h:outputLabel value="#{bundle.Name}" class="col-sm-2 control-label" for="#{bundle.ShopIdName}" />
+        <h:outputLabel value="#{bundle.Name}" class="col-sm-2 control-label" for="nom" />
         <div class="col-sm-5">
-            <h:inputText id="#{bundle.ShopIdName}" value="#{creerBoutiqueController.selected.nom}" title="#{bundle.ShopName}" styleClass="form-control"/>
-            <p:watermark for="#{bundle.ShopIdName}" value="Nom de la boutique"/>
+            <h:inputText id="nom"
+                         value="#{creerBoutiqueController.boutique.nom}"
+                         required="true"
+                         requiredMessage="#{bundle.ShopNameRequired}"
+                         title="#{bundle.ShopName}"
+                         styleClass="form-control" />
+            <p:watermark for="nom" value="#{bundle.ShopName}"/>
         </div>
     </div>
     <div class="form-group">
-        <h:outputLabel value="#{bundle.Description}" class="col-sm-2 control-label" for="#{bundle.ShopIdDescription}" />
+        <h:outputLabel value="#{bundle.Description}"
+                       class="col-sm-2 control-label"
+                       for="description" />
         <div class="col-sm-5">
-            <h:inputTextarea id="#{bundle.ShopIdDescription}" value="#{creerBoutiqueController.selected.description}" title="#{bundle.ShopDescription}" styleClass="form-control"/>
-            <p:watermark for="#{bundle.ShopIdDescription}" value="Description de la boutique"/>
+            <h:inputTextarea id="description"
+                             value="#{creerBoutiqueController.boutique.description}"
+                             required="true"
+                             requiredMessage="#{bundle.ShopDescriptionRequired}"
+                             title="#{bundle.ShopDescription}"
+                             styleClass="form-control"/>
+            <p:watermark for="description" value="#{bundle.ShopDescription}"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="image" class="col-sm-2 control-label">
+            <h:outputText value="#{bundle.Image}" />
+        </label>
+        <div class="col-sm-5">
+            <p:fileUpload fileUploadListener="#{creerBoutiqueController.uploadImageBoutique}"
+                          mode="advanced"
+                          dragDropSupport="true"
+                          sizeLimit="#{creerBoutiqueController.sizeLimit}"
+                          allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+                          auto="true" />
         </div>
     </div>
 </ui:composition>

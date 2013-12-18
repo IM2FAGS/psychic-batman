@@ -4,6 +4,7 @@ import abey.entities.Categorie;
 import abey.services.ProduitService;
 import abey.entities.Produit;
 import abey.services.CategorieService;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -24,6 +25,7 @@ public class RechercheController extends AbstractController {
 
     @EJB
     private ProduitService produitService;
+    
     @EJB
     private CategorieService categorieService;
 
@@ -82,6 +84,7 @@ public class RechercheController extends AbstractController {
 
     public List<Categorie> getAllCategories() {
         return categorieService.findAllOrderedByColumn("nom");
+        //return new ArrayList<Categorie>();
     }
 
 }

@@ -43,6 +43,7 @@ public class Boutique implements Serializable {
     @OneToMany(mappedBy = "boutique")
     private List<VenteImmediate> ventesImmediates;
 
+    @NotNull
     @OneToOne
     private Image image;
 

@@ -11,50 +11,50 @@
     <ui:define name="body">
         <h1><h:outputText value="#{bundle.MyProfile}" /></h1>
 
-        <div class="row">
-            <div class="col-lg-4">
-                <h2><h:outputText value="#{bundle.MySales}" /></h2>
-                <ul>
-                    <h:panelGroup rendered="#{utilisateurSession.utilisateur.boutique == null}">
+        <h:form>
+            <div class="row">
+                <div class="col-lg-4">
+                    <h2><h:outputText value="#{bundle.MySales}" /></h2>
+                    <ul>
+                        <h:panelGroup rendered="#{utilisateurSession.utilisateur.boutique == null}">
+                            <li>
+                                <h:link outcome="/boutiques/Create"
+                                        value="#{bundle.CreateShop}" />
+                            </li>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{utilisateurSession.utilisateur.boutique != null}">
+                            <li>
+                                <h:link outcome="/boutiques/View"
+                                        value="#{bundle.MyShop}" />
+                            </li>
+                        </h:panelGroup>
                         <li>
-                            <h:link outcome="/boutiques/Create"
-                                    value="#{bundle.CreateShop}" />
+                            <h:commandLink action="#{creerBoutiqueController.initEditer}"
+                                           value="#{bundle.MyAuctionSales}" />
                         </li>
-                    </h:panelGroup>
-                    <h:panelGroup rendered="#{utilisateurSession.utilisateur.boutique != null}">
-                        <li>
-                            <h:link outcome="/boutiques/View"
-                                    value="#{bundle.MyShop}" />
-                        </li>
-                    </h:panelGroup>
-                    <li>
-                        <h:link outcome="/encheres/View"
-                                value="#{bundle.MyAuctionSales}" />
-                    </li>
-                </ul>
-            </div>
+                    </ul>
+                </div>
 
-            <div class="col-lg-4">
-                <h2><h:outputText value="#{bundle.MyPurchases}" /></h2>
-                <ul>
-                    <li>
-                        <h:link outcome="/historique/View"
-                                value="#{bundle.MyOrders}" />
-                    </li>
-                </ul>
-            </div>
-            
-            <div class="col-lg-4">
-                <h2><h:outputText value="#{bundle.MyAccount}" /></h2>
-                <h:form>
+                <div class="col-lg-4">
+                    <h2><h:outputText value="#{bundle.MyPurchases}" /></h2>
+                    <ul>
+                        <li>
+                            <h:link outcome="/historique/View"
+                                    value="#{bundle.MyOrders}" />
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4">
+                    <h2><h:outputText value="#{bundle.MyAccount}" /></h2>
                     <ul>
                         <li>
                             <h:commandLink action="#{creerUtilisateurController.initEditer}"
                                            value="#{bundle.MyAccount}" />
                         </li>
                     </ul>
-                </h:form>
+                </div>
             </div>
-        </div>
+        </h:form>
     </ui:define>
 </ui:composition>

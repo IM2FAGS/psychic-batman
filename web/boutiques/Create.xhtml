@@ -5,18 +5,18 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="title">
-        <h:outputText value="#{bundle.CreateShop}"></h:outputText>
+        <h:outputText value="#{bundle.CreateShop}" />
     </ui:define>
     <ui:define name="body">
-        <h:form class="form-horizontal">
+        <h:form class="form-horizontal" enctype="multipart/form-data">
             <h1>
                 <h:outputText value="#{bundle.CreateShop}" />
             </h1>
             <ui:include src="EditForm.xhtml" />
             <br />
-            <h:commandButton actionListener="#{creerBoutiqueController.create}"
-                             value="#{bundle.CreateShop}"
-                             styleClass="btn btn-primary" />
+            <h:commandLink action="#{creerBoutiqueController.creer}"
+                           value="#{bundle.CreateShop}"
+                           styleClass="btn btn-primary" />
         </h:form>
     </ui:define>
 </ui:composition>
