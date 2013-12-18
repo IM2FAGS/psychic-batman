@@ -48,6 +48,6 @@ public class LoginController extends AbstractController {
     public String logout() {
         updatePanier();
         setUtilisateurConnecte(null);
-        return null;
+        return "/index";
     }
 }
