@@ -2,6 +2,7 @@ package abey.tasks;
 
 import abey.entities.Enchere;
 import abey.entities.EnchereGagnee;
+import abey.entities.ModePaiement;
 import abey.entities.Surenchere;
 import abey.services.EnchereGagneeService;
 import abey.services.EnchereService;
@@ -35,7 +36,7 @@ public class Encheres {
                 eg.setAcheteur(gagne.getEncherisseur());
                 eg.setDateSurenchere(gagne.getDateEnchere());
                 eg.setEnchere(enchere);
-                eg.setModePaiement((short) 1);//TODO
+                eg.setModePaiement(ModePaiement.CB);//TODO mode paiement
                 eg.setMontant(gagne.getMontant());
 
                 enchereService.create(enchere);

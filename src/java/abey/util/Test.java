@@ -3,6 +3,7 @@ package abey.util;
 import abey.entities.Categorie;
 import abey.entities.Enchere;
 import abey.entities.EnchereGagnee;
+import abey.entities.ModePaiement;
 import abey.entities.Produit;
 import abey.entities.Utilisateur;
 import abey.services.CategorieService;
@@ -165,7 +166,7 @@ public class Test {
         eg.setAcheteur(e.getVendeur());
         eg.setDateSurenchere(d);
         eg.setEnchere(e);
-        eg.setModePaiement((short)1);
+        eg.setModePaiement(ModePaiement.CB);
         eg.setMontant(845);
         enchereService.create(e);
         enchereGagneeService.create(eg);

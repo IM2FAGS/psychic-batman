@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,7 +44,8 @@ public class Commande implements Serializable {
 
     @Basic(optional = false)
     @NotNull
-    private short modePaiement;
+    @Enumerated(EnumType.STRING)
+    private ModePaiement modePaiement;
 
     public Long getId() {
         return id;
@@ -83,11 +86,11 @@ public class Commande implements Serializable {
         this.dateCommande = dateCommande;
     }
 
-    public short getModePaiement() {
+    public ModePaiement getModePaiement() {
         return modePaiement;
     }
 
-    public void setModePaiement(short modePaiement) {
+    public void setModePaiement(ModePaiement modePaiement) {
         this.modePaiement = modePaiement;
     }
 
