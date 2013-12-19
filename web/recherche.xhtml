@@ -18,7 +18,15 @@
                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                         rowsPerPageTemplate="9,12,15">
 
-                <p:panel header="#{prod.nom}" style="text-align:center">
+                <p:panel header="#{prod.nom}" style="text-align:center" >
+					<h:commandLink action="#{afficherProduitController.afficheProduit()}">
+						<f:setPropertyActionListener value="#{prod}" 
+                                                         target="#{afficherProduitController.produit}" />
+						<p:graphicImage value="#{imageController.image}">
+							<f:param name="imageId" value="#{prod.id}" />
+							<f:param name="thumb" value="#{false}" />
+						</p:graphicImage>
+					</h:commandLink>
                     <h:panelGrid columns="1" style="width:100%">
                         <!--<p:graphicImage value="/images/cars/#-{car.manufacturer}.jpg"/>--> 
 
