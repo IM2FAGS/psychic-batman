@@ -12,7 +12,7 @@ import javax.faces.bean.RequestScoped;
 
 /**
  *
- * @author nicolas
+ * @author Anthony
  */
 @ManagedBean
 @RequestScoped
@@ -27,7 +27,7 @@ public class AfficherHistoriqueController extends AbstractController {
     public List<Commande> getCommandes() {
         Utilisateur u = getUtilisateurConnecte();
         if (u != null) {
-            return commandeService.findAllOrderedByColumnDesc("dateCommande");
+            return commandeService.getCommandes(u);
         } else {
             return null;
         }
