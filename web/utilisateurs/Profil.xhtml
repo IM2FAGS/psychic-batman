@@ -24,7 +24,7 @@
                         </h:panelGroup>
                         <h:panelGroup rendered="#{utilisateurSession.utilisateur.boutique != null}">
                             <li>
-                                <h:link outcome="/boutiques/View"
+                                <h:commandLink action="#{afficherBoutiqueController.initMaBoutique()}"
                                         value="#{bundle.MyShop}" />
                             </li>
                         </h:panelGroup>
