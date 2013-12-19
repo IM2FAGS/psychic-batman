@@ -4,48 +4,61 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:p="http://primefaces.org/ui">
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <ui:define name="title">
         <h:outputText value="#{bundle.Search}" />
     </ui:define>
     <ui:define name="body">
-        <h:outputText value="No matches found!" rendered="#{empty rechercheController.produits}" />
+        <h1>
+            <h:outputFormat value="#{bundle.SearchingFor}" escape="false">
+                <f:param value="#{rechercheController.query}" />
+            </h:outputFormat>
+        </h1>
+
+        <h:panelGroup rendered="#{not empty rechercheController.categorieQuery.nom}">
+            <h4>
+                <h:outputText value="#{rechercheController.categorieQuery.nom}" />
+            </h4>
+        </h:panelGroup>
+
+        <h:outputText value="#{bundle.NoResult}" rendered="#{empty rechercheController.produits}" />
 
         <h:form id="form">
-            <h:outputText value="#{rechercheController.categorieQuery.nom}" />
-            <p:dataGrid var="prod" value="#{rechercheController.produits}" columns="3"
-                        rows="12" paginator="true"
-                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                        rowsPerPageTemplate="9,12,15">
 
-                <p:panel header="#{prod.nom}" style="text-align:center">
-                    <h:panelGrid columns="1" style="width:100%">
-                        <!--<p:graphicImage value="/images/cars/#-{car.manufacturer}.jpg"/>--> 
-
-                        <p:commandLink update=":form:prodDetail" oncomplete="PF('prodDialog').show()" title="View Detail">
-                            <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" /> 
-                            <f:setPropertyActionListener value="#{prod}" 
-                                                         target="#{rechercheController.selectedProduit}" />
-                        </p:commandLink>
-                    </h:panelGrid>
-                </p:panel>
-
-            </p:dataGrid>
-
-            <p:dialog header="Details Produit" widgetVar="prodDialog" modal="true">
-                <p:outputPanel id="prodDetail" style="text-align:center;">
-
-                        <!--<p:graphicImage value="/images/cars/#{tableBean.selectedCar.manufacturer}.jpg"/>-->
-
-                    <h:panelGrid  columns="2" cellpadding="5">
-                        <h:outputLabel for="nom" value="Model No: " />
-                        <h:outputText id="nom" value="#{rechercheController.selectedProduit.nom}" />
-
-                        <h:outputLabel for="description" value="description " />
-                        <h:outputText id="description" value="#{rechercheController.selectedProduit.description}" />
-                    </h:panelGrid>
-                </p:outputPanel>
-            </p:dialog>
+            <c:forEach var="produit" items="#{rechercheController.produits}">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <h:panelGroup rendered="#{produit.mainImage != null}">
+                                    <span class="thumbnail">
+                                        <p:graphicImage value="#{imageController.image}">
+                                            <f:param name="imageId" value="#{produit.mainImage}" />
+                                            <f:param name="thumb" value="#{false}" />
+                                        </p:graphicImage>
+                                    </span>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{produit.mainImage == null}">
+                                    <span class="thumbnail">
+                                        <span class="glyphicon glyphicon-picture" />
+                                    </span>
+                                </h:panelGroup>
+                            </div>
+                            <div class="col-lg-10">
+                                <div class="product-name">
+                                    <h:outputText value="#{produit.nom}" />
+                                </div>
+                                <div class="product-price">
+                                    <h:outputFormat value="#{bundle.SoldFrom}">
+                                        <f:param value="XXXX" />
+                                    </h:outputFormat>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
 
         </h:form>
     </ui:define>

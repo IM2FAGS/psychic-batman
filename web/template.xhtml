@@ -70,18 +70,24 @@
                             <li class="dropdown-header" role="presentation">
                                 <h:outputText value="#{bundle.Categories}" />
                             </li>
+                            <li class="divider"></li>
+                            <li>
+                                <h:commandLink action="#{rechercheController.search}"
+                                               value="#{bundle.AllProducts}">
+                                    <f:setPropertyActionListener target="#{rechercheController.categorieQuery}"
+                                                                 value="#{null}"/>
+                                </h:commandLink>
+                            </li>
+                            <li class="divider"></li>
                             <c:forEach var="cat" items="#{rechercheController.allCategories}">
                                 <li>
-                                    <h:commandLink action="#{rechercheController.search}" value="#{cat.nom}">
-                                        <f:setPropertyActionListener target="#{rechercheController.categorieQuery}" value="#{cat}"/>
+                                    <h:commandLink action="#{rechercheController.search}"
+                                                   value="#{cat.nom}">
+                                        <f:setPropertyActionListener target="#{rechercheController.categorieQuery}"
+                                                                     value="#{cat}"/>
                                     </h:commandLink>
                                 </li>
                             </c:forEach>
-                            <li>
-                                <h:commandLink action="#{rechercheController.search}" value="TOUS LES PRODUITS">
-                                    <f:setPropertyActionListener target="#{rechercheController.categorieQuery}" value="#{null}"/>
-                                </h:commandLink>
-                            </li>
                         </ul>
                     </h:form>
                 </div>
