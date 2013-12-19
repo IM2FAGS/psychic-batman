@@ -111,13 +111,13 @@ public class Commande implements Serializable {
     public String toString() {
         return "abey.entities.Commande[ id=" + id + " ]";
     }
-    
-    public BigDecimal getMontant(){
+
+    public BigDecimal getMontant() {
         BigDecimal total = BigDecimal.ZERO;
-        for(Achat a : achats){
-            total.add(a.getPrixUnitaire().multiply(new BigDecimal(a.getQuantite())));
+        for (Achat a : achats) {
+            total = total.add(a.getPrixUnitaire().multiply(new BigDecimal(a.getQuantite())));
         }
-        return total; 
+        return total;
     }
 
 }

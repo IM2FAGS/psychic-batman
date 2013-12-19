@@ -1,16 +1,25 @@
 package abey.util;
 
+import abey.entities.Achat;
+import abey.entities.Boutique;
 import abey.entities.Categorie;
+import abey.entities.Commande;
 import abey.entities.Enchere;
 import abey.entities.ModePaiement;
 import abey.entities.Produit;
 import abey.entities.Surenchere;
 import abey.entities.Utilisateur;
+import abey.entities.VenteImmediate;
+import abey.services.AchatService;
+import abey.services.BoutiqueService;
 import abey.services.CategorieService;
+import abey.services.CommandeService;
 import abey.services.EnchereService;
 import abey.services.ProduitService;
 import abey.services.SurenchereService;
 import abey.services.UtilisateurService;
+import abey.services.VenteImmediateService;
+import java.math.BigDecimal;
 import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
 import java.util.Date;
@@ -39,8 +48,20 @@ public class Test {
     private CategorieService categorieService;
 
     @EJB
+    private AchatService achatService;
+
+    @EJB
+    private CommandeService commandeService;
+
+    @EJB
+    private VenteImmediateService venteImmediateService;
+
+    @EJB
+    private BoutiqueService boutiqueService;
+
+    @EJB
     private EnchereService enchereService;
-    
+
     @EJB
     private SurenchereService surenchereService;
 
@@ -50,6 +71,9 @@ public class Test {
             fillCategories();
             fillProduits();
             fillUtilisateurs();
+            fillBoutiques();
+            fillVentes();
+            fillCommandes();
             fillEncheres();
         } catch (Exception ex) {
             System.out.println(ex);
@@ -95,6 +119,62 @@ public class Test {
         System.out.println("fillUtilisateurs OK.");
     }
 
+    private void fillBoutiques() {
+        System.out.println("fillBoutiques ... ");
+        Boutique b = new Boutique();
+        b.setDescription("Bla bla");
+        b.setNom("VDFGH");
+        Utilisateur u = utilisateurService.findAll().get(0);
+        b.setProprietaire(u);
+        u.setBoutique(b);
+        boutiqueService.create(b);
+        utilisateurService.edit(u);
+        System.out.println("fillBoutiques OK.");
+    }
+
+    private void fillVentes() {
+        System.out.println("fillVentes ... ");
+        VenteImmediate v = new VenteImmediate();
+        v.setPrix(BigDecimal.TEN);
+        v.setStock(18);
+        Produit p = produitService.findAll().get(0);
+        v.setProduit(p);
+        p.getVentesImmediates().add(v);
+        v.setDateVente(new Date());
+        Boutique b = boutiqueService.findAll().get(0);
+        v.setBoutique(b);
+        b.getVentesImmediates().add(v);
+        venteImmediateService.create(v);
+        produitService.edit(p);
+        boutiqueService.edit(b);
+        System.out.println("fillVentes OK.");
+    }
+
+    private void fillCommandes() {
+        System.out.println("fillCommandes ... ");
+        Commande c = new Commande();
+        c.setDateCommande(new Date());
+        c.setModePaiement(ModePaiement.CB);
+        Utilisateur u = utilisateurService.findAll().get(0);
+        c.setAcheteur(u);
+        u.getCommandes().add(c);
+        commandeService.create(c);
+        utilisateurService.edit(u);
+
+        Achat a = new Achat();
+        a.setCommande(c);
+        c.getAchats().add(a);
+        a.setPrixUnitaire(new BigDecimal(50));
+        a.setQuantite(8);
+        VenteImmediate v = venteImmediateService.findAll().get(0);
+        a.setVenteImmediate(v);
+        v.getAchats().add(a);
+        achatService.create(a);
+        commandeService.edit(c);
+        venteImmediateService.edit(v);
+        System.out.println("fillCommandes OK.");
+    }
+
     private void fillCategories() {
         System.out.println("fillCategories ... ");
         String categories[] = {
@@ -124,6 +204,8 @@ public class Test {
     private void fillEncheres() {
         System.out.println("fillEncheres ... ");
         Enchere e = new Enchere();
+        Produit p = produitService.findAll().get(0);
+        Utilisateur u = utilisateurService.findAll().get(0);
         Date d /*= new Date()*/;
         e.setDateDebut(new Date());
         e.setDuree(98);
@@ -132,42 +214,52 @@ public class Test {
         e.setDateFin(new Date());
         e.setPalierMin(1);
         e.setPrixInitial(55);
-        e.setProduit(produitService.findAll().get(0));
-        e.setVendeur(utilisateurService.findAll().get(0));
+        e.setProduit(p);
+        p.getEncheres().add(e);
+        e.setVendeur(u);
         enchereService.create(e);
+        produitService.edit(p);
+        utilisateurService.edit(u);
 
         e = new Enchere();
         d = new Date();
         e.setDateDebut(new Date());
         e.setDuree(98);
-        d.setTime(d.getTime()+16*1000);
+        d.setTime(d.getTime() + 16 * 1000);
         e.setDateFin(d);
         e.setPalierMin(1);
         e.setPrixInitial(55);
-        e.setProduit(produitService.findAll().get(0));
-        e.setVendeur(utilisateurService.findAll().get(0));
+        e.setProduit(p);
+        p.getEncheres().add(e);
+        e.setVendeur(u);
         enchereService.create(e);
-        
+        produitService.edit(p);
+        utilisateurService.edit(u);
+
         e = new Enchere();
         d = new Date();
         e.setDateDebut(new Date());
         e.setDuree(98);
-        d.setTime(d.getTime()+16*1000);
+        d.setTime(d.getTime() + 16 * 1000);
         e.setDateFin(d);
         e.setPalierMin(1);
         e.setPrixInitial(55);
-        e.setProduit(produitService.findAll().get(0));
-        e.setVendeur(utilisateurService.findAll().get(0));
-        
+        e.setProduit(p);
+        p.getEncheres().add(e);
+        e.setVendeur(u);
+        enchereService.create(e);
+        produitService.edit(p);
+        utilisateurService.edit(u);
+
         Surenchere eg = new Surenchere();
         eg.setEncherisseur(e.getVendeur());
         eg.setDateEnchere(d);
         eg.setEnchere(e);
+        e.getSurencheres().add(eg);
+        e.setSurenchereGagnante(eg);
         eg.setModePaiement(ModePaiement.CB);
         eg.setMontant(845);
-        enchereService.create(e);
         surenchereService.create(eg);
-        e.setSurenchereGagnante(eg);
         enchereService.edit(e);
         System.out.println("fillEncheres OK.");
     }

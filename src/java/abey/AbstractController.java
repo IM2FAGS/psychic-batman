@@ -31,10 +31,10 @@ public abstract class AbstractController implements Serializable {
 
     @EJB
     private PanierService panierService;
-    
+
     @EJB
     private UtilisateurService utilisateurService;
-    
+
     @EJB
     protected abey.services.ImageService imageService;
 
@@ -118,11 +118,11 @@ public abstract class AbstractController implements Serializable {
             }
             getPanierSite().setUtilisateur(getUtilisateurConnecte());
             getUtilisateurConnecte().setPanier(getPanierSite());
-            if(getPanierSite().getId() == null){
+            if (getPanierSite().getId() == null) {
                 System.out.println("CREATE");
                 panierService.create(getPanierSite());
                 utilisateurService.edit(getUtilisateurConnecte());
-            }else{
+            } else {
                 panierService.edit(getPanierSite());
             }
         } else if (getPanierSite().getEncheres().size() + getPanierSite().getProduits().size() == 0) {
