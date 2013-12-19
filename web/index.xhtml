@@ -4,11 +4,128 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:p="http://primefaces.org/ui">
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <ui:define name="title">
         <h:outputText value="#{bundle.WelcomeOnAbey}" />
     </ui:define>
     <ui:define name="body">
         <p:messages autoUpdate="true"/>
+        <h1>
+            <h:outputText value="#{bundle.TopSales}" />
+        </h1>
+
+        <div id="top-sales">
+            <c:forEach var="venteImmediate" items="#{indexController.topVentes}">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <h:panelGroup rendered="#{venteImmediate.produit.mainImage != null}">
+                                    <span class="thumbnail">
+                                        <p:graphicImage value="#{imageController.image}">
+                                            <f:param name="imageId" value="#{venteImmediate.produit.mainImage}" />
+                                            <f:param name="thumb" value="#{false}" />
+                                        </p:graphicImage>
+                                    </span>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{venteImmediate.produit.mainImage == null}">
+                                    <span class="thumbnail">
+                                        <span class="glyphicon glyphicon-picture" />
+                                    </span>
+                                </h:panelGroup>
+                            </div>
+                            <div class="col-lg-10">
+                                <div class="product-name">
+                                    <h:outputText value="#{venteImmediate.produit.nom}" />
+                                </div>
+                                <div class="product-price">
+                                    <h:outputFormat value="#{bundle.SoldFrom}">
+                                        <f:param value="#{venteImmediate.prix}" />
+                                    </h:outputFormat>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-6" id="favorites">
+                <h2>
+                    <h:outputText value="#{bundle.Favorites}" />
+                </h2>
+                <c:forEach var="produit" items="#{indexController.coupsDeCoeur}">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <h:panelGroup rendered="#{produit.mainImage != null}">
+                                        <span class="thumbnail">
+                                            <p:graphicImage value="#{imageController.image}">
+                                                <f:param name="imageId" value="#{produit.mainImage}" />
+                                                <f:param name="thumb" value="#{false}" />
+                                            </p:graphicImage>
+                                        </span>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{produit.mainImage == null}">
+                                        <span class="thumbnail">
+                                            <span class="glyphicon glyphicon-picture" />
+                                        </span>
+                                    </h:panelGroup>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="product-name">
+                                        <h:outputText value="#{produit.nom}" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
+
+            <div class="col-lg-6" id="trackes-auction-sales">
+                <h2>
+                    <h:outputText value="#{bundle.TrackedAuctionSales}" />
+                </h2>
+                <c:forEach var="enchere" items="#{indexController.encheresASuivre}">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <h:panelGroup rendered="#{enchere.produit.mainImage != null}">
+                                        <span class="thumbnail">
+                                            <p:graphicImage value="#{imageController.image}">
+                                                <f:param name="imageId" value="#{enchere.produit.mainImage}" />
+                                                <f:param name="thumb" value="#{false}" />
+                                            </p:graphicImage>
+                                        </span>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{enchere.produit.mainImage == null}">
+                                        <span class="thumbnail">
+                                            <span class="glyphicon glyphicon-picture" />
+                                        </span>
+                                    </h:panelGroup>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="product-name">
+                                        <h:outputText value="#{enchere.produit.nom}" />
+                                    </div>
+                                    <div class="product-price">
+                                        <h:outputFormat value="#{bundle.SoldFrom}">
+                                            <f:param value="#{enchere.montantCourant}" />
+                                        </h:outputFormat>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
+
+        </div>
     </ui:define>
 </ui:composition>
