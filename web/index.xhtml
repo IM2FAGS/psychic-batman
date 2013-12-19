@@ -40,9 +40,12 @@
                                     <h:outputText value="#{venteImmediate.produit.nom}" />
                                 </div>
                                 <div class="product-price">
-                                    <h:outputFormat value="#{bundle.SoldFrom}">
-                                        <f:param value="#{venteImmediate.prix}" />
+                                    <h:outputFormat value="#{bundle.SoldFrom}"
+                                                    rendered="#{venteImmediate.produit.prixMin > 0}">
+                                        <f:param value="#{venteImmediate.produit.prixMin}" />
                                     </h:outputFormat>
+                                    <h:outputText rendered="#{venteImmediate.produit.prixMin == 0}"
+                                                  value="#{bundle.ProductNotAvailable}" />
                                 </div>
                             </div>
                         </div>
@@ -79,6 +82,14 @@
                                 <div class="col-lg-9">
                                     <div class="product-name">
                                         <h:outputText value="#{produit.nom}" />
+                                    </div>
+                                    <div class="product-price">
+                                        <h:outputFormat value="#{bundle.SoldFrom}"
+                                                        rendered="#{produit.prixMin > 0}">
+                                            <f:param value="#{produit.prixMin}" />
+                                        </h:outputFormat>
+                                        <h:outputText rendered="#{produit.prixMin == 0}"
+                                                      value="#{bundle.ProductNotAvailable}" />
                                     </div>
                                 </div>
                             </div>

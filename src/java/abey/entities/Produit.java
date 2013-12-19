@@ -159,19 +159,30 @@ public class Produit implements Serializable {
         return "abey.entities.Produit[ id=" + id + " ]";
     }
     
-    public BigDecimal getPrixMin() {
+    public BigDecimal getPrixMinVenteImmediate() {
         BigDecimal prixMin = BigDecimal.ZERO;
-        for (Enchere enchere : encheres) {
-            if (enchere.getMontantCourant().compareTo(prixMin) < 0) {
-                prixMin = enchere.getMontantCourant();
-            }
-        }
         for (VenteImmediate venteImmediate : ventesImmediates) {
             if (venteImmediate.getStock() > 0 && venteImmediate.getPrix().compareTo(prixMin) < 0) {
                 prixMin = venteImmediate.getPrix();
             }
         }
         return prixMin;
+    }
+    
+    public BigDecimal getPrixMinEnchere() {
+        BigDecimal prixMin = BigDecimal.ZERO;
+        for (Enchere enchere : encheres) {
+            if (enchere.getMontantCourant().compareTo(prixMin) < 0) {
+                prixMin = enchere.getMontantCourant();
+            }
+        }
+        return prixMin;
+    }
+    
+    public BigDecimal getPrixMin() {
+        BigDecimal prixMinVenteImmediate = getPrixMinVenteImmediate();
+        BigDecimal prixMinEnchere = getPrixMinEnchere();
+        return prixMinVenteImmediate.compareTo(prixMinEnchere) < 0 ? prixMinVenteImmediate : prixMinEnchere;
     }
 
 }
