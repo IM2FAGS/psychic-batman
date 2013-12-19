@@ -1,6 +1,7 @@
 package abey.entities;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
@@ -37,7 +38,7 @@ public class Surenchere implements Serializable {
 
     @Basic(optional = false)
     @NotNull
-    private float montant;
+    private BigDecimal montant;
 
     @Basic(optional = false)
     @NotNull
@@ -73,11 +74,11 @@ public class Surenchere implements Serializable {
         this.enchere = enchere;
     }
 
-    public float getMontant() {
+    public BigDecimal getMontant() {
         return montant;
     }
 
-    public void setMontant(float montant) {
+    public void setMontant(BigDecimal montant) {
         this.montant = montant;
     }
 
