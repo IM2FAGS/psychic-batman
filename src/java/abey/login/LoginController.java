@@ -7,6 +7,8 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -48,6 +50,9 @@ public class LoginController extends AbstractController {
     public String logout() {
         updatePanier();
         setUtilisateurConnecte(null);
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession httpSession = (HttpSession)facesContext.getExternalContext().getSession(false);
+        httpSession.invalidate();
         return "/index";
     }
 }
