@@ -24,7 +24,7 @@ public class AfficherBoutiqueController extends AbstractController {
     
     public String initMaBoutique() {
         boutique = getUtilisateurConnecte().getBoutique();
-        return "View";
+        return "/boutiques/View";
     }
     
 }

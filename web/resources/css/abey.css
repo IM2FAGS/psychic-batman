@@ -171,7 +171,7 @@ footer {
 }
 
 .btn-primary-navbar {
-  color: #5E79F0;
+  color: #3468F0;
   background-color: #E0E0E0;
   border-color: #F0F0F0;
   font-weight: bold;
@@ -197,8 +197,8 @@ footer {
 }
 
 .navbar-inverse {
-  background-color: #5E79F0;
-  border-color:#5E79F0;
+  background-color: #3468F0;
+  border-color:#3468F0;
 }
 
 .navbar-inverse .navbar-brand {
@@ -220,19 +220,32 @@ footer {
 }*/
 
 .container-footer{
-background-color: #5E79F0;
-  border-color: #5E79F0;
+background-color: #3468F0;
+  border-color: #3468F0;
   color: #FFFFFF;
 }
 
 .container-footer > ul > li > a{
-  background-color: #5E79F0;
-  border-color: #5E79F0;
+  background-color: #3468F0;
+  border-color: #3468F0;
   color: #FFFFFF;
 }
 
 .btn-primary{
-  background-color: #5E79F0;
+  /*background-color: #3468F0;
   border-color: #5E79F0;
-  color: #FFFFFF;
+  color: #FFFFFF;*/
+  color: #ffffff;
+  background-color: #5181FF;
+  border-color:  #4171EF;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary{
+  color: #ffffff;
+  background-color: #5181FF;
+  border-color:  #4171EF;
 }
