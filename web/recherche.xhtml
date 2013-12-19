@@ -39,29 +39,31 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-2">
-                                <h:panelGroup rendered="#{produit.mainImage != null}">
-											<h:commandLink class="thumbnail" action="#{afficherProduitController.afficheProduit()}">
-												<f:setPropertyActionListener target="#{afficherProduitController.produit}" value="#{produit}" />
-												<p:graphicImage value="#{imageController.image}">
-													<f:param name="imageId" value="#{produit.mainImage.id}" />
-													<f:param name="thumb" value="#{false}" />
-												</p:graphicImage>
-											</h:commandLink>
-                                </h:panelGroup>
-                                <h:panelGroup rendered="#{produit.mainImage == null}">
-                                    <span class="thumbnail">
-
-									<h:commandLink action="#{afficherProduitController.afficheProduit()}">
-										<f:setPropertyActionListener target="#{afficherProduitController.produit}" value="#{produit}" />
-		                                <span class="glyphicon glyphicon-picture" />
-									</h:commandLink>
-
-                                    </span>
-                                </h:panelGroup>
+                                <h:commandLink class="thumbnail"
+                                               action="#{afficherProduitController.afficheProduit}"
+                                               rendered="#{produit.mainImage != null}">
+                                    <f:setPropertyActionListener target="#{afficherProduitController.produit}"
+                                                                 value="#{produit}" />
+                                    <p:graphicImage value="#{imageController.image}">
+                                        <f:param name="imageId" value="#{produit.mainImage.id}" />
+                                        <f:param name="thumb" value="#{false}" />
+                                    </p:graphicImage>
+                                </h:commandLink>
+                                <h:commandLink class="thumbnail"
+                                               action="#{afficherProduitController.afficheProduit}"
+                                               rendered="#{produit.mainImage == null}">
+                                    <f:setPropertyActionListener target="#{afficherProduitController.produit}"
+                                                                 value="#{produit}" />
+                                    <span class="glyphicon glyphicon-picture" />
+                                </h:commandLink>
                             </div>
                             <div class="col-lg-10">
                                 <div class="product-name">
-                                    <h:outputText value="#{produit.nom}" />
+                                    <h:commandLink action="#{afficherProduitController.afficheProduit}"
+                                                   value="#{produit.nom}">
+                                        <f:setPropertyActionListener target="#{afficherProduitController.produit}"
+                                                                     value="#{produit}" />
+                                    </h:commandLink>
                                 </div>
                                 <div class="product-price">
                                     <h:outputFormat value="#{bundle.SoldFrom}"

@@ -47,7 +47,11 @@ public class LangueSession implements Serializable {
     }
 
     public String getLocaleDate(Date date) {
-        DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, locale);
-        return df.format(date);
+        if (date == null) {
+            return null;
+        } else {
+            DateFormat df = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.MEDIUM, locale);
+            return df.format(date);
+        }
     }
 }

@@ -26,42 +26,52 @@
                 </h:panelGroup>
                 <h:panelGroup  rendered="#{afficherHistoriqueController.commandes.size() > 0}">
 
-                    <p:dataList value="#{afficherHistoriqueController.commandes}"
-                                var="commande"
-                                type="definition">  
-                        #{langueSession.getLocaleDate(commande.dateCommande)}<br/>
-                        <f:facet name="description">
-                            #{bundle.Total} : <span class="total">#{commande.montant}€</span>
-                        </f:facet>
+                    <h:form>
+                        <c:forEach var="commande" items="#{afficherHistoriqueController.commandes}">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    #{langueSession.getLocaleDate(commande.dateCommande)}<br/>
+                                    #{bundle.Total} : <span class="total">#{commande.montant}€</span>
 
-                        <f:facet name="description">
-                            <p:dataList value="#{commande.achats}"
-                                        var="achat"
-                                        type="definition">
-                                #{achat.venteImmediate.produit.nom}
-                                <f:facet name="description">
-                                    #{bundle.Quantity} : #{achat.quantite}<br/>
-                                    #{bundle.PricePerUnit} : #{achat.prixUnitaire}€<br/>
-                                    <h:panelGroup rendered="#{achat.venteImmediate.produit.mainImage != null}">
-                                        <p:graphicImage value="#{imageController.image}"
-                                                        title="#{achat.venteImmediate.produit.nom}"
-                                                        alt="#{achat.venteImmediate.produit.nom}">
-                                            <f:param name="imageId" value="#{achat.venteImmediate.produit.mainImage.id}" />
-                                            <f:param name="thumb" value="#{false}" />
-                                        </p:graphicImage>
-                                    </h:panelGroup>
-                                    <h:panelGroup rendered="#{achat.venteImmediate.produit.mainImage == null}">
-                                        <span class="thumbnail">
-                                            <span class="glyphicon glyphicon-picture" />
-                                        </span>
-                                    </h:panelGroup>
-                                </f:facet>
-                            </p:dataList>
-                        </f:facet>  
+                                    <c:forEach var="achat" items="#{commande.achats}">
+                                        <div class="row">
+                                            <div class="col-lg-2">
+                                                <h:commandLink class="thumbnail"
+                                                               action="#{afficherProduitController.afficheProduit}"
+                                                               rendered="#{achat.venteImmediate.produit.mainImage != null}">
+                                                    <f:setPropertyActionListener target="#{afficherProduitController.produit}" value="#{achat.venteImmediate.produit}" />
+                                                    <p:graphicImage value="#{imageController.image}">
+                                                        <f:param name="imageId" value="#{achat.venteImmediate.produit.mainImage.id}" />
+                                                        <f:param name="thumb" value="#{false}" />
+                                                    </p:graphicImage>
+                                                </h:commandLink>
+                                                <h:commandLink class="thumbnail"
+                                                               action="#{afficherProduitController.afficheProduit}"
+                                                               rendered="#{achat.venteImmediate.produit.mainImage == null}">
+                                                    <f:setPropertyActionListener target="#{afficherProduitController.produit}" value="#{achat.venteImmediate.produit}" />
+                                                    <span class="glyphicon glyphicon-picture" />
+                                                </h:commandLink>
+                                            </div>
+                                            <div class="col-lg-10">
+                                                <div class="product-name">
+                                                    <h:commandLink action="#{afficherProduitController.afficheProduit}"
+                                                                   value="#{achat.venteImmediate.produit.nom}"
+                                                                   rendered="#{achat.venteImmediate.produit.mainImage == null}">
+                                                        <f:setPropertyActionListener target="#{afficherProduitController.produit}" value="#{achat.venteImmediate.produit}" />
+                                                    </h:commandLink>
+                                                </div>
+                                                <div>
+                                                    #{bundle.Quantity} : #{achat.quantite}<br/>
+                                                    #{bundle.PricePerUnit} : #{achat.prixUnitaire}€
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </c:forEach>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </h:form>
 
-                    </p:dataList>
-                    <ul>
-                    </ul>
                 </h:panelGroup>
             </div>
         </h:panelGroup>
