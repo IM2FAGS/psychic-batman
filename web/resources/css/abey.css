@@ -9,6 +9,10 @@ body {
     width: 10px;
 }
 
+span.total {
+    color: red;
+}
+
 /* bootstrap / primefaces */
 
 /* spinner */
@@ -94,7 +98,7 @@ body {
     height: 100%;
     box-shadow: none;
 }
- .ui-selectonemenu .ui-selectonemenu-trigger .ui-icon {
+.ui-selectonemenu .ui-selectonemenu-trigger .ui-icon {
     position: relative;
     right: 4px;
     top: 4px;
@@ -171,10 +175,10 @@ footer {
 }
 
 .btn-primary-navbar {
-  color: #3468F0;
-  background-color: #E0E0E0;
-  border-color: #F0F0F0;
-  font-weight: bold;
+    color: #3468F0;
+    background-color: #E0E0E0;
+    border-color: #F0F0F0;
+    font-weight: bold;
 }
 
 .btn-primary-navbar:hover,
@@ -182,27 +186,27 @@ footer {
 .btn-primary-navbar:active,
 .btn-primary-navbar.active,
 .open .dropdown-toggle.btn-primary-navbar {
-  color: #ffffff;
-  background-color: #E0E0E0;
-  border-color:  #A0A0A0;
+    color: #ffffff;
+    background-color: #E0E0E0;
+    border-color:  #A0A0A0;
 }
 
 .glyphicon-shopping-cart:before {
-  content: "\e116";
-  color : #ffffff;
+    content: "\e116";
+    color : #ffffff;
 }
 
 .glyphicon-cog {
-  color : #ffffff;
+    color : #ffffff;
 }
 
 .navbar-inverse {
-  background-color: #3468F0;
-  border-color:#3468F0;
+    background-color: #3468F0;
+    border-color:#3468F0;
 }
 
 .navbar-inverse .navbar-brand {
-  color: #ffffff;
+    color: #ffffff;
 }
 
 /*.dropdown-menu {
@@ -214,30 +218,30 @@ footer {
 }
 
 .dropdown-menu > li > a {
-	color: #422614;
+    color: #422614;
     font-weight: bold;
     font-size: 0.9em;
 }*/
 
 .container-footer{
-background-color: #3468F0;
-  border-color: #3468F0;
-  color: #FFFFFF;
+    background-color: #3468F0;
+    border-color: #3468F0;
+    color: #FFFFFF;
 }
 
 .container-footer > ul > li > a{
-  background-color: #3468F0;
-  border-color: #3468F0;
-  color: #FFFFFF;
+    background-color: #3468F0;
+    border-color: #3468F0;
+    color: #FFFFFF;
 }
 
 .btn-primary{
-  /*background-color: #3468F0;
-  border-color: #5E79F0;
-  color: #FFFFFF;*/
-  color: #ffffff;
-  background-color: #5181FF;
-  border-color:  #4171EF;
+    /*background-color: #3468F0;
+    border-color: #5E79F0;
+    color: #FFFFFF;*/
+    color: #ffffff;
+    background-color: #5181FF;
+    border-color:  #4171EF;
 }
 
 .btn-primary:hover,
@@ -245,7 +249,7 @@ background-color: #3468F0;
 .btn-primary:active,
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary{
-  color: #ffffff;
-  background-color: #5181FF;
-  border-color:  #4171EF;
+    color: #ffffff;
+    background-color: #5181FF;
+    border-color:  #4171EF;
 }

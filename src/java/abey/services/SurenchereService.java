@@ -17,6 +17,15 @@ public class SurenchereService extends AbstractService<Surenchere> {
         super(Surenchere.class);
     }
 
+    public List<Surenchere> getSurencheres(Utilisateur utilisateur) {
+        TypedQuery<Surenchere> query = em.createNamedQuery("Surenchere.getSurencheres",
+                Surenchere.class);
+        query.setParameter(1, utilisateur);
+        List<Surenchere> surencheresGagnantes = query.getResultList();
+
+        return surencheresGagnantes;
+    }
+
     public List<Surenchere> getSurencheresGagnantes(Utilisateur utilisateur) {
         TypedQuery<Surenchere> query = em.createNamedQuery("Surenchere.getSurencheresGagnantes",
                 Surenchere.class);

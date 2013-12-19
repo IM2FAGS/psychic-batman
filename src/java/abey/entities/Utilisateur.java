@@ -6,9 +6,11 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -79,6 +81,10 @@ public class Utilisateur implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateNaissance;
 
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    private String adresse;
+
     @Basic(optional = false)
     @NotNull
     private boolean administrateur = false;
@@ -122,7 +128,6 @@ public class Utilisateur implements Serializable {
     public void setCommandes(List<Commande> commandes) {
         this.commandes = commandes;
     }
-
 
     public List<NoteProduit> getNotesProduits() {
         return notesProduits;
@@ -170,6 +175,14 @@ public class Utilisateur implements Serializable {
 
     public void setDateNaissance(Date dateNaissance) {
         this.dateNaissance = dateNaissance;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
     }
 
     public boolean isAdministrateur() {

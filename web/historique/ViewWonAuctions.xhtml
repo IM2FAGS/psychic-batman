@@ -4,11 +4,47 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:p="http://primefaces.org/ui">
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <ui:define name="title">
-        TODO
+        #{bundle.MyWonAuctions}
     </ui:define>
     <ui:define name="body">
-        TODO
+        <h2>#{bundle.MyWonAuctions}</h2>
+        <h:panelGroup  rendered="#{loginController.utilisateurConnecte == null}">
+            <div class="ui-messages ui-widget">
+                <div class="ui-messages-error ui-corner-all">
+                    <span class="ui-message-error-icon"/>
+                    <span class="ui-message-error-detail">#{bundle.YouMustBeLoggedIn}</span>
+                </div>
+            </div>
+        </h:panelGroup>
+        <h:panelGroup  rendered="#{loginController.utilisateurConnecte != null}">
+            <div>
+                <h:panelGroup  rendered="#{afficherHistoriqueController.surencheresRemportees.size() == 0}">
+                    <p>#{bundle.NoWonAuctions}</p>
+                </h:panelGroup>
+                <h:panelGroup  rendered="#{afficherHistoriqueController.surencheresRemportees.size() > 0}">
+
+                    <p:dataList value="#{afficherHistoriqueController.surencheresRemportees}"
+                                var="surenchere"
+                                type="definition">  
+                        #{langueSession.getLocaleDate(surenchere.dateEnchere)}<br/>
+                        #{surenchere.enchere.produit.nom}<br/>
+                        <f:facet name="description">
+                            #{bundle.Total} : <span class="total">#{surenchere.montant}€</span><br/>
+                            <p:graphicImage value="#{imageController.image}"
+                                            title="#{surenchere.enchere.produit.nom}"
+                                            alt="#{surenchere.enchere.produit.nom}">
+                                <f:param name="imageId" value="#{surenchere.enchere.produit.mainImage.id}" />
+                                <f:param name="thumb" value="#{false}" />
+                            </p:graphicImage>
+                        </f:facet>
+                    </p:dataList>
+                    <ul>
+                    </ul>
+                </h:panelGroup>
+            </div>
+        </h:panelGroup>
     </ui:define>
 </ui:composition>

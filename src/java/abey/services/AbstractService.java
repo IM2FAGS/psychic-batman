@@ -45,13 +45,22 @@ public abstract class AbstractService<T> {
         return em.createQuery(cq).getResultList();
     }
 
-    public List<T> findAllOrderedByColumn(String colName) {
+    public List<T> findAllOrderedByColumnAsc(String colName) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery cq = cb.createQuery();
         Root<T> root = cq.from(entityClass);
         //TODO tentative de tri accent-insensitive
 //        cb.function("nlssort", String.class, cq.from(Categorie.class).get("nom"), /*dept_.suppler_name,*/ cb.literal("NLS_SORT=BINARY_AI"));
         cq.select(root).orderBy(cb.asc(root.get(colName)));
+
+        return em.createQuery(cq).getResultList();
+    }
+
+    public List<T> findAllOrderedByColumnDesc(String colName) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery cq = cb.createQuery();
+        Root<T> root = cq.from(entityClass);
+        cq.select(root).orderBy(cb.desc(root.get(colName)));
 
         return em.createQuery(cq).getResultList();
     }
