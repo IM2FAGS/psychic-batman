@@ -39,21 +39,38 @@
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-lg-6">
-							<div class="product-achat-immediat">
-								<h:outputText value="#{bundle.BuyItNow}" class="h1"/>
-								<h:outputText value="#{afficherProduitController.produit.ventesImmediates.size}" />								
-								<h:dataTable value="#{afficherProduitController.produit.ventesImmediates}" var="item">
-										<div class="row-offcanvas-left">
-											<div class="row">
-												<h:column>#{item.boutique.nom} #{item.produit.nom} #{item.prix}</h:column>
-											</div>
-										</div>
-								</h:dataTable>
+							<div class="panel-body">
+								<div class="col">
+									<h:outputText value="#{bundle.BuyItNow}" class="h2"/>
+										<h:dataTable value="#{afficherProduitController.produit.ventesImmediates}" var="item" >
+											<h:column class="col-lg-4">
+												<div class="col-lg-4">
+													<h:panelGroup rendered="#{afficherProduitController.produit.mainImage == null }" class="thumbnail">
+														<span class="glyphicon glyphicon-picture"/>
+													</h:panelGroup>
+													<h:panelGroup rendered="#{afficherProduitController.produit.mainImage != null}" class="thumbnail"  >
+														<p:graphicImage  value="#{imageController.image}">
+															<f:param name="imageId" value="#{afficherProduitController.produit.mainImage.id}" />
+															<f:param name="thumb" value="#{false}" />
+														</p:graphicImage>
+													</h:panelGroup>
+												</div>
+											</h:column>
+									</h:dataTable>
+								</div>
 							</div>
 						</div>
 						<div class="col-lg-6">
 							<div class="product-achat-immediat">
-								<h:outputText value="#{bundle.AuctionSale}" class="h1"/>
+								<h:outputText value="#{bundle.AuctionSale}" class="h2"/>
+								<h:dataTable value="#{afficherProduitController.produit.encheres}" var="item" >
+									<h:column class="col-lg-4">
+										<div class="col-lg-4">
+											<h:commandLink action="#{encherirController.encherir()}" value="Encherir" />
+												
+										</div>
+									</h:column>
+								</h:dataTable>
 							</div>
 						</div>
 					</div>

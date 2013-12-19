@@ -142,6 +142,7 @@ public class CreerVenteController extends AbstractController {
     }
 
     public String creerVenteImmediate() {
+		
         venteImmediate = getVenteImmediate();
         Produit produitVente = getProduit();
         if (produitVente == null) {
@@ -168,10 +169,12 @@ public class CreerVenteController extends AbstractController {
                 ventesImmediates.add(venteImmediate);
                 boutique.setVentesImmediates(ventesImmediates);
 
-                produit.setVentesImmediates(produit.getVentesImmediates());
+                produitVente.getVentesImmediates().add(venteImmediate);
 
 
                 venteImmediateService.create(venteImmediate);
+				produitService.edit(produitVente);
+				boutiqueService.edit(boutique);
                 annulerCreer();
                 JsfUtil.addSuccessMessage(
                         LangString.params(
