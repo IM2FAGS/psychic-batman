@@ -161,17 +161,57 @@ public class Test {
         commandeService.create(c);
         utilisateurService.edit(u);
 
-        Achat a = new Achat();
+        Achat a;
+        VenteImmediate v;
+        
+        a = new Achat();
         a.setCommande(c);
         c.getAchats().add(a);
         a.setPrixUnitaire(new BigDecimal(50));
         a.setQuantite(8);
-        VenteImmediate v = venteImmediateService.findAll().get(0);
+        v = venteImmediateService.findAll().get(0);
         a.setVenteImmediate(v);
         v.getAchats().add(a);
         achatService.create(a);
         commandeService.edit(c);
         venteImmediateService.edit(v);
+        
+        a = new Achat();
+        a.setCommande(c);
+        c.getAchats().add(a);
+        a.setPrixUnitaire(new BigDecimal(50));
+        a.setQuantite(8);
+        v = venteImmediateService.findAll().get(0);
+        a.setVenteImmediate(v);
+        v.getAchats().add(a);
+        achatService.create(a);
+        commandeService.edit(c);
+        venteImmediateService.edit(v);
+        
+        
+        c = new Commande();
+        c.setDateCommande(new Date());
+        c.setModePaiement(ModePaiement.CB);
+        u = utilisateurService.findAll().get(0);
+        c.setAcheteur(u);
+        u.getCommandes().add(c);
+        commandeService.create(c);
+        utilisateurService.edit(u);
+
+        a = new Achat();
+        a.setCommande(c);
+        c.getAchats().add(a);
+        a.setPrixUnitaire(new BigDecimal(50));
+        a.setQuantite(8);
+        v = venteImmediateService.findAll().get(0);
+        a.setVenteImmediate(v);
+        v.getAchats().add(a);
+        achatService.create(a);
+        commandeService.edit(c);
+        venteImmediateService.edit(v);
+        
+
+
         System.out.println("fillCommandes OK.");
     }
 
