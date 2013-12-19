@@ -42,12 +42,19 @@
                                 <f:facet name="description">
                                     #{bundle.Quantity} : #{achat.quantite}<br/>
                                     #{bundle.PricePerUnit} : #{achat.prixUnitaire}€<br/>
-                                    <p:graphicImage value="#{imageController.image}"
-                                                    title="#{achat.venteImmediate.produit.nom}"
-                                                    alt="#{achat.venteImmediate.produit.nom}">
-                                        <f:param name="imageId" value="#{achat.venteImmediate.produit.mainImage.id}" />
-                                        <f:param name="thumb" value="#{false}" />
-                                    </p:graphicImage>
+                                    <h:panelGroup rendered="#{achat.venteImmediate.produit.mainImage != null}">
+                                        <p:graphicImage value="#{imageController.image}"
+                                                        title="#{achat.venteImmediate.produit.nom}"
+                                                        alt="#{achat.venteImmediate.produit.nom}">
+                                            <f:param name="imageId" value="#{achat.venteImmediate.produit.mainImage.id}" />
+                                            <f:param name="thumb" value="#{false}" />
+                                        </p:graphicImage>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{achat.venteImmediate.produit.mainImage == null}">
+                                        <span class="thumbnail">
+                                            <span class="glyphicon glyphicon-picture" />
+                                        </span>
+                                    </h:panelGroup>
                                 </f:facet>
                             </p:dataList>
                         </f:facet>  
