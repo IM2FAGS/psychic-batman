@@ -168,10 +168,10 @@ public class CreerVenteController extends AbstractController {
                 ventesImmediates.add(venteImmediate);
                 boutique.setVentesImmediates(ventesImmediates);
 
-                
+                produit.setVentesImmediates(produit.getVentesImmediates());
+
 
                 venteImmediateService.create(venteImmediate);
-
                 annulerCreer();
                 JsfUtil.addSuccessMessage(
                         LangString.params(

@@ -38,16 +38,22 @@
 			<div class="panel panel-default">
 				<div class="panel-body">
 					<div class="row">
-						<div class="row">
-							<div class="col-lg-6">
-								<div class="product-achat-immediat">
-									<h:outputText value="#{bundle.BuyItNow}" class="h1"/>
-								</div>
+						<div class="col-lg-6">
+							<div class="product-achat-immediat">
+								<h:outputText value="#{bundle.BuyItNow}" class="h1"/>
+								<h:outputText value="#{afficherProduitController.produit.ventesImmediates.size}" />								
+								<h:dataTable value="#{afficherProduitController.produit.ventesImmediates}" var="item">
+										<div class="row-offcanvas-left">
+											<div class="row">
+												<h:column>#{item.boutique.nom} #{item.produit.nom} #{item.prix}</h:column>
+											</div>
+										</div>
+								</h:dataTable>
 							</div>
-							<div class="col-lg-6">
-								<div class="product-achat-immediat">
-									<h:outputText value="#{bundle.AuctionSale}" class="h1"/>
-								</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="product-achat-immediat">
+								<h:outputText value="#{bundle.AuctionSale}" class="h1"/>
 							</div>
 						</div>
 					</div>

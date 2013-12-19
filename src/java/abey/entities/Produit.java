@@ -72,6 +72,7 @@ public class Produit implements Serializable {
     }
 
     public List<VenteImmediate> getVentesImmediates() {
+		System.out.println("Taille liste : !!!!!!!!!!!!!!!!!!!!!!!" + ventesImmediates.size());
         return ventesImmediates;
     }
 
