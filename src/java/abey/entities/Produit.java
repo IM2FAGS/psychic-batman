@@ -163,7 +163,8 @@ public class Produit implements Serializable {
     public BigDecimal getPrixMinVenteImmediate() {
         BigDecimal prixMin = BigDecimal.ZERO;
         for (VenteImmediate venteImmediate : ventesImmediates) {
-            if (venteImmediate.getStock() > 0 && venteImmediate.getPrix().compareTo(prixMin) < 0) {
+            if (venteImmediate.getStock() > 0
+                    && (venteImmediate.getPrix().compareTo(prixMin) < 0 || prixMin == BigDecimal.ZERO)) {
                 prixMin = venteImmediate.getPrix();
             }
         }
@@ -173,7 +174,8 @@ public class Produit implements Serializable {
     public BigDecimal getPrixMinEnchere() {
         BigDecimal prixMin = BigDecimal.ZERO;
         for (Enchere enchere : encheres) {
-            if (enchere.getMontantCourant().compareTo(prixMin) < 0) {
+            if (enchere.getMontantCourant().compareTo(prixMin) < 0
+                    || prixMin == BigDecimal.ZERO) {
                 prixMin = enchere.getMontantCourant();
             }
         }

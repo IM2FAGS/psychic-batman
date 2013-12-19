@@ -11,84 +11,49 @@
     </ui:define>
     <ui:define name="body">
         <p:messages autoUpdate="true"/>
-        <h1>
-            <h:outputText value="#{bundle.TopSales}" />
-        </h1>
+        <h:form>
+            <h1>
+                <h:outputText value="#{bundle.TopSales}" />
+            </h1>
 
-        <div id="top-sales">
-            <c:forEach var="venteImmediate" items="#{indexController.topVentes}">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-lg-2">
-                                <h:panelGroup rendered="#{venteImmediate.produit.mainImage != null}">
-                                    <span class="thumbnail">
+            <div id="top-sales">
+                <c:forEach var="venteImmediate" items="#{indexController.topVentes}">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <h:commandLink class="thumbnail"
+                                                   action="#{afficherProduitController.afficheProduit}"
+                                                   rendered="#{venteImmediate.produit.mainImage != null}">
+                                        <f:setPropertyActionListener target="#{afficherProduitController.produit}"
+                                                                     value="#{venteImmediate.produit}" />
                                         <p:graphicImage value="#{imageController.image}">
                                             <f:param name="imageId" value="#{venteImmediate.produit.mainImage.id}" />
                                             <f:param name="thumb" value="#{false}" />
                                         </p:graphicImage>
-                                    </span>
-                                </h:panelGroup>
-                                <h:panelGroup rendered="#{venteImmediate.produit.mainImage == null}">
-                                    <span class="thumbnail">
+                                    </h:commandLink>
+                                    <h:commandLink class="thumbnail"
+                                                   action="#{afficherProduitController.afficheProduit}"
+                                                   rendered="#{venteImmediate.produit.mainImage == null}">
+                                        <f:setPropertyActionListener target="#{afficherProduitController.produit}"
+                                                                     value="#{venteImmediate.produit}" />
                                         <span class="glyphicon glyphicon-picture" />
-                                    </span>
-                                </h:panelGroup>
-                            </div>
-                            <div class="col-lg-10">
-                                <div class="product-name">
-                                    <h:outputText value="#{venteImmediate.produit.nom}" />
+                                    </h:commandLink>
                                 </div>
-                                <div class="product-price">
-                                    <h:outputFormat value="#{bundle.SoldFrom}"
-                                                    rendered="#{venteImmediate.produit.prixMin > 0}">
-                                        <f:param value="#{venteImmediate.produit.prixMin}" />
-                                    </h:outputFormat>
-                                    <h:outputText rendered="#{venteImmediate.produit.prixMin == 0}"
-                                                  value="#{bundle.ProductNotAvailable}" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </c:forEach>
-        </div>
-
-        <div class="row">
-
-            <div class="col-lg-6" id="favorites">
-                <h2>
-                    <h:outputText value="#{bundle.Favorites}" />
-                </h2>
-                <c:forEach var="produit" items="#{indexController.coupsDeCoeur}">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-3">
-                                    <h:panelGroup rendered="#{produit.mainImage != null}">
-                                        <span class="thumbnail">
-                                            <p:graphicImage value="#{imageController.image}">
-                                                <f:param name="imageId" value="#{produit.mainImage.id}" />
-                                                <f:param name="thumb" value="#{false}" />
-                                            </p:graphicImage>
-                                        </span>
-                                    </h:panelGroup>
-                                    <h:panelGroup rendered="#{produit.mainImage == null}">
-                                        <span class="thumbnail">
-                                            <span class="glyphicon glyphicon-picture" />
-                                        </span>
-                                    </h:panelGroup>
-                                </div>
-                                <div class="col-lg-9">
+                                <div class="col-lg-10">
                                     <div class="product-name">
-                                        <h:outputText value="#{produit.nom}" />
+                                        <h:commandLink action="#{afficherProduitController.afficheProduit}"
+                                                       value="#{venteImmediate.produit.nom}">
+                                            <f:setPropertyActionListener target="#{afficherProduitController.produit}"
+                                                                         value="#{venteImmediate.produit}" />
+                                        </h:commandLink>
                                     </div>
                                     <div class="product-price">
                                         <h:outputFormat value="#{bundle.SoldFrom}"
-                                                        rendered="#{produit.prixMin > 0}">
-                                            <f:param value="#{produit.prixMin}" />
+                                                        rendered="#{venteImmediate.produit.prixMin > 0}">
+                                            <f:param value="#{venteImmediate.produit.prixMin}" />
                                         </h:outputFormat>
-                                        <h:outputText rendered="#{produit.prixMin == 0}"
+                                        <h:outputText rendered="#{venteImmediate.produit.prixMin == 0}"
                                                       value="#{bundle.ProductNotAvailable}" />
                                     </div>
                                 </div>
@@ -98,45 +63,106 @@
                 </c:forEach>
             </div>
 
-            <div class="col-lg-6" id="trackes-auction-sales">
-                <h2>
-                    <h:outputText value="#{bundle.TrackedAuctionSales}" />
-                </h2>
-                <c:forEach var="enchere" items="#{indexController.encheresASuivre}">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-3">
-                                    <h:panelGroup rendered="#{enchere.produit.mainImage != null}">
-                                        <span class="thumbnail">
+            <div class="row">
+
+                <div class="col-lg-6" id="favorites">
+                    <h2>
+                        <h:outputText value="#{bundle.Favorites}" />
+                    </h2>
+                    <c:forEach var="produit" items="#{indexController.coupsDeCoeur}">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <h:commandLink class="thumbnail"
+                                                       action="#{afficherProduitController.afficheProduit}"
+                                                       rendered="#{produit.mainImage != null}">
+                                            <f:setPropertyActionListener target="#{afficherProduitController.produit}"
+                                                                         value="#{produit}" />
                                             <p:graphicImage value="#{imageController.image}">
-                                                <f:param name="imageId" value="#{enchere.produit.mainImage.id}" />
+                                                <f:param name="imageId" value="#{produit.mainImage.id}" />
                                                 <f:param name="thumb" value="#{false}" />
                                             </p:graphicImage>
-                                        </span>
-                                    </h:panelGroup>
-                                    <h:panelGroup rendered="#{enchere.produit.mainImage == null}">
-                                        <span class="thumbnail">
+                                        </h:commandLink>
+                                        <h:commandLink class="thumbnail"
+                                                       action="#{afficherProduitController.afficheProduit}"
+                                                       rendered="#{produit.mainImage == null}">
+                                            <f:setPropertyActionListener target="#{afficherProduitController.produit}"
+                                                                         value="#{produit}" />
                                             <span class="glyphicon glyphicon-picture" />
-                                        </span>
-                                    </h:panelGroup>
-                                </div>
-                                <div class="col-lg-9">
-                                    <div class="product-name">
-                                        <h:outputText value="#{enchere.produit.nom}" />
+                                        </h:commandLink>
                                     </div>
-                                    <div class="product-price">
-                                        <h:outputFormat value="#{bundle.SoldFrom}">
-                                            <f:param value="#{enchere.montantCourant}" />
-                                        </h:outputFormat>
+                                    <div class="col-lg-9">
+                                        <div class="product-name">
+                                            <h:commandLink action="#{afficherProduitController.afficheProduit}"
+                                                           value="#{produit.nom}">
+                                                <f:setPropertyActionListener target="#{afficherProduitController.produit}"
+                                                                             value="#{produit}" />
+                                            </h:commandLink>
+                                        </div>
+                                        <div class="product-price">
+                                            <h:outputFormat value="#{bundle.SoldFrom}"
+                                                            rendered="#{produit.prixMin > 0}">
+                                                <f:param value="#{produit.prixMin}" />
+                                            </h:outputFormat>
+                                            <h:outputText rendered="#{produit.prixMin == 0}"
+                                                          value="#{bundle.ProductNotAvailable}" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </c:forEach>
-            </div>
+                    </c:forEach>
+                </div>
 
-        </div>
+                <div class="col-lg-6" id="trackes-auction-sales">
+                    <h2>
+                        <h:outputText value="#{bundle.TrackedAuctionSales}" />
+                    </h2>
+                    <c:forEach var="enchere" items="#{indexController.encheresASuivre}">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <h:commandLink class="thumbnail"
+                                                       action="#{afficherProduitController.afficheProduit}"
+                                                       rendered="#{produit.mainImage != null}">
+                                            <f:setPropertyActionListener target="#{afficherProduitController.produit}"
+                                                                         value="#{enchere.produit}" />
+                                            <p:graphicImage value="#{imageController.image}">
+                                                <f:param name="imageId" value="#{enchere.produit.mainImage.id}" />
+                                                <f:param name="thumb" value="#{false}" />
+                                            </p:graphicImage>
+                                        </h:commandLink>
+                                        <h:commandLink class="thumbnail"
+                                                       action="#{afficherProduitController.afficheProduit}"
+                                                       rendered="#{produit.mainImage == null}">
+                                            <f:setPropertyActionListener target="#{afficherProduitController.produit}"
+                                                                         value="#{enchere.produit}" />
+                                            <span class="glyphicon glyphicon-picture" />
+                                        </h:commandLink>
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <div class="product-name">
+                                            <h:commandLink action="#{afficherProduitController.afficheProduit}"
+                                                           value="#{enchere.produit.nom}">
+                                                <f:setPropertyActionListener target="#{afficherProduitController.produit}"
+                                                                             value="#{enchere.produit}" />
+                                            </h:commandLink>
+                                        </div>
+                                        <div class="product-price">
+                                            <h:outputFormat value="#{bundle.SoldFrom}">
+                                                <f:param value="#{enchere.montantCourant}" />
+                                            </h:outputFormat>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </div>
+
+            </div>
+        </h:form>
     </ui:define>
 </ui:composition>
