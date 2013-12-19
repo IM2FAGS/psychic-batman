@@ -20,13 +20,12 @@
                 <h:outputText value="#{afficherProduitController.produit.description}" />
                 <h:outputText value="Catégorie"/>
                 <h:outputText value="#{afficherProduitController.produit.categorie.nom}" />
-                <h:outputText value="Image"/>
-                <p:graphicImage value="#{imageController.image}" title="image du produit" alt="Image du produit">
-                    <f:param name="imageId" value="#{afficherProduitController.produit.mainImage.id}" />
-                    <f:param name="thumb" value="#{false}" />
-                </p:graphicImage>
 
             </h:panelGrid>
+			<p:graphicImage value="#{imageController.image}" >
+                    <f:param name="imageId" value="#{afficherProduitController.produit.mainImage.id}" />
+                    <f:param name="thumb" value="#{false}" />
+            </p:graphicImage>
             <br />
         </h:form>
     </ui:define>

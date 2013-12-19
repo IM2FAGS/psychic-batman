@@ -22,8 +22,8 @@
 					<h:commandLink action="#{afficherProduitController.afficheProduit()}">
 						<f:setPropertyActionListener value="#{prod}" 
                                                          target="#{afficherProduitController.produit}" />
-						<p:graphicImage value="#{imageController.image}">
-							<f:param name="imageId" value="#{prod.id}" />
+						<p:graphicImage width="100" height="100" value="#{imageController.image}" >
+							<f:param name="imageId" value="#{afficherProduitController.produit.mainImage.id}" />
 							<f:param name="thumb" value="#{false}" />
 						</p:graphicImage>
 					</h:commandLink>
