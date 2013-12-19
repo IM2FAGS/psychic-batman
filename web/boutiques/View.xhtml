@@ -24,10 +24,17 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <span class="thumbnail">
-                                <p:graphicImage value="#{imageController.image}">
-                                    <f:param name="imageId" value="#{afficherBoutiqueController.boutique.image.id}" />
-                                    <f:param name="thumb" value="#{false}" />
-                                </p:graphicImage>
+                                <h:panelGroup rendered="#{afficherBoutiqueController.boutique.image != null}">
+                                    <p:graphicImage value="#{imageController.image}">
+                                        <f:param name="imageId" value="#{afficherBoutiqueController.boutique.image.id}" />
+                                        <f:param name="thumb" value="#{false}" />
+                                    </p:graphicImage>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{afficherBoutiqueController.boutique.image == null}">
+                                    <span class="thumbnail">
+                                        <span class="glyphicon glyphicon-picture" />
+                                    </span>
+                                </h:panelGroup>
                             </span>
                         </div>
                         <div class="col-lg-8">

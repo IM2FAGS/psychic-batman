@@ -25,31 +25,47 @@
                     <p>#{bundle.NoWonAuctions}</p>
                 </h:panelGroup>
                 <h:panelGroup  rendered="#{afficherHistoriqueController.surencheresRemportees.size() > 0}">
-
-                    <p:dataList value="#{afficherHistoriqueController.surencheresRemportees}"
-                                var="surenchere"
-                                type="definition">  
-                        #{langueSession.getLocaleDate(surenchere.dateEnchere)}<br/>
-                        #{surenchere.enchere.produit.nom}<br/>
-                        <f:facet name="description">
-                            #{bundle.Total} : <span class="total">#{surenchere.montant}€</span><br/>
-                            <h:panelGroup rendered="#{surenchere.enchere.produit.mainImage != null}">
-                                <p:graphicImage value="#{imageController.image}"
-                                                title="#{surenchere.enchere.produit.nom}"
-                                                alt="#{surenchere.enchere.produit.nom}">
-                                    <f:param name="imageId" value="#{surenchere.enchere.produit.mainImage.id}" />
-                                    <f:param name="thumb" value="#{false}" />
-                                </p:graphicImage>
-                            </h:panelGroup>
-                            <h:panelGroup rendered="#{surenchere.enchere.produit.mainImage == null}">
-                                <span class="thumbnail">
-                                    <span class="glyphicon glyphicon-picture" />
-                                </span>
-                            </h:panelGroup>
-                        </f:facet>
-                    </p:dataList>
-                    <ul>
-                    </ul>
+                    <h:form>
+                        <c:forEach var="surenchere" items="#{afficherHistoriqueController.surencheresRemportees}">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <h:commandLink class="thumbnail"
+                                                           action="#{afficherProduitController.afficheProduit}"
+                                                           rendered="#{surenchere.enchere.produit.mainImage != null}">
+                                                <f:setPropertyActionListener target="#{afficherProduitController.produit}" value="#{produit}" />
+                                                <p:graphicImage value="#{imageController.image}">
+                                                    <f:param name="imageId" value="#{surenchere.enchere.produit.mainImage.id}" />
+                                                    <f:param name="thumb" value="#{false}" />
+                                                </p:graphicImage>
+                                            </h:commandLink>
+                                            <h:commandLink class="thumbnail"
+                                                           action="#{afficherProduitController.afficheProduit}"
+                                                           rendered="#{surenchere.enchere.produit.mainImage == null}">
+                                                <f:setPropertyActionListener target="#{afficherProduitController.produit}" value="#{produit}" />
+                                                <span class="glyphicon glyphicon-picture" />
+                                            </h:commandLink>
+                                        </div>
+                                        <div class="col-lg-10">
+                                            <div class="product-name">
+                                                <h:commandLink action="#{afficherProduitController.afficheProduit}"
+                                                               value="#{surenchere.enchere.produit.nom}"
+                                                               rendered="#{surenchere.enchere.produit.mainImage == null}">
+                                                    <f:setPropertyActionListener target="#{afficherProduitController.produit}" value="#{produit}" />
+                                                </h:commandLink>
+                                            </div>
+                                            <div>
+                                                #{langueSession.getLocaleDate(surenchere.dateEnchere)}<br/>
+                                                #{bundle.InitialPrice} : #{surenchere.enchere.prixInitial}€<br/>
+                                                #{bundle.Amount} : <span class="total">#{surenchere.montant}€</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </h:form>
                 </h:panelGroup>
             </div>
         </h:panelGroup>
