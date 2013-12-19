@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,6 +24,12 @@ import javax.validation.constraints.NotNull;
  * @author Anthony
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Commande.getCommandes",
+            query = "select c from Commande c "
+            + "where c.acheteur = ?1 "
+            + "order by c.dateCommande desc")
+})
 public class Commande implements Serializable {
 
     private static final long serialVersionUID = 1L;

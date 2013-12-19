@@ -82,7 +82,7 @@ public class RechercheController extends AbstractController {
     }
 
     public List<Categorie> getAllCategories() {
-        return categorieService.findAllOrderedByColumn("nom");
+        return categorieService.findAllOrderedByColumnAsc("nom");
     }
 
 }
