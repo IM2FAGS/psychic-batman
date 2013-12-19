@@ -70,7 +70,7 @@
                             <li class="dropdown-header" role="presentation">
                                 <h:outputText value="#{bundle.Categories}" />
                             </li>
-                            <c:forEach var="cat" items="${rechercheController.allCategories}">
+                            <c:forEach var="cat" items="#{rechercheController.allCategories}">
                                 <li>
                                     <h:commandLink action="#{rechercheController.search}" value="#{cat.nom}">
                                         <f:setPropertyActionListener target="#{rechercheController.categorieQuery}" value="#{cat}"/>
@@ -96,15 +96,15 @@
                 <div class="row">
                     <div class="col-lg-2">
                         <ul>
-							
+
                             <li >
                                 <h:link class="container-footer"
-										outcome="/statique/MentionsLegales"
+                                        outcome="/statique/MentionsLegales"
                                         value="#{bundle.LegalNotes}" />
                             </li>
                             <li >
                                 <h:link class="container-footer"
-										outcome="/statique/Contact"
+                                        outcome="/statique/Contact"
                                         value="#{bundle.ContactUs}" />
                             </li>
                         </ul>
@@ -113,12 +113,12 @@
                         <ul>
                             <li>
                                 <h:link class="container-footer"
-										outcome="/statique/Faq"
+                                        outcome="/statique/Faq"
                                         value="#{bundle.Faq}" />
                             </li>
                             <li>
                                 <h:link class="container-footer"
-										outcome="/statique/Plan"
+                                        outcome="/statique/Plan"
                                         value="#{bundle.Plan}" />
                             </li>
                         </ul>

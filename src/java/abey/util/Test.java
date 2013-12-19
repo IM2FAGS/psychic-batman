@@ -212,8 +212,7 @@ public class Test {
 //        d.setTime(d.getTime()+60*1000);
 //        e.setDateFin(d);
         e.setDateFin(new Date());
-        e.setPalierMin(1);
-        e.setPrixInitial(55);
+        e.setPrixInitial(new BigDecimal(55));
         e.setProduit(p);
         p.getEncheres().add(e);
         e.setVendeur(u);
@@ -227,8 +226,7 @@ public class Test {
         e.setDuree(98);
         d.setTime(d.getTime() + 16 * 1000);
         e.setDateFin(d);
-        e.setPalierMin(1);
-        e.setPrixInitial(55);
+        e.setPrixInitial(new BigDecimal(55));
         e.setProduit(p);
         p.getEncheres().add(e);
         e.setVendeur(u);
@@ -242,8 +240,7 @@ public class Test {
         e.setDuree(98);
         d.setTime(d.getTime() + 16 * 1000);
         e.setDateFin(d);
-        e.setPalierMin(1);
-        e.setPrixInitial(55);
+        e.setPrixInitial(new BigDecimal(55));
         e.setProduit(p);
         p.getEncheres().add(e);
         e.setVendeur(u);
@@ -258,7 +255,7 @@ public class Test {
         e.getSurencheres().add(eg);
         e.setSurenchereGagnante(eg);
         eg.setModePaiement(ModePaiement.CB);
-        eg.setMontant(845);
+        eg.setMontant(new BigDecimal(845));
         surenchereService.create(eg);
         enchereService.edit(e);
         System.out.println("fillEncheres OK.");

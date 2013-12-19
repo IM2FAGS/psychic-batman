@@ -167,6 +167,13 @@ footer {
     font-size: 1.1em;
 }
 
+.thumbnail .glyphicon-picture {
+    width: 15px;
+    height: 40px;
+    display: block;
+    margin: auto;
+}
+
 #copyright {
     text-align: right;
     font-size: 90%;
@@ -253,3 +260,5 @@ footer {
     background-color: #5181FF;
     border-color:  #4171EF;
 }
+
+

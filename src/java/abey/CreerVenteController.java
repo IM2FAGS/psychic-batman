@@ -2,10 +2,13 @@ package abey;
 
 import abey.entities.Achat;
 import abey.entities.Boutique;
+import abey.entities.Enchere;
 import abey.entities.Produit;
 import abey.entities.VenteImmediate;
 import abey.services.BoutiqueService;
+import abey.services.EnchereService;
 import abey.services.ProduitService;
+import abey.services.UtilisateurService;
 import abey.services.VenteImmediateService;
 import abey.util.JsfUtil;
 import abey.util.LangString;
@@ -28,6 +31,9 @@ import javax.validation.ConstraintViolationException;
 @SessionScoped
 public class CreerVenteController extends AbstractController {
 
+    public static final int ACTION_CREER_ENCHERE = 1;
+    public static final int ACTION_CREER_VENTE_IMMEDIATE = 2;
+
     @ManagedProperty(value = "#{creerProduitController}")
     private CreerProduitController creerProduitController;
 
@@ -35,15 +41,21 @@ public class CreerVenteController extends AbstractController {
     private VenteImmediateService venteImmediateService;
 
     @EJB
+    private EnchereService enchereService;
+    
+    @EJB
     private ProduitService produitService;
 
     @EJB
     private BoutiqueService boutiqueService;
-
+    
     private VenteImmediate venteImmediate;
 
+    private Enchere enchere;
+    
     private String recherche;
 
+    private int action;
     private Produit produit;
     private List<Produit> produits;
 
@@ -79,6 +91,16 @@ public class CreerVenteController extends AbstractController {
     public void setVenteImmediate(VenteImmediate venteImmediate) {
         this.venteImmediate = venteImmediate;
     }
+    
+    public Enchere getEnchere(){
+        if(enchere == null){
+            enchere = new Enchere();
+            enchere.setPrixInitial(BigDecimal.ONE);
+            enchere.setTerminee(false);
+            enchere.setDuree(0);
+        }
+        return enchere;
+    }
 
     public Produit getProduit() {
         if (produit != null) {
@@ -95,6 +117,9 @@ public class CreerVenteController extends AbstractController {
 
     public void setProduit(Produit produit) {
         this.produit = produit;
+        if(action == ACTION_CREER_ENCHERE){
+            enchere.setProduit(produit);
+        }
     }
 
     private void annulerCreer() {
@@ -102,21 +127,38 @@ public class CreerVenteController extends AbstractController {
         recherche = null;
         produits = null;
         produit = null;
+        enchere = null;
         creerProduitController.setProduit(null);
     }
 
     public String creer() {
+        switch (action) {
+            case ACTION_CREER_ENCHERE:
+                return creerEnchere();
+            case ACTION_CREER_VENTE_IMMEDIATE:
+                return creerVenteImmediate();
+        }
+        return null;
+    }
+
+    public String creerVenteImmediate() {
         venteImmediate = getVenteImmediate();
         Produit produitVente = getProduit();
         if (produitVente == null) {
             if (recherche != null) {
                 produits = produitService.rechercheProduits(recherche);
             }
-            return "Create";
+            return "/vente/Create";
         } else if (venteImmediate.getStock() > 0 && venteImmediate.getPrix().compareTo(BigDecimal.ZERO) > 0) {
             try {
                 Boutique boutique = getUtilisateurConnecte().getBoutique();
 
+                if (produitVente.getId() == null) {
+                    System.out.println("PRODUIT CREE");
+                    System.out.println(produitVente);
+                    produitService.create(produitVente);
+                    System.out.println("PRODUIT CREE");
+                }
                 venteImmediate.setDateVente(new Date());
                 venteImmediate.setProduit(produitVente);
                 venteImmediate.setBoutique(boutique);
@@ -126,12 +168,7 @@ public class CreerVenteController extends AbstractController {
                 ventesImmediates.add(venteImmediate);
                 boutique.setVentesImmediates(ventesImmediates);
 
-                if (produitVente.getId() == null) {
-                    produitService.create(produitVente);
-                }
-
-                System.out.println("boutique = " + boutique);
-                boutiqueService.edit(boutique);
+                
 
                 venteImmediateService.create(venteImmediate);
 
@@ -142,7 +179,7 @@ public class CreerVenteController extends AbstractController {
                                 produitVente.getNom()
                         )
                 );
-                return "Created";
+                return "/utilisateurs/Profil";
             } catch (Exception e) {
                 System.out.println("ex1=" + e);
                 System.out.println("ex2=" + e.getCause());
@@ -152,17 +189,17 @@ public class CreerVenteController extends AbstractController {
                 JsfUtil.addErrorMessage(
                         ResourceBundle.getBundle("/Bundle", getLangueSession().getLocale()).getString("SaleCreatedError")
                 );
-                return "Create";
+                return "/vente/Create";
             }
         } else {
             System.out.println("Probleme avec le formulaire??");
-            return "Create";
+            return "/vente/Create";
         }
     }
 
     public String creerProduit() {
         annulerCreer();
-        creerProduitController.setAction(CreerProduitController.ACTION_CREER_VENTE_IMMEDIATE);
+        creerProduitController.setAction(action);
         return "/produits/Create";
     }
 
@@ -171,4 +208,60 @@ public class CreerVenteController extends AbstractController {
         return "Create";
     }
 
+    public String initVenteImmediate() {
+        action = ACTION_CREER_VENTE_IMMEDIATE;
+        return "/vente/Create";
+    }
+
+    public String initEnchere() {
+        action = ACTION_CREER_ENCHERE;
+        return "/encheres/Create";
+    }
+
+    private String creerEnchere() {
+        enchere = getEnchere();
+        Produit produitEnchere = getProduit();
+        if (produitEnchere == null) {
+            if (recherche != null) {
+                produits = produitService.rechercheProduits(recherche);
+            }
+            return "/encheres/Create";
+        } else if (enchere.getPrixInitial().compareTo(BigDecimal.ZERO) > 0) {
+            try {
+                enchere.setDateDebut(new Date());
+                enchere.setProduit(produitEnchere);
+                enchere.setDateFin(new Date(enchere.getDateDebut().getTime()+enchere.getDuree()*24*60*60*1000));
+                enchere.setVendeur(getUtilisateurConnecte());
+
+                if (produitEnchere.getId() == null) {
+                    produitService.create(produitEnchere);
+                }
+                enchere.setProduit(produitEnchere);
+                enchereService.create(enchere);
+                getUtilisateurConnecte().getEncheresCrees().add(enchere);
+                annulerCreer();
+                JsfUtil.addSuccessMessage(
+                        LangString.params(
+                                ResourceBundle.getBundle("/Bundle", getLangueSession().getLocale()).getString("AuctionSaleCreated"),
+                                produitEnchere.getNom()
+                        )
+                );
+                return "/utilisateurs/Profil";
+            } catch (Exception e) {
+                System.out.println("ex1=" + e);
+                System.out.println("ex2=" + e.getCause());
+                if (e.getCause() instanceof ConstraintViolationException) {
+                    System.out.println("ex3=" + ((ConstraintViolationException) e.getCause()).getConstraintViolations());
+                }
+                JsfUtil.addErrorMessage(
+                        ResourceBundle.getBundle("/Bundle", getLangueSession().getLocale()).getString("AuctionSaleCreatedError")
+                );
+                return "/encheres/Create";
+            }
+        } else {
+            System.out.println("Probleme avec le formulaire??");
+            return "/encheres/Create";
+        }
+    }
+    
 }
