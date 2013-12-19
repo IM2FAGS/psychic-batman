@@ -10,7 +10,7 @@ import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import org.primefaces.event.FileUploadEvent;
 
 /**
@@ -18,7 +18,7 @@ import org.primefaces.event.FileUploadEvent;
  * @author disavinr
  */
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class CreerBoutiqueController extends AbstractController {
 
     @ManagedProperty(value = "#{afficherBoutiqueController}")
