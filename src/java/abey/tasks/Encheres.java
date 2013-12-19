@@ -3,6 +3,7 @@ package abey.tasks;
 import abey.entities.Enchere;
 import abey.entities.Surenchere;
 import abey.services.EnchereService;
+import abey.services.SurenchereService;
 import java.util.Date;
 import javax.ejb.EJB;
 import javax.ejb.Schedule;
@@ -18,6 +19,9 @@ public class Encheres {
     @EJB
     EnchereService enchereService;
 
+    @EJB
+    SurenchereService surenchereService;
+
     @Schedule(second = "*/15", hour = "*", minute = "*")
     public void task() {
         System.out.println(new Date());
@@ -28,6 +32,8 @@ public class Encheres {
             Surenchere gagnante = enchere.getDerniereSurenchere();
             if (gagnante != null) {
                 System.out.println("surenchere gagnante : " + gagnante);
+                gagnante.setConsultee(false);
+                surenchereService.edit(gagnante);
                 enchere.setSurenchereGagnante(gagnante);
             } else {
                 System.out.println("aucune surenchere");
