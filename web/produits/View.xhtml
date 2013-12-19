@@ -13,20 +13,46 @@
     <ui:define name="body">
         <p:messages autoUpdate="true" escape="false"/>
         <h:form>
-			<h:outputText value="#{afficherProduitController.produit.nom}" class="h1"/>
-            <h:panelGrid columns="2">
-				
-                <h:outputText value="Description : "/>
-                <h:outputText value="#{afficherProduitController.produit.description}" />
-                <h:outputText value="Catégorie"/>
-                <h:outputText value="#{afficherProduitController.produit.categorie.nom}" />
-
-            </h:panelGrid>
-			<p:graphicImage value="#{imageController.image}" >
-                    <f:param name="imageId" value="#{afficherProduitController.produit.mainImage.id}" />
-                    <f:param name="thumb" value="#{false}" />
-            </p:graphicImage>
-            <br />
+			<div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-2">
+							<h:panelGroup rendered="#{afficherProduitController.produit.mainImage == null }" class="thumbnail">
+                                <span class="glyphicon glyphicon-picture"/>
+                            </h:panelGroup>
+							<h:panelGroup rendered="#{afficherProduitController.produit.mainImage != null}" class="thumbnail"  >
+								<p:graphicImage  value="#{imageController.image}">
+									<f:param name="imageId" value="#{afficherProduitController.produit.mainImage.id}" />
+									<f:param name="thumb" value="#{false}" />
+								</p:graphicImage>
+							</h:panelGroup>
+						</div>
+                        <div class="col-lg-10">
+							<div class="product-description">
+								<h:outputText value="#{afficherProduitController.produit.description}" />
+                            </div>
+                        </div>
+                    </div>
+				</div>
+            </div>
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="row">
+						<div class="row">
+							<div class="col-lg-6">
+								<div class="product-achat-immediat">
+									<h:outputText value="#{bundle.BuyItNow}" class="h1"/>
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div class="product-achat-immediat">
+									<h:outputText value="#{bundle.AuctionSale}" class="h1"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
         </h:form>
     </ui:define>
 </ui:composition>

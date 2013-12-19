@@ -32,19 +32,22 @@
                         <div class="row">
                             <div class="col-lg-2">
                                 <h:panelGroup rendered="#{produit.mainImage != null}">
-                                    <span class="thumbnail">
-										<h:commandLink action="#{afficherProduitController.afficheProduit()}">
-
-											<p:graphicImage value="#{imageController.image}">
-												<f:param name="imageId" value="#{produit.mainImage}" />
-												<f:param name="thumb" value="#{false}" />
-											</p:graphicImage>
-										</h:commandLink>
-                                    </span>
+											<h:commandLink class="thumbnail" action="#{afficherProduitController.afficheProduit()}">
+												<f:setPropertyActionListener target="#{afficherProduitController.produit}" value="#{produit}" />
+												<p:graphicImage value="#{imageController.image}">
+													<f:param name="imageId" value="#{produit.mainImage.id}" />
+													<f:param name="thumb" value="#{false}" />
+												</p:graphicImage>
+											</h:commandLink>
                                 </h:panelGroup>
                                 <h:panelGroup rendered="#{produit.mainImage == null}">
                                     <span class="thumbnail">
-                                        <span class="glyphicon glyphicon-picture" />
+
+									<h:commandLink action="#{afficherProduitController.afficheProduit()}">
+										<f:setPropertyActionListener target="#{afficherProduitController.produit}" value="#{produit}" />
+		                                <span class="glyphicon glyphicon-picture" />
+									</h:commandLink>
+
                                     </span>
                                 </h:panelGroup>
                             </div>
