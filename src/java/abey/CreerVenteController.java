@@ -154,10 +154,7 @@ public class CreerVenteController extends AbstractController {
                 Boutique boutique = getUtilisateurConnecte().getBoutique();
 
                 if (produitVente.getId() == null) {
-                    System.out.println("PRODUIT CREE");
-                    System.out.println(produitVente);
                     produitService.create(produitVente);
-                    System.out.println("PRODUIT CREE");
                 }
                 venteImmediate.setDateVente(new Date());
                 venteImmediate.setProduit(produitVente);
@@ -168,9 +165,12 @@ public class CreerVenteController extends AbstractController {
                 ventesImmediates.add(venteImmediate);
                 boutique.setVentesImmediates(ventesImmediates);
 
+                System.out.println("VENTES IMM "+ventesImmediates.size());
+
                 
 
                 venteImmediateService.create(venteImmediate);
+                produitVente.getVentesImmediates().add(venteImmediate);
 
                 annulerCreer();
                 JsfUtil.addSuccessMessage(
@@ -238,6 +238,7 @@ public class CreerVenteController extends AbstractController {
                 }
                 enchere.setProduit(produitEnchere);
                 enchereService.create(enchere);
+                produitEnchere.getEncheres().add(enchere);
                 getUtilisateurConnecte().getEncheresCrees().add(enchere);
                 annulerCreer();
                 JsfUtil.addSuccessMessage(
