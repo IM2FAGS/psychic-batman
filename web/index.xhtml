@@ -24,7 +24,7 @@
                                 <h:panelGroup rendered="#{venteImmediate.produit.mainImage != null}">
                                     <span class="thumbnail">
                                         <p:graphicImage value="#{imageController.image}">
-                                            <f:param name="imageId" value="#{venteImmediate.produit.mainImage}" />
+                                            <f:param name="imageId" value="#{venteImmediate.produit.mainImage.id}" />
                                             <f:param name="thumb" value="#{false}" />
                                         </p:graphicImage>
                                     </span>
@@ -65,7 +65,7 @@
                                     <h:panelGroup rendered="#{produit.mainImage != null}">
                                         <span class="thumbnail">
                                             <p:graphicImage value="#{imageController.image}">
-                                                <f:param name="imageId" value="#{produit.mainImage}" />
+                                                <f:param name="imageId" value="#{produit.mainImage.id}" />
                                                 <f:param name="thumb" value="#{false}" />
                                             </p:graphicImage>
                                         </span>
@@ -99,7 +99,7 @@
                                     <h:panelGroup rendered="#{enchere.produit.mainImage != null}">
                                         <span class="thumbnail">
                                             <p:graphicImage value="#{imageController.image}">
-                                                <f:param name="imageId" value="#{enchere.produit.mainImage}" />
+                                                <f:param name="imageId" value="#{enchere.produit.mainImage.id}" />
                                                 <f:param name="thumb" value="#{false}" />
                                             </p:graphicImage>
                                         </span>
