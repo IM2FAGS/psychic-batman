@@ -39,7 +39,7 @@
                                                 <h:commandLink class="thumbnail"
                                                                action="#{afficherProduitController.afficheProduit}"
                                                                rendered="#{achat.venteImmediate.produit.mainImage != null}">
-                                                    <f:setPropertyActionListener target="#{afficherProduitController.produit}" value="#{produit}" />
+                                                    <f:setPropertyActionListener target="#{afficherProduitController.produit}" value="#{achat.venteImmediate.produit}" />
                                                     <p:graphicImage value="#{imageController.image}">
                                                         <f:param name="imageId" value="#{achat.venteImmediate.produit.mainImage.id}" />
                                                         <f:param name="thumb" value="#{false}" />
@@ -48,7 +48,7 @@
                                                 <h:commandLink class="thumbnail"
                                                                action="#{afficherProduitController.afficheProduit}"
                                                                rendered="#{achat.venteImmediate.produit.mainImage == null}">
-                                                    <f:setPropertyActionListener target="#{afficherProduitController.produit}" value="#{produit}" />
+                                                    <f:setPropertyActionListener target="#{afficherProduitController.produit}" value="#{achat.venteImmediate.produit}" />
                                                     <span class="glyphicon glyphicon-picture" />
                                                 </h:commandLink>
                                             </div>
@@ -57,7 +57,7 @@
                                                     <h:commandLink action="#{afficherProduitController.afficheProduit}"
                                                                    value="#{achat.venteImmediate.produit.nom}"
                                                                    rendered="#{achat.venteImmediate.produit.mainImage == null}">
-                                                        <f:setPropertyActionListener target="#{afficherProduitController.produit}" value="#{produit}" />
+                                                        <f:setPropertyActionListener target="#{afficherProduitController.produit}" value="#{achat.venteImmediate.produit}" />
                                                     </h:commandLink>
                                                 </div>
                                                 <div>
