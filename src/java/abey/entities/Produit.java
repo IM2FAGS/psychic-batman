@@ -1,6 +1,7 @@
 package abey.entities;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
@@ -156,6 +157,21 @@ public class Produit implements Serializable {
     @Override
     public String toString() {
         return "abey.entities.Produit[ id=" + id + " ]";
+    }
+    
+    public BigDecimal getPrixMin() {
+        BigDecimal prixMin = BigDecimal.ZERO;
+        for (Enchere enchere : encheres) {
+            if (enchere.getMontantCourant().compareTo(prixMin) < 0) {
+                prixMin = enchere.getMontantCourant();
+            }
+        }
+        for (VenteImmediate venteImmediate : ventesImmediates) {
+            if (venteImmediate.getStock() > 0 && venteImmediate.getPrix().compareTo(prixMin) < 0) {
+                prixMin = venteImmediate.getPrix();
+            }
+        }
+        return prixMin;
     }
 
 }
