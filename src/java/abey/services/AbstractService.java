@@ -56,12 +56,12 @@ public abstract class AbstractService<T> {
         return em.createQuery(cq).getResultList();
     }
 
-    public List<T> findRange(int[] range) {
+    public List<T> findRange(int from, int to) {
         CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
         javax.persistence.Query q = em.createQuery(cq);
-        q.setMaxResults(range[1] - range[0]);
-        q.setFirstResult(range[0]);
+        q.setMaxResults(to - from);
+        q.setFirstResult(from);
         return q.getResultList();
     }
 

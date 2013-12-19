@@ -19,9 +19,6 @@ import org.primefaces.event.FileUploadEvent;
 @SessionScoped
 public class CreerProduitController extends AbstractController {
 
-    public static final int ACTION_CREER_VENTE_IMMEDIATE = 1;
-    public static final int ACTION_CREER_ENCHERE = 2;
-
     @ManagedProperty(value = "#{rechercheController}")
     private RechercheController rechercheController;
 
@@ -68,18 +65,21 @@ public class CreerProduitController extends AbstractController {
     public String creer() {
         System.out.println("ACTION = " + action);
         switch (action) {
-            case ACTION_CREER_VENTE_IMMEDIATE:
+            case CreerVenteController.ACTION_CREER_VENTE_IMMEDIATE:
                 return creerVenteImmediate();
                 
-            case ACTION_CREER_ENCHERE:
-                System.out.println("TOODODOODODODOOD");
-                break;
+            case CreerVenteController.ACTION_CREER_ENCHERE:
+                return creerEnchere();
         }
         return null;
     }
 
     public String creerVenteImmediate() {
         return "/vente/Create";
+    }
+    
+     public String creerEnchere() {
+        return "/encheres/Create";
     }
 
     public void uploadImageProduit(FileUploadEvent event) {

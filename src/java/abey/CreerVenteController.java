@@ -128,7 +128,6 @@ public class CreerVenteController extends AbstractController {
         produits = null;
         produit = null;
         enchere = null;
-        action = 0;
         creerProduitController.setProduit(null);
     }
 
@@ -154,6 +153,12 @@ public class CreerVenteController extends AbstractController {
             try {
                 Boutique boutique = getUtilisateurConnecte().getBoutique();
 
+                if (produitVente.getId() == null) {
+                    System.out.println("PRODUIT CREE");
+                    System.out.println(produitVente);
+                    produitService.create(produitVente);
+                    System.out.println("PRODUIT CREE");
+                }
                 venteImmediate.setDateVente(new Date());
                 venteImmediate.setProduit(produitVente);
                 venteImmediate.setBoutique(boutique);
@@ -163,9 +168,7 @@ public class CreerVenteController extends AbstractController {
                 ventesImmediates.add(venteImmediate);
                 boutique.setVentesImmediates(ventesImmediates);
 
-                if (produitVente.getId() == null) {
-                    produitService.create(produitVente);
-                }
+                
 
                 venteImmediateService.create(venteImmediate);
 
@@ -176,7 +179,7 @@ public class CreerVenteController extends AbstractController {
                                 produitVente.getNom()
                         )
                 );
-                return "/vente/Created";
+                return "/utilisateurs/Profil";
             } catch (Exception e) {
                 System.out.println("ex1=" + e);
                 System.out.println("ex2=" + e.getCause());
@@ -196,7 +199,7 @@ public class CreerVenteController extends AbstractController {
 
     public String creerProduit() {
         annulerCreer();
-        creerProduitController.setAction(CreerProduitController.ACTION_CREER_VENTE_IMMEDIATE);
+        creerProduitController.setAction(action);
         return "/produits/Create";
     }
 

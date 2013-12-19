@@ -179,5 +179,13 @@ public class Enchere implements Serializable {
         }
         return max;
     }
+    
+    public BigDecimal getMontantCourant() {
+        Surenchere derniere = getDerniereSurenchere();
+        if (derniere != null) {
+            return derniere.getMontant();
+        }
+        return prixInitial;
+    }
 
 }

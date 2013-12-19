@@ -255,7 +255,7 @@ public class Test {
         e.getSurencheres().add(eg);
         e.setSurenchereGagnante(eg);
         eg.setModePaiement(ModePaiement.CB);
-        eg.setMontant(845);
+        eg.setMontant(new BigDecimal(845));
         surenchereService.create(eg);
         enchereService.edit(e);
         System.out.println("fillEncheres OK.");
