@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition template="/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:define name="title">
+        #{bundle.MyAuctionSales}
+    </ui:define>
+    <ui:define name="body">
+        <h2>#{bundle.MyAuctionSales}</h2>
+
+        <h:panelGroup  rendered="#{loginController.utilisateurConnecte == null}">
+            <div class="ui-messages ui-widget">
+                <div class="ui-messages-error ui-corner-all">
+                    <span class="ui-message-error-icon"/>
+                    <span class="ui-message-error-detail">#{bundle.YouMustBeLoggedIn}</span>
+                </div>
+            </div>
+        </h:panelGroup>
+        <h:panelGroup  rendered="#{loginController.utilisateurConnecte != null}">
+            <h:form>
+                <h:commandLink action="#{creerVenteController.initEnchere}"
+                               value="#{bundle.CreateAuctionSale}" />
+            </h:form>
+
+            <div>
+                <h3>#{bundle.OngoingAuctions}</h3>
+                <h:panelGroup  rendered="#{afficherHistoriqueController.encheresCreeesEnCours.size() == 0}">
+                    <p>#{bundle.NoAuction}</p>
+                </h:panelGroup>
+                <h:panelGroup  rendered="#{afficherHistoriqueController.encheresCreeesEnCours.size() > 0}">
+
+                    <h:form>
+                        <c:forEach var="enchere" items="#{afficherHistoriqueController.encheresCreeesEnCours}">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <h:commandLink class="thumbnail"
+                                                           action="#{afficherProduitController.afficheProduit}"
+                                                           rendered="#{enchere.produit.mainImage != null}">
+                                                <f:setPropertyActionListener target="#{afficherProduitController.produit}" value="#{enchere.produit}" />
+                                                <p:graphicImage value="#{imageController.image}">
+                                                    <f:param name="imageId" value="#{enchere.produit.mainImage.id}" />
+                                                    <f:param name="thumb" value="#{false}" />
+                                                </p:graphicImage>
+                                            </h:commandLink>
+                                            <h:commandLink class="thumbnail"
+                                                           action="#{afficherProduitController.afficheProduit}"
+                                                           rendered="#{enchere.produit.mainImage == null}">
+                                                <f:setPropertyActionListener target="#{afficherProduitController.produit}" value="#{enchere.produit}" />
+                                                <span class="glyphicon glyphicon-picture" />
+                                            </h:commandLink>
+                                        </div>
+                                        <div class="col-lg-10">
+                                            <div class="product-name">
+                                                <h:commandLink action="#{afficherProduitController.afficheProduit}"
+                                                               value="#{enchere.produit.nom}"
+                                                               rendered="#{enchere.produit.mainImage == null}">
+                                                    <f:setPropertyActionListener target="#{afficherProduitController.produit}" value="#{enchere.produit}" />
+                                                </h:commandLink>
+                                            </div>
+                                            <div>
+                                                #{bundle.AuctionEnd} : #{langueSession.getLocaleDate(enchere.dateFin)}<br/>
+                                                <h:panelGroup  rendered="#{enchere.surenchereGagnante == null}">
+                                                    <em>#{bundle.NoBidder}</em><br/>
+                                                    #{bundle.InitialPrice} : #{enchere.prixInitial}€
+                                                </h:panelGroup>
+                                                <h:panelGroup  rendered="#{enchere.surenchereGagnante != null}">
+                                                    #{bundle.OwnedBy} : #{enchere.surenchereGagnante.encherisseur.nom}<br/>
+                                                    #{bundle.InitialPrice} : #{enchere.prixInitial}€<br/>
+                                                    #{bundle.CurrentAmount} : <span class="total">#{enchere.montantCourant}€</span>
+                                                </h:panelGroup>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </h:form>
+                </h:panelGroup>
+
+            </div>
+
+            <div>
+                <h3>#{bundle.ClosedAuctions}</h3>
+                <h:panelGroup  rendered="#{afficherHistoriqueController.encheresCreeesTerminees.size() == 0}">
+                    <p>#{bundle.NoAuction}</p>
+                </h:panelGroup>
+                <h:panelGroup  rendered="#{afficherHistoriqueController.encheresCreeesTerminees.size() > 0}">
+
+
+                    <h:form>
+                        <c:forEach var="enchere" items="#{afficherHistoriqueController.encheresCreeesTerminees}">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <h:commandLink class="thumbnail"
+                                                           action="#{afficherProduitController.afficheProduit}"
+                                                           rendered="#{enchere.produit.mainImage != null}">
+                                                <f:setPropertyActionListener target="#{afficherProduitController.produit}" value="#{enchere.produit}" />
+                                                <p:graphicImage value="#{imageController.image}">
+                                                    <f:param name="imageId" value="#{enchere.produit.mainImage.id}" />
+                                                    <f:param name="thumb" value="#{false}" />
+                                                </p:graphicImage>
+                                            </h:commandLink>
+                                            <h:commandLink class="thumbnail"
+                                                           action="#{afficherProduitController.afficheProduit}"
+                                                           rendered="#{enchere.produit.mainImage == null}">
+                                                <f:setPropertyActionListener target="#{afficherProduitController.produit}" value="#{enchere.produit}" />
+                                                <span class="glyphicon glyphicon-picture" />
+                                            </h:commandLink>
+                                        </div>
+                                        <div class="col-lg-10">
+                                            <div class="product-name">
+                                                <h:commandLink action="#{afficherProduitController.afficheProduit}"
+                                                               value="#{enchere.produit.nom}"
+                                                               rendered="#{enchere.produit.mainImage == null}">
+                                                    <f:setPropertyActionListener target="#{afficherProduitController.produit}" value="#{enchere.produit}" />
+                                                </h:commandLink>
+                                            </div>
+                                            <div>
+                                                #{bundle.AuctionEnd} : #{langueSession.getLocaleDate(enchere.dateFin)}<br/>
+                                                <h:panelGroup  rendered="#{enchere.surenchereGagnante == null}">
+                                                    <em>#{bundle.NoBidder}</em><br/>
+                                                    #{bundle.InitialPrice} : #{enchere.prixInitial}€
+                                                </h:panelGroup>
+                                                <h:panelGroup  rendered="#{enchere.surenchereGagnante != null}">
+                                                    #{bundle.WonBy} : #{enchere.surenchereGagnante.encherisseur.nom}<br/>
+                                                    #{bundle.InitialPrice} : #{enchere.prixInitial}€<br/>
+                                                    #{bundle.Amount} : <span class="total">#{enchere.montantCourant}€</span>
+                                                </h:panelGroup>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </h:form>
+
+
+
+                </h:panelGroup>
+            </div>
+        </h:panelGroup>
+    </ui:define>
+</ui:composition>
