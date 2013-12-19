@@ -1,6 +1,7 @@
 package abey.entities;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -44,11 +45,8 @@ public class Enchere implements Serializable {
 
     @Basic(optional = false)
     @NotNull
-    private int prixInitial;
+    private BigDecimal prixInitial;
 
-    @Basic(optional = false)
-    @NotNull
-    private float palierMin;
 
     @Basic(optional = false)
     @NotNull
@@ -107,20 +105,12 @@ public class Enchere implements Serializable {
         this.produit = produit;
     }
 
-    public int getPrixInitial() {
+    public BigDecimal getPrixInitial() {
         return prixInitial;
     }
 
-    public void setPrixInitial(int prixInitial) {
+    public void setPrixInitial(BigDecimal prixInitial) {
         this.prixInitial = prixInitial;
-    }
-
-    public float getPalierMin() {
-        return palierMin;
-    }
-
-    public void setPalierMin(float palierMin) {
-        this.palierMin = palierMin;
     }
 
     public Date getDateDebut() {

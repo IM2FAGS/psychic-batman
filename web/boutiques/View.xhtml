@@ -41,7 +41,7 @@
                 <h:panelGroup rendered="#{afficherBoutiqueController.boutique.proprietaire == afficherBoutiqueController.utilisateurConnecte}">
                     <ul>
                         <li>
-                            <h:link outcome="/vente/Create" value="#{bundle.SellProduct}"/>
+                            <h:commandLink action="#{creerVenteController.initVenteImmediate}" value="#{bundle.SellProduct}"/>
                         </li>
                         <li>
                             <h:commandLink action="#{creerBoutiqueController.initEditer}"

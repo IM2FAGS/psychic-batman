@@ -11,6 +11,7 @@ import abey.services.EnchereService;
 import abey.services.ProduitService;
 import abey.services.SurenchereService;
 import abey.services.UtilisateurService;
+import java.math.BigDecimal;
 import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
 import java.util.Date;
@@ -130,8 +131,7 @@ public class Test {
 //        d.setTime(d.getTime()+60*1000);
 //        e.setDateFin(d);
         e.setDateFin(new Date());
-        e.setPalierMin(1);
-        e.setPrixInitial(55);
+        e.setPrixInitial(new BigDecimal(55));
         e.setProduit(produitService.findAll().get(0));
         e.setVendeur(utilisateurService.findAll().get(0));
         enchereService.create(e);
@@ -142,8 +142,7 @@ public class Test {
         e.setDuree(98);
         d.setTime(d.getTime()+16*1000);
         e.setDateFin(d);
-        e.setPalierMin(1);
-        e.setPrixInitial(55);
+        e.setPrixInitial(new BigDecimal(55));
         e.setProduit(produitService.findAll().get(0));
         e.setVendeur(utilisateurService.findAll().get(0));
         enchereService.create(e);
@@ -154,8 +153,7 @@ public class Test {
         e.setDuree(98);
         d.setTime(d.getTime()+16*1000);
         e.setDateFin(d);
-        e.setPalierMin(1);
-        e.setPrixInitial(55);
+        e.setPrixInitial(new BigDecimal(55));
         e.setProduit(produitService.findAll().get(0));
         e.setVendeur(utilisateurService.findAll().get(0));
         
