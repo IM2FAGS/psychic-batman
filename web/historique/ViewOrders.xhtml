@@ -10,39 +10,60 @@
         #{bundle.MyOrders}
     </ui:define>
     <ui:define name="body">
-        <h:form>
-            <h2>#{bundle.MyOrders}</h2>
-            <h:panelGroup  rendered="#{loginController.utilisateurConnecte == null}">
-                <div class="ui-messages ui-widget">
-                    <div class="ui-messages-error ui-corner-all">
-                        <span class="ui-message-error-icon"/>
-                        <span class="ui-message-error-detail">#{bundle.YouMustBeLoggedIn}</span>
-                    </div>
+        <h2>#{bundle.MyOrders}</h2>
+        <h:panelGroup  rendered="#{loginController.utilisateurConnecte == null}">
+            <div class="ui-messages ui-widget">
+                <div class="ui-messages-error ui-corner-all">
+                    <span class="ui-message-error-icon"/>
+                    <span class="ui-message-error-detail">#{bundle.YouMustBeLoggedIn}</span>
                 </div>
-            </h:panelGroup>
-            <h:panelGroup  rendered="#{loginController.utilisateurConnecte != null}">
-                <div>
-                    <h:panelGroup  rendered="#{afficherHistoriqueController.commandes.size() == 0}">
-                        <p>#{bundle.NoCommand}</p>
-                    </h:panelGroup>
-                    <h:panelGroup  rendered="#{afficherHistoriqueController.commandes.size() > 0}">
-                        <ul>
-                            <c:forEach var="commande" items="#{afficherHistoriqueController.commandes}">
-                                <li>
-                                    <strong>#{commande.dateCommande.toLocaleString()}</strong> : #{commande.montant}€ (#{commande.achats.size()} produit(s) different(s))
-                                    <ul>
-                                        <c:forEach var="achat" items="#{commande.achats}">
-                                            <li>
-                                                #{achat.venteImmediate.produit.nom} : #{achat.prixUnitaire}€ x #{achat.quantite}
-                                            </li>
-                                        </c:forEach>
-                                    </ul>
-                                </li>
-                            </c:forEach>
-                        </ul>
-                    </h:panelGroup>
-                </div>
-            </h:panelGroup>
-        </h:form>
+            </div>
+        </h:panelGroup>
+        <h:panelGroup  rendered="#{loginController.utilisateurConnecte != null}">
+            <div>
+                <h:panelGroup  rendered="#{afficherHistoriqueController.commandes.size() == 0}">
+                    <p>#{bundle.NoCommand}</p>
+                </h:panelGroup>
+                <h:panelGroup  rendered="#{afficherHistoriqueController.commandes.size() > 0}">
+
+                    <p:dataList value="#{afficherHistoriqueController.commandes}"
+                                var="commande"
+                                type="definition">  
+                        #{langueSession.getLocaleDate(commande.dateCommande)}<br/>
+                        <f:facet name="description">
+                            #{bundle.Total} : <span class="total">#{commande.montant}€</span>
+                        </f:facet>
+
+                        <f:facet name="description">
+                            <p:dataList value="#{commande.achats}"
+                                        var="achat"
+                                        type="definition">
+                                #{achat.venteImmediate.produit.nom}
+                                <f:facet name="description">
+                                    #{bundle.Quantity} : #{achat.quantite}<br/>
+                                    #{bundle.PricePerUnit} : #{achat.prixUnitaire}€<br/>
+                                    <h:panelGroup rendered="#{achat.venteImmediate.produit.mainImage != null}">
+                                        <p:graphicImage value="#{imageController.image}"
+                                                        title="#{achat.venteImmediate.produit.nom}"
+                                                        alt="#{achat.venteImmediate.produit.nom}">
+                                            <f:param name="imageId" value="#{achat.venteImmediate.produit.mainImage.id}" />
+                                            <f:param name="thumb" value="#{false}" />
+                                        </p:graphicImage>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{achat.venteImmediate.produit.mainImage == null}">
+                                        <span class="thumbnail">
+                                            <span class="glyphicon glyphicon-picture" />
+                                        </span>
+                                    </h:panelGroup>
+                                </f:facet>
+                            </p:dataList>
+                        </f:facet>  
+
+                    </p:dataList>
+                    <ul>
+                    </ul>
+                </h:panelGroup>
+            </div>
+        </h:panelGroup>
     </ui:define>
 </ui:composition>

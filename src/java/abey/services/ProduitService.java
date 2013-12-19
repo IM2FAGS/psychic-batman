@@ -5,6 +5,7 @@ import abey.entities.Produit;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -37,12 +38,11 @@ public class ProduitService extends AbstractService<Produit> {
             pred.add(getLikeQueryPredicate("nom", query, root));
         
         cq.select(root).where(pred.toArray(new Predicate[0]));
+        
+        Query q = em.createQuery(cq);
+        q.setMaxResults(20);
 
-        return em.createQuery(cq).getResultList();
-    }
-
-    public List<Produit> getCoupsDeCoeur() {
-        return findAll();
+        return q.getResultList();
     }
 
 }

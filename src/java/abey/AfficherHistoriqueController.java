@@ -3,6 +3,7 @@ package abey;
 import abey.entities.Commande;
 import abey.entities.Surenchere;
 import abey.entities.Utilisateur;
+import abey.services.CommandeService;
 import abey.services.SurenchereService;
 import java.util.List;
 import javax.ejb.EJB;
@@ -11,7 +12,7 @@ import javax.faces.bean.RequestScoped;
 
 /**
  *
- * @author nicolas
+ * @author Anthony
  */
 @ManagedBean
 @RequestScoped
@@ -20,10 +21,13 @@ public class AfficherHistoriqueController extends AbstractController {
     @EJB
     SurenchereService surenchereService;
 
+    @EJB
+    CommandeService commandeService;
+
     public List<Commande> getCommandes() {
         Utilisateur u = getUtilisateurConnecte();
         if (u != null) {
-            return u.getCommandes();
+            return commandeService.getCommandes(u);
         } else {
             return null;
         }
@@ -32,7 +36,7 @@ public class AfficherHistoriqueController extends AbstractController {
     public List<Surenchere> getSurencheres() {
         Utilisateur u = getUtilisateurConnecte();
         if (u != null) {
-            return u.getSurencheres();
+            return surenchereService.getSurencheres(u);
         } else {
             return null;
         }
@@ -46,5 +50,5 @@ public class AfficherHistoriqueController extends AbstractController {
             return null;
         }
     }
-    
+
 }

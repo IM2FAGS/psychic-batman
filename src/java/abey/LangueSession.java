@@ -1,6 +1,8 @@
 package abey;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -42,5 +44,10 @@ public class LangueSession implements Serializable {
 
     public Map<String, String> getLanguagesAvailable() {
         return languages;
+    }
+
+    public String getLocaleDate(Date date) {
+        DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, locale);
+        return df.format(date);
     }
 }
