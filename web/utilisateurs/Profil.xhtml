@@ -29,7 +29,7 @@
                             </li>
                         </h:panelGroup>
                         <li>
-                            <h:commandLink action="#{creerBoutiqueController.initEditer}"
+                            <h:commandLink action="#{creerVenteController.initEnchere()}"
                                            value="#{bundle.MyAuctionSales}" />
                         </li>
                     </ul>
@@ -39,8 +39,12 @@
                     <h2><h:outputText value="#{bundle.MyPurchases}" /></h2>
                     <ul>
                         <li>
-                            <h:link outcome="/historique/View"
+                            <h:link outcome="/historique/ViewOrders"
                                     value="#{bundle.MyOrders}" />
+                        </li>
+                        <li>
+                            <h:link outcome="/historique/ViewWonAuctions"
+                                    value="#{bundle.MyWonAuctions}" />
                         </li>
                     </ul>
                 </div>

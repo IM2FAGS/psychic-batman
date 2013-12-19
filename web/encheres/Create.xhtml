@@ -74,52 +74,51 @@
                 </div>
 
             </h:panelGroup>
-
+            
             <h:panelGroup rendered="#{creerVenteController.produit != null}">
-
                 <div class="form-group">
                     <label for="recherche" class="col-sm-2 control-label">
-                        <h:outputText value="#{bundle.Product}" />
+                        <h:outputText value="#{bundle.AuctionSale}" />
                     </label>
                     <div class="col-sm-5">
-                        <h:outputText value="#{creerVenteController.produit.nom}" />
+                        <h:outputText value="#{creerVenteController.enchere.produit.nom}" />
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="stock" class="col-sm-2 control-label">
-                        <h:outputText value="#{bundle.Stock}" />
+                    <label for="duree" class="col-sm-2 control-label">
+                        <h:outputText value="#{bundle.Duration}" />
                     </label>
                     <div class="col-sm-5">
                         <p:spinner id="stock"
-                                   value="#{creerVenteController.venteImmediate.stock}"
-                                   title="#{bundle.Stock}" required="true"
+                                   value="#{creerVenteController.enchere.duree}"
+                                   title="#{bundle.Duration}" required="true"
                                    min="1"
-                                   validatorMessage="#{bundle.StockInvalid}"
-                                   requiredMessage="#{bundle.StockRequired}"
+                                   validatorMessage="#{bundle.DurationInvalid}"
+                                   requiredMessage="#{bundle.DurationRequired}"
                                    styleClass="form-control">
                         </p:spinner>
-                        <p:watermark for="stock" value="#{bundle.Stock}"/>
+                        <p:watermark for="stock" value="#{bundle.Duration}"/>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="prix" class="col-sm-2 control-label">
-                        <h:outputText value="#{bundle.PricePerUnit}" />
+                    <label for="prixInitial" class="col-sm-2 control-label">
+                        <h:outputText value="#{bundle.PriceInitial}" />
                     </label>
                     <div class="col-sm-5">
 
                         <div class="input-group">
                             <p:inputText id="prix"
-                                         value="#{creerVenteController.venteImmediate.prix}"
-                                         title="#{bundle.PricePerUnit}"
+                                         value="#{creerVenteController.enchere.prixInitial}"
+                                         title="#{bundle.PriceInitial}"
                                          required="true"
-                                         validatorMessage="#{bundle.PricePerUnitInvalid}"
-                                         requiredMessage="#{bundle.PricePerUnitRequired}"
+                                         validatorMessage="#{bundle.PriceInitialInvalid}"
+                                         requiredMessage="#{bundle.PriceInitialRequired}"
                                          styleClass="form-control ui-abey-addon"
                                          style="text-align: right;">
                             </p:inputText>
-                            <p:watermark for="prix" value="#{bundle.PricePerUnit}"/>
+                            <p:watermark for="prix" value="#{bundle.PriceInitial}"/>
                             <span class="input-group-addon">€</span>
                         </div>
 
@@ -145,4 +144,3 @@
 
     </ui:define>
 </ui:composition>
-

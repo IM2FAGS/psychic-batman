@@ -47,9 +47,6 @@ public class Enchere implements Serializable {
     @NotNull
     private BigDecimal prixInitial;
 
-    @Basic(optional = false)
-    @NotNull
-    private float palierMin;
 
     @Basic(optional = false)
     @NotNull
@@ -114,14 +111,6 @@ public class Enchere implements Serializable {
 
     public void setPrixInitial(BigDecimal prixInitial) {
         this.prixInitial = prixInitial;
-    }
-
-    public float getPalierMin() {
-        return palierMin;
-    }
-
-    public void setPalierMin(float palierMin) {
-        this.palierMin = palierMin;
     }
 
     public Date getDateDebut() {

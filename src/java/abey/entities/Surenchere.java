@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -20,6 +22,12 @@ import javax.validation.constraints.NotNull;
  * @author Anthony
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Surenchere.getSurencheresGagnantes",
+            query = "select s from Surenchere s "
+            + "where s.encherisseur = ?1 "
+            + "and s = s.enchere.surenchereGagnante")
+})
 public class Surenchere implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,6 +57,10 @@ public class Surenchere implements Serializable {
     @NotNull
     @Enumerated(EnumType.STRING)
     private ModePaiement modePaiement;
+
+    @Basic(optional = false)
+    @NotNull
+    private boolean consultee = true;
 
     public Long getId() {
         return id;
@@ -96,6 +108,14 @@ public class Surenchere implements Serializable {
 
     public void setModePaiement(ModePaiement modePaiement) {
         this.modePaiement = modePaiement;
+    }
+
+    public boolean isConsultee() {
+        return consultee;
+    }
+
+    public void setConsultee(boolean consultee) {
+        this.consultee = consultee;
     }
 
     @Override
