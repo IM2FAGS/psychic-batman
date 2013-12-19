@@ -1,10 +1,7 @@
 package abey.tasks;
 
 import abey.entities.Enchere;
-import abey.entities.EnchereGagnee;
-import abey.entities.ModePaiement;
 import abey.entities.Surenchere;
-import abey.services.EnchereGagneeService;
 import abey.services.EnchereService;
 import java.util.Date;
 import javax.ejb.EJB;
@@ -21,33 +18,25 @@ public class Encheres {
     @EJB
     EnchereService enchereService;
 
-    @EJB
-    private EnchereGagneeService enchereGagneeService;
-
     @Schedule(second = "*/15", hour = "*", minute = "*")
     public void task() {
         System.out.println(new Date());
+        System.out.println("Vérification des enchères à clore...");
         for (Enchere enchere : enchereService.getEncheresAClore()) {
-            System.out.println(enchere);
+            System.out.println("à clore : enchere " + enchere.getId() + " (produit " + enchere.getProduit().getNom() + ")");
 
-            Surenchere gagne = enchere.getDerniereSurenchere();
-            if (gagne != null) {
-                EnchereGagnee eg = new EnchereGagnee();
-                eg.setAcheteur(gagne.getEncherisseur());
-                eg.setDateSurenchere(gagne.getDateEnchere());
-                eg.setEnchere(enchere);
-                eg.setModePaiement(ModePaiement.CB);//TODO mode paiement
-                eg.setMontant(gagne.getMontant());
-
-                enchereService.create(enchere);
-                enchereGagneeService.create(eg);
-                enchere.setEnchereGagnee(eg);
-                enchereService.edit(enchere);
+            Surenchere gagnante = enchere.getDerniereSurenchere();
+            if (gagnante != null) {
+                System.out.println("surenchere gagnante : " + gagnante);
+                enchere.setSurenchereGagnante(gagnante);
             } else {
-                //TODO clore l'enchère sans enchérisseur
+                System.out.println("aucune surenchere");
             }
+            enchere.setTerminee(true);
+            enchereService.edit(enchere);
+            System.out.println("enchère close");
         }
-
+        System.out.println("Fin de vérification");
     }
 
     public void setEnchereService(EnchereService enchereService) {

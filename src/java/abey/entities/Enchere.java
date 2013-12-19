@@ -36,7 +36,7 @@ public class Enchere implements Serializable {
     private List<Surenchere> surencheres;
 
     @OneToOne
-    private EnchereGagnee enchereGagnee;
+    private Surenchere surenchereGagnante;
 
     @NotNull
     @ManyToOne
@@ -63,6 +63,10 @@ public class Enchere implements Serializable {
     @NotNull
     private int duree;
 
+    @Basic(optional = false)
+    @NotNull
+    private boolean terminee = false;
+
     public Long getId() {
         return id;
     }
@@ -87,12 +91,12 @@ public class Enchere implements Serializable {
         this.surencheres = surencheres;
     }
 
-    public EnchereGagnee getEnchereGagnee() {
-        return enchereGagnee;
+    public Surenchere getSurenchereGagnante() {
+        return surenchereGagnante;
     }
 
-    public void setEnchereGagnee(EnchereGagnee enchereGagnee) {
-        this.enchereGagnee = enchereGagnee;
+    public void setSurenchereGagnante(Surenchere surenchereGagnante) {
+        this.surenchereGagnante = surenchereGagnante;
     }
 
     public Produit getProduit() {
@@ -143,6 +147,14 @@ public class Enchere implements Serializable {
         this.duree = duree;
     }
 
+    public boolean isTerminee() {
+        return terminee;
+    }
+
+    public void setTerminee(boolean terminee) {
+        this.terminee = terminee;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -171,8 +183,9 @@ public class Enchere implements Serializable {
     public Surenchere getDerniereSurenchere() {
         Surenchere max = null;
         for (Surenchere surenchere : surencheres) {
-            if(max == null || surenchere.getDateEnchere().after(max.getDateEnchere()))
+            if (max == null || surenchere.getDateEnchere().after(max.getDateEnchere())) {
                 max = surenchere;
+            }
         }
         return max;
     }

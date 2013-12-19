@@ -25,7 +25,7 @@ public class EnchereService extends AbstractService<Enchere> {
         Root<Enchere> root = cq.from(Enchere.class);
 
         cq.select(root).where(
-                getEqualQueryPredicate("enchereGagnee", null, root),
+                getEqualQueryPredicate("terminee", false, root),
                 cb.lessThanOrEqualTo(root.<Date>get("dateFin"), new Date())
         );
 

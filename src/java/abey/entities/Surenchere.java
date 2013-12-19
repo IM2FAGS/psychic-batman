@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,6 +43,11 @@ public class Surenchere implements Serializable {
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateEnchere;
+
+    @Basic(optional = false)
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private ModePaiement modePaiement;
 
     public Long getId() {
         return id;
@@ -80,6 +87,14 @@ public class Surenchere implements Serializable {
 
     public void setDateEnchere(Date dateEnchere) {
         this.dateEnchere = dateEnchere;
+    }
+
+    public ModePaiement getModePaiement() {
+        return modePaiement;
+    }
+
+    public void setModePaiement(ModePaiement modePaiement) {
+        this.modePaiement = modePaiement;
     }
 
     @Override

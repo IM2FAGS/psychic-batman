@@ -36,7 +36,7 @@ public class ProduitService extends AbstractService<Produit> {
         if (query != null)
             pred.add(getLikeQueryPredicate("nom", query, root));
         
-        cq.select(root).where(cb.and(pred.toArray(new Predicate[0])));
+        cq.select(root).where(pred.toArray(new Predicate[0]));
 
         return em.createQuery(cq).getResultList();
     }

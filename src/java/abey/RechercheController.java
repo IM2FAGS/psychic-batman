@@ -4,15 +4,10 @@ import abey.entities.Categorie;
 import abey.services.ProduitService;
 import abey.entities.Produit;
 import abey.services.CategorieService;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.convert.Converter;
-import javax.faces.convert.FacesConverter;
 
 /**
  *

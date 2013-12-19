@@ -38,9 +38,6 @@ public class Utilisateur implements Serializable {
     @OneToOne(mappedBy = "proprietaire")
     private Boutique boutique;
 
-    @OneToMany(mappedBy = "acheteur")
-    private List<EnchereGagnee> encheresGagnees;
-
     @OneToMany(mappedBy = "encherisseur")
     private List<Surenchere> surencheres;
 
@@ -92,14 +89,6 @@ public class Utilisateur implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public List<EnchereGagnee> getEncheresGagnees() {
-        return encheresGagnees;
-    }
-
-    public void setEncheresGagnees(List<EnchereGagnee> encheresGagnees) {
-        this.encheresGagnees = encheresGagnees;
     }
 
     public List<Surenchere> getSurencheres() {

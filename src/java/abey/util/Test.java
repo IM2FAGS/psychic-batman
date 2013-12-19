@@ -2,14 +2,14 @@ package abey.util;
 
 import abey.entities.Categorie;
 import abey.entities.Enchere;
-import abey.entities.EnchereGagnee;
 import abey.entities.ModePaiement;
 import abey.entities.Produit;
+import abey.entities.Surenchere;
 import abey.entities.Utilisateur;
 import abey.services.CategorieService;
-import abey.services.EnchereGagneeService;
 import abey.services.EnchereService;
 import abey.services.ProduitService;
+import abey.services.SurenchereService;
 import abey.services.UtilisateurService;
 import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
@@ -40,9 +40,9 @@ public class Test {
 
     @EJB
     private EnchereService enchereService;
-
+    
     @EJB
-    private EnchereGagneeService enchereGagneeService;
+    private SurenchereService surenchereService;
 
     @PostConstruct
     public void init() {
@@ -159,15 +159,15 @@ public class Test {
         e.setProduit(produitService.findAll().get(0));
         e.setVendeur(utilisateurService.findAll().get(0));
         
-        EnchereGagnee eg = new EnchereGagnee();
-        eg.setAcheteur(e.getVendeur());
-        eg.setDateSurenchere(d);
+        Surenchere eg = new Surenchere();
+        eg.setEncherisseur(e.getVendeur());
+        eg.setDateEnchere(d);
         eg.setEnchere(e);
         eg.setModePaiement(ModePaiement.CB);
         eg.setMontant(845);
         enchereService.create(e);
-        enchereGagneeService.create(eg);
-        e.setEnchereGagnee(eg);
+        surenchereService.create(eg);
+        e.setSurenchereGagnante(eg);
         enchereService.edit(e);
         System.out.println("fillEncheres OK.");
     }
