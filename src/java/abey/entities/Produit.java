@@ -158,7 +158,7 @@ public class Produit implements Serializable {
     public String toString() {
         return "abey.entities.Produit[ id=" + id + " ]";
     }
-    
+
     public BigDecimal getPrixMinVenteImmediate() {
         BigDecimal prixMin = BigDecimal.ZERO;
         for (VenteImmediate venteImmediate : ventesImmediates) {
@@ -169,7 +169,7 @@ public class Produit implements Serializable {
         }
         return prixMin;
     }
-    
+
     public BigDecimal getPrixMinEnchere() {
         BigDecimal prixMin = BigDecimal.ZERO;
         for (Enchere enchere : encheres) {
@@ -180,11 +180,18 @@ public class Produit implements Serializable {
         }
         return prixMin;
     }
-    
+
     public BigDecimal getPrixMin() {
         BigDecimal prixMinVenteImmediate = getPrixMinVenteImmediate();
         BigDecimal prixMinEnchere = getPrixMinEnchere();
-        return prixMinVenteImmediate.compareTo(prixMinEnchere) < 0 ? prixMinVenteImmediate : prixMinEnchere;
+        if (prixMinVenteImmediate.compareTo(BigDecimal.ZERO) > 0
+                && prixMinVenteImmediate.compareTo(prixMinEnchere) < 0) {
+            return prixMinVenteImmediate;
+        } else if (prixMinEnchere.compareTo(BigDecimal.ZERO) > 0
+                && prixMinEnchere.compareTo(prixMinVenteImmediate) < 0) {
+
+        }
+        return BigDecimal.ZERO;
     }
 
 }
