@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -21,6 +23,18 @@ import javax.validation.constraints.NotNull;
  * @author Anthony
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Enchere.getEncheresCreeesEnCours",
+            query = "select e from Enchere e "
+            + "where e.vendeur = ?1 "
+            + "and e.terminee = false "
+            + "order by e.dateFin asc"),
+    @NamedQuery(name = "Enchere.getEncheresCreeesTerminees",
+            query = "select e from Enchere e "
+            + "where e.vendeur = ?1 "
+            + "and e.terminee = true "
+            + "order by e.dateFin desc")
+})
 public class Enchere implements Serializable {
 
     private static final long serialVersionUID = 1L;

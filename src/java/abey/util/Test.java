@@ -258,6 +258,20 @@ public class Test {
         eg.setMontant(new BigDecimal(845));
         surenchereService.create(eg);
         enchereService.edit(e);
+
+        e = new Enchere();
+        d = new Date();
+        e.setDateDebut(new Date());
+        e.setDuree(98);
+        d.setTime(d.getTime() + 60 * 60 * 60 * 1000);
+        e.setDateFin(d);
+        e.setPrixInitial(new BigDecimal(41));
+        e.setProduit(p);
+        p.getEncheres().add(e);
+        e.setVendeur(u);
+        enchereService.create(e);
+        produitService.edit(p);
+        utilisateurService.edit(u);
         System.out.println("fillEncheres OK.");
     }
 
