@@ -26,7 +26,12 @@ import javax.validation.constraints.NotNull;
     @NamedQuery(name = "Surenchere.getSurencheresGagnantes",
             query = "select s from Surenchere s "
             + "where s.encherisseur = ?1 "
-            + "and s = s.enchere.surenchereGagnante")
+            + "and s = s.enchere.surenchereGagnante "
+            + "order by s.dateEnchere desc"),
+    @NamedQuery(name = "Surenchere.getSurencheres",
+            query = "select s from Surenchere s "
+            + "where s.encherisseur = ?1 "
+            + "order by s.dateEnchere desc")
 })
 public class Surenchere implements Serializable {
 
