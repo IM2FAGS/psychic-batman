@@ -11,9 +11,13 @@
     </ui:define>
     <ui:define name="body">
         <h1>
-            <h:outputFormat value="#{bundle.SearchingFor}" escape="false">
+            <h:outputFormat value="#{bundle.SearchingFor}"
+                            escape="false"
+                            rendered="#{not empty rechercheController.query}">
                 <f:param value="#{rechercheController.query}" />
             </h:outputFormat>
+            <h:outputText rendered="#{empty rechercheController.query}"
+                          value="#{bundle.Search}" />
         </h1>
 
         <h:panelGroup rendered="#{not empty rechercheController.categorieQuery.nom}">
@@ -22,7 +26,11 @@
             </h4>
         </h:panelGroup>
 
-        <h:outputText value="#{bundle.NoResult}" rendered="#{empty rechercheController.produits}" />
+        <h:panelGroup rendered="#{empty rechercheController.produits}">
+            <div class="well">
+                <h:outputText value="#{bundle.NoResult}" />
+            </div>
+        </h:panelGroup>
 
         <h:form id="form">
 
@@ -56,9 +64,12 @@
                                     <h:outputText value="#{produit.nom}" />
                                 </div>
                                 <div class="product-price">
-                                    <h:outputFormat value="#{bundle.SoldFrom}">
-                                        <f:param value="XXXX" />
+                                    <h:outputFormat value="#{bundle.SoldFrom}"
+                                                    rendered="#{produit.prixMin > 0}">
+                                        <f:param value="#{produit.prixMin}" />
                                     </h:outputFormat>
+                                    <h:outputText rendered="#{produit.prixMin == 0}"
+                                                  value="#{bundle.ProductNotAvailable}" />
                                 </div>
                             </div>
                         </div>

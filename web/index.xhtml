@@ -24,7 +24,7 @@
                                 <h:panelGroup rendered="#{venteImmediate.produit.mainImage != null}">
                                     <span class="thumbnail">
                                         <p:graphicImage value="#{imageController.image}">
-                                            <f:param name="imageId" value="#{venteImmediate.produit.mainImage}" />
+                                            <f:param name="imageId" value="#{venteImmediate.produit.mainImage.id}" />
                                             <f:param name="thumb" value="#{false}" />
                                         </p:graphicImage>
                                     </span>
@@ -40,9 +40,12 @@
                                     <h:outputText value="#{venteImmediate.produit.nom}" />
                                 </div>
                                 <div class="product-price">
-                                    <h:outputFormat value="#{bundle.SoldFrom}">
-                                        <f:param value="#{venteImmediate.prix}" />
+                                    <h:outputFormat value="#{bundle.SoldFrom}"
+                                                    rendered="#{venteImmediate.produit.prixMin > 0}">
+                                        <f:param value="#{venteImmediate.produit.prixMin}" />
                                     </h:outputFormat>
+                                    <h:outputText rendered="#{venteImmediate.produit.prixMin == 0}"
+                                                  value="#{bundle.ProductNotAvailable}" />
                                 </div>
                             </div>
                         </div>
@@ -65,7 +68,7 @@
                                     <h:panelGroup rendered="#{produit.mainImage != null}">
                                         <span class="thumbnail">
                                             <p:graphicImage value="#{imageController.image}">
-                                                <f:param name="imageId" value="#{produit.mainImage}" />
+                                                <f:param name="imageId" value="#{produit.mainImage.id}" />
                                                 <f:param name="thumb" value="#{false}" />
                                             </p:graphicImage>
                                         </span>
@@ -79,6 +82,14 @@
                                 <div class="col-lg-9">
                                     <div class="product-name">
                                         <h:outputText value="#{produit.nom}" />
+                                    </div>
+                                    <div class="product-price">
+                                        <h:outputFormat value="#{bundle.SoldFrom}"
+                                                        rendered="#{produit.prixMin > 0}">
+                                            <f:param value="#{produit.prixMin}" />
+                                        </h:outputFormat>
+                                        <h:outputText rendered="#{produit.prixMin == 0}"
+                                                      value="#{bundle.ProductNotAvailable}" />
                                     </div>
                                 </div>
                             </div>
@@ -99,7 +110,7 @@
                                     <h:panelGroup rendered="#{enchere.produit.mainImage != null}">
                                         <span class="thumbnail">
                                             <p:graphicImage value="#{imageController.image}">
-                                                <f:param name="imageId" value="#{enchere.produit.mainImage}" />
+                                                <f:param name="imageId" value="#{enchere.produit.mainImage.id}" />
                                                 <f:param name="thumb" value="#{false}" />
                                             </p:graphicImage>
                                         </span>

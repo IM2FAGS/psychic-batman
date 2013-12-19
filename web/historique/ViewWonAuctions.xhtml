@@ -33,12 +33,19 @@
                         #{surenchere.enchere.produit.nom}<br/>
                         <f:facet name="description">
                             #{bundle.Total} : <span class="total">#{surenchere.montant}€</span><br/>
-                            <p:graphicImage value="#{imageController.image}"
-                                            title="#{surenchere.enchere.produit.nom}"
-                                            alt="#{surenchere.enchere.produit.nom}">
-                                <f:param name="imageId" value="#{surenchere.enchere.produit.mainImage.id}" />
-                                <f:param name="thumb" value="#{false}" />
-                            </p:graphicImage>
+                            <h:panelGroup rendered="#{surenchere.enchere.produit.mainImage != null}">
+                                <p:graphicImage value="#{imageController.image}"
+                                                title="#{surenchere.enchere.produit.nom}"
+                                                alt="#{surenchere.enchere.produit.nom}">
+                                    <f:param name="imageId" value="#{surenchere.enchere.produit.mainImage.id}" />
+                                    <f:param name="thumb" value="#{false}" />
+                                </p:graphicImage>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{surenchere.enchere.produit.mainImage == null}">
+                                <span class="thumbnail">
+                                    <span class="glyphicon glyphicon-picture" />
+                                </span>
+                            </h:panelGroup>
                         </f:facet>
                     </p:dataList>
                     <ul>
