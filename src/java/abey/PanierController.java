@@ -2,6 +2,7 @@ package abey;
 
 import abey.entities.ProduitPanier;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 /**
@@ -33,7 +34,8 @@ public class PanierController extends AbstractController {
         this.produitPanier = produitPanier;
     }
     
-    public void AjouterProduitPanier(){
+    public String ajouterProduitPanier(){
         getPanierSite().getProduits().add(produitPanier);
+		return "/panier/View";
     }
 }

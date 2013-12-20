@@ -73,9 +73,9 @@
 									<div class="col-lg-5">
 										<div>
 											<h:commandButton value="#{bundle.AddToCart}"
-																actionListener="#{panierController.ajouterProduitPanier}"
+															 action="#{panierController.ajouterProduitPanier}"
 																 styleClass="btn btn-primary">
-												 <f:setPropertyActionListener target="#{panierController.produitPanier}"
+												<f:setPropertyActionListener target="#{panierController.produitPanier}"
 																			  value="#{item.produit}" />
 											</h:commandButton>
 										</div>
