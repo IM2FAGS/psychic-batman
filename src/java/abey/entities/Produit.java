@@ -72,6 +72,7 @@ public class Produit implements Serializable {
     }
 
     public List<VenteImmediate> getVentesImmediates() {
+		System.out.println("Taille liste : !!!!!!!!!!!!!!!!!!!!!!!" + ventesImmediates.size());
         return ventesImmediates;
     }
 
@@ -161,6 +162,7 @@ public class Produit implements Serializable {
 
     public BigDecimal getPrixMinVenteImmediate() {
         BigDecimal prixMin = BigDecimal.ZERO;
+		System.out.println("yoo groooos :" + ventesImmediates.size());
         for (VenteImmediate venteImmediate : ventesImmediates) {
             if (venteImmediate.getStock() > 0
                     && (venteImmediate.getPrix().compareTo(prixMin) < 0 || prixMin == BigDecimal.ZERO)) {

@@ -42,17 +42,20 @@ public class CreerVenteController extends AbstractController {
 
     @EJB
     private EnchereService enchereService;
-    
+
     @EJB
     private ProduitService produitService;
 
     @EJB
     private BoutiqueService boutiqueService;
     
+    @EJB
+    private UtilisateurService utilisateurService;
+
     private VenteImmediate venteImmediate;
 
     private Enchere enchere;
-    
+
     private String recherche;
 
     private int action;
@@ -91,9 +94,9 @@ public class CreerVenteController extends AbstractController {
     public void setVenteImmediate(VenteImmediate venteImmediate) {
         this.venteImmediate = venteImmediate;
     }
-    
-    public Enchere getEnchere(){
-        if(enchere == null){
+
+    public Enchere getEnchere() {
+        if (enchere == null) {
             enchere = new Enchere();
             enchere.setPrixInitial(BigDecimal.ONE);
             enchere.setTerminee(false);
@@ -117,7 +120,7 @@ public class CreerVenteController extends AbstractController {
 
     public void setProduit(Produit produit) {
         this.produit = produit;
-        if(action == ACTION_CREER_ENCHERE){
+        if (action == ACTION_CREER_ENCHERE) {
             enchere.setProduit(produit);
         }
     }
@@ -142,6 +145,7 @@ public class CreerVenteController extends AbstractController {
     }
 
     public String creerVenteImmediate() {
+
         venteImmediate = getVenteImmediate();
         Produit produitVente = getProduit();
         if (produitVente == null) {
@@ -165,13 +169,12 @@ public class CreerVenteController extends AbstractController {
                 ventesImmediates.add(venteImmediate);
                 boutique.setVentesImmediates(ventesImmediates);
 
-                System.out.println("VENTES IMM "+ventesImmediates.size());
-
-                
-
-                venteImmediateService.create(venteImmediate);
                 produitVente.getVentesImmediates().add(venteImmediate);
 
+                venteImmediateService.create(venteImmediate);
+
+                produitService.edit(produitVente);
+                boutiqueService.edit(boutique);
                 annulerCreer();
                 JsfUtil.addSuccessMessage(
                         LangString.params(
@@ -230,7 +233,7 @@ public class CreerVenteController extends AbstractController {
             try {
                 enchere.setDateDebut(new Date());
                 enchere.setProduit(produitEnchere);
-                enchere.setDateFin(new Date(enchere.getDateDebut().getTime()+enchere.getDuree()*24*60*60*1000));
+                enchere.setDateFin(new Date(enchere.getDateDebut().getTime() + enchere.getDuree() * 24 * 60 * 60 * 1000));
                 enchere.setVendeur(getUtilisateurConnecte());
 
                 if (produitEnchere.getId() == null) {
@@ -240,6 +243,8 @@ public class CreerVenteController extends AbstractController {
                 enchereService.create(enchere);
                 produitEnchere.getEncheres().add(enchere);
                 getUtilisateurConnecte().getEncheresCrees().add(enchere);
+                produitService.edit(produitEnchere);
+                utilisateurService.edit(getUtilisateurConnecte());
                 annulerCreer();
                 JsfUtil.addSuccessMessage(
                         LangString.params(
@@ -264,5 +269,5 @@ public class CreerVenteController extends AbstractController {
             return "/encheres/Create";
         }
     }
-    
+
 }
