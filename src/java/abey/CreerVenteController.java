@@ -145,7 +145,6 @@ public class CreerVenteController extends AbstractController {
     }
 
     public String creerVenteImmediate() {
-
         venteImmediate = getVenteImmediate();
         Produit produitVente = getProduit();
         if (produitVente == null) {

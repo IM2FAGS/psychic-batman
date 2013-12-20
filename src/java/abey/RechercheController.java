@@ -58,7 +58,7 @@ public class RechercheController extends AbstractController {
         this.categorieQuery = categorieQuery;
     }
 
-    public CategorieService getCategorieService() {
+    public CategorieService gesettCategorieService() {
         return categorieService;
     }
 

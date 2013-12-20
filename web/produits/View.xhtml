@@ -36,46 +36,54 @@
                     </div>
                 </div>
                 <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="panel-body">
-                                    <div class="col">
-                                        <h:outputText value="#{bundle.BuyItNow}" class="h2"/>
-                                        <h:dataTable value="#{afficherProduitController.produit.ventesImmediates}" var="item" >
-                                            <h:column class="col-lg-4">
-                                                <div class="col-lg-4">
-                                                    <h:panelGroup rendered="#{afficherProduitController.produit.mainImage == null }" class="thumbnail">
-                                                        <span class="glyphicon glyphicon-picture"/>
-                                                    </h:panelGroup>
-                                                    <h:panelGroup rendered="#{afficherProduitController.produit.mainImage != null}" class="thumbnail"  >
-                                                        <p:graphicImage  value="#{imageController.image}">
-                                                            <f:param name="imageId" value="#{afficherProduitController.produit.mainImage.id}" />
-                                                            <f:param name="thumb" value="#{false}" />
-                                                        </p:graphicImage>
-                                                    </h:panelGroup>
-                                                </div>
-                                            </h:column>
-                                        </h:dataTable>
-                                    </div>
-                                </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="col">
+                                <h:outputText value="#{bundle.BuyItNow}" class="h2"/>
+                                <h:dataTable value="#{afficherProduitController.produit.ventesImmediates}" var="item" >
+                                    <h:column>
+                                        <div class="col-lg-4">
+                                            <h:panelGroup rendered="#{afficherProduitController.produit.mainImage == null }" class="thumbnail">
+                                                <span class="glyphicon glyphicon-picture"/>
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{afficherProduitController.produit.mainImage != null}" class="thumbnail"  >
+                                                <p:graphicImage  value="#{imageController.image}">
+                                                    <f:param name="imageId" value="#{afficherProduitController.produit.mainImage.id}" />
+                                                    <f:param name="thumb" value="#{false}" />
+                                                </p:graphicImage>
+                                            </h:panelGroup>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <h:outputText value="#{bundle.SelledBy} #{item.boutique.proprietaire.nom}" />
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <h:commandButton value="#{bundle.AddToCart}"
+                                                             actionListener="#{panierController.ajouterProduitPanier}"
+                                                             styleClass="btn btn-primary">
+                                                <f:setPropertyActionListener target="#{panierController.produitPanier}"
+                                                                             value="#{item.produit}" />
+                                            </h:commandButton>
+                                        </div>
+                                        <br/><br/><br/>
+                                    </h:column>
+                                </h:dataTable>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="product-achat-immediat">
-                                    <h:outputText value="#{bundle.AuctionSale}" class="h2"/>
-                                    <h:dataTable value="#{afficherProduitController.produit.encheres}" var="enchere" >
-                                        <h:column class="col-lg-4">
-                                            <div class="col-lg-4">
-                                                <h:commandLink value="#{bundle.AuctionAction}"
-                                                                 action="#{encherirController.preEncherir}"
-                                                                 styleClass="btn btn-success">
-                                                    <f:setPropertyActionListener value="#{enchere}"
-                                                                                 target="#{encherirController.enchere}" />
-                                                </h:commandLink>	
-                                            </div>
-                                        </h:column>
-                                    </h:dataTable>
-                                </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="product-achat-immediat">
+                                <h:outputText value="#{bundle.AuctionSale}" class="h2"/>
+                                <h:dataTable value="#{afficherProduitController.produit.encheres}" var="enchere" >
+                                    <h:column class="col-lg-4">
+                                        <div class="col-lg-4">
+                                            <h:commandLink value="#{bundle.AuctionAction}"
+                                                           action="#{encherirController.preEncherir}"
+                                                           styleClass="btn btn-success">
+                                                <f:setPropertyActionListener value="#{enchere}"
+                                                                             target="#{encherirController.enchere}" />
+                                            </h:commandLink>	
+                                        </div>
+                                    </h:column>
+                                </h:dataTable>
                             </div>
                         </div>
                     </div>
