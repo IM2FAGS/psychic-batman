@@ -56,6 +56,15 @@ public class AfficherHistoriqueController extends AbstractController {
         }
     }
 
+    public List<Surenchere> getSurencheresRemportees(boolean consultee) {
+        Utilisateur u = getUtilisateurConnecte();
+        if (u != null) {
+            return surenchereService.getSurencheresGagnantes(u, consultee);
+        } else {
+            return null;
+        }
+    }
+
     public List<Enchere> getEncheresCreeesEnCours() {
         Utilisateur u = getUtilisateurConnecte();
         if (u != null) {
@@ -72,5 +81,12 @@ public class AfficherHistoriqueController extends AbstractController {
         } else {
             return null;
         }
+    }
+    
+    public String setSurenchereConsultee(Surenchere s, boolean consultee) {
+        s.setConsultee(consultee);
+        surenchereService.edit(s);
+        
+        return null;
     }
 }

@@ -31,4 +31,12 @@ public class SurenchereService extends AbstractService<Surenchere> {
         return query.getResultList();
     }
 
+    public List<Surenchere> getSurencheresGagnantes(Utilisateur utilisateur, boolean consultee) {
+        TypedQuery<Surenchere> query = em.createNamedQuery("Surenchere.getSurencheresGagnantesConsultees",
+                Surenchere.class);
+        query.setParameter(1, utilisateur);
+        query.setParameter(2, consultee);
+        return query.getResultList();
+    }
+
 }

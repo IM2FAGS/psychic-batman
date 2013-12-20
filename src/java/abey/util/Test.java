@@ -288,12 +288,38 @@ public class Test {
         produitService.edit(p);
         utilisateurService.edit(u);
 
-        Surenchere eg = new Surenchere();
+        Surenchere eg;
+        eg = new Surenchere();
         eg.setEncherisseur(e.getVendeur());
         eg.setDateEnchere(d);
         eg.setEnchere(e);
         e.getSurencheres().add(eg);
-        e.setSurenchereGagnante(eg);
+//        e.setSurenchereGagnante(eg);
+        eg.setModePaiement(ModePaiement.CB);
+        eg.setMontant(new BigDecimal(845));
+        surenchereService.create(eg);
+        enchereService.edit(e);
+
+        e = new Enchere();
+        d = new Date();
+        e.setDateDebut(new Date());
+        e.setDuree(98);
+        d.setTime(d.getTime() + 25 * 1000);
+        e.setDateFin(d);
+        e.setPrixInitial(new BigDecimal(55));
+        e.setProduit(p);
+        p.getEncheres().add(e);
+        e.setVendeur(u);
+        enchereService.create(e);
+        produitService.edit(p);
+        utilisateurService.edit(u);
+
+        eg = new Surenchere();
+        eg.setEncherisseur(e.getVendeur());
+        eg.setDateEnchere(d);
+        eg.setEnchere(e);
+        e.getSurencheres().add(eg);
+//        e.setSurenchereGagnante(eg);
         eg.setModePaiement(ModePaiement.CB);
         eg.setMontant(new BigDecimal(845));
         surenchereService.create(eg);
