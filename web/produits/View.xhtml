@@ -1,141 +1,141 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:p="http://primefaces.org/ui"
-				xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:composition template="/template.xhtml">
-    <ui:define name="title">
-        <h:outputText value="#{afficherProduitController.produit.nom}"/>
-    </ui:define>
-    <ui:define name="body">
-        <p:messages autoUpdate="true" escape="false"/>
-        <h:form>
-			<div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-lg-2">
-							<h:panelGroup rendered="#{afficherProduitController.produit.mainImage == null }" class="thumbnail">
-                                <span class="glyphicon glyphicon-picture"/>
-                            </h:panelGroup>
-							<h:panelGroup rendered="#{afficherProduitController.produit.mainImage != null}" class="thumbnail"  >
-								<p:graphicImage  value="#{imageController.image}">
-									<f:param name="imageId" value="#{afficherProduitController.produit.mainImage.id}" />
-									<f:param name="thumb" value="#{false}" />
-								</p:graphicImage>
-							</h:panelGroup>
-						</div>
-                        <div class="col-lg-10">
-							<div class="product-description">
-								<h:outputText value="#{afficherProduitController.produit.description}" />
+        <ui:define name="title">
+            <h:outputText value="#{afficherProduitController.produit.nom}"/>
+        </ui:define>
+        <ui:define name="body">
+            <p:messages autoUpdate="true" escape="false"/>
+            <h:form>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <h:panelGroup rendered="#{afficherProduitController.produit.mainImage == null }" class="thumbnail">
+                                    <span class="glyphicon glyphicon-picture"/>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{afficherProduitController.produit.mainImage != null}" class="thumbnail"  >
+                                    <p:graphicImage  value="#{imageController.image}">
+                                        <f:param name="imageId" value="#{afficherProduitController.produit.mainImage.id}" />
+                                        <f:param name="thumb" value="#{false}" />
+                                    </p:graphicImage>
+                                </h:panelGroup>
+                            </div>
+                            <div class="col-lg-10">
+                                <div class="product-description">
+                                    <h:outputText value="#{afficherProduitController.produit.description}" />
+                                </div>
                             </div>
                         </div>
                     </div>
-				</div>
-            </div>
-			<div class="row">
+                </div>
+                <div class="row">
 
-                <div class="col-lg-6" id="AchatImmediat">
-                    <h2>
-                        <h:outputText value="#{bundle.BuyItNow}" />
-                    </h2>
-                    <c:forEach var="vente" items="#{afficherProduitController.produit.ventesImmediates}">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-lg-3">
-										<h:panelGroup rendered="#{afficherProduitController.produit.mainImage == null }" class="thumbnail">
-											<span class="glyphicon glyphicon-picture"/>
-										</h:panelGroup>
-										<h:panelGroup rendered="#{afficherProduitController.produit.mainImage != null}" class="thumbnail"  >
-											<p:graphicImage  value="#{imageController.image}">
-												<f:param name="imageId" value="#{afficherProduitController.produit.mainImage.id}" />
-												<f:param name="thumb" value="#{false}" />
-											</p:graphicImage>
-										</h:panelGroup>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="product-buy-by">
-                                            <h:outputFormat value="#{bundle.SelledBy}"/>
+                    <div class="col-lg-6" id="AchatImmediat">
+                        <h2>
+                            <h:outputText value="#{bundle.BuyItNow}" />
+                        </h2>
+                        <c:forEach var="vente" items="#{afficherProduitController.produit.ventesImmediates}">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <h:panelGroup rendered="#{afficherProduitController.produit.mainImage == null }" class="thumbnail">
+                                                <span class="glyphicon glyphicon-picture"/>
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{afficherProduitController.produit.mainImage != null}" class="thumbnail"  >
+                                                <p:graphicImage  value="#{imageController.image}">
+                                                    <f:param name="imageId" value="#{afficherProduitController.produit.mainImage.id}" />
+                                                    <f:param name="thumb" value="#{false}" />
+                                                </p:graphicImage>
+                                            </h:panelGroup>
                                         </div>
-                                        <div class="vendor">
-											<h:outputFormat value="#{vente.boutique.proprietaire.nom}"/>
+                                        <div class="col-lg-4">
+                                            <div class="product-buy-by">
+                                                <h:outputFormat value="#{bundle.SelledBy}"/>
+                                            </div>
+                                            <div class="vendor">
+                                                <h:outputFormat value="#{vente.boutique.proprietaire.nom}"/>
+                                            </div>
+                                            <div class="price">
+                                                <h:outputFormat value="#{bundle.Price}">
+                                                    <f:param value="#{vente.prix}" />
+                                                </h:outputFormat>
+                                            </div>
                                         </div>
-										<div class="price">
-											<h:outputFormat value="#{bundle.Price}">
-												<f:param value="#{vente.prix}" />
-											</h:outputFormat>
+                                        <div class="col-lg-5">
+                                            <div>
+                                                <h:commandButton value="#{bundle.AddToCart}"
+                                                                 action="#{panierController.ajouterProduitPanier()}"
+                                                                 styleClass="btn btn-primary">
+                                                    <f:setPropertyActionListener target="#{panierController.produitPanier.venteImmediate}"
+                                                                                 value="#{vente}" />
+                                                </h:commandButton>
+                                            </div>
                                         </div>
-									</div>
-									<div class="col-lg-5">
-										<div>
-											<h:commandButton value="#{bundle.AddToCart}"
-															 action="#{panierController.ajouterProduitPanier()}"
-																 styleClass="btn btn-primary">
-												<f:setPropertyActionListener target="#{panierController.produitPanier.venteImmediate}"
-																			 value="#{vente}" />
-											</h:commandButton>
-										</div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </c:forEach>
-                </div>
+                        </c:forEach>
+                    </div>
 
-                <div class="col-lg-6" id="auction-sales">
-                    <h2>
-                        <h:outputText value="#{bundle.AuctionSale}" />
-                    </h2>
-                    <c:forEach var="enchere" items="#{afficherProduitController.produit.encheres}">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-lg-3">
-                                        <h:panelGroup rendered="#{afficherProduitController.produit.mainImage == null }" class="thumbnail">
-											<span class="glyphicon glyphicon-picture"/>
-										</h:panelGroup>
-										<h:panelGroup rendered="#{afficherProduitController.produit.mainImage != null}" class="thumbnail"  >
-											<p:graphicImage  value="#{imageController.image}">
-												<f:param name="imageId" value="#{afficherProduitController.produit.mainImage.id}" />
-												<f:param name="thumb" value="#{false}" />
-											</p:graphicImage>
-										</h:panelGroup>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="product-buy-by">
-                                            <h:outputFormat value="#{bundle.SelledBy}"/>
+                    <div class="col-lg-6" id="auction-sales">
+                        <h2>
+                            <h:outputText value="#{bundle.AuctionSale}" />
+                        </h2>
+                        <c:forEach var="enchere" items="#{afficherProduitController.produit.encheres}">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <h:panelGroup rendered="#{afficherProduitController.produit.mainImage == null }" class="thumbnail">
+                                                <span class="glyphicon glyphicon-picture"/>
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{afficherProduitController.produit.mainImage != null}" class="thumbnail"  >
+                                                <p:graphicImage  value="#{imageController.image}">
+                                                    <f:param name="imageId" value="#{afficherProduitController.produit.mainImage.id}" />
+                                                    <f:param name="thumb" value="#{false}" />
+                                                </p:graphicImage>
+                                            </h:panelGroup>
                                         </div>
-                                        <div class="vendor">
-											<h:outputFormat value="#{enchere.vendeur.nom}"/>
+                                        <div class="col-lg-4">
+                                            <div class="product-buy-by">
+                                                <h:outputFormat value="#{bundle.SelledBy}"/>
+                                            </div>
+                                            <div class="vendor">
+                                                <h:outputFormat value="#{enchere.vendeur.nom}"/>
+                                            </div>
+                                            <div class="price">
+                                                <h:outputFormat value="#{bundle.Price}">
+                                                    <f:param value="#{enchere.montantCourant}" />
+                                                </h:outputFormat>
+                                            </div>
                                         </div>
-										<div class="price">
-											<h:outputFormat value="#{bundle.Price}">
-												<f:param value="#{enchere.montantCourant}" />
-											</h:outputFormat>
+                                        <div class="col-lg-5">
+                                            <div>
+                                                <h:commandLink value="#{bundle.AuctionAction}"
+                                                               action="#{encherirController.preEncherir()}"
+                                                               styleClass="btn btn-success">
+                                                    <f:setPropertyActionListener target="#{encherirController.enchere}"
+                                                                                 value="#{enchere}" />
+                                                </h:commandLink>
+                                            </div>
                                         </div>
-                                    </div>
-									<div class="col-lg-5">
-										<div>
-											<h:commandButton value="#{bundle.AuctionAction}"
-															 actionListener="#{encherirController.preEncherir()}"
-																 styleClass="btn btn-success">
-												<f:setPropertyActionListener target="#{encherirController.enchere}"
-																			 value="#{enchere}" />
-											</h:commandButton>
-										</div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </c:forEach>
+                        </c:forEach>
+                    </div>
                 </div>
-            </div>
-        </h:form>
-    </ui:define>
-</ui:composition>
+            </h:form>
+        </ui:define>
+    </ui:composition>
 
 </html>
