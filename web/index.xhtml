@@ -126,7 +126,7 @@
                                     <div class="col-lg-3">
                                         <h:commandLink class="thumbnail"
                                                        action="#{afficherProduitController.afficheProduit}"
-                                                       rendered="#{produit.mainImage != null}">
+                                                       rendered="#{enchere.produit.mainImage != null}">
                                             <f:setPropertyActionListener target="#{afficherProduitController.produit}"
                                                                          value="#{enchere.produit}" />
                                             <p:graphicImage value="#{imageController.image}">
@@ -136,7 +136,7 @@
                                         </h:commandLink>
                                         <h:commandLink class="thumbnail"
                                                        action="#{afficherProduitController.afficheProduit}"
-                                                       rendered="#{produit.mainImage == null}">
+                                                       rendered="#{enchere.produit.mainImage == null}">
                                             <f:setPropertyActionListener target="#{afficherProduitController.produit}"
                                                                          value="#{enchere.produit}" />
                                             <span class="glyphicon glyphicon-picture" />
