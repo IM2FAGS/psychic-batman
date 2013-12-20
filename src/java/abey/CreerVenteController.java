@@ -145,6 +145,7 @@ public class CreerVenteController extends AbstractController {
     }
 
     public String creerVenteImmediate() {
+		
         venteImmediate = getVenteImmediate();
         Produit produitVente = getProduit();
         if (produitVente == null) {
@@ -171,7 +172,6 @@ public class CreerVenteController extends AbstractController {
                 produitVente.getVentesImmediates().add(venteImmediate);
 
                 venteImmediateService.create(venteImmediate);
-
                 produitService.edit(produitVente);
                 boutiqueService.edit(boutique);
                 annulerCreer();
