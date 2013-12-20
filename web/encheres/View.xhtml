@@ -13,7 +13,7 @@
         <h:form class="form-horizontal" enctype="multipart/form-data">
             <h:outputText value="#{bundle.AuctionStartDate}"/>
             <br/>
-            <h:outputText value="#{encherirController.enchere.dateDebut}"/>
+            <h:outputText value="#{langueSession.getLocaleDate(encherirController.enchere.dateDebut)}"/>
             <br/>
             <h:outputText value="#{bundle.Amount}"/>
             <span class="space"/>
