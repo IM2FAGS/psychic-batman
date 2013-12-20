@@ -103,7 +103,7 @@
 										<div class="totalProduit">
 											<h:outputFormat value="#{bundle.Price}">
 												
-												<f:param value="#{produitPanier.quantite * produitPanier.venteImmediate}"  />
+												<f:param value="#{produitPanier.venteImmediate.prix}"  />
 											</h:outputFormat>
 										</div>
 									</div>
