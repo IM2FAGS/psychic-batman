@@ -187,10 +187,10 @@ public class Produit implements Serializable {
         BigDecimal prixMinVenteImmediate = getPrixMinVenteImmediate();
         BigDecimal prixMinEnchere = getPrixMinEnchere();
         if (prixMinVenteImmediate.compareTo(BigDecimal.ZERO) > 0
-                && prixMinVenteImmediate.compareTo(prixMinEnchere) < 0) {
+                && prixMinVenteImmediate.compareTo(prixMinEnchere) <= 0) {
             return prixMinVenteImmediate;
         } else if (prixMinEnchere.compareTo(BigDecimal.ZERO) > 0
-                && prixMinEnchere.compareTo(prixMinVenteImmediate) < 0) {
+                && prixMinEnchere.compareTo(prixMinVenteImmediate) <= 0) {
 
         }
         return BigDecimal.ZERO;

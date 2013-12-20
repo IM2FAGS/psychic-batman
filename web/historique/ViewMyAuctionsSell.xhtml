@@ -65,12 +65,12 @@
                                             </div>
                                             <div>
                                                 #{bundle.AuctionEnd} : #{langueSession.getLocaleDate(enchere.dateFin)}<br/>
-                                                <h:panelGroup  rendered="#{enchere.surenchereGagnante == null}">
+                                                <h:panelGroup  rendered="#{enchere.surencheres.size() == 0}">
                                                     <em>#{bundle.NoBidder}</em><br/>
                                                     #{bundle.InitialPrice} : #{enchere.prixInitial}€
                                                 </h:panelGroup>
-                                                <h:panelGroup  rendered="#{enchere.surenchereGagnante != null}">
-                                                    #{bundle.OwnedBy} : #{enchere.surenchereGagnante.encherisseur.nom}<br/>
+                                                <h:panelGroup  rendered="#{enchere.surencheres.size() > 0}">
+                                                    #{bundle.OwnedBy} : #{enchere.derniereSurenchere.encherisseur.nom}<br/>
                                                     #{bundle.InitialPrice} : #{enchere.prixInitial}€<br/>
                                                     #{bundle.CurrentAmount} : <span class="total">#{enchere.montantCourant}€</span>
                                                 </h:panelGroup>

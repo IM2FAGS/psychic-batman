@@ -48,11 +48,15 @@ public class LoginController extends AbstractController {
     }
 
     public String logout() {
-        updatePanier();
-        setUtilisateurConnecte(null);
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        HttpSession httpSession = (HttpSession)facesContext.getExternalContext().getSession(false);
-        httpSession.invalidate();
+        try {
+            updatePanier();
+            setUtilisateurConnecte(null);
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            HttpSession httpSession = (HttpSession) facesContext.getExternalContext().getSession(false);
+            httpSession.invalidate();
+        } catch (Exception e) {
+            System.err.println(e);
+        }
         return "/index";
     }
 }

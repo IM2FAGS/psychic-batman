@@ -24,6 +24,11 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @NamedQueries({
+    @NamedQuery(name = "Enchere.getEncheresProduitEnCours",
+            query = "select e from Enchere e "
+            + "where e.produit = ?1 "
+            + "and e.terminee = false "
+            + "order by e.dateFin asc"),
     @NamedQuery(name = "Enchere.getEncheresCreeesEnCours",
             query = "select e from Enchere e "
             + "where e.vendeur = ?1 "

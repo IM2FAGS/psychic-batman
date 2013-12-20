@@ -90,7 +90,7 @@
                         <h2>
                             <h:outputText value="#{bundle.AuctionSale}" />
                         </h2>
-                        <c:forEach var="enchere" items="#{afficherProduitController.produit.encheres}">
+                        <c:forEach var="enchere" items="#{afficherProduitController.encheresEnCours}">
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <div class="row">

@@ -1,6 +1,7 @@
 package abey.services;
 
 import abey.entities.Enchere;
+import abey.entities.Produit;
 import abey.entities.Utilisateur;
 import java.util.Date;
 import java.util.List;
@@ -37,6 +38,12 @@ public class EnchereService extends AbstractService<Enchere> {
     public List<Enchere> getEncheresCreeesEnCours(Utilisateur utilisateur) {
         TypedQuery<Enchere> query = em.createNamedQuery("Enchere.getEncheresCreeesEnCours", Enchere.class);
         query.setParameter(1, utilisateur);
+        return query.getResultList();
+    }
+
+    public List<Enchere> getEncheresEnCours(Produit p) {
+        TypedQuery<Enchere> query = em.createNamedQuery("Enchere.getEncheresProduitEnCours", Enchere.class);
+        query.setParameter(1, p);
         return query.getResultList();
     }
 

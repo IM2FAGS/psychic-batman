@@ -4,9 +4,12 @@
  */
 package abey;
 
+import abey.entities.Enchere;
 import abey.entities.Produit;
+import abey.services.EnchereService;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 
 /**
@@ -18,6 +21,9 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class AfficherProduitController extends AbstractController{
 	
+    @EJB
+    private EnchereService enchereService;
+    
 	private Produit produit;
 
 	public Produit getProduit() {
@@ -31,4 +37,8 @@ public class AfficherProduitController extends AbstractController{
 	public String afficheProduit(){
 		return "/produits/View";
 	}
+
+    public List<Enchere> getEncheresEnCours() {
+        return enchereService.getEncheresEnCours(produit);
+    }
 }

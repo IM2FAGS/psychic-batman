@@ -40,7 +40,7 @@ public class ProduitService extends AbstractService<Produit> {
         cq.select(root).where(pred.toArray(new Predicate[0]));
         
         Query q = em.createQuery(cq);
-        q.setMaxResults(20);
+//        q.setMaxResults(20);
 
         return q.getResultList();
     }
