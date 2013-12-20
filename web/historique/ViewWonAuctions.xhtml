@@ -21,12 +21,65 @@
         </h:panelGroup>
         <h:panelGroup  rendered="#{loginController.utilisateurConnecte != null}">
             <div>
-                <h:panelGroup  rendered="#{afficherHistoriqueController.surencheresRemportees.size() == 0}">
-                    <p>#{bundle.NoWonAuctions}</p>
+                <h3>#{bundle.NewAuctions}</h3>
+                <h:panelGroup rendered="#{afficherHistoriqueController.getSurencheresRemportees(false).size() == 0}">
+                    <p>#{bundle.NoNewWonAuction}</p>
                 </h:panelGroup>
-                <h:panelGroup  rendered="#{afficherHistoriqueController.surencheresRemportees.size() > 0}">
+                <h:panelGroup rendered="#{afficherHistoriqueController.getSurencheresRemportees(false).size() > 0}">
                     <h:form>
-                        <c:forEach var="surenchere" items="#{afficherHistoriqueController.surencheresRemportees}">
+                        <c:forEach var="surenchere" items="#{afficherHistoriqueController.getSurencheresRemportees(false)}">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <h:commandLink class="thumbnail"
+                                                           action="#{afficherProduitController.afficheProduit}"
+                                                           rendered="#{surenchere.enchere.produit.mainImage != null}">
+                                                <f:setPropertyActionListener target="#{afficherProduitController.produit}" value="#{surenchere.enchere.produit}" />
+                                                <p:graphicImage value="#{imageController.image}">
+                                                    <f:param name="imageId" value="#{surenchere.enchere.produit.mainImage.id}" />
+                                                    <f:param name="thumb" value="#{false}" />
+                                                </p:graphicImage>
+                                            </h:commandLink>
+                                            <h:commandLink class="thumbnail"
+                                                           action="#{afficherProduitController.afficheProduit}"
+                                                           rendered="#{surenchere.enchere.produit.mainImage == null}">
+                                                <f:setPropertyActionListener target="#{afficherProduitController.produit}" value="#{surenchere.enchere.produit}" />
+                                                <span class="glyphicon glyphicon-picture" />
+                                            </h:commandLink>
+                                        </div>
+                                        <div class="col-lg-10">
+                                            <div class="product-name">
+                                                <h:commandLink action="#{afficherProduitController.afficheProduit}"
+                                                               value="#{surenchere.enchere.produit.nom}"
+                                                               rendered="#{surenchere.enchere.produit.mainImage == null}">
+                                                    <f:setPropertyActionListener target="#{afficherProduitController.produit}" value="#{surenchere.enchere.produit}" />
+                                                </h:commandLink>
+                                            </div>
+                                            <div>
+                                                #{langueSession.getLocaleDate(surenchere.dateEnchere)}<br/>
+                                                #{bundle.InitialPrice} : #{surenchere.enchere.prixInitial}€<br/>
+                                                #{bundle.Amount} : <span class="total">#{surenchere.montant}€</span><br/>
+                                                <h:commandLink action="#{afficherHistoriqueController.setSurenchereConsultee(surenchere, true)}"
+                                                               value="#{bundle.ShowAsRead}"
+                                                               styleClass="btn btn-success" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </h:form>
+                </h:panelGroup>
+            </div>
+            <div>
+                <h3>#{bundle.OldAuctions}</h3>
+                <h:panelGroup rendered="#{afficherHistoriqueController.getSurencheresRemportees(true).size() == 0}">
+                    <p>#{bundle.NoOldWonAuction}</p>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{afficherHistoriqueController.getSurencheresRemportees(true).size() > 0}">
+                    <h:form>
+                        <c:forEach var="surenchere" items="#{afficherHistoriqueController.getSurencheresRemportees(true)}">
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <div class="row">

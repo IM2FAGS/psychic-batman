@@ -120,9 +120,9 @@
                                     </div>
 									<div class="col-lg-5">
 										<div>
-											<h:commandButton value="#{bundle.AuctionSale}"
-															 actionListener="#{encherirController.encherir()}"
-																 styleClass="btn btn-primary">
+											<h:commandButton value="#{bundle.AuctionAction}"
+															 actionListener="#{encherirController.preEncherir()}"
+																 styleClass="btn btn-success">
 												<f:setPropertyActionListener target="#{encherirController.enchere}"
 																			 value="#{enchere}" />
 											</h:commandButton>

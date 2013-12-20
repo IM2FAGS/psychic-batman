@@ -6,10 +6,20 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
     <ui:define name="title">
-        <h:outputText value="#{afficherEnchereController.enchere.produit.nom}"/>
+        <h:outputText value="#{encherirController.enchere.produit.nom}"/>
     </ui:define>
     <ui:define name="body">
-        <h:outputText value="#{bundle.AuctionStartDate}"/>
-        
+        <p:messages autoUpdate="true" escape="false"/>
+        <h:form class="form-horizontal" enctype="multipart/form-data">
+            <h:outputText value="#{bundle.AuctionStartDate}"/>
+            <br/>
+            <h:outputText value="#{langueSession.getLocaleDate(encherirController.enchere.dateDebut)}"/>
+            <br/>
+            <h:outputText value="#{bundle.Amount}"/>
+            <span class="space"/>
+            <h:inputText value="#{encherirController.surenchere.montant}"/>
+            <br/>
+            <h:commandLink action="#{encherirController.encherir}" value="#{bundle.AuctionAction}"/>
+        </h:form>
     </ui:define>
 </ui:composition>

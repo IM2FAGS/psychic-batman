@@ -28,6 +28,12 @@ import javax.validation.constraints.NotNull;
             + "where s.encherisseur = ?1 "
             + "and s = s.enchere.surenchereGagnante "
             + "order by s.dateEnchere desc"),
+    @NamedQuery(name = "Surenchere.getSurencheresGagnantesConsultees",
+            query = "select s from Surenchere s "
+            + "where s.encherisseur = ?1 "
+            + "and s = s.enchere.surenchereGagnante "
+            + "and s.consultee = ?2 "
+            + "order by s.dateEnchere desc"),
     @NamedQuery(name = "Surenchere.getSurencheres",
             query = "select s from Surenchere s "
             + "where s.encherisseur = ?1 "
@@ -65,7 +71,7 @@ public class Surenchere implements Serializable {
 
     @Basic(optional = false)
     @NotNull
-    private boolean consultee = true;
+    private boolean consultee = false;
 
     public Long getId() {
         return id;

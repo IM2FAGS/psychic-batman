@@ -19,21 +19,16 @@ public class Encheres {
     @EJB
     EnchereService enchereService;
 
-    @EJB
-    SurenchereService surenchereService;
-
     @Schedule(second = "*/15", hour = "*", minute = "*")
     public void task() {
         System.out.println(new Date());
-        System.out.println("Vérification des enchères à clore...");
+//        System.out.println("Vérification des enchères à clore...");
         for (Enchere enchere : enchereService.getEncheresAClore()) {
             System.out.println("à clore : enchere " + enchere.getId() + " (produit " + enchere.getProduit().getNom() + ")");
 
             Surenchere gagnante = enchere.getDerniereSurenchere();
             if (gagnante != null) {
                 System.out.println("surenchere gagnante : " + gagnante);
-                gagnante.setConsultee(false);
-                surenchereService.edit(gagnante);
                 enchere.setSurenchereGagnante(gagnante);
             } else {
                 System.out.println("aucune surenchere");
@@ -42,7 +37,7 @@ public class Encheres {
             enchereService.edit(enchere);
             System.out.println("enchère close");
         }
-        System.out.println("Fin de vérification");
+//        System.out.println("Fin de vérification");
     }
 
     public void setEnchereService(EnchereService enchereService) {
