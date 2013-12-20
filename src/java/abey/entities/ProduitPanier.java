@@ -1,6 +1,7 @@
 package abey.entities;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -79,4 +80,11 @@ public class ProduitPanier implements Serializable {
         return "abey.entities.ProduitPanier[ id=" + id + " ]";
     }
 
+	/**
+	 *
+	 * @return
+	 */
+	public BigDecimal calculerPrixProduitPanier(){
+		return this.getVenteImmediate().getPrix().multiply(new BigDecimal(this.getQuantite()));
+	}
 }

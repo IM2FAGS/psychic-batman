@@ -3,7 +3,9 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+				xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+				xmlns:p="http://primefaces.org/ui">
     <ui:define name="title">
         <h:outputText value="#{bundle.MyCart}"></h:outputText>
     </ui:define>
@@ -22,27 +24,93 @@
                 <h:outputText rendered="#{panierController.getNumProduits() == 0}"
                               value="#{bundle.CartEmpty}" />
                 <h:panelGroup rendered="#{panierController.getNumProduits() > 0}">
-                    <h:dataTable value="#{panierSession.panier.produits}"
-                                 var="item">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="quantite"/>
-                            </f:facet>
-                            <h:outputText value="#{item.quantite}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="nom"/>
-                            </f:facet>
-                            <h:outputText value="#{item.venteImmediate.produit.nom}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="prix"/>
-                            </f:facet>
-                            <h:outputText value="#{item.venteImmediate.prix}"/>
-                        </h:column>
-                    </h:dataTable>
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-lg-2">
+									<div class="labelImage">
+									</div>
+								</div>
+								<div class="col-lg-2">
+									<div class="nomProduit">
+										<h:outputFormat value="#{bundle.Name}"/>
+									</div>
+								</div>
+								<div class="col-lg-2">
+									<div class="selledByLabel">
+										<h:outputFormat value="#{bundle.SelledBy}"/>
+									</div>
+								</div>
+								<div class="col-lg-2">
+									<div class="priceUnitLabel">
+										<h:outputFormat value="#{bundle.PricePerUnit}"/>
+									</div>
+								</div>
+
+								<div class="col-lg-2">
+									<div class="quantityLabel">
+										<h:outputFormat value="#{bundle.Quantity}"/>
+									</div>
+								</div>
+								<div class="col-lg-2">
+									<div class="total">
+										<h:outputFormat value="#{bundle.Total}"/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+                    <c:forEach var="produitPanier" items="#{panierController.panierSite.produits}">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="col">
+                                    <div class="col-lg-2">
+										<h:panelGroup rendered="#{produitPanier.venteImmediate.produit.mainImage == null }" class="thumbnail">
+											<span class="glyphicon glyphicon-picture"/>
+										</h:panelGroup>
+										<h:panelGroup rendered="#{produitPanier.venteImmediate.produit.mainImage != null}" class="thumbnail"  >
+											<p:graphicImage  value="#{imageController.image}">
+												<f:param name="imageId" value="#{produitPanier.venteImmediate.produit.mainImage.id}" />
+												<f:param name="thumb" value="#{false}" />
+											</p:graphicImage>
+										</h:panelGroup>
+                                    </div>
+                                    <div class="col-lg-2">
+										<div class="product-name">
+											<h:outputFormat value="#{produitPanier.venteImmediate.produit.nom}"/>
+										</div>
+									</div>
+                                    <div class="col-lg-2">
+                                        <div class="vendor">
+											<h:outputFormat value="#{produitPanier.venteImmediate.boutique.proprietaire.nom}"/>
+                                        </div>
+									</div>
+                                    <div class="col-lg-2">
+										<div class="price">
+											<h:outputFormat value="#{bundle.Price}">
+												<f:param value="#{produitPanier.venteImmediate.prix}" />
+											</h:outputFormat>
+                                        </div>
+									</div>
+                                    <div class="col-lg-2">
+										<div class="quantite">
+											<h:outputFormat value="#{bundle.Multiplication}">
+												<f:param value="#{produitPanier.quantite}" />
+											</h:outputFormat>
+										</div>
+									</div>
+                                    <div class="col-lg-2">
+										<div class="totalProduit">
+											<h:outputFormat value="#{bundle.Price}">
+												
+												<f:param value="#{produitPanier.quantite * produitPanier.venteImmediate}"  />
+											</h:outputFormat>
+										</div>
+									</div>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
                     <h:link outcome="/commande/Paiement" value="#{bundle.ValidCart}"/>
                 </h:panelGroup>
             </div>
